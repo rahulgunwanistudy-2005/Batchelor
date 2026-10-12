@@ -36,3 +36,10 @@ contracts/bench/out/s4/*
 !contracts/bench/out/s4/historical-summary.json
 !contracts/bench/out/s4/local-bots.json
 !contracts/bench/out/s4/local-regression.json
+
+# HyperIndex generated runtime and local evidence
+indexer/.envio/
+indexer/config.generated.yaml
+indexer/rehearsal.json
+indexer/cloud/.envio/
+indexer/cloud/envio-env.d.ts

@@ -1,0 +1,26 @@
+{
+  "name": "@batchelor/indexer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "configure": "node --env-file-if-exists=../.env src/configure.ts",
+    "codegen": "envio codegen",
+    "dev": "node src/run.ts dev",
+    "start": "node src/run.ts start",
+    "typecheck": "envio codegen && tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "test": "ENVIO_CONFIG=config.test.yaml envio codegen && ENVIO_CONFIG=config.test.yaml vitest run",
+    "build": "envio codegen && tsc --noEmit",
+    "verify": "node --env-file-if-exists=../.env src/verify.ts",
+    "test:chain": "ENVIO_CONFIG=config.test.yaml envio codegen && INDEXER_LIVE_PARITY=1 ENVIO_CONFIG=config.test.yaml vitest run test/chain.test.ts",
+    "cloud:prepare": "node src/cloud.ts",
+    "cloud:check": "node src/cloud.ts --check"
+  },
+  "dependencies": {
+    "@batchelor/core": "workspace:*",
+    "envio": "3.14.0",
+    "viem": "^2.40.0",
+    "zod": "^4.1.0"
+  }
+}
