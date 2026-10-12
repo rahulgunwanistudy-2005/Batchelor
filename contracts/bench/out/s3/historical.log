@@ -1,0 +1,249 @@
+No files changed, compilation skipped
+
+Ran 1 test for test/DemoToken.t.sol:DemoTokenTest
+[PASS] test_onlyImmutableFaucetCanMintAndDecimalsAreIndependent() (gas: 291959)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 1.91ms (1.59ms CPU time)
+
+Ran 2 tests for test/unit/TokenSafety.t.sol:TokenSafetyTest
+[PASS] test_feeOnTransferCannotCreateUnbackedCredit() (gas: 2122670)
+[PASS] test_tokenCallbacksCannotEnterAnyStateChange() (gas: 2262148)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 2.61ms (2.19ms CPU time)
+
+Ran 1 test for bench/TransientGuard.t.sol:TransientGuardTest
+[PASS] test_transientGuardBlocksReentrancyAndUnlocks() (gas: 681331)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 433.67µs (299.21µs CPU time)
+
+Ran 1 test for test/unit/Faucet.t.sol:FaucetTest
+[PASS] test_dailyDripCreditsMarketAndCooldownIsPerRecipient() (gas: 1365201)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 3.44ms (3.17ms CPU time)
+
+Ran 11 tests for test/unit/Uncross.t.sol:UncrossTest
+[PASS] test_badRange() (gas: 40574)
+[PASS] test_buyPressurePicksHighest() (gas: 16482)
+[PASS] test_fullRange() (gas: 229183)
+[PASS] test_maximumVolumeBeforeSurplus() (gas: 14887)
+[PASS] test_minimumSurplusBeforePressure() (gas: 15698)
+[PASS] test_mixedPressureUsesReference() (gas: 18511)
+[PASS] test_noCrossAndOneSided() (gas: 20301)
+[PASS] test_sellPressurePicksLowest() (gas: 16158)
+[PASS] test_singleTickPrimeCutoff() (gas: 16024)
+[PASS] test_volumeOverflow() (gas: 20260)
+[PASS] test_zeroSurplusUsesReference() (gas: 24615)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 3.47ms (3.25ms CPU time)
+
+Ran 6 tests for bench/PageBench.t.sol:PageBenchTest
+[PASS] test_contiguous512() (gas: 4288962)
+Logs:
+  contiguous512 4226086
+
+[PASS] test_fourPages32() (gas: 336054)
+Logs:
+  fourPages32 273158
+
+[PASS] test_onePage32() (gas: 327042)
+Logs:
+  onePage32 264166
+
+[PASS] test_scattered512() (gas: 4307851)
+Logs:
+  scattered512 4245030
+
+[PASS] test_writeOnePage64() (gas: 765984)
+Logs:
+  writeOnePage64 713574
+
+[PASS] test_writeSeparatePages64() (gas: 1991539)
+Logs:
+  writeSeparatePages64 715942
+
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 18.50ms (15.45ms CPU time)
+
+Ran 14 tests for test/unit/BatchAuction.t.sol:BatchAuctionTest
+[PASS] test_EIP712DomainBoundAndFailedPlaceDoesNotConsumeNonce() (gas: 4140433)
+[PASS] test_EIP712PlaceCancelAndRelayedEvent() (gas: 601192)
+[PASS] test_EIP712WrongSignerMalformedReplayExpiredAndAction() (gas: 503298)
+[PASS] test_cancelOwnerAndSealedBatch() (gas: 564607)
+[PASS] test_cancelRefundsAndKeepsTaggedRange() (gas: 832426)
+[PASS] test_claimPendingThenPermissionlessAndTwice() (gas: 1779532)
+[PASS] test_clearBeforeNewBatchAndLazyReset() (gas: 2506070)
+[PASS] test_clearGasEventMatchesStoredResult() (gas: 1315856)
+[PASS] test_depositAndWithdrawRollSealedBatch() (gas: 782733)
+[PASS] test_depositForAndWithdrawOnlyFreeBalance() (gas: 743217)
+[PASS] test_emptyClearIsNoopAndIdsHaveNoGaps() (gas: 794884)
+[PASS] test_noTradeRefundBothSidesAndReferenceUnchanged() (gas: 1061694)
+[PASS] test_placeManyAtomicAndValidation() (gas: 728330)
+[PASS] test_sideTotalOverflowRejectedBeforeClearing() (gas: 318046)
+Suite result: ok. 14 passed; 0 failed; 0 skipped; finished in 22.06ms (19.70ms CPU time)
+
+Ran 5 tests for test/unit/Settle.t.sol:SettleTest
+[PASS] testFuzz_primeRoundingMatchesRational(uint64,uint64,uint64,uint64) (runs: 1000, μ: 21460, ~: 21460)
+[PASS] test_fullAndOutsideCutoff() (gas: 14850)
+[PASS] test_roundOnceForOneLot() (gas: 17057)
+[PASS] test_wideNumeratorDoesNotOverflow() (gas: 13612)
+[PASS] test_zeroVolumeFullRefund() (gas: 11825)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 193.25ms (196.14ms CPU time)
+
+Ran 28 tests for bench/ClearBench.t.sol:ClearBenchTest
+[PASS] test_cancel() (gas: 365658)
+Logs:
+  BENCH_JSON {"name":"cancel","activeTicks":0,"orders":1,"gas":119215}
+
+[PASS] test_cancelFor() (gas: 535871)
+Logs:
+  BENCH_JSON {"name":"cancel:relayed","activeTicks":1,"orders":1,"gas":163086}
+
+[PASS] test_claim1() (gas: 5235270)
+Logs:
+  BENCH_JSON {"name":"claim1","activeTicks":256,"orders":514,"gas":4566487}
+
+[PASS] test_claim1Partial() (gas: 4713802)
+Logs:
+  BENCH_JSON {"name":"claim1:partial","activeTicks":2,"orders":2,"gas":4640467}
+
+[PASS] test_claim50() (gas: 26904960)
+Logs:
+  BENCH_JSON {"name":"claim50","activeTicks":256,"orders":563,"gas":7692075}
+
+[PASS] test_claim50Partial() (gas: 11406373)
+Logs:
+  BENCH_JSON {"name":"claim50:partial","activeTicks":2,"orders":51,"gas":8745075}
+
+[PASS] test_clear() (gas: 4508397)
+Logs:
+  BENCH_JSON {"name":"clear","activeTicks":256,"orders":512,"gas":4493792}
+
+[PASS] test_clear128() (gas: 2367715)
+Logs:
+  BENCH_JSON {"name":"clear128","activeTicks":128,"orders":256,"gas":2259565}
+
+[PASS] test_clear256() (gas: 4544842)
+Logs:
+  BENCH_JSON {"name":"clear256","activeTicks":256,"orders":512,"gas":4436713}
+
+[PASS] test_clear32() (gas: 734784)
+Logs:
+  BENCH_JSON {"name":"clear32","activeTicks":32,"orders":64,"gas":626636}
+
+[PASS] test_clear8() (gas: 326459)
+Logs:
+  BENCH_JSON {"name":"clear8","activeTicks":8,"orders":16,"gas":218311}
+
+[PASS] test_clearPlateau() (gas: 5019979)
+Logs:
+  BENCH_JSON {"name":"clear:plateau","activeTicks":2,"orders":2,"gas":4549328}
+  BENCH_JSON {"name":"clearPlateau","activeTicks":2,"orders":2,"gas":4492249}
+
+[PASS] test_deploymentTooling() (gas: 39782835)
+Logs:
+  BENCH_JSON {"name":"tooling:deployBase","activeTicks":0,"orders":0,"gas":1143120}
+  BENCH_JSON {"name":"tooling:deployQuote","activeTicks":0,"orders":0,"gas":1143086}
+  BENCH_JSON {"name":"tooling:deployMarket","activeTicks":0,"orders":0,"gas":3907881}
+  BENCH_JSON {"name":"tooling:deployFaucet","activeTicks":0,"orders":0,"gas":689176}
+  BENCH_JSON {"name":"tooling:seed128","activeTicks":128,"orders":256,"gas":24721275}
+  BENCH_JSON {"name":"live128","activeTicks":128,"orders":256,"gas":2259565}
+
+[PASS] test_drip() (gas: 12082076)
+Logs:
+  BENCH_JSON {"name":"drip","activeTicks":256,"orders":512,"gas":4828010}
+
+[PASS] test_mapping128() (gas: 9126388)
+Logs:
+  BENCH_JSON {"name":"mapping128","activeTicks":128,"orders":256,"gas":2271853}
+
+[PASS] test_mapping256() (gas: 13492971)
+Logs:
+  BENCH_JSON {"name":"mapping256","activeTicks":256,"orders":512,"gas":4461289}
+
+[PASS] test_mapping32() (gas: 5851309)
+Logs:
+  BENCH_JSON {"name":"mapping32","activeTicks":32,"orders":64,"gas":629708}
+
+[PASS] test_mapping8() (gas: 5032348)
+Logs:
+  BENCH_JSON {"name":"mapping8","activeTicks":8,"orders":16,"gas":219079}
+
+[PASS] test_orders10() (gas: 732346)
+Logs:
+  BENCH_JSON {"name":"orders10","activeTicks":2,"orders":10,"gas":632353}
+
+[PASS] test_orders100() (gas: 732347)
+Logs:
+  BENCH_JSON {"name":"orders100","activeTicks":2,"orders":100,"gas":632353}
+
+[PASS] test_orders1000() (gas: 732348)
+Logs:
+  BENCH_JSON {"name":"orders1000","activeTicks":2,"orders":1000,"gas":632353}
+
+[PASS] test_place() (gas: 279754)
+Logs:
+  BENCH_JSON {"name":"place","activeTicks":0,"orders":0,"gas":229003}
+
+[PASS] test_placeForPlateau() (gas: 5242004)
+Logs:
+  BENCH_JSON {"name":"placeForSelfClear:plateau","activeTicks":2,"orders":2,"gas":4707415}
+
+[PASS] test_placeForSelfClear() (gas: 4781938)
+Logs:
+  BENCH_JSON {"name":"placeForSelfClear","activeTicks":256,"orders":512,"gas":4634538}
+
+[PASS] test_placeManyPlateau() (gas: 5677066)
+Logs:
+  BENCH_JSON {"name":"placeManySelfClear:plateau","activeTicks":2,"orders":2,"gas":5117461}
+
+[PASS] test_placeManySelfClear() (gas: 5131793)
+Logs:
+  BENCH_JSON {"name":"placeManySelfClear","activeTicks":256,"orders":512,"gas":4959325}
+
+[PASS] test_placePlateau() (gas: 5084825)
+Logs:
+  BENCH_JSON {"name":"placeSelfClear:plateau","activeTicks":2,"orders":2,"gas":4663805}
+
+[PASS] test_placeSelfClear() (gas: 4624828)
+Logs:
+  BENCH_JSON {"name":"placeSelfClear","activeTicks":256,"orders":512,"gas":4590928}
+
+Suite result: ok. 28 passed; 0 failed; 0 skipped; finished in 2.58s (2.58s CPU time)
+
+Ran 1 test for test/vectors/ExportVectors.t.sol:ExportVectorsTest
+[PASS] test_Export50SeededBooks() (gas: 10669)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 6.88s (6.88s CPU time)
+
+Ran 2 tests for test/fuzz/AuctionFuzz.t.sol:AuctionFuzzTest
+[PASS] testFuzz_ReferenceModelUniformLimitsRefundsAndConservation(uint256) (runs: 1000, μ: 21438127, ~: 20705791)
+[PASS] test_SameBlockOrderNeverMatters(uint256,uint256) (runs: 1000, μ: 24580431, ~: 24931533)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 20.05s (39.62s CPU time)
+
+Ran 1 test for test/invariant/AuctionInvariant.t.sol:AuctionInvariantTest
+[PASS]
+AuctionInvariantTest invariants:
+[PASS] invariant_ConservationPerBatchAndBoundedDust
+[PASS] invariant_InternalBalancesEqualGhostLedgerAndWalletWithdrawals
+[PASS] invariant_SolventAgainstIndependentOutstandingLiabilities
+ AuctionInvariantTest invariants (runs: 256, calls: 51200, reverts: 0)
+
+╭----------------+----------+-------+---------+----------╮
+| Contract       | Selector | Calls | Reverts | Discards |
++========================================================+
+| AuctionHandler | cancel   | 7332  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | claim    | 7251  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | clear    | 7302  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | deposit  | 7320  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | place    | 7406  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | roll     | 7264  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | withdraw | 7325  | 0       | 0        |
+╰----------------+----------+-------+---------+----------╯
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 54.63s (54.62s CPU time)
+
+Ran 12 test suites in 54.65s (84.39s CPU time): 73 tests passed, 0 failed, 0 skipped (73 total tests)
+2026-10-12T17:17:20.035791Z  WARN evm::traces: failed to read cache file path="/Users/rahul/.foundry/cache/signatures" err=Read { source: Os { code: 2, kind: NotFound, message: "No such file or directory" }, path: "/Users/rahul/.foundry/cache/signatures" }
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  lastCallGas(): replaced by `lastFrameGas`
+2026-10-12T17:18:14.697619Z  WARN evm::traces: failed to create cache parent="/Users/rahul/.foundry/cache" err=Operation not permitted (os error 1)
+2026-10-12T17:18:14.698554Z  WARN evm::traces: failed to flush signature cache err=failed to create file "/Users/rahul/.foundry/cache/signatures": No such file or directory (os error 2)

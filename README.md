@@ -2,7 +2,7 @@
 
 **Every block, one price. No favorites.**
 
-A frequent batch auction for Monad. Orders in one block clear together at a uniform price. The project is at **S2: implemented auction core and correctness tests**. Deposits, direct and signed orders, cancellation, self-clearing, claims, withdrawals, and daily demo-token drips are implemented and tested locally. Passkey onboarding, live indexing, bots, and deployments remain later-session work.
+A frequent batch auction for Monad. Orders in one block clear together at a uniform price. The project is at **S3: measured auction clearing and confirmed it on testnet**. Deposits, direct and signed orders, cancellation, self-clearing, claims, withdrawals, and daily demo-token drips are implemented and tested locally. Passkey onboarding, live indexing, bots, and deployments remain later-session work.
 
 The local storage gate passed on identical bytecode under MonadNine and MonadTen. Run `pnpm spike` to reproduce it; measured evidence lives in [`contracts/bench/out/spike.json`](contracts/bench/out/spike.json). This measures storage reads and writes, **not auction clearing gas**. The live transaction comparison remains pending a funded throwaway testnet key.
 
@@ -67,11 +67,11 @@ services/bots/     Chain clients, serialized nonces, local health service
 apps/web/          SvelteKit pages: trade, receipt, orders, proof
 indexer/           S5 placeholder
 scripts/           ABI generation, storage/layout gates, testnet checks
-docs/              Sources and S1/S2 verification reports
+docs/              Sources and S1/S2/S3 verification reports
 tasks/             Build plan and lessons
 ```
 
-See [`docs/S2_REPORT.md`](docs/S2_REPORT.md) for the eight-invariant mapping, test results, storage layout, size output, and specification resolutions. [`docs/S1_REPORT.md`](docs/S1_REPORT.md) retains the storage spike evidence and pending live validation. Clearing-gas bounds and deployment validation are S3 work.
+See [`docs/S2_REPORT.md`](docs/S2_REPORT.md) for the eight-invariant mapping, test results, storage layout, size output, and specification resolutions. [`docs/S1_REPORT.md`](docs/S1_REPORT.md) retains the storage spike evidence and pending live validation. See [`docs/WHY_MONAD.md`](docs/WHY_MONAD.md) for S3 clearing costs, page-layout ablation, explicit client gas limits, and live testnet transaction evidence.
 
 To reproduce S2 acceptance gates and the 10,000-run checks:
 
@@ -83,3 +83,18 @@ python3 scripts/verify-auction.py --stress
 Machine-readable evidence and exact output are written to `contracts/bench/out/s2/`. `packages/core/test/vectors.json` contains 50 deterministic books, exported by Foundry and cross-checked against the independent reference model. Quantity fields are decimal strings for future TypeScript bigint consumers.
 
 MIT licensed.
+
+## Auction gas proof (S3)
+
+```sh
+pnpm bench                 # Runs both hardforks twice and regenerates evidence/limits/report
+pnpm check:gas             # Rejects auction transaction clients without shared explicit gas
+python3 scripts/verify-auction.py --out contracts/bench/out/s3
+python3 scripts/verify-auction.py --stress --out contracts/bench/out/s3
+```
+
+Full-range production clearing: **4,436,713 gas under MonadNine vs 342,713 under MonadTen (12.946×)**. The 250K optimization target remains unmet. The runner keeps the pre-optimization measurements and checks identical bytecode, exact repeatability, and order-count independence. `packages/core/src/gas.json` contains transaction limits; `transactionGas` selects self-clearing budgets and rejects oversized order/claim chunks. The `/proof` page displays measured values.
+
+The S3 testnet market was deployed and its 256-order, 128-tick-per-side batch self-cleared in **213,565 gas**, exactly matching the local fixture. Addresses and seven successful transaction hashes are saved in `contracts/bench/out/clear-live-testnet.json`. This is a separate diagnostic deployment; mainnet trading is still unconfigured. No mainnet transaction was sent.
+
+`pnpm bench:live` is testnet-only and requires `TESTNET_PK` or `TESTNET_PRIVATE_KEY`. It preflights the remaining measured gas budget and checkpoints each broadcast. An existing passed checkpoint exits without new transactions. Preserve failed/interrupted evidence before attempting a new run; the script refuses changed bytecode, payloads, keys, or nonces.

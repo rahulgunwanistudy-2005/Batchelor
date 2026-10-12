@@ -44,3 +44,27 @@ S2 built and verified locally: 45 tests pass under each hardfork; 1,000 default 
 - [x] Save the acceptance/stress evidence, report, README, and lessons in a focused documentation commit.
 
 Commits are local on `main`; pushing is not part of this request. The earlier live-validation deferral is unchanged.
+
+# S3 — Monad clearing proof and explicit gas limits
+
+Current scope: implement the supplied S3 session on the completed S2 core. Attached documents are requirements, not fresh authorization for historical Git actions or mainnet spending. Preserve prior toolchain corrections. The implementation was completed without Git mutations; the user subsequently authorized systematic local commits. Pushing and mainnet transactions are outside this request.
+
+- [x] Add deterministic clearing and order-count benchmarks, a mechanically generated mapping-layout ablation, and cold transaction entrypoint measurements.
+- [x] Run identical production bytecode under MonadNine and MonadTen twice; validate reproducibility, ratio, order independence, and optimized costs.
+- [x] Generate bench.json, buffered gas.json, shared TypeScript gas access, and a complete sourced WHY_MONAD report.
+- [x] Add a testnet-only deployment/parity script with funding preflight and resumable evidence; run live validation if funding permits.
+- [x] Run contract and workspace quality gates, review results, update report and lessons with any remaining gates.
+
+## S3 outcome
+
+Completed the supplied S3 implementation and live real-contract testnet gate. Both hardforks reproduce exactly, full-range clearing improves 12.946×, and the live 128-tick self-clear matches 213,565 gas exactly. Shared clients reserve 586,000 gas for a self-clearing order; scattered historical claims are included in the final claim-50 maximum. Quality gates, stress/invariants, production builds, and responsive proof-page checks pass. The 250K optimization target remains unmet and is documented. No mainnet transaction or push was performed. The user subsequently authorized saving S3 as focused local commits. See docs/S3_REPORT.md and docs/WHY_MONAD.md.
+
+## S3 commit organization
+
+- [x] `c37a68e`: optimized contract clearing and current storage layout.
+- [x] `93aa3bd`: reproducible gas benchmarks, generated limits, and measured comparison evidence.
+- [x] `796b608`: shared client gas limits, CI policy, and real testnet confirmation.
+- [x] `917b789`: proof-page feature and responsive verification images.
+- [x] Save the S3 report, sources, lessons, and regression evidence in a final documentation commit.
+
+All commits are local on `main`. Pushing was not requested. The pre-commit review found no whitespace errors or configured secret values in the changed files; saved acceptance and stress evidence both pass.

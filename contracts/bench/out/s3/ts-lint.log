@@ -1,0 +1,10 @@
+Scope: 3 of 4 workspace projects
+packages/core lint$ tsc --noEmit
+packages/core lint: Done
+apps/web lint$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+services/bots lint$ tsc --noEmit
+services/bots lint: Done
+apps/web lint: Loading svelte-check in workspace: /Users/rahul/Batchelor/apps/web
+apps/web lint: Getting Svelte diagnostics...
+apps/web lint: svelte-check found 0 errors and 0 warnings
+apps/web lint: Done

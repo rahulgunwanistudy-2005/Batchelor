@@ -27,3 +27,12 @@ Copy into the repo as `docs/SOURCES.md`. "Single source" means one origin; reche
 | Keone Hon's HFT background | [Phemex profile](https://phemex.com/academy/keone-hon-monad-founder-fastest-evm-chain) | Secondary source |
 | MON ≈ $0.027 (FDV $2.7B / 100B supply) for budget estimates | [Token Terminal](https://tokenterminal.com/explorer/projects/monad) | Derived; check the live price |
 | Gas estimates in the bible (≈ 83K vs ≈ 4.1M for a full scan) | Arithmetic from the MIP-8 constants | Estimate until S1/S3 measure it |
+
+## S3 rechecks (12 Oct 2026)
+
+- [Official deployment summary](https://docs.monad.xyz/developer-essentials/summary) confirms Foundry >=1.8, 128-slot pages, current cold storage/write costs, 300 ms cadence, local mempools, 30M transaction and 150M block limits.
+- [Gas pricing](https://docs.monad.xyz/developer-essentials/gas-pricing) confirms limit billing, the 100 MON-gwei floor, and default priority ordering.
+- [Category Labs gas-limit analysis](https://www.category.xyz/blogs/setting-your-gas-limit-on-monad) motivates the 7.5% margin; it does not guarantee a transaction cannot run out of gas.
+- The supplied claim that no global mempool prevents every intra-batch reaction is too strong: local validators/RPC operators still see transactions. Documentation now bases the same-price claim on the tested allocation rules.
+- MIP-8 spec, blog, and standalone Foundry page were unavailable through the reader in this session; the accessible official deployment summary and the resolved local Foundry configuration supply the relevant implementation evidence.
+- All S3 gas figures come from the runner; live confirmation and transaction hashes are in `contracts/bench/out/clear-live-testnet.json`.

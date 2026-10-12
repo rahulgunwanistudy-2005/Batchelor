@@ -45,3 +45,14 @@ The user authorized the project `.env`, which provides `TESTNET_PRIVATE_KEY`. Th
 - vm.expectRevert must observe a deeper external call; pure-library error tests use an external test harness rather than an internal library call.
 
 - Historical MonadNine random-book harnesses combine up to 120 placements and two clears plus naive reference calculations in one test call, exceeding the S1 30M harness allowance. CI and the verification runner use an explicit 100M aggregate harness budget for historical correctness. The default profile and all production limits remain unchanged; no actual Monad transaction was attempted.
+
+## S3 gas measurement and live confirmation
+
+- Foundry isolation gives each measured production call a fresh access set. Pause metering only during large setup books, then resume before measurements; otherwise the harness can exhaust its aggregate gas budget and obscure the actual entrypoint. Production calls remain below the 30M cap.
+- `clearGas` excludes the telemetry write, event, and transaction overhead. Client limits use callee gas before refunds plus 21,000 and actual calldata intrinsic cost, then the integer 7.5% buffer rounded up to 1,000.
+- Ten orders cannot populate 32 ticks per side. The order-count experiment holds two occupied ticks, a 32-tick scan, and 500 lots per side fixed while repartitioning the orders. Both hardforks produce exactly constant clearing gas.
+- Sparse tied-price books can cost more than dense random books. Partial claims to unique owners require both refund and receiving-balance writes; historical claims spaced across order/result pages cost more again. Include those cases in shared limits.
+- The hot loops have bounded memory-safe assembly: arrays have <=256 uint64 entries; intermediate totals fit uint256; final volume is checked; every tick/index is range validated. Result packing relies on the verified two-slot layout. Differential, permutation, and handler invariants must accompany changes here.
+- Absence of a global mempool does not establish transaction privacy against local RPC operators or validators. Base the headline on permutation invariance after inclusion.
+- A core subpath export for `gas.ts` lets compiled Node 24 bots import the self-contained JSON-backed selector; importing the core index directly would encounter its bundler-oriented `.js` references. The compiled bot module was loaded under Node 24.
+- Testnet chain ID 10143 was checked. The funded key started with 10 MON; the seven declared limits cost 2.753388 testnet MON at the checked gas price. A 256-order seed atomically occupied 128 ticks per side and self-cleared in 213,565 gas, exactly matching local telemetry. Keep the public receipt/checkpoint artifact; never save private keys.
