@@ -59,6 +59,7 @@ jobs:
       - run: pnpm -r typecheck
       - run: pnpm -r lint
       - run: pnpm -r test
+      - run: pnpm test:tooling
       - run: pnpm -r build
       - run: python3 scripts/check-contrast.py
       - name: Retain spike evidence

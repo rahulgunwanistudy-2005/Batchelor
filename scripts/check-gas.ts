@@ -4,7 +4,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 const root = fileURLToPath(new URL('../', import.meta.url));
-const files: string[] = ['scripts/live-clear.ts'];
+const files: string[] = ['scripts/live-clear.ts', 'scripts/test-bots-local.ts'];
 async function collect(dir: string): Promise<void> {
   for (const entry of await readdir(`${root}${dir}`, { withFileTypes: true })) {
     const path = `${dir}/${entry.name}`;
