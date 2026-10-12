@@ -1,0 +1,7181 @@
+{
+  "schemaVersion": 1,
+  "quantityEncoding": "decimal-string",
+  "vectors": [
+    {
+      "seed": 0,
+      "refTick": 0,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 95,
+          "lots": "654"
+        }
+      ],
+      "result": {
+        "clearTick": 0,
+        "buyCutoff": 0,
+        "sellCutoff": 0,
+        "volumeLots": "0",
+        "rB": "0",
+        "mB": "0",
+        "rS": "0",
+        "mS": "0"
+      }
+    },
+    {
+      "seed": 1,
+      "refTick": 73,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 158,
+          "lots": "236"
+        },
+        {
+          "side": 0,
+          "tick": 47,
+          "lots": "48"
+        }
+      ],
+      "result": {
+        "clearTick": 0,
+        "buyCutoff": 0,
+        "sellCutoff": 0,
+        "volumeLots": "0",
+        "rB": "0",
+        "mB": "0",
+        "rS": "0",
+        "mS": "0"
+      }
+    },
+    {
+      "seed": 2,
+      "refTick": 146,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 165,
+          "lots": "618"
+        },
+        {
+          "side": 1,
+          "tick": 59,
+          "lots": "305"
+        },
+        {
+          "side": 1,
+          "tick": 9,
+          "lots": "186"
+        }
+      ],
+      "result": {
+        "clearTick": 0,
+        "buyCutoff": 0,
+        "sellCutoff": 0,
+        "volumeLots": "0",
+        "rB": "0",
+        "mB": "0",
+        "rS": "0",
+        "mS": "0"
+      }
+    },
+    {
+      "seed": 3,
+      "refTick": 219,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 61,
+          "lots": "980"
+        },
+        {
+          "side": 1,
+          "tick": 64,
+          "lots": "781"
+        },
+        {
+          "side": 0,
+          "tick": 94,
+          "lots": "826"
+        },
+        {
+          "side": 1,
+          "tick": 17,
+          "lots": "540"
+        }
+      ],
+      "result": {
+        "clearTick": 61,
+        "buyCutoff": 94,
+        "sellCutoff": 61,
+        "volumeLots": "826",
+        "rB": "826",
+        "mB": "826",
+        "rS": "286",
+        "mS": "980"
+      }
+    },
+    {
+      "seed": 4,
+      "refTick": 36,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 253,
+          "lots": "954"
+        },
+        {
+          "side": 0,
+          "tick": 214,
+          "lots": "822"
+        },
+        {
+          "side": 1,
+          "tick": 243,
+          "lots": "374"
+        },
+        {
+          "side": 1,
+          "tick": 243,
+          "lots": "953"
+        },
+        {
+          "side": 0,
+          "tick": 226,
+          "lots": "77"
+        }
+      ],
+      "result": {
+        "clearTick": 0,
+        "buyCutoff": 0,
+        "sellCutoff": 0,
+        "volumeLots": "0",
+        "rB": "0",
+        "mB": "0",
+        "rS": "0",
+        "mS": "0"
+      }
+    },
+    {
+      "seed": 5,
+      "refTick": 109,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 114,
+          "lots": "543"
+        },
+        {
+          "side": 0,
+          "tick": 16,
+          "lots": "645"
+        },
+        {
+          "side": 0,
+          "tick": 40,
+          "lots": "929"
+        },
+        {
+          "side": 1,
+          "tick": 184,
+          "lots": "41"
+        },
+        {
+          "side": 1,
+          "tick": 246,
+          "lots": "792"
+        },
+        {
+          "side": 0,
+          "tick": 238,
+          "lots": "106"
+        }
+      ],
+      "result": {
+        "clearTick": 238,
+        "buyCutoff": 238,
+        "sellCutoff": 184,
+        "volumeLots": "41",
+        "rB": "41",
+        "mB": "106",
+        "rS": "41",
+        "mS": "41"
+      }
+    },
+    {
+      "seed": 6,
+      "refTick": 182,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 112,
+          "lots": "979"
+        },
+        {
+          "side": 1,
+          "tick": 200,
+          "lots": "36"
+        },
+        {
+          "side": 0,
+          "tick": 89,
+          "lots": "643"
+        },
+        {
+          "side": 1,
+          "tick": 209,
+          "lots": "641"
+        },
+        {
+          "side": 1,
+          "tick": 242,
+          "lots": "15"
+        },
+        {
+          "side": 0,
+          "tick": 54,
+          "lots": "71"
+        },
+        {
+          "side": 1,
+          "tick": 182,
+          "lots": "249"
+        }
+      ],
+      "result": {
+        "clearTick": 0,
+        "buyCutoff": 0,
+        "sellCutoff": 0,
+        "volumeLots": "0",
+        "rB": "0",
+        "mB": "0",
+        "rS": "0",
+        "mS": "0"
+      }
+    },
+    {
+      "seed": 7,
+      "refTick": 255,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 109,
+          "lots": "821"
+        },
+        {
+          "side": 0,
+          "tick": 78,
+          "lots": "180"
+        },
+        {
+          "side": 0,
+          "tick": 44,
+          "lots": "6"
+        },
+        {
+          "side": 0,
+          "tick": 13,
+          "lots": "621"
+        },
+        {
+          "side": 0,
+          "tick": 225,
+          "lots": "492"
+        },
+        {
+          "side": 1,
+          "tick": 78,
+          "lots": "989"
+        },
+        {
+          "side": 1,
+          "tick": 49,
+          "lots": "212"
+        },
+        {
+          "side": 1,
+          "tick": 249,
+          "lots": "607"
+        }
+      ],
+      "result": {
+        "clearTick": 78,
+        "buyCutoff": 78,
+        "sellCutoff": 78,
+        "volumeLots": "672",
+        "rB": "180",
+        "mB": "180",
+        "rS": "460",
+        "mS": "989"
+      }
+    },
+    {
+      "seed": 8,
+      "refTick": 72,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 78,
+          "lots": "29"
+        },
+        {
+          "side": 1,
+          "tick": 32,
+          "lots": "661"
+        },
+        {
+          "side": 0,
+          "tick": 5,
+          "lots": "528"
+        },
+        {
+          "side": 1,
+          "tick": 129,
+          "lots": "345"
+        },
+        {
+          "side": 1,
+          "tick": 63,
+          "lots": "86"
+        },
+        {
+          "side": 1,
+          "tick": 181,
+          "lots": "367"
+        },
+        {
+          "side": 1,
+          "tick": 146,
+          "lots": "885"
+        },
+        {
+          "side": 0,
+          "tick": 198,
+          "lots": "327"
+        },
+        {
+          "side": 1,
+          "tick": 202,
+          "lots": "903"
+        }
+      ],
+      "result": {
+        "clearTick": 32,
+        "buyCutoff": 78,
+        "sellCutoff": 32,
+        "volumeLots": "356",
+        "rB": "29",
+        "mB": "29",
+        "rS": "356",
+        "mS": "661"
+      }
+    },
+    {
+      "seed": 9,
+      "refTick": 145,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 71,
+          "lots": "581"
+        },
+        {
+          "side": 1,
+          "tick": 184,
+          "lots": "842"
+        },
+        {
+          "side": 1,
+          "tick": 91,
+          "lots": "815"
+        },
+        {
+          "side": 1,
+          "tick": 186,
+          "lots": "852"
+        },
+        {
+          "side": 0,
+          "tick": 24,
+          "lots": "654"
+        },
+        {
+          "side": 1,
+          "tick": 25,
+          "lots": "823"
+        },
+        {
+          "side": 1,
+          "tick": 141,
+          "lots": "537"
+        },
+        {
+          "side": 0,
+          "tick": 81,
+          "lots": "325"
+        },
+        {
+          "side": 0,
+          "tick": 180,
+          "lots": "666"
+        },
+        {
+          "side": 0,
+          "tick": 165,
+          "lots": "592"
+        }
+      ],
+      "result": {
+        "clearTick": 81,
+        "buyCutoff": 81,
+        "sellCutoff": 71,
+        "volumeLots": "1404",
+        "rB": "146",
+        "mB": "325",
+        "rS": "581",
+        "mS": "581"
+      }
+    },
+    {
+      "seed": 10,
+      "refTick": 218,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 61,
+          "lots": "433"
+        },
+        {
+          "side": 1,
+          "tick": 207,
+          "lots": "215"
+        },
+        {
+          "side": 0,
+          "tick": 53,
+          "lots": "148"
+        },
+        {
+          "side": 1,
+          "tick": 127,
+          "lots": "160"
+        },
+        {
+          "side": 1,
+          "tick": 170,
+          "lots": "395"
+        },
+        {
+          "side": 1,
+          "tick": 40,
+          "lots": "963"
+        },
+        {
+          "side": 1,
+          "tick": 144,
+          "lots": "893"
+        },
+        {
+          "side": 1,
+          "tick": 159,
+          "lots": "897"
+        },
+        {
+          "side": 0,
+          "tick": 243,
+          "lots": "336"
+        },
+        {
+          "side": 1,
+          "tick": 78,
+          "lots": "18"
+        },
+        {
+          "side": 0,
+          "tick": 52,
+          "lots": "774"
+        }
+      ],
+      "result": {
+        "clearTick": 52,
+        "buyCutoff": 52,
+        "sellCutoff": 40,
+        "volumeLots": "963",
+        "rB": "46",
+        "mB": "774",
+        "rS": "963",
+        "mS": "963"
+      }
+    },
+    {
+      "seed": 11,
+      "refTick": 35,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 213,
+          "lots": "387"
+        },
+        {
+          "side": 1,
+          "tick": 50,
+          "lots": "405"
+        },
+        {
+          "side": 0,
+          "tick": 155,
+          "lots": "904"
+        },
+        {
+          "side": 0,
+          "tick": 149,
+          "lots": "357"
+        },
+        {
+          "side": 1,
+          "tick": 194,
+          "lots": "773"
+        },
+        {
+          "side": 1,
+          "tick": 163,
+          "lots": "288"
+        },
+        {
+          "side": 0,
+          "tick": 188,
+          "lots": "659"
+        },
+        {
+          "side": 0,
+          "tick": 243,
+          "lots": "842"
+        },
+        {
+          "side": 1,
+          "tick": 247,
+          "lots": "325"
+        },
+        {
+          "side": 0,
+          "tick": 237,
+          "lots": "808"
+        },
+        {
+          "side": 1,
+          "tick": 230,
+          "lots": "959"
+        },
+        {
+          "side": 0,
+          "tick": 96,
+          "lots": "316"
+        }
+      ],
+      "result": {
+        "clearTick": 230,
+        "buyCutoff": 237,
+        "sellCutoff": 230,
+        "volumeLots": "1650",
+        "rB": "808",
+        "mB": "808",
+        "rS": "184",
+        "mS": "959"
+      }
+    },
+    {
+      "seed": 12,
+      "refTick": 108,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 112,
+          "lots": "440"
+        },
+        {
+          "side": 1,
+          "tick": 165,
+          "lots": "649"
+        },
+        {
+          "side": 1,
+          "tick": 39,
+          "lots": "805"
+        },
+        {
+          "side": 0,
+          "tick": 236,
+          "lots": "850"
+        },
+        {
+          "side": 0,
+          "tick": 79,
+          "lots": "532"
+        },
+        {
+          "side": 0,
+          "tick": 124,
+          "lots": "255"
+        },
+        {
+          "side": 0,
+          "tick": 183,
+          "lots": "266"
+        },
+        {
+          "side": 1,
+          "tick": 165,
+          "lots": "128"
+        },
+        {
+          "side": 1,
+          "tick": 105,
+          "lots": "357"
+        },
+        {
+          "side": 1,
+          "tick": 130,
+          "lots": "702"
+        },
+        {
+          "side": 0,
+          "tick": 101,
+          "lots": "527"
+        },
+        {
+          "side": 0,
+          "tick": 74,
+          "lots": "774"
+        },
+        {
+          "side": 0,
+          "tick": 20,
+          "lots": "546"
+        }
+      ],
+      "result": {
+        "clearTick": 112,
+        "buyCutoff": 124,
+        "sellCutoff": 112,
+        "volumeLots": "1371",
+        "rB": "255",
+        "mB": "255",
+        "rS": "209",
+        "mS": "440"
+      }
+    },
+    {
+      "seed": 13,
+      "refTick": 181,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 168,
+          "lots": "899"
+        },
+        {
+          "side": 1,
+          "tick": 243,
+          "lots": "725"
+        },
+        {
+          "side": 1,
+          "tick": 215,
+          "lots": "949"
+        },
+        {
+          "side": 1,
+          "tick": 100,
+          "lots": "581"
+        },
+        {
+          "side": 0,
+          "tick": 19,
+          "lots": "715"
+        },
+        {
+          "side": 0,
+          "tick": 34,
+          "lots": "800"
+        },
+        {
+          "side": 0,
+          "tick": 103,
+          "lots": "495"
+        },
+        {
+          "side": 1,
+          "tick": 94,
+          "lots": "822"
+        },
+        {
+          "side": 1,
+          "tick": 70,
+          "lots": "692"
+        },
+        {
+          "side": 0,
+          "tick": 207,
+          "lots": "929"
+        },
+        {
+          "side": 0,
+          "tick": 114,
+          "lots": "563"
+        },
+        {
+          "side": 0,
+          "tick": 47,
+          "lots": "751"
+        },
+        {
+          "side": 0,
+          "tick": 219,
+          "lots": "755"
+        },
+        {
+          "side": 1,
+          "tick": 242,
+          "lots": "278"
+        }
+      ],
+      "result": {
+        "clearTick": 114,
+        "buyCutoff": 114,
+        "sellCutoff": 100,
+        "volumeLots": "2095",
+        "rB": "411",
+        "mB": "563",
+        "rS": "581",
+        "mS": "581"
+      }
+    },
+    {
+      "seed": 14,
+      "refTick": 254,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 159,
+          "lots": "695"
+        },
+        {
+          "side": 1,
+          "tick": 67,
+          "lots": "461"
+        },
+        {
+          "side": 1,
+          "tick": 230,
+          "lots": "362"
+        },
+        {
+          "side": 1,
+          "tick": 102,
+          "lots": "361"
+        },
+        {
+          "side": 1,
+          "tick": 50,
+          "lots": "165"
+        },
+        {
+          "side": 1,
+          "tick": 118,
+          "lots": "128"
+        },
+        {
+          "side": 1,
+          "tick": 87,
+          "lots": "776"
+        },
+        {
+          "side": 1,
+          "tick": 132,
+          "lots": "108"
+        },
+        {
+          "side": 1,
+          "tick": 209,
+          "lots": "248"
+        },
+        {
+          "side": 0,
+          "tick": 125,
+          "lots": "597"
+        },
+        {
+          "side": 0,
+          "tick": 96,
+          "lots": "878"
+        },
+        {
+          "side": 0,
+          "tick": 37,
+          "lots": "917"
+        },
+        {
+          "side": 0,
+          "tick": 189,
+          "lots": "541"
+        },
+        {
+          "side": 0,
+          "tick": 136,
+          "lots": "607"
+        },
+        {
+          "side": 0,
+          "tick": 61,
+          "lots": "765"
+        }
+      ],
+      "result": {
+        "clearTick": 102,
+        "buyCutoff": 125,
+        "sellCutoff": 102,
+        "volumeLots": "1745",
+        "rB": "597",
+        "mB": "597",
+        "rS": "343",
+        "mS": "361"
+      }
+    },
+    {
+      "seed": 15,
+      "refTick": 71,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 234,
+          "lots": "757"
+        },
+        {
+          "side": 1,
+          "tick": 114,
+          "lots": "839"
+        },
+        {
+          "side": 0,
+          "tick": 66,
+          "lots": "760"
+        },
+        {
+          "side": 1,
+          "tick": 161,
+          "lots": "562"
+        },
+        {
+          "side": 0,
+          "tick": 45,
+          "lots": "444"
+        },
+        {
+          "side": 1,
+          "tick": 205,
+          "lots": "835"
+        },
+        {
+          "side": 0,
+          "tick": 86,
+          "lots": "449"
+        },
+        {
+          "side": 1,
+          "tick": 128,
+          "lots": "693"
+        },
+        {
+          "side": 1,
+          "tick": 176,
+          "lots": "931"
+        },
+        {
+          "side": 0,
+          "tick": 32,
+          "lots": "966"
+        },
+        {
+          "side": 0,
+          "tick": 157,
+          "lots": "749"
+        },
+        {
+          "side": 1,
+          "tick": 202,
+          "lots": "799"
+        },
+        {
+          "side": 1,
+          "tick": 176,
+          "lots": "783"
+        },
+        {
+          "side": 1,
+          "tick": 86,
+          "lots": "243"
+        },
+        {
+          "side": 0,
+          "tick": 137,
+          "lots": "672"
+        },
+        {
+          "side": 0,
+          "tick": 198,
+          "lots": "707"
+        }
+      ],
+      "result": {
+        "clearTick": 157,
+        "buyCutoff": 157,
+        "sellCutoff": 128,
+        "volumeLots": "1775",
+        "rB": "311",
+        "mB": "749",
+        "rS": "693",
+        "mS": "693"
+      }
+    },
+    {
+      "seed": 16,
+      "refTick": 144,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 108,
+          "lots": "374"
+        },
+        {
+          "side": 1,
+          "tick": 1,
+          "lots": "492"
+        },
+        {
+          "side": 0,
+          "tick": 117,
+          "lots": "979"
+        },
+        {
+          "side": 0,
+          "tick": 80,
+          "lots": "841"
+        },
+        {
+          "side": 0,
+          "tick": 5,
+          "lots": "522"
+        },
+        {
+          "side": 0,
+          "tick": 184,
+          "lots": "342"
+        },
+        {
+          "side": 0,
+          "tick": 151,
+          "lots": "148"
+        },
+        {
+          "side": 0,
+          "tick": 217,
+          "lots": "517"
+        },
+        {
+          "side": 0,
+          "tick": 41,
+          "lots": "170"
+        },
+        {
+          "side": 1,
+          "tick": 189,
+          "lots": "160"
+        },
+        {
+          "side": 1,
+          "tick": 135,
+          "lots": "380"
+        },
+        {
+          "side": 0,
+          "tick": 230,
+          "lots": "775"
+        },
+        {
+          "side": 0,
+          "tick": 244,
+          "lots": "89"
+        },
+        {
+          "side": 1,
+          "tick": 86,
+          "lots": "278"
+        },
+        {
+          "side": 1,
+          "tick": 200,
+          "lots": "854"
+        },
+        {
+          "side": 1,
+          "tick": 115,
+          "lots": "540"
+        },
+        {
+          "side": 1,
+          "tick": 7,
+          "lots": "106"
+        }
+      ],
+      "result": {
+        "clearTick": 135,
+        "buyCutoff": 151,
+        "sellCutoff": 135,
+        "volumeLots": "1871",
+        "rB": "148",
+        "mB": "148",
+        "rS": "81",
+        "mS": "380"
+      }
+    },
+    {
+      "seed": 17,
+      "refTick": 217,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 221,
+          "lots": "454"
+        },
+        {
+          "side": 0,
+          "tick": 109,
+          "lots": "415"
+        },
+        {
+          "side": 0,
+          "tick": 57,
+          "lots": "749"
+        },
+        {
+          "side": 0,
+          "tick": 240,
+          "lots": "394"
+        },
+        {
+          "side": 0,
+          "tick": 135,
+          "lots": "551"
+        },
+        {
+          "side": 0,
+          "tick": 23,
+          "lots": "293"
+        },
+        {
+          "side": 1,
+          "tick": 226,
+          "lots": "335"
+        },
+        {
+          "side": 0,
+          "tick": 220,
+          "lots": "546"
+        },
+        {
+          "side": 1,
+          "tick": 159,
+          "lots": "943"
+        },
+        {
+          "side": 0,
+          "tick": 14,
+          "lots": "386"
+        },
+        {
+          "side": 1,
+          "tick": 224,
+          "lots": "564"
+        },
+        {
+          "side": 0,
+          "tick": 42,
+          "lots": "202"
+        },
+        {
+          "side": 1,
+          "tick": 6,
+          "lots": "924"
+        },
+        {
+          "side": 0,
+          "tick": 137,
+          "lots": "52"
+        },
+        {
+          "side": 1,
+          "tick": 36,
+          "lots": "694"
+        },
+        {
+          "side": 0,
+          "tick": 65,
+          "lots": "694"
+        },
+        {
+          "side": 1,
+          "tick": 238,
+          "lots": "624"
+        },
+        {
+          "side": 0,
+          "tick": 199,
+          "lots": "8"
+        }
+      ],
+      "result": {
+        "clearTick": 135,
+        "buyCutoff": 135,
+        "sellCutoff": 36,
+        "volumeLots": "1618",
+        "rB": "164",
+        "mB": "551",
+        "rS": "694",
+        "mS": "694"
+      }
+    },
+    {
+      "seed": 18,
+      "refTick": 34,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 1,
+          "lots": "458"
+        },
+        {
+          "side": 0,
+          "tick": 90,
+          "lots": "92"
+        },
+        {
+          "side": 1,
+          "tick": 189,
+          "lots": "196"
+        },
+        {
+          "side": 0,
+          "tick": 111,
+          "lots": "906"
+        },
+        {
+          "side": 0,
+          "tick": 156,
+          "lots": "132"
+        },
+        {
+          "side": 1,
+          "tick": 174,
+          "lots": "745"
+        },
+        {
+          "side": 0,
+          "tick": 30,
+          "lots": "820"
+        },
+        {
+          "side": 0,
+          "tick": 211,
+          "lots": "377"
+        },
+        {
+          "side": 0,
+          "tick": 226,
+          "lots": "894"
+        },
+        {
+          "side": 0,
+          "tick": 18,
+          "lots": "285"
+        },
+        {
+          "side": 1,
+          "tick": 35,
+          "lots": "690"
+        },
+        {
+          "side": 0,
+          "tick": 18,
+          "lots": "67"
+        },
+        {
+          "side": 0,
+          "tick": 74,
+          "lots": "385"
+        },
+        {
+          "side": 0,
+          "tick": 160,
+          "lots": "493"
+        },
+        {
+          "side": 1,
+          "tick": 132,
+          "lots": "560"
+        },
+        {
+          "side": 1,
+          "tick": 1,
+          "lots": "970"
+        },
+        {
+          "side": 1,
+          "tick": 184,
+          "lots": "16"
+        },
+        {
+          "side": 0,
+          "tick": 251,
+          "lots": "566"
+        },
+        {
+          "side": 0,
+          "tick": 233,
+          "lots": "106"
+        }
+      ],
+      "result": {
+        "clearTick": 160,
+        "buyCutoff": 160,
+        "sellCutoff": 132,
+        "volumeLots": "2220",
+        "rB": "277",
+        "mB": "493",
+        "rS": "560",
+        "mS": "560"
+      }
+    },
+    {
+      "seed": 19,
+      "refTick": 107,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 165,
+          "lots": "648"
+        },
+        {
+          "side": 1,
+          "tick": 102,
+          "lots": "304"
+        },
+        {
+          "side": 0,
+          "tick": 82,
+          "lots": "649"
+        },
+        {
+          "side": 1,
+          "tick": 167,
+          "lots": "774"
+        },
+        {
+          "side": 1,
+          "tick": 152,
+          "lots": "614"
+        },
+        {
+          "side": 1,
+          "tick": 11,
+          "lots": "88"
+        },
+        {
+          "side": 0,
+          "tick": 189,
+          "lots": "309"
+        },
+        {
+          "side": 1,
+          "tick": 94,
+          "lots": "406"
+        },
+        {
+          "side": 1,
+          "tick": 48,
+          "lots": "914"
+        },
+        {
+          "side": 0,
+          "tick": 55,
+          "lots": "398"
+        },
+        {
+          "side": 0,
+          "tick": 45,
+          "lots": "821"
+        },
+        {
+          "side": 0,
+          "tick": 153,
+          "lots": "581"
+        },
+        {
+          "side": 0,
+          "tick": 56,
+          "lots": "33"
+        },
+        {
+          "side": 0,
+          "tick": 42,
+          "lots": "319"
+        },
+        {
+          "side": 1,
+          "tick": 241,
+          "lots": "717"
+        },
+        {
+          "side": 1,
+          "tick": 83,
+          "lots": "837"
+        },
+        {
+          "side": 1,
+          "tick": 39,
+          "lots": "649"
+        },
+        {
+          "side": 0,
+          "tick": 11,
+          "lots": "886"
+        },
+        {
+          "side": 1,
+          "tick": 196,
+          "lots": "247"
+        },
+        {
+          "side": 1,
+          "tick": 138,
+          "lots": "877"
+        }
+      ],
+      "result": {
+        "clearTick": 55,
+        "buyCutoff": 55,
+        "sellCutoff": 48,
+        "volumeLots": "1651",
+        "rB": "79",
+        "mB": "398",
+        "rS": "914",
+        "mS": "914"
+      }
+    },
+    {
+      "seed": 20,
+      "refTick": 180,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 69,
+          "lots": "703"
+        },
+        {
+          "side": 0,
+          "tick": 187,
+          "lots": "18"
+        },
+        {
+          "side": 0,
+          "tick": 191,
+          "lots": "283"
+        },
+        {
+          "side": 0,
+          "tick": 41,
+          "lots": "888"
+        },
+        {
+          "side": 1,
+          "tick": 211,
+          "lots": "363"
+        },
+        {
+          "side": 1,
+          "tick": 192,
+          "lots": "187"
+        },
+        {
+          "side": 1,
+          "tick": 123,
+          "lots": "11"
+        },
+        {
+          "side": 0,
+          "tick": 254,
+          "lots": "566"
+        },
+        {
+          "side": 1,
+          "tick": 109,
+          "lots": "722"
+        },
+        {
+          "side": 1,
+          "tick": 37,
+          "lots": "67"
+        },
+        {
+          "side": 0,
+          "tick": 77,
+          "lots": "475"
+        },
+        {
+          "side": 0,
+          "tick": 209,
+          "lots": "868"
+        },
+        {
+          "side": 0,
+          "tick": 119,
+          "lots": "618"
+        },
+        {
+          "side": 1,
+          "tick": 127,
+          "lots": "243"
+        },
+        {
+          "side": 1,
+          "tick": 106,
+          "lots": "482"
+        },
+        {
+          "side": 0,
+          "tick": 150,
+          "lots": "264"
+        },
+        {
+          "side": 1,
+          "tick": 12,
+          "lots": "555"
+        },
+        {
+          "side": 1,
+          "tick": 24,
+          "lots": "939"
+        },
+        {
+          "side": 1,
+          "tick": 165,
+          "lots": "936"
+        },
+        {
+          "side": 0,
+          "tick": 71,
+          "lots": "278"
+        },
+        {
+          "side": 1,
+          "tick": 28,
+          "lots": "517"
+        }
+      ],
+      "result": {
+        "clearTick": 109,
+        "buyCutoff": 119,
+        "sellCutoff": 109,
+        "volumeLots": "2617",
+        "rB": "618",
+        "mB": "618",
+        "rS": "57",
+        "mS": "722"
+      }
+    },
+    {
+      "seed": 21,
+      "refTick": 253,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 141,
+          "lots": "430"
+        },
+        {
+          "side": 0,
+          "tick": 233,
+          "lots": "376"
+        },
+        {
+          "side": 0,
+          "tick": 58,
+          "lots": "693"
+        },
+        {
+          "side": 1,
+          "tick": 95,
+          "lots": "102"
+        },
+        {
+          "side": 1,
+          "tick": 79,
+          "lots": "77"
+        },
+        {
+          "side": 0,
+          "tick": 143,
+          "lots": "540"
+        },
+        {
+          "side": 0,
+          "tick": 59,
+          "lots": "936"
+        },
+        {
+          "side": 1,
+          "tick": 61,
+          "lots": "41"
+        },
+        {
+          "side": 1,
+          "tick": 58,
+          "lots": "234"
+        },
+        {
+          "side": 0,
+          "tick": 171,
+          "lots": "381"
+        },
+        {
+          "side": 0,
+          "tick": 119,
+          "lots": "596"
+        },
+        {
+          "side": 1,
+          "tick": 17,
+          "lots": "574"
+        },
+        {
+          "side": 0,
+          "tick": 50,
+          "lots": "425"
+        },
+        {
+          "side": 1,
+          "tick": 217,
+          "lots": "818"
+        },
+        {
+          "side": 0,
+          "tick": 212,
+          "lots": "116"
+        },
+        {
+          "side": 0,
+          "tick": 162,
+          "lots": "726"
+        },
+        {
+          "side": 0,
+          "tick": 16,
+          "lots": "184"
+        },
+        {
+          "side": 0,
+          "tick": 137,
+          "lots": "428"
+        },
+        {
+          "side": 1,
+          "tick": 212,
+          "lots": "53"
+        },
+        {
+          "side": 0,
+          "tick": 8,
+          "lots": "800"
+        },
+        {
+          "side": 0,
+          "tick": 250,
+          "lots": "69"
+        },
+        {
+          "side": 0,
+          "tick": 23,
+          "lots": "633"
+        }
+      ],
+      "result": {
+        "clearTick": 162,
+        "buyCutoff": 162,
+        "sellCutoff": 141,
+        "volumeLots": "1458",
+        "rB": "516",
+        "mB": "726",
+        "rS": "430",
+        "mS": "430"
+      }
+    },
+    {
+      "seed": 22,
+      "refTick": 70,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 75,
+          "lots": "820"
+        },
+        {
+          "side": 0,
+          "tick": 176,
+          "lots": "917"
+        },
+        {
+          "side": 0,
+          "tick": 64,
+          "lots": "740"
+        },
+        {
+          "side": 1,
+          "tick": 222,
+          "lots": "726"
+        },
+        {
+          "side": 0,
+          "tick": 243,
+          "lots": "34"
+        },
+        {
+          "side": 1,
+          "tick": 244,
+          "lots": "800"
+        },
+        {
+          "side": 1,
+          "tick": 132,
+          "lots": "597"
+        },
+        {
+          "side": 0,
+          "tick": 33,
+          "lots": "981"
+        },
+        {
+          "side": 0,
+          "tick": 227,
+          "lots": "978"
+        },
+        {
+          "side": 1,
+          "tick": 29,
+          "lots": "477"
+        },
+        {
+          "side": 1,
+          "tick": 99,
+          "lots": "249"
+        },
+        {
+          "side": 1,
+          "tick": 140,
+          "lots": "86"
+        },
+        {
+          "side": 1,
+          "tick": 229,
+          "lots": "532"
+        },
+        {
+          "side": 1,
+          "tick": 159,
+          "lots": "44"
+        },
+        {
+          "side": 0,
+          "tick": 81,
+          "lots": "460"
+        },
+        {
+          "side": 1,
+          "tick": 253,
+          "lots": "370"
+        },
+        {
+          "side": 0,
+          "tick": 122,
+          "lots": "323"
+        },
+        {
+          "side": 1,
+          "tick": 0,
+          "lots": "212"
+        },
+        {
+          "side": 1,
+          "tick": 8,
+          "lots": "170"
+        },
+        {
+          "side": 0,
+          "tick": 228,
+          "lots": "287"
+        },
+        {
+          "side": 1,
+          "tick": 87,
+          "lots": "943"
+        },
+        {
+          "side": 0,
+          "tick": 1,
+          "lots": "578"
+        },
+        {
+          "side": 1,
+          "tick": 69,
+          "lots": "784"
+        }
+      ],
+      "result": {
+        "clearTick": 87,
+        "buyCutoff": 122,
+        "sellCutoff": 87,
+        "volumeLots": "2539",
+        "rB": "323",
+        "mB": "323",
+        "rS": "76",
+        "mS": "943"
+      }
+    },
+    {
+      "seed": 23,
+      "refTick": 143,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 45,
+          "lots": "171"
+        },
+        {
+          "side": 0,
+          "tick": 94,
+          "lots": "446"
+        },
+        {
+          "side": 1,
+          "tick": 249,
+          "lots": "992"
+        },
+        {
+          "side": 1,
+          "tick": 214,
+          "lots": "372"
+        },
+        {
+          "side": 1,
+          "tick": 244,
+          "lots": "685"
+        },
+        {
+          "side": 0,
+          "tick": 18,
+          "lots": "366"
+        },
+        {
+          "side": 0,
+          "tick": 19,
+          "lots": "688"
+        },
+        {
+          "side": 0,
+          "tick": 230,
+          "lots": "768"
+        },
+        {
+          "side": 1,
+          "tick": 64,
+          "lots": "100"
+        },
+        {
+          "side": 0,
+          "tick": 66,
+          "lots": "443"
+        },
+        {
+          "side": 1,
+          "tick": 146,
+          "lots": "248"
+        },
+        {
+          "side": 1,
+          "tick": 232,
+          "lots": "417"
+        },
+        {
+          "side": 1,
+          "tick": 40,
+          "lots": "434"
+        },
+        {
+          "side": 0,
+          "tick": 98,
+          "lots": "449"
+        },
+        {
+          "side": 1,
+          "tick": 83,
+          "lots": "448"
+        },
+        {
+          "side": 0,
+          "tick": 117,
+          "lots": "714"
+        },
+        {
+          "side": 1,
+          "tick": 187,
+          "lots": "87"
+        },
+        {
+          "side": 1,
+          "tick": 249,
+          "lots": "232"
+        },
+        {
+          "side": 0,
+          "tick": 229,
+          "lots": "108"
+        },
+        {
+          "side": 1,
+          "tick": 3,
+          "lots": "297"
+        },
+        {
+          "side": 0,
+          "tick": 125,
+          "lots": "635"
+        },
+        {
+          "side": 1,
+          "tick": 201,
+          "lots": "836"
+        },
+        {
+          "side": 0,
+          "tick": 168,
+          "lots": "638"
+        },
+        {
+          "side": 1,
+          "tick": 179,
+          "lots": "281"
+        }
+      ],
+      "result": {
+        "clearTick": 146,
+        "buyCutoff": 168,
+        "sellCutoff": 146,
+        "volumeLots": "1514",
+        "rB": "638",
+        "mB": "638",
+        "rS": "64",
+        "mS": "248"
+      }
+    },
+    {
+      "seed": 24,
+      "refTick": 216,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 144,
+          "lots": "129"
+        },
+        {
+          "side": 1,
+          "tick": 169,
+          "lots": "806"
+        },
+        {
+          "side": 1,
+          "tick": 92,
+          "lots": "729"
+        },
+        {
+          "side": 0,
+          "tick": 62,
+          "lots": "422"
+        },
+        {
+          "side": 1,
+          "tick": 222,
+          "lots": "612"
+        },
+        {
+          "side": 1,
+          "tick": 146,
+          "lots": "936"
+        },
+        {
+          "side": 1,
+          "tick": 133,
+          "lots": "491"
+        },
+        {
+          "side": 0,
+          "tick": 11,
+          "lots": "269"
+        },
+        {
+          "side": 1,
+          "tick": 241,
+          "lots": "41"
+        },
+        {
+          "side": 1,
+          "tick": 53,
+          "lots": "612"
+        },
+        {
+          "side": 1,
+          "tick": 125,
+          "lots": "308"
+        },
+        {
+          "side": 0,
+          "tick": 49,
+          "lots": "666"
+        },
+        {
+          "side": 0,
+          "tick": 86,
+          "lots": "494"
+        },
+        {
+          "side": 0,
+          "tick": 88,
+          "lots": "657"
+        },
+        {
+          "side": 0,
+          "tick": 180,
+          "lots": "630"
+        },
+        {
+          "side": 1,
+          "tick": 205,
+          "lots": "881"
+        },
+        {
+          "side": 1,
+          "tick": 51,
+          "lots": "500"
+        },
+        {
+          "side": 0,
+          "tick": 172,
+          "lots": "918"
+        },
+        {
+          "side": 1,
+          "tick": 13,
+          "lots": "606"
+        },
+        {
+          "side": 1,
+          "tick": 245,
+          "lots": "187"
+        },
+        {
+          "side": 1,
+          "tick": 73,
+          "lots": "603"
+        },
+        {
+          "side": 1,
+          "tick": 131,
+          "lots": "441"
+        },
+        {
+          "side": 0,
+          "tick": 8,
+          "lots": "832"
+        },
+        {
+          "side": 1,
+          "tick": 147,
+          "lots": "944"
+        },
+        {
+          "side": 1,
+          "tick": 77,
+          "lots": "99"
+        }
+      ],
+      "result": {
+        "clearTick": 86,
+        "buyCutoff": 86,
+        "sellCutoff": 77,
+        "volumeLots": "2420",
+        "rB": "215",
+        "mB": "494",
+        "rS": "99",
+        "mS": "99"
+      }
+    },
+    {
+      "seed": 25,
+      "refTick": 33,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 96,
+          "lots": "753"
+        },
+        {
+          "side": 0,
+          "tick": 7,
+          "lots": "298"
+        },
+        {
+          "side": 0,
+          "tick": 153,
+          "lots": "235"
+        },
+        {
+          "side": 1,
+          "tick": 37,
+          "lots": "286"
+        },
+        {
+          "side": 1,
+          "tick": 217,
+          "lots": "42"
+        },
+        {
+          "side": 0,
+          "tick": 212,
+          "lots": "821"
+        },
+        {
+          "side": 1,
+          "tick": 136,
+          "lots": "527"
+        },
+        {
+          "side": 0,
+          "tick": 160,
+          "lots": "100"
+        },
+        {
+          "side": 1,
+          "tick": 121,
+          "lots": "436"
+        },
+        {
+          "side": 0,
+          "tick": 111,
+          "lots": "648"
+        },
+        {
+          "side": 0,
+          "tick": 236,
+          "lots": "257"
+        },
+        {
+          "side": 0,
+          "tick": 202,
+          "lots": "271"
+        },
+        {
+          "side": 0,
+          "tick": 122,
+          "lots": "129"
+        },
+        {
+          "side": 1,
+          "tick": 96,
+          "lots": "303"
+        },
+        {
+          "side": 1,
+          "tick": 127,
+          "lots": "13"
+        },
+        {
+          "side": 0,
+          "tick": 200,
+          "lots": "264"
+        },
+        {
+          "side": 0,
+          "tick": 134,
+          "lots": "353"
+        },
+        {
+          "side": 1,
+          "tick": 198,
+          "lots": "658"
+        },
+        {
+          "side": 1,
+          "tick": 188,
+          "lots": "131"
+        },
+        {
+          "side": 0,
+          "tick": 228,
+          "lots": "250"
+        },
+        {
+          "side": 0,
+          "tick": 93,
+          "lots": "338"
+        },
+        {
+          "side": 0,
+          "tick": 34,
+          "lots": "431"
+        },
+        {
+          "side": 1,
+          "tick": 113,
+          "lots": "181"
+        },
+        {
+          "side": 1,
+          "tick": 92,
+          "lots": "754"
+        },
+        {
+          "side": 0,
+          "tick": 240,
+          "lots": "401"
+        },
+        {
+          "side": 1,
+          "tick": 74,
+          "lots": "712"
+        }
+      ],
+      "result": {
+        "clearTick": 134,
+        "buyCutoff": 134,
+        "sellCutoff": 127,
+        "volumeLots": "2685",
+        "rB": "86",
+        "mB": "353",
+        "rS": "13",
+        "mS": "13"
+      }
+    },
+    {
+      "seed": 26,
+      "refTick": 106,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 102,
+          "lots": "572"
+        },
+        {
+          "side": 1,
+          "tick": 95,
+          "lots": "460"
+        },
+        {
+          "side": 0,
+          "tick": 123,
+          "lots": "409"
+        },
+        {
+          "side": 1,
+          "tick": 152,
+          "lots": "433"
+        },
+        {
+          "side": 0,
+          "tick": 124,
+          "lots": "188"
+        },
+        {
+          "side": 1,
+          "tick": 127,
+          "lots": "284"
+        },
+        {
+          "side": 1,
+          "tick": 6,
+          "lots": "376"
+        },
+        {
+          "side": 0,
+          "tick": 71,
+          "lots": "269"
+        },
+        {
+          "side": 1,
+          "tick": 249,
+          "lots": "27"
+        },
+        {
+          "side": 1,
+          "tick": 66,
+          "lots": "441"
+        },
+        {
+          "side": 1,
+          "tick": 105,
+          "lots": "427"
+        },
+        {
+          "side": 1,
+          "tick": 38,
+          "lots": "246"
+        },
+        {
+          "side": 1,
+          "tick": 179,
+          "lots": "719"
+        },
+        {
+          "side": 1,
+          "tick": 48,
+          "lots": "760"
+        },
+        {
+          "side": 1,
+          "tick": 19,
+          "lots": "767"
+        },
+        {
+          "side": 1,
+          "tick": 214,
+          "lots": "651"
+        },
+        {
+          "side": 1,
+          "tick": 253,
+          "lots": "429"
+        },
+        {
+          "side": 1,
+          "tick": 38,
+          "lots": "221"
+        },
+        {
+          "side": 1,
+          "tick": 209,
+          "lots": "330"
+        },
+        {
+          "side": 1,
+          "tick": 13,
+          "lots": "984"
+        },
+        {
+          "side": 0,
+          "tick": 207,
+          "lots": "136"
+        },
+        {
+          "side": 0,
+          "tick": 224,
+          "lots": "10"
+        },
+        {
+          "side": 0,
+          "tick": 228,
+          "lots": "682"
+        },
+        {
+          "side": 1,
+          "tick": 79,
+          "lots": "498"
+        },
+        {
+          "side": 0,
+          "tick": 5,
+          "lots": "38"
+        },
+        {
+          "side": 0,
+          "tick": 208,
+          "lots": "492"
+        },
+        {
+          "side": 0,
+          "tick": 44,
+          "lots": "436"
+        }
+      ],
+      "result": {
+        "clearTick": 44,
+        "buyCutoff": 44,
+        "sellCutoff": 38,
+        "volumeLots": "2594",
+        "rB": "408",
+        "mB": "436",
+        "rS": "467",
+        "mS": "467"
+      }
+    },
+    {
+      "seed": 27,
+      "refTick": 179,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 238,
+          "lots": "997"
+        },
+        {
+          "side": 1,
+          "tick": 243,
+          "lots": "485"
+        },
+        {
+          "side": 1,
+          "tick": 106,
+          "lots": "968"
+        },
+        {
+          "side": 0,
+          "tick": 12,
+          "lots": "372"
+        },
+        {
+          "side": 0,
+          "tick": 40,
+          "lots": "144"
+        },
+        {
+          "side": 1,
+          "tick": 22,
+          "lots": "637"
+        },
+        {
+          "side": 0,
+          "tick": 228,
+          "lots": "991"
+        },
+        {
+          "side": 0,
+          "tick": 194,
+          "lots": "282"
+        },
+        {
+          "side": 1,
+          "tick": 64,
+          "lots": "629"
+        },
+        {
+          "side": 1,
+          "tick": 18,
+          "lots": "201"
+        },
+        {
+          "side": 0,
+          "tick": 224,
+          "lots": "94"
+        },
+        {
+          "side": 0,
+          "tick": 254,
+          "lots": "685"
+        },
+        {
+          "side": 0,
+          "tick": 40,
+          "lots": "745"
+        },
+        {
+          "side": 0,
+          "tick": 89,
+          "lots": "530"
+        },
+        {
+          "side": 0,
+          "tick": 250,
+          "lots": "963"
+        },
+        {
+          "side": 1,
+          "tick": 204,
+          "lots": "554"
+        },
+        {
+          "side": 1,
+          "tick": 171,
+          "lots": "536"
+        },
+        {
+          "side": 1,
+          "tick": 248,
+          "lots": "629"
+        },
+        {
+          "side": 1,
+          "tick": 161,
+          "lots": "733"
+        },
+        {
+          "side": 0,
+          "tick": 169,
+          "lots": "89"
+        },
+        {
+          "side": 1,
+          "tick": 141,
+          "lots": "450"
+        },
+        {
+          "side": 1,
+          "tick": 33,
+          "lots": "413"
+        },
+        {
+          "side": 0,
+          "tick": 130,
+          "lots": "62"
+        },
+        {
+          "side": 1,
+          "tick": 126,
+          "lots": "437"
+        },
+        {
+          "side": 0,
+          "tick": 253,
+          "lots": "360"
+        },
+        {
+          "side": 0,
+          "tick": 63,
+          "lots": "745"
+        },
+        {
+          "side": 1,
+          "tick": 17,
+          "lots": "310"
+        },
+        {
+          "side": 1,
+          "tick": 105,
+          "lots": "550"
+        }
+      ],
+      "result": {
+        "clearTick": 106,
+        "buyCutoff": 130,
+        "sellCutoff": 106,
+        "volumeLots": "3526",
+        "rB": "62",
+        "mB": "62",
+        "rS": "786",
+        "mS": "968"
+      }
+    },
+    {
+      "seed": 28,
+      "refTick": 252,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 60,
+          "lots": "867"
+        },
+        {
+          "side": 0,
+          "tick": 154,
+          "lots": "817"
+        },
+        {
+          "side": 1,
+          "tick": 79,
+          "lots": "835"
+        },
+        {
+          "side": 0,
+          "tick": 138,
+          "lots": "432"
+        },
+        {
+          "side": 0,
+          "tick": 191,
+          "lots": "841"
+        },
+        {
+          "side": 0,
+          "tick": 4,
+          "lots": "528"
+        },
+        {
+          "side": 0,
+          "tick": 55,
+          "lots": "571"
+        },
+        {
+          "side": 0,
+          "tick": 202,
+          "lots": "762"
+        },
+        {
+          "side": 0,
+          "tick": 186,
+          "lots": "463"
+        },
+        {
+          "side": 1,
+          "tick": 95,
+          "lots": "657"
+        },
+        {
+          "side": 1,
+          "tick": 184,
+          "lots": "760"
+        },
+        {
+          "side": 1,
+          "tick": 86,
+          "lots": "104"
+        },
+        {
+          "side": 1,
+          "tick": 121,
+          "lots": "659"
+        },
+        {
+          "side": 1,
+          "tick": 191,
+          "lots": "57"
+        },
+        {
+          "side": 1,
+          "tick": 129,
+          "lots": "973"
+        },
+        {
+          "side": 0,
+          "tick": 202,
+          "lots": "598"
+        },
+        {
+          "side": 0,
+          "tick": 22,
+          "lots": "620"
+        },
+        {
+          "side": 0,
+          "tick": 253,
+          "lots": "933"
+        },
+        {
+          "side": 1,
+          "tick": 121,
+          "lots": "832"
+        },
+        {
+          "side": 1,
+          "tick": 148,
+          "lots": "29"
+        },
+        {
+          "side": 1,
+          "tick": 150,
+          "lots": "11"
+        },
+        {
+          "side": 1,
+          "tick": 233,
+          "lots": "153"
+        },
+        {
+          "side": 1,
+          "tick": 131,
+          "lots": "785"
+        },
+        {
+          "side": 0,
+          "tick": 19,
+          "lots": "214"
+        },
+        {
+          "side": 1,
+          "tick": 71,
+          "lots": "916"
+        },
+        {
+          "side": 0,
+          "tick": 237,
+          "lots": "398"
+        },
+        {
+          "side": 1,
+          "tick": 244,
+          "lots": "929"
+        },
+        {
+          "side": 1,
+          "tick": 57,
+          "lots": "731"
+        },
+        {
+          "side": 1,
+          "tick": 148,
+          "lots": "737"
+        }
+      ],
+      "result": {
+        "clearTick": 129,
+        "buyCutoff": 138,
+        "sellCutoff": 129,
+        "volumeLots": "5244",
+        "rB": "432",
+        "mB": "432",
+        "rS": "510",
+        "mS": "973"
+      }
+    },
+    {
+      "seed": 29,
+      "refTick": 69,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 220,
+          "lots": "753"
+        },
+        {
+          "side": 1,
+          "tick": 181,
+          "lots": "545"
+        },
+        {
+          "side": 0,
+          "tick": 101,
+          "lots": "943"
+        },
+        {
+          "side": 0,
+          "tick": 210,
+          "lots": "257"
+        },
+        {
+          "side": 1,
+          "tick": 16,
+          "lots": "180"
+        },
+        {
+          "side": 1,
+          "tick": 84,
+          "lots": "701"
+        },
+        {
+          "side": 1,
+          "tick": 216,
+          "lots": "516"
+        },
+        {
+          "side": 0,
+          "tick": 253,
+          "lots": "812"
+        },
+        {
+          "side": 0,
+          "tick": 43,
+          "lots": "78"
+        },
+        {
+          "side": 0,
+          "tick": 118,
+          "lots": "598"
+        },
+        {
+          "side": 0,
+          "tick": 173,
+          "lots": "237"
+        },
+        {
+          "side": 0,
+          "tick": 191,
+          "lots": "209"
+        },
+        {
+          "side": 1,
+          "tick": 137,
+          "lots": "816"
+        },
+        {
+          "side": 1,
+          "tick": 8,
+          "lots": "445"
+        },
+        {
+          "side": 0,
+          "tick": 138,
+          "lots": "69"
+        },
+        {
+          "side": 0,
+          "tick": 253,
+          "lots": "873"
+        },
+        {
+          "side": 1,
+          "tick": 70,
+          "lots": "101"
+        },
+        {
+          "side": 0,
+          "tick": 145,
+          "lots": "713"
+        },
+        {
+          "side": 1,
+          "tick": 193,
+          "lots": "426"
+        },
+        {
+          "side": 0,
+          "tick": 229,
+          "lots": "610"
+        },
+        {
+          "side": 1,
+          "tick": 49,
+          "lots": "908"
+        },
+        {
+          "side": 1,
+          "tick": 159,
+          "lots": "358"
+        },
+        {
+          "side": 0,
+          "tick": 38,
+          "lots": "871"
+        },
+        {
+          "side": 0,
+          "tick": 130,
+          "lots": "728"
+        },
+        {
+          "side": 0,
+          "tick": 32,
+          "lots": "708"
+        },
+        {
+          "side": 1,
+          "tick": 64,
+          "lots": "706"
+        },
+        {
+          "side": 1,
+          "tick": 130,
+          "lots": "858"
+        },
+        {
+          "side": 1,
+          "tick": 242,
+          "lots": "995"
+        },
+        {
+          "side": 0,
+          "tick": 122,
+          "lots": "21"
+        },
+        {
+          "side": 1,
+          "tick": 232,
+          "lots": "345"
+        }
+      ],
+      "result": {
+        "clearTick": 137,
+        "buyCutoff": 138,
+        "sellCutoff": 137,
+        "volumeLots": "4533",
+        "rB": "69",
+        "mB": "69",
+        "rS": "634",
+        "mS": "816"
+      }
+    },
+    {
+      "seed": 30,
+      "refTick": 142,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 169,
+          "lots": "867"
+        },
+        {
+          "side": 0,
+          "tick": 15,
+          "lots": "250"
+        },
+        {
+          "side": 0,
+          "tick": 189,
+          "lots": "511"
+        },
+        {
+          "side": 0,
+          "tick": 214,
+          "lots": "528"
+        },
+        {
+          "side": 0,
+          "tick": 194,
+          "lots": "18"
+        },
+        {
+          "side": 1,
+          "tick": 109,
+          "lots": "200"
+        },
+        {
+          "side": 0,
+          "tick": 235,
+          "lots": "916"
+        },
+        {
+          "side": 0,
+          "tick": 135,
+          "lots": "120"
+        },
+        {
+          "side": 0,
+          "tick": 71,
+          "lots": "291"
+        },
+        {
+          "side": 1,
+          "tick": 118,
+          "lots": "2"
+        },
+        {
+          "side": 0,
+          "tick": 224,
+          "lots": "961"
+        },
+        {
+          "side": 0,
+          "tick": 106,
+          "lots": "488"
+        },
+        {
+          "side": 0,
+          "tick": 209,
+          "lots": "752"
+        },
+        {
+          "side": 1,
+          "tick": 25,
+          "lots": "563"
+        },
+        {
+          "side": 0,
+          "tick": 1,
+          "lots": "315"
+        },
+        {
+          "side": 1,
+          "tick": 4,
+          "lots": "251"
+        },
+        {
+          "side": 1,
+          "tick": 194,
+          "lots": "335"
+        },
+        {
+          "side": 0,
+          "tick": 102,
+          "lots": "706"
+        },
+        {
+          "side": 0,
+          "tick": 163,
+          "lots": "12"
+        },
+        {
+          "side": 1,
+          "tick": 225,
+          "lots": "269"
+        },
+        {
+          "side": 1,
+          "tick": 14,
+          "lots": "329"
+        },
+        {
+          "side": 0,
+          "tick": 183,
+          "lots": "119"
+        },
+        {
+          "side": 1,
+          "tick": 27,
+          "lots": "722"
+        },
+        {
+          "side": 1,
+          "tick": 205,
+          "lots": "929"
+        },
+        {
+          "side": 1,
+          "tick": 76,
+          "lots": "236"
+        },
+        {
+          "side": 1,
+          "tick": 17,
+          "lots": "983"
+        },
+        {
+          "side": 1,
+          "tick": 136,
+          "lots": "807"
+        },
+        {
+          "side": 1,
+          "tick": 136,
+          "lots": "164"
+        },
+        {
+          "side": 1,
+          "tick": 189,
+          "lots": "403"
+        },
+        {
+          "side": 0,
+          "tick": 215,
+          "lots": "438"
+        },
+        {
+          "side": 0,
+          "tick": 204,
+          "lots": "273"
+        }
+      ],
+      "result": {
+        "clearTick": 189,
+        "buyCutoff": 189,
+        "sellCutoff": 189,
+        "volumeLots": "4397",
+        "rB": "511",
+        "mB": "511",
+        "rS": "140",
+        "mS": "403"
+      }
+    },
+    {
+      "seed": 31,
+      "refTick": 215,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 64,
+          "lots": "610"
+        },
+        {
+          "side": 0,
+          "tick": 149,
+          "lots": "855"
+        },
+        {
+          "side": 1,
+          "tick": 222,
+          "lots": "901"
+        },
+        {
+          "side": 1,
+          "tick": 44,
+          "lots": "556"
+        },
+        {
+          "side": 0,
+          "tick": 14,
+          "lots": "260"
+        },
+        {
+          "side": 1,
+          "tick": 188,
+          "lots": "994"
+        },
+        {
+          "side": 0,
+          "tick": 122,
+          "lots": "157"
+        },
+        {
+          "side": 1,
+          "tick": 41,
+          "lots": "856"
+        },
+        {
+          "side": 0,
+          "tick": 137,
+          "lots": "447"
+        },
+        {
+          "side": 1,
+          "tick": 230,
+          "lots": "690"
+        },
+        {
+          "side": 0,
+          "tick": 36,
+          "lots": "268"
+        },
+        {
+          "side": 0,
+          "tick": 118,
+          "lots": "839"
+        },
+        {
+          "side": 0,
+          "tick": 103,
+          "lots": "171"
+        },
+        {
+          "side": 1,
+          "tick": 249,
+          "lots": "966"
+        },
+        {
+          "side": 0,
+          "tick": 66,
+          "lots": "504"
+        },
+        {
+          "side": 0,
+          "tick": 19,
+          "lots": "459"
+        },
+        {
+          "side": 1,
+          "tick": 213,
+          "lots": "269"
+        },
+        {
+          "side": 0,
+          "tick": 145,
+          "lots": "987"
+        },
+        {
+          "side": 1,
+          "tick": 94,
+          "lots": "790"
+        },
+        {
+          "side": 1,
+          "tick": 140,
+          "lots": "901"
+        },
+        {
+          "side": 0,
+          "tick": 1,
+          "lots": "660"
+        },
+        {
+          "side": 0,
+          "tick": 43,
+          "lots": "320"
+        },
+        {
+          "side": 1,
+          "tick": 250,
+          "lots": "920"
+        },
+        {
+          "side": 0,
+          "tick": 106,
+          "lots": "276"
+        },
+        {
+          "side": 0,
+          "tick": 136,
+          "lots": "809"
+        },
+        {
+          "side": 1,
+          "tick": 172,
+          "lots": "340"
+        },
+        {
+          "side": 1,
+          "tick": 134,
+          "lots": "494"
+        },
+        {
+          "side": 1,
+          "tick": 188,
+          "lots": "337"
+        },
+        {
+          "side": 1,
+          "tick": 174,
+          "lots": "327"
+        },
+        {
+          "side": 0,
+          "tick": 119,
+          "lots": "228"
+        },
+        {
+          "side": 0,
+          "tick": 125,
+          "lots": "177"
+        },
+        {
+          "side": 1,
+          "tick": 223,
+          "lots": "319"
+        }
+      ],
+      "result": {
+        "clearTick": 134,
+        "buyCutoff": 136,
+        "sellCutoff": 134,
+        "volumeLots": "3098",
+        "rB": "809",
+        "mB": "809",
+        "rS": "286",
+        "mS": "494"
+      }
+    },
+    {
+      "seed": 32,
+      "refTick": 32,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 12,
+          "lots": "627"
+        },
+        {
+          "side": 0,
+          "tick": 57,
+          "lots": "649"
+        },
+        {
+          "side": 0,
+          "tick": 27,
+          "lots": "867"
+        },
+        {
+          "side": 1,
+          "tick": 165,
+          "lots": "327"
+        },
+        {
+          "side": 0,
+          "tick": 187,
+          "lots": "4"
+        },
+        {
+          "side": 1,
+          "tick": 238,
+          "lots": "517"
+        },
+        {
+          "side": 1,
+          "tick": 46,
+          "lots": "797"
+        },
+        {
+          "side": 0,
+          "tick": 40,
+          "lots": "593"
+        },
+        {
+          "side": 1,
+          "tick": 239,
+          "lots": "666"
+        },
+        {
+          "side": 0,
+          "tick": 77,
+          "lots": "828"
+        },
+        {
+          "side": 1,
+          "tick": 76,
+          "lots": "768"
+        },
+        {
+          "side": 1,
+          "tick": 28,
+          "lots": "927"
+        },
+        {
+          "side": 1,
+          "tick": 54,
+          "lots": "841"
+        },
+        {
+          "side": 0,
+          "tick": 115,
+          "lots": "559"
+        },
+        {
+          "side": 1,
+          "tick": 247,
+          "lots": "299"
+        },
+        {
+          "side": 0,
+          "tick": 76,
+          "lots": "153"
+        },
+        {
+          "side": 0,
+          "tick": 243,
+          "lots": "228"
+        },
+        {
+          "side": 0,
+          "tick": 78,
+          "lots": "134"
+        },
+        {
+          "side": 1,
+          "tick": 95,
+          "lots": "962"
+        },
+        {
+          "side": 1,
+          "tick": 116,
+          "lots": "584"
+        },
+        {
+          "side": 1,
+          "tick": 170,
+          "lots": "667"
+        },
+        {
+          "side": 0,
+          "tick": 206,
+          "lots": "406"
+        },
+        {
+          "side": 0,
+          "tick": 95,
+          "lots": "851"
+        },
+        {
+          "side": 0,
+          "tick": 250,
+          "lots": "395"
+        },
+        {
+          "side": 0,
+          "tick": 71,
+          "lots": "956"
+        },
+        {
+          "side": 0,
+          "tick": 92,
+          "lots": "870"
+        },
+        {
+          "side": 1,
+          "tick": 188,
+          "lots": "638"
+        },
+        {
+          "side": 0,
+          "tick": 51,
+          "lots": "785"
+        },
+        {
+          "side": 1,
+          "tick": 149,
+          "lots": "932"
+        },
+        {
+          "side": 1,
+          "tick": 17,
+          "lots": "586"
+        },
+        {
+          "side": 0,
+          "tick": 65,
+          "lots": "525"
+        },
+        {
+          "side": 0,
+          "tick": 151,
+          "lots": "776"
+        },
+        {
+          "side": 0,
+          "tick": 155,
+          "lots": "903"
+        }
+      ],
+      "result": {
+        "clearTick": 92,
+        "buyCutoff": 92,
+        "sellCutoff": 76,
+        "volumeLots": "4546",
+        "rB": "424",
+        "mB": "870",
+        "rS": "768",
+        "mS": "768"
+      }
+    },
+    {
+      "seed": 33,
+      "refTick": 105,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 201,
+          "lots": "67"
+        },
+        {
+          "side": 0,
+          "tick": 30,
+          "lots": "231"
+        },
+        {
+          "side": 0,
+          "tick": 207,
+          "lots": "619"
+        },
+        {
+          "side": 1,
+          "tick": 149,
+          "lots": "429"
+        },
+        {
+          "side": 1,
+          "tick": 67,
+          "lots": "585"
+        },
+        {
+          "side": 1,
+          "tick": 58,
+          "lots": "966"
+        },
+        {
+          "side": 1,
+          "tick": 157,
+          "lots": "851"
+        },
+        {
+          "side": 1,
+          "tick": 23,
+          "lots": "139"
+        },
+        {
+          "side": 0,
+          "tick": 253,
+          "lots": "772"
+        },
+        {
+          "side": 0,
+          "tick": 82,
+          "lots": "401"
+        },
+        {
+          "side": 1,
+          "tick": 217,
+          "lots": "421"
+        },
+        {
+          "side": 0,
+          "tick": 70,
+          "lots": "617"
+        },
+        {
+          "side": 0,
+          "tick": 94,
+          "lots": "556"
+        },
+        {
+          "side": 1,
+          "tick": 220,
+          "lots": "767"
+        },
+        {
+          "side": 1,
+          "tick": 63,
+          "lots": "862"
+        },
+        {
+          "side": 0,
+          "tick": 204,
+          "lots": "473"
+        },
+        {
+          "side": 0,
+          "tick": 155,
+          "lots": "405"
+        },
+        {
+          "side": 1,
+          "tick": 80,
+          "lots": "888"
+        },
+        {
+          "side": 1,
+          "tick": 229,
+          "lots": "565"
+        },
+        {
+          "side": 1,
+          "tick": 34,
+          "lots": "717"
+        },
+        {
+          "side": 1,
+          "tick": 13,
+          "lots": "706"
+        },
+        {
+          "side": 1,
+          "tick": 73,
+          "lots": "42"
+        },
+        {
+          "side": 0,
+          "tick": 251,
+          "lots": "16"
+        },
+        {
+          "side": 1,
+          "tick": 117,
+          "lots": "866"
+        },
+        {
+          "side": 0,
+          "tick": 97,
+          "lots": "387"
+        },
+        {
+          "side": 0,
+          "tick": 52,
+          "lots": "96"
+        },
+        {
+          "side": 1,
+          "tick": 6,
+          "lots": "108"
+        },
+        {
+          "side": 0,
+          "tick": 190,
+          "lots": "981"
+        },
+        {
+          "side": 0,
+          "tick": 88,
+          "lots": "726"
+        },
+        {
+          "side": 0,
+          "tick": 81,
+          "lots": "876"
+        },
+        {
+          "side": 0,
+          "tick": 41,
+          "lots": "748"
+        },
+        {
+          "side": 0,
+          "tick": 41,
+          "lots": "633"
+        },
+        {
+          "side": 0,
+          "tick": 223,
+          "lots": "784"
+        },
+        {
+          "side": 1,
+          "tick": 122,
+          "lots": "20"
+        }
+      ],
+      "result": {
+        "clearTick": 88,
+        "buyCutoff": 88,
+        "sellCutoff": 80,
+        "volumeLots": "5013",
+        "rB": "20",
+        "mB": "726",
+        "rS": "888",
+        "mS": "888"
+      }
+    },
+    {
+      "seed": 34,
+      "refTick": 178,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 186,
+          "lots": "292"
+        },
+        {
+          "side": 0,
+          "tick": 231,
+          "lots": "188"
+        },
+        {
+          "side": 0,
+          "tick": 216,
+          "lots": "651"
+        },
+        {
+          "side": 1,
+          "tick": 78,
+          "lots": "644"
+        },
+        {
+          "side": 1,
+          "tick": 14,
+          "lots": "206"
+        },
+        {
+          "side": 1,
+          "tick": 141,
+          "lots": "456"
+        },
+        {
+          "side": 0,
+          "tick": 203,
+          "lots": "890"
+        },
+        {
+          "side": 0,
+          "tick": 248,
+          "lots": "210"
+        },
+        {
+          "side": 1,
+          "tick": 238,
+          "lots": "965"
+        },
+        {
+          "side": 0,
+          "tick": 178,
+          "lots": "114"
+        },
+        {
+          "side": 0,
+          "tick": 143,
+          "lots": "300"
+        },
+        {
+          "side": 0,
+          "tick": 13,
+          "lots": "568"
+        },
+        {
+          "side": 0,
+          "tick": 113,
+          "lots": "592"
+        },
+        {
+          "side": 1,
+          "tick": 68,
+          "lots": "318"
+        },
+        {
+          "side": 1,
+          "tick": 97,
+          "lots": "495"
+        },
+        {
+          "side": 1,
+          "tick": 213,
+          "lots": "135"
+        },
+        {
+          "side": 0,
+          "tick": 12,
+          "lots": "680"
+        },
+        {
+          "side": 0,
+          "tick": 73,
+          "lots": "733"
+        },
+        {
+          "side": 0,
+          "tick": 237,
+          "lots": "554"
+        },
+        {
+          "side": 0,
+          "tick": 251,
+          "lots": "913"
+        },
+        {
+          "side": 0,
+          "tick": 182,
+          "lots": "768"
+        },
+        {
+          "side": 0,
+          "tick": 115,
+          "lots": "48"
+        },
+        {
+          "side": 1,
+          "tick": 227,
+          "lots": "33"
+        },
+        {
+          "side": 0,
+          "tick": 44,
+          "lots": "763"
+        },
+        {
+          "side": 0,
+          "tick": 226,
+          "lots": "656"
+        },
+        {
+          "side": 0,
+          "tick": 219,
+          "lots": "498"
+        },
+        {
+          "side": 0,
+          "tick": 255,
+          "lots": "222"
+        },
+        {
+          "side": 1,
+          "tick": 128,
+          "lots": "955"
+        },
+        {
+          "side": 0,
+          "tick": 20,
+          "lots": "864"
+        },
+        {
+          "side": 1,
+          "tick": 127,
+          "lots": "638"
+        },
+        {
+          "side": 0,
+          "tick": 238,
+          "lots": "487"
+        },
+        {
+          "side": 1,
+          "tick": 246,
+          "lots": "404"
+        },
+        {
+          "side": 0,
+          "tick": 156,
+          "lots": "48"
+        },
+        {
+          "side": 0,
+          "tick": 117,
+          "lots": "481"
+        },
+        {
+          "side": 1,
+          "tick": 155,
+          "lots": "719"
+        }
+      ],
+      "result": {
+        "clearTick": 203,
+        "buyCutoff": 203,
+        "sellCutoff": 186,
+        "volumeLots": "4723",
+        "rB": "344",
+        "mB": "890",
+        "rS": "292",
+        "mS": "292"
+      }
+    },
+    {
+      "seed": 35,
+      "refTick": 251,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 7,
+          "lots": "867"
+        },
+        {
+          "side": 0,
+          "tick": 2,
+          "lots": "480"
+        },
+        {
+          "side": 1,
+          "tick": 60,
+          "lots": "640"
+        },
+        {
+          "side": 0,
+          "tick": 181,
+          "lots": "595"
+        },
+        {
+          "side": 1,
+          "tick": 167,
+          "lots": "256"
+        },
+        {
+          "side": 0,
+          "tick": 160,
+          "lots": "486"
+        },
+        {
+          "side": 1,
+          "tick": 191,
+          "lots": "285"
+        },
+        {
+          "side": 0,
+          "tick": 96,
+          "lots": "729"
+        },
+        {
+          "side": 0,
+          "tick": 164,
+          "lots": "918"
+        },
+        {
+          "side": 1,
+          "tick": 55,
+          "lots": "244"
+        },
+        {
+          "side": 0,
+          "tick": 153,
+          "lots": "180"
+        },
+        {
+          "side": 1,
+          "tick": 130,
+          "lots": "962"
+        },
+        {
+          "side": 1,
+          "tick": 212,
+          "lots": "540"
+        },
+        {
+          "side": 1,
+          "tick": 165,
+          "lots": "366"
+        },
+        {
+          "side": 1,
+          "tick": 248,
+          "lots": "667"
+        },
+        {
+          "side": 1,
+          "tick": 8,
+          "lots": "210"
+        },
+        {
+          "side": 0,
+          "tick": 118,
+          "lots": "689"
+        },
+        {
+          "side": 0,
+          "tick": 154,
+          "lots": "615"
+        },
+        {
+          "side": 1,
+          "tick": 23,
+          "lots": "802"
+        },
+        {
+          "side": 1,
+          "tick": 233,
+          "lots": "677"
+        },
+        {
+          "side": 1,
+          "tick": 94,
+          "lots": "982"
+        },
+        {
+          "side": 1,
+          "tick": 148,
+          "lots": "243"
+        },
+        {
+          "side": 0,
+          "tick": 55,
+          "lots": "981"
+        },
+        {
+          "side": 1,
+          "tick": 71,
+          "lots": "248"
+        },
+        {
+          "side": 0,
+          "tick": 161,
+          "lots": "489"
+        },
+        {
+          "side": 1,
+          "tick": 235,
+          "lots": "294"
+        },
+        {
+          "side": 1,
+          "tick": 188,
+          "lots": "400"
+        },
+        {
+          "side": 1,
+          "tick": 147,
+          "lots": "751"
+        },
+        {
+          "side": 1,
+          "tick": 56,
+          "lots": "239"
+        },
+        {
+          "side": 0,
+          "tick": 130,
+          "lots": "346"
+        },
+        {
+          "side": 1,
+          "tick": 195,
+          "lots": "244"
+        },
+        {
+          "side": 1,
+          "tick": 128,
+          "lots": "895"
+        },
+        {
+          "side": 1,
+          "tick": 210,
+          "lots": "218"
+        },
+        {
+          "side": 0,
+          "tick": 233,
+          "lots": "787"
+        },
+        {
+          "side": 0,
+          "tick": 198,
+          "lots": "719"
+        },
+        {
+          "side": 1,
+          "tick": 95,
+          "lots": "515"
+        }
+      ],
+      "result": {
+        "clearTick": 130,
+        "buyCutoff": 130,
+        "sellCutoff": 130,
+        "volumeLots": "5135",
+        "rB": "346",
+        "mB": "346",
+        "rS": "360",
+        "mS": "962"
+      }
+    },
+    {
+      "seed": 36,
+      "refTick": 68,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 169,
+          "lots": "413"
+        },
+        {
+          "side": 1,
+          "tick": 39,
+          "lots": "829"
+        },
+        {
+          "side": 1,
+          "tick": 122,
+          "lots": "222"
+        },
+        {
+          "side": 0,
+          "tick": 25,
+          "lots": "231"
+        },
+        {
+          "side": 1,
+          "tick": 248,
+          "lots": "17"
+        },
+        {
+          "side": 0,
+          "tick": 188,
+          "lots": "533"
+        },
+        {
+          "side": 0,
+          "tick": 90,
+          "lots": "47"
+        },
+        {
+          "side": 0,
+          "tick": 50,
+          "lots": "464"
+        },
+        {
+          "side": 1,
+          "tick": 105,
+          "lots": "782"
+        },
+        {
+          "side": 0,
+          "tick": 219,
+          "lots": "666"
+        },
+        {
+          "side": 1,
+          "tick": 6,
+          "lots": "282"
+        },
+        {
+          "side": 1,
+          "tick": 124,
+          "lots": "375"
+        },
+        {
+          "side": 0,
+          "tick": 41,
+          "lots": "724"
+        },
+        {
+          "side": 0,
+          "tick": 186,
+          "lots": "460"
+        },
+        {
+          "side": 1,
+          "tick": 6,
+          "lots": "499"
+        },
+        {
+          "side": 0,
+          "tick": 236,
+          "lots": "218"
+        },
+        {
+          "side": 0,
+          "tick": 209,
+          "lots": "752"
+        },
+        {
+          "side": 1,
+          "tick": 85,
+          "lots": "430"
+        },
+        {
+          "side": 0,
+          "tick": 63,
+          "lots": "56"
+        },
+        {
+          "side": 1,
+          "tick": 181,
+          "lots": "900"
+        },
+        {
+          "side": 1,
+          "tick": 207,
+          "lots": "650"
+        },
+        {
+          "side": 1,
+          "tick": 111,
+          "lots": "88"
+        },
+        {
+          "side": 1,
+          "tick": 81,
+          "lots": "804"
+        },
+        {
+          "side": 0,
+          "tick": 195,
+          "lots": "888"
+        },
+        {
+          "side": 0,
+          "tick": 211,
+          "lots": "4"
+        },
+        {
+          "side": 1,
+          "tick": 42,
+          "lots": "652"
+        },
+        {
+          "side": 1,
+          "tick": 0,
+          "lots": "9"
+        },
+        {
+          "side": 1,
+          "tick": 200,
+          "lots": "216"
+        },
+        {
+          "side": 1,
+          "tick": 27,
+          "lots": "846"
+        },
+        {
+          "side": 0,
+          "tick": 242,
+          "lots": "407"
+        },
+        {
+          "side": 1,
+          "tick": 129,
+          "lots": "571"
+        },
+        {
+          "side": 0,
+          "tick": 246,
+          "lots": "594"
+        },
+        {
+          "side": 0,
+          "tick": 94,
+          "lots": "446"
+        },
+        {
+          "side": 1,
+          "tick": 240,
+          "lots": "787"
+        },
+        {
+          "side": 1,
+          "tick": 176,
+          "lots": "789"
+        },
+        {
+          "side": 1,
+          "tick": 17,
+          "lots": "406"
+        },
+        {
+          "side": 1,
+          "tick": 246,
+          "lots": "232"
+        }
+      ],
+      "result": {
+        "clearTick": 105,
+        "buyCutoff": 169,
+        "sellCutoff": 105,
+        "volumeLots": "4935",
+        "rB": "413",
+        "mB": "413",
+        "rS": "178",
+        "mS": "782"
+      }
+    },
+    {
+      "seed": 37,
+      "refTick": 141,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 241,
+          "lots": "16"
+        },
+        {
+          "side": 0,
+          "tick": 3,
+          "lots": "456"
+        },
+        {
+          "side": 1,
+          "tick": 79,
+          "lots": "947"
+        },
+        {
+          "side": 0,
+          "tick": 210,
+          "lots": "435"
+        },
+        {
+          "side": 1,
+          "tick": 164,
+          "lots": "440"
+        },
+        {
+          "side": 0,
+          "tick": 186,
+          "lots": "50"
+        },
+        {
+          "side": 0,
+          "tick": 10,
+          "lots": "710"
+        },
+        {
+          "side": 0,
+          "tick": 26,
+          "lots": "210"
+        },
+        {
+          "side": 1,
+          "tick": 206,
+          "lots": "787"
+        },
+        {
+          "side": 0,
+          "tick": 53,
+          "lots": "360"
+        },
+        {
+          "side": 0,
+          "tick": 85,
+          "lots": "870"
+        },
+        {
+          "side": 0,
+          "tick": 25,
+          "lots": "166"
+        },
+        {
+          "side": 1,
+          "tick": 4,
+          "lots": "368"
+        },
+        {
+          "side": 0,
+          "tick": 114,
+          "lots": "231"
+        },
+        {
+          "side": 0,
+          "tick": 149,
+          "lots": "969"
+        },
+        {
+          "side": 1,
+          "tick": 80,
+          "lots": "922"
+        },
+        {
+          "side": 1,
+          "tick": 46,
+          "lots": "787"
+        },
+        {
+          "side": 1,
+          "tick": 177,
+          "lots": "190"
+        },
+        {
+          "side": 1,
+          "tick": 210,
+          "lots": "922"
+        },
+        {
+          "side": 1,
+          "tick": 253,
+          "lots": "901"
+        },
+        {
+          "side": 0,
+          "tick": 12,
+          "lots": "42"
+        },
+        {
+          "side": 1,
+          "tick": 115,
+          "lots": "252"
+        },
+        {
+          "side": 0,
+          "tick": 223,
+          "lots": "1"
+        },
+        {
+          "side": 1,
+          "tick": 21,
+          "lots": "144"
+        },
+        {
+          "side": 0,
+          "tick": 189,
+          "lots": "327"
+        },
+        {
+          "side": 0,
+          "tick": 123,
+          "lots": "801"
+        },
+        {
+          "side": 1,
+          "tick": 156,
+          "lots": "542"
+        },
+        {
+          "side": 0,
+          "tick": 209,
+          "lots": "872"
+        },
+        {
+          "side": 0,
+          "tick": 38,
+          "lots": "225"
+        },
+        {
+          "side": 0,
+          "tick": 202,
+          "lots": "753"
+        },
+        {
+          "side": 1,
+          "tick": 107,
+          "lots": "470"
+        },
+        {
+          "side": 1,
+          "tick": 73,
+          "lots": "639"
+        },
+        {
+          "side": 0,
+          "tick": 38,
+          "lots": "700"
+        },
+        {
+          "side": 0,
+          "tick": 212,
+          "lots": "343"
+        },
+        {
+          "side": 1,
+          "tick": 112,
+          "lots": "315"
+        },
+        {
+          "side": 1,
+          "tick": 216,
+          "lots": "963"
+        },
+        {
+          "side": 0,
+          "tick": 159,
+          "lots": "523"
+        },
+        {
+          "side": 1,
+          "tick": 91,
+          "lots": "373"
+        }
+      ],
+      "result": {
+        "clearTick": 115,
+        "buyCutoff": 123,
+        "sellCutoff": 115,
+        "volumeLots": "5090",
+        "rB": "801",
+        "mB": "801",
+        "rS": "125",
+        "mS": "252"
+      }
+    },
+    {
+      "seed": 38,
+      "refTick": 214,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 245,
+          "lots": "89"
+        },
+        {
+          "side": 0,
+          "tick": 40,
+          "lots": "465"
+        },
+        {
+          "side": 0,
+          "tick": 125,
+          "lots": "835"
+        },
+        {
+          "side": 1,
+          "tick": 254,
+          "lots": "574"
+        },
+        {
+          "side": 1,
+          "tick": 247,
+          "lots": "352"
+        },
+        {
+          "side": 0,
+          "tick": 157,
+          "lots": "147"
+        },
+        {
+          "side": 0,
+          "tick": 2,
+          "lots": "16"
+        },
+        {
+          "side": 0,
+          "tick": 165,
+          "lots": "814"
+        },
+        {
+          "side": 1,
+          "tick": 155,
+          "lots": "843"
+        },
+        {
+          "side": 0,
+          "tick": 30,
+          "lots": "436"
+        },
+        {
+          "side": 1,
+          "tick": 239,
+          "lots": "711"
+        },
+        {
+          "side": 1,
+          "tick": 0,
+          "lots": "600"
+        },
+        {
+          "side": 0,
+          "tick": 210,
+          "lots": "369"
+        },
+        {
+          "side": 1,
+          "tick": 255,
+          "lots": "517"
+        },
+        {
+          "side": 1,
+          "tick": 12,
+          "lots": "801"
+        },
+        {
+          "side": 0,
+          "tick": 65,
+          "lots": "204"
+        },
+        {
+          "side": 0,
+          "tick": 145,
+          "lots": "167"
+        },
+        {
+          "side": 1,
+          "tick": 197,
+          "lots": "616"
+        },
+        {
+          "side": 1,
+          "tick": 165,
+          "lots": "353"
+        },
+        {
+          "side": 0,
+          "tick": 0,
+          "lots": "533"
+        },
+        {
+          "side": 1,
+          "tick": 208,
+          "lots": "337"
+        },
+        {
+          "side": 1,
+          "tick": 88,
+          "lots": "722"
+        },
+        {
+          "side": 0,
+          "tick": 202,
+          "lots": "241"
+        },
+        {
+          "side": 1,
+          "tick": 178,
+          "lots": "489"
+        },
+        {
+          "side": 1,
+          "tick": 60,
+          "lots": "903"
+        },
+        {
+          "side": 0,
+          "tick": 138,
+          "lots": "534"
+        },
+        {
+          "side": 0,
+          "tick": 121,
+          "lots": "650"
+        },
+        {
+          "side": 0,
+          "tick": 3,
+          "lots": "144"
+        },
+        {
+          "side": 1,
+          "tick": 111,
+          "lots": "118"
+        },
+        {
+          "side": 1,
+          "tick": 111,
+          "lots": "959"
+        },
+        {
+          "side": 0,
+          "tick": 48,
+          "lots": "544"
+        },
+        {
+          "side": 1,
+          "tick": 251,
+          "lots": "72"
+        },
+        {
+          "side": 1,
+          "tick": 184,
+          "lots": "298"
+        },
+        {
+          "side": 0,
+          "tick": 211,
+          "lots": "925"
+        },
+        {
+          "side": 1,
+          "tick": 189,
+          "lots": "193"
+        },
+        {
+          "side": 1,
+          "tick": 33,
+          "lots": "115"
+        },
+        {
+          "side": 1,
+          "tick": 82,
+          "lots": "748"
+        },
+        {
+          "side": 1,
+          "tick": 232,
+          "lots": "1"
+        },
+        {
+          "side": 1,
+          "tick": 237,
+          "lots": "925"
+        }
+      ],
+      "result": {
+        "clearTick": 111,
+        "buyCutoff": 121,
+        "sellCutoff": 111,
+        "volumeLots": "4682",
+        "rB": "650",
+        "mB": "650",
+        "rS": "793",
+        "mS": "1077"
+      }
+    },
+    {
+      "seed": 39,
+      "refTick": 31,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 36,
+          "lots": "774"
+        },
+        {
+          "side": 1,
+          "tick": 0,
+          "lots": "82"
+        },
+        {
+          "side": 0,
+          "tick": 217,
+          "lots": "91"
+        },
+        {
+          "side": 0,
+          "tick": 121,
+          "lots": "541"
+        },
+        {
+          "side": 0,
+          "tick": 192,
+          "lots": "573"
+        },
+        {
+          "side": 1,
+          "tick": 60,
+          "lots": "303"
+        },
+        {
+          "side": 1,
+          "tick": 106,
+          "lots": "537"
+        },
+        {
+          "side": 1,
+          "tick": 35,
+          "lots": "388"
+        },
+        {
+          "side": 0,
+          "tick": 136,
+          "lots": "155"
+        },
+        {
+          "side": 0,
+          "tick": 81,
+          "lots": "943"
+        },
+        {
+          "side": 0,
+          "tick": 70,
+          "lots": "88"
+        },
+        {
+          "side": 1,
+          "tick": 89,
+          "lots": "411"
+        },
+        {
+          "side": 0,
+          "tick": 228,
+          "lots": "609"
+        },
+        {
+          "side": 1,
+          "tick": 232,
+          "lots": "366"
+        },
+        {
+          "side": 1,
+          "tick": 210,
+          "lots": "245"
+        },
+        {
+          "side": 0,
+          "tick": 183,
+          "lots": "316"
+        },
+        {
+          "side": 0,
+          "tick": 49,
+          "lots": "859"
+        },
+        {
+          "side": 1,
+          "tick": 168,
+          "lots": "971"
+        },
+        {
+          "side": 1,
+          "tick": 160,
+          "lots": "25"
+        },
+        {
+          "side": 0,
+          "tick": 144,
+          "lots": "642"
+        },
+        {
+          "side": 0,
+          "tick": 35,
+          "lots": "326"
+        },
+        {
+          "side": 1,
+          "tick": 184,
+          "lots": "412"
+        },
+        {
+          "side": 1,
+          "tick": 107,
+          "lots": "324"
+        },
+        {
+          "side": 1,
+          "tick": 38,
+          "lots": "678"
+        },
+        {
+          "side": 0,
+          "tick": 145,
+          "lots": "563"
+        },
+        {
+          "side": 0,
+          "tick": 29,
+          "lots": "887"
+        },
+        {
+          "side": 0,
+          "tick": 224,
+          "lots": "281"
+        },
+        {
+          "side": 0,
+          "tick": 121,
+          "lots": "471"
+        },
+        {
+          "side": 0,
+          "tick": 74,
+          "lots": "134"
+        },
+        {
+          "side": 1,
+          "tick": 234,
+          "lots": "928"
+        },
+        {
+          "side": 0,
+          "tick": 163,
+          "lots": "773"
+        },
+        {
+          "side": 1,
+          "tick": 27,
+          "lots": "354"
+        },
+        {
+          "side": 1,
+          "tick": 54,
+          "lots": "465"
+        },
+        {
+          "side": 0,
+          "tick": 200,
+          "lots": "922"
+        },
+        {
+          "side": 1,
+          "tick": 150,
+          "lots": "764"
+        },
+        {
+          "side": 0,
+          "tick": 100,
+          "lots": "446"
+        },
+        {
+          "side": 0,
+          "tick": 12,
+          "lots": "16"
+        },
+        {
+          "side": 0,
+          "tick": 88,
+          "lots": "620"
+        },
+        {
+          "side": 1,
+          "tick": 65,
+          "lots": "474"
+        },
+        {
+          "side": 0,
+          "tick": 46,
+          "lots": "731"
+        }
+      ],
+      "result": {
+        "clearTick": 136,
+        "buyCutoff": 136,
+        "sellCutoff": 107,
+        "volumeLots": "4790",
+        "rB": "20",
+        "mB": "155",
+        "rS": "324",
+        "mS": "324"
+      }
+    },
+    {
+      "seed": 40,
+      "refTick": 104,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 137,
+          "lots": "502"
+        },
+        {
+          "side": 0,
+          "tick": 117,
+          "lots": "130"
+        },
+        {
+          "side": 1,
+          "tick": 17,
+          "lots": "618"
+        },
+        {
+          "side": 1,
+          "tick": 65,
+          "lots": "450"
+        },
+        {
+          "side": 0,
+          "tick": 254,
+          "lots": "694"
+        },
+        {
+          "side": 1,
+          "tick": 25,
+          "lots": "929"
+        },
+        {
+          "side": 1,
+          "tick": 204,
+          "lots": "613"
+        },
+        {
+          "side": 0,
+          "tick": 70,
+          "lots": "332"
+        },
+        {
+          "side": 0,
+          "tick": 23,
+          "lots": "748"
+        },
+        {
+          "side": 1,
+          "tick": 50,
+          "lots": "411"
+        },
+        {
+          "side": 0,
+          "tick": 125,
+          "lots": "473"
+        },
+        {
+          "side": 0,
+          "tick": 206,
+          "lots": "291"
+        },
+        {
+          "side": 0,
+          "tick": 200,
+          "lots": "217"
+        },
+        {
+          "side": 0,
+          "tick": 79,
+          "lots": "565"
+        },
+        {
+          "side": 1,
+          "tick": 56,
+          "lots": "58"
+        },
+        {
+          "side": 0,
+          "tick": 116,
+          "lots": "707"
+        },
+        {
+          "side": 0,
+          "tick": 69,
+          "lots": "116"
+        },
+        {
+          "side": 1,
+          "tick": 135,
+          "lots": "349"
+        },
+        {
+          "side": 0,
+          "tick": 42,
+          "lots": "927"
+        },
+        {
+          "side": 1,
+          "tick": 80,
+          "lots": "961"
+        },
+        {
+          "side": 1,
+          "tick": 64,
+          "lots": "901"
+        },
+        {
+          "side": 0,
+          "tick": 42,
+          "lots": "291"
+        },
+        {
+          "side": 0,
+          "tick": 175,
+          "lots": "533"
+        },
+        {
+          "side": 0,
+          "tick": 165,
+          "lots": "824"
+        },
+        {
+          "side": 1,
+          "tick": 74,
+          "lots": "831"
+        },
+        {
+          "side": 1,
+          "tick": 218,
+          "lots": "213"
+        },
+        {
+          "side": 1,
+          "tick": 131,
+          "lots": "120"
+        },
+        {
+          "side": 1,
+          "tick": 127,
+          "lots": "900"
+        },
+        {
+          "side": 1,
+          "tick": 31,
+          "lots": "346"
+        },
+        {
+          "side": 1,
+          "tick": 211,
+          "lots": "219"
+        },
+        {
+          "side": 0,
+          "tick": 17,
+          "lots": "182"
+        },
+        {
+          "side": 1,
+          "tick": 87,
+          "lots": "506"
+        },
+        {
+          "side": 1,
+          "tick": 65,
+          "lots": "571"
+        },
+        {
+          "side": 0,
+          "tick": 236,
+          "lots": "133"
+        },
+        {
+          "side": 0,
+          "tick": 155,
+          "lots": "139"
+        },
+        {
+          "side": 0,
+          "tick": 44,
+          "lots": "920"
+        },
+        {
+          "side": 1,
+          "tick": 44,
+          "lots": "295"
+        },
+        {
+          "side": 1,
+          "tick": 170,
+          "lots": "47"
+        },
+        {
+          "side": 1,
+          "tick": 149,
+          "lots": "306"
+        },
+        {
+          "side": 0,
+          "tick": 242,
+          "lots": "871"
+        },
+        {
+          "side": 0,
+          "tick": 16,
+          "lots": "182"
+        }
+      ],
+      "result": {
+        "clearTick": 80,
+        "buyCutoff": 116,
+        "sellCutoff": 80,
+        "volumeLots": "5514",
+        "rB": "707",
+        "mB": "707",
+        "rS": "104",
+        "mS": "961"
+      }
+    },
+    {
+      "seed": 41,
+      "refTick": 177,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 193,
+          "lots": "546"
+        },
+        {
+          "side": 1,
+          "tick": 197,
+          "lots": "739"
+        },
+        {
+          "side": 1,
+          "tick": 171,
+          "lots": "71"
+        },
+        {
+          "side": 0,
+          "tick": 105,
+          "lots": "336"
+        },
+        {
+          "side": 0,
+          "tick": 191,
+          "lots": "778"
+        },
+        {
+          "side": 1,
+          "tick": 94,
+          "lots": "203"
+        },
+        {
+          "side": 1,
+          "tick": 145,
+          "lots": "590"
+        },
+        {
+          "side": 1,
+          "tick": 183,
+          "lots": "604"
+        },
+        {
+          "side": 0,
+          "tick": 206,
+          "lots": "135"
+        },
+        {
+          "side": 0,
+          "tick": 106,
+          "lots": "792"
+        },
+        {
+          "side": 0,
+          "tick": 248,
+          "lots": "979"
+        },
+        {
+          "side": 0,
+          "tick": 124,
+          "lots": "80"
+        },
+        {
+          "side": 1,
+          "tick": 128,
+          "lots": "266"
+        },
+        {
+          "side": 0,
+          "tick": 230,
+          "lots": "801"
+        },
+        {
+          "side": 0,
+          "tick": 210,
+          "lots": "287"
+        },
+        {
+          "side": 1,
+          "tick": 200,
+          "lots": "565"
+        },
+        {
+          "side": 0,
+          "tick": 85,
+          "lots": "614"
+        },
+        {
+          "side": 0,
+          "tick": 42,
+          "lots": "53"
+        },
+        {
+          "side": 1,
+          "tick": 35,
+          "lots": "875"
+        },
+        {
+          "side": 0,
+          "tick": 101,
+          "lots": "220"
+        },
+        {
+          "side": 0,
+          "tick": 239,
+          "lots": "72"
+        },
+        {
+          "side": 0,
+          "tick": 50,
+          "lots": "214"
+        },
+        {
+          "side": 0,
+          "tick": 56,
+          "lots": "592"
+        },
+        {
+          "side": 0,
+          "tick": 55,
+          "lots": "634"
+        },
+        {
+          "side": 0,
+          "tick": 179,
+          "lots": "689"
+        },
+        {
+          "side": 0,
+          "tick": 28,
+          "lots": "285"
+        },
+        {
+          "side": 1,
+          "tick": 187,
+          "lots": "886"
+        },
+        {
+          "side": 1,
+          "tick": 8,
+          "lots": "274"
+        },
+        {
+          "side": 0,
+          "tick": 234,
+          "lots": "133"
+        },
+        {
+          "side": 0,
+          "tick": 223,
+          "lots": "328"
+        },
+        {
+          "side": 0,
+          "tick": 254,
+          "lots": "645"
+        },
+        {
+          "side": 0,
+          "tick": 231,
+          "lots": "806"
+        },
+        {
+          "side": 0,
+          "tick": 231,
+          "lots": "509"
+        },
+        {
+          "side": 0,
+          "tick": 156,
+          "lots": "366"
+        },
+        {
+          "side": 1,
+          "tick": 227,
+          "lots": "379"
+        },
+        {
+          "side": 0,
+          "tick": 57,
+          "lots": "542"
+        },
+        {
+          "side": 0,
+          "tick": 4,
+          "lots": "481"
+        },
+        {
+          "side": 1,
+          "tick": 195,
+          "lots": "411"
+        },
+        {
+          "side": 0,
+          "tick": 153,
+          "lots": "793"
+        },
+        {
+          "side": 0,
+          "tick": 196,
+          "lots": "276"
+        },
+        {
+          "side": 0,
+          "tick": 168,
+          "lots": "749"
+        },
+        {
+          "side": 0,
+          "tick": 207,
+          "lots": "447"
+        }
+      ],
+      "result": {
+        "clearTick": 197,
+        "buyCutoff": 206,
+        "sellCutoff": 197,
+        "volumeLots": "5142",
+        "rB": "135",
+        "mB": "135",
+        "rS": "416",
+        "mS": "739"
+      }
+    },
+    {
+      "seed": 42,
+      "refTick": 250,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 80,
+          "lots": "496"
+        },
+        {
+          "side": 1,
+          "tick": 158,
+          "lots": "241"
+        },
+        {
+          "side": 0,
+          "tick": 146,
+          "lots": "163"
+        },
+        {
+          "side": 1,
+          "tick": 130,
+          "lots": "850"
+        },
+        {
+          "side": 1,
+          "tick": 173,
+          "lots": "989"
+        },
+        {
+          "side": 1,
+          "tick": 206,
+          "lots": "843"
+        },
+        {
+          "side": 0,
+          "tick": 93,
+          "lots": "442"
+        },
+        {
+          "side": 1,
+          "tick": 192,
+          "lots": "51"
+        },
+        {
+          "side": 1,
+          "tick": 184,
+          "lots": "543"
+        },
+        {
+          "side": 1,
+          "tick": 211,
+          "lots": "620"
+        },
+        {
+          "side": 0,
+          "tick": 189,
+          "lots": "987"
+        },
+        {
+          "side": 0,
+          "tick": 221,
+          "lots": "563"
+        },
+        {
+          "side": 1,
+          "tick": 200,
+          "lots": "553"
+        },
+        {
+          "side": 1,
+          "tick": 5,
+          "lots": "676"
+        },
+        {
+          "side": 1,
+          "tick": 105,
+          "lots": "238"
+        },
+        {
+          "side": 1,
+          "tick": 81,
+          "lots": "204"
+        },
+        {
+          "side": 1,
+          "tick": 0,
+          "lots": "978"
+        },
+        {
+          "side": 1,
+          "tick": 94,
+          "lots": "165"
+        },
+        {
+          "side": 0,
+          "tick": 158,
+          "lots": "236"
+        },
+        {
+          "side": 0,
+          "tick": 9,
+          "lots": "876"
+        },
+        {
+          "side": 0,
+          "tick": 57,
+          "lots": "205"
+        },
+        {
+          "side": 1,
+          "tick": 70,
+          "lots": "582"
+        },
+        {
+          "side": 0,
+          "tick": 95,
+          "lots": "479"
+        },
+        {
+          "side": 0,
+          "tick": 160,
+          "lots": "868"
+        },
+        {
+          "side": 0,
+          "tick": 120,
+          "lots": "719"
+        },
+        {
+          "side": 1,
+          "tick": 188,
+          "lots": "781"
+        },
+        {
+          "side": 0,
+          "tick": 144,
+          "lots": "108"
+        },
+        {
+          "side": 1,
+          "tick": 174,
+          "lots": "815"
+        },
+        {
+          "side": 0,
+          "tick": 131,
+          "lots": "211"
+        },
+        {
+          "side": 0,
+          "tick": 160,
+          "lots": "142"
+        },
+        {
+          "side": 0,
+          "tick": 123,
+          "lots": "185"
+        },
+        {
+          "side": 0,
+          "tick": 33,
+          "lots": "507"
+        },
+        {
+          "side": 1,
+          "tick": 118,
+          "lots": "939"
+        },
+        {
+          "side": 1,
+          "tick": 42,
+          "lots": "474"
+        },
+        {
+          "side": 1,
+          "tick": 220,
+          "lots": "580"
+        },
+        {
+          "side": 0,
+          "tick": 228,
+          "lots": "472"
+        },
+        {
+          "side": 0,
+          "tick": 77,
+          "lots": "155"
+        },
+        {
+          "side": 1,
+          "tick": 190,
+          "lots": "334"
+        },
+        {
+          "side": 0,
+          "tick": 235,
+          "lots": "364"
+        },
+        {
+          "side": 0,
+          "tick": 102,
+          "lots": "291"
+        },
+        {
+          "side": 1,
+          "tick": 113,
+          "lots": "672"
+        },
+        {
+          "side": 0,
+          "tick": 111,
+          "lots": "993"
+        },
+        {
+          "side": 0,
+          "tick": 90,
+          "lots": "522"
+        }
+      ],
+      "result": {
+        "clearTick": 118,
+        "buyCutoff": 120,
+        "sellCutoff": 118,
+        "volumeLots": "5018",
+        "rB": "719",
+        "mB": "719",
+        "rS": "533",
+        "mS": "939"
+      }
+    },
+    {
+      "seed": 43,
+      "refTick": 67,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 234,
+          "lots": "25"
+        },
+        {
+          "side": 0,
+          "tick": 226,
+          "lots": "24"
+        },
+        {
+          "side": 1,
+          "tick": 36,
+          "lots": "72"
+        },
+        {
+          "side": 1,
+          "tick": 24,
+          "lots": "286"
+        },
+        {
+          "side": 1,
+          "tick": 180,
+          "lots": "850"
+        },
+        {
+          "side": 0,
+          "tick": 86,
+          "lots": "581"
+        },
+        {
+          "side": 0,
+          "tick": 84,
+          "lots": "476"
+        },
+        {
+          "side": 1,
+          "tick": 232,
+          "lots": "852"
+        },
+        {
+          "side": 1,
+          "tick": 21,
+          "lots": "285"
+        },
+        {
+          "side": 1,
+          "tick": 220,
+          "lots": "435"
+        },
+        {
+          "side": 0,
+          "tick": 252,
+          "lots": "897"
+        },
+        {
+          "side": 0,
+          "tick": 99,
+          "lots": "804"
+        },
+        {
+          "side": 0,
+          "tick": 179,
+          "lots": "762"
+        },
+        {
+          "side": 0,
+          "tick": 2,
+          "lots": "112"
+        },
+        {
+          "side": 1,
+          "tick": 80,
+          "lots": "904"
+        },
+        {
+          "side": 0,
+          "tick": 231,
+          "lots": "861"
+        },
+        {
+          "side": 1,
+          "tick": 213,
+          "lots": "60"
+        },
+        {
+          "side": 1,
+          "tick": 226,
+          "lots": "51"
+        },
+        {
+          "side": 1,
+          "tick": 27,
+          "lots": "214"
+        },
+        {
+          "side": 1,
+          "tick": 171,
+          "lots": "615"
+        },
+        {
+          "side": 0,
+          "tick": 113,
+          "lots": "83"
+        },
+        {
+          "side": 0,
+          "tick": 52,
+          "lots": "115"
+        },
+        {
+          "side": 0,
+          "tick": 164,
+          "lots": "196"
+        },
+        {
+          "side": 1,
+          "tick": 240,
+          "lots": "907"
+        },
+        {
+          "side": 1,
+          "tick": 244,
+          "lots": "381"
+        },
+        {
+          "side": 0,
+          "tick": 85,
+          "lots": "385"
+        },
+        {
+          "side": 1,
+          "tick": 212,
+          "lots": "995"
+        },
+        {
+          "side": 0,
+          "tick": 246,
+          "lots": "827"
+        },
+        {
+          "side": 1,
+          "tick": 178,
+          "lots": "696"
+        },
+        {
+          "side": 1,
+          "tick": 7,
+          "lots": "922"
+        },
+        {
+          "side": 0,
+          "tick": 96,
+          "lots": "631"
+        },
+        {
+          "side": 1,
+          "tick": 184,
+          "lots": "663"
+        },
+        {
+          "side": 0,
+          "tick": 40,
+          "lots": "255"
+        },
+        {
+          "side": 1,
+          "tick": 218,
+          "lots": "88"
+        },
+        {
+          "side": 1,
+          "tick": 36,
+          "lots": "638"
+        },
+        {
+          "side": 1,
+          "tick": 131,
+          "lots": "16"
+        },
+        {
+          "side": 1,
+          "tick": 178,
+          "lots": "753"
+        },
+        {
+          "side": 0,
+          "tick": 146,
+          "lots": "863"
+        },
+        {
+          "side": 0,
+          "tick": 251,
+          "lots": "910"
+        },
+        {
+          "side": 1,
+          "tick": 171,
+          "lots": "8"
+        },
+        {
+          "side": 1,
+          "tick": 42,
+          "lots": "972"
+        },
+        {
+          "side": 0,
+          "tick": 209,
+          "lots": "207"
+        },
+        {
+          "side": 1,
+          "tick": 203,
+          "lots": "92"
+        },
+        {
+          "side": 0,
+          "tick": 1,
+          "lots": "302"
+        }
+      ],
+      "result": {
+        "clearTick": 171,
+        "buyCutoff": 179,
+        "sellCutoff": 171,
+        "volumeLots": "4488",
+        "rB": "762",
+        "mB": "762",
+        "rS": "179",
+        "mS": "623"
+      }
+    },
+    {
+      "seed": 44,
+      "refTick": 140,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 110,
+          "lots": "856"
+        },
+        {
+          "side": 0,
+          "tick": 77,
+          "lots": "836"
+        },
+        {
+          "side": 0,
+          "tick": 153,
+          "lots": "175"
+        },
+        {
+          "side": 0,
+          "tick": 154,
+          "lots": "925"
+        },
+        {
+          "side": 0,
+          "tick": 153,
+          "lots": "4"
+        },
+        {
+          "side": 1,
+          "tick": 128,
+          "lots": "553"
+        },
+        {
+          "side": 1,
+          "tick": 13,
+          "lots": "364"
+        },
+        {
+          "side": 1,
+          "tick": 220,
+          "lots": "989"
+        },
+        {
+          "side": 0,
+          "tick": 147,
+          "lots": "682"
+        },
+        {
+          "side": 0,
+          "tick": 244,
+          "lots": "473"
+        },
+        {
+          "side": 1,
+          "tick": 162,
+          "lots": "589"
+        },
+        {
+          "side": 0,
+          "tick": 204,
+          "lots": "598"
+        },
+        {
+          "side": 0,
+          "tick": 152,
+          "lots": "655"
+        },
+        {
+          "side": 1,
+          "tick": 244,
+          "lots": "441"
+        },
+        {
+          "side": 1,
+          "tick": 22,
+          "lots": "839"
+        },
+        {
+          "side": 1,
+          "tick": 160,
+          "lots": "723"
+        },
+        {
+          "side": 1,
+          "tick": 244,
+          "lots": "391"
+        },
+        {
+          "side": 0,
+          "tick": 165,
+          "lots": "670"
+        },
+        {
+          "side": 0,
+          "tick": 78,
+          "lots": "232"
+        },
+        {
+          "side": 0,
+          "tick": 109,
+          "lots": "601"
+        },
+        {
+          "side": 0,
+          "tick": 132,
+          "lots": "995"
+        },
+        {
+          "side": 0,
+          "tick": 100,
+          "lots": "937"
+        },
+        {
+          "side": 0,
+          "tick": 183,
+          "lots": "353"
+        },
+        {
+          "side": 0,
+          "tick": 194,
+          "lots": "811"
+        },
+        {
+          "side": 0,
+          "tick": 80,
+          "lots": "523"
+        },
+        {
+          "side": 0,
+          "tick": 229,
+          "lots": "446"
+        },
+        {
+          "side": 1,
+          "tick": 77,
+          "lots": "82"
+        },
+        {
+          "side": 0,
+          "tick": 31,
+          "lots": "772"
+        },
+        {
+          "side": 1,
+          "tick": 53,
+          "lots": "774"
+        },
+        {
+          "side": 1,
+          "tick": 111,
+          "lots": "972"
+        },
+        {
+          "side": 1,
+          "tick": 82,
+          "lots": "116"
+        },
+        {
+          "side": 1,
+          "tick": 113,
+          "lots": "517"
+        },
+        {
+          "side": 1,
+          "tick": 54,
+          "lots": "788"
+        },
+        {
+          "side": 0,
+          "tick": 98,
+          "lots": "378"
+        },
+        {
+          "side": 0,
+          "tick": 186,
+          "lots": "652"
+        },
+        {
+          "side": 1,
+          "tick": 165,
+          "lots": "536"
+        },
+        {
+          "side": 0,
+          "tick": 93,
+          "lots": "305"
+        },
+        {
+          "side": 1,
+          "tick": 207,
+          "lots": "843"
+        },
+        {
+          "side": 1,
+          "tick": 72,
+          "lots": "542"
+        },
+        {
+          "side": 1,
+          "tick": 176,
+          "lots": "311"
+        },
+        {
+          "side": 1,
+          "tick": 203,
+          "lots": "816"
+        },
+        {
+          "side": 0,
+          "tick": 239,
+          "lots": "109"
+        },
+        {
+          "side": 1,
+          "tick": 7,
+          "lots": "985"
+        },
+        {
+          "side": 0,
+          "tick": 219,
+          "lots": "388"
+        },
+        {
+          "side": 1,
+          "tick": 200,
+          "lots": "824"
+        }
+      ],
+      "result": {
+        "clearTick": 132,
+        "buyCutoff": 132,
+        "sellCutoff": 128,
+        "volumeLots": "7388",
+        "rB": "447",
+        "mB": "995",
+        "rS": "553",
+        "mS": "553"
+      }
+    },
+    {
+      "seed": 45,
+      "refTick": 213,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 245,
+          "lots": "691"
+        },
+        {
+          "side": 1,
+          "tick": 244,
+          "lots": "683"
+        },
+        {
+          "side": 0,
+          "tick": 37,
+          "lots": "77"
+        },
+        {
+          "side": 0,
+          "tick": 68,
+          "lots": "174"
+        },
+        {
+          "side": 1,
+          "tick": 69,
+          "lots": "388"
+        },
+        {
+          "side": 0,
+          "tick": 214,
+          "lots": "266"
+        },
+        {
+          "side": 1,
+          "tick": 104,
+          "lots": "98"
+        },
+        {
+          "side": 1,
+          "tick": 246,
+          "lots": "753"
+        },
+        {
+          "side": 1,
+          "tick": 110,
+          "lots": "194"
+        },
+        {
+          "side": 1,
+          "tick": 212,
+          "lots": "830"
+        },
+        {
+          "side": 1,
+          "tick": 158,
+          "lots": "381"
+        },
+        {
+          "side": 0,
+          "tick": 221,
+          "lots": "496"
+        },
+        {
+          "side": 1,
+          "tick": 126,
+          "lots": "686"
+        },
+        {
+          "side": 1,
+          "tick": 112,
+          "lots": "854"
+        },
+        {
+          "side": 0,
+          "tick": 69,
+          "lots": "206"
+        },
+        {
+          "side": 0,
+          "tick": 171,
+          "lots": "699"
+        },
+        {
+          "side": 1,
+          "tick": 136,
+          "lots": "268"
+        },
+        {
+          "side": 1,
+          "tick": 114,
+          "lots": "76"
+        },
+        {
+          "side": 1,
+          "tick": 142,
+          "lots": "810"
+        },
+        {
+          "side": 1,
+          "tick": 53,
+          "lots": "860"
+        },
+        {
+          "side": 1,
+          "tick": 104,
+          "lots": "408"
+        },
+        {
+          "side": 1,
+          "tick": 144,
+          "lots": "535"
+        },
+        {
+          "side": 1,
+          "tick": 185,
+          "lots": "932"
+        },
+        {
+          "side": 0,
+          "tick": 133,
+          "lots": "542"
+        },
+        {
+          "side": 0,
+          "tick": 174,
+          "lots": "564"
+        },
+        {
+          "side": 1,
+          "tick": 14,
+          "lots": "180"
+        },
+        {
+          "side": 1,
+          "tick": 1,
+          "lots": "914"
+        },
+        {
+          "side": 1,
+          "tick": 239,
+          "lots": "802"
+        },
+        {
+          "side": 0,
+          "tick": 5,
+          "lots": "132"
+        },
+        {
+          "side": 1,
+          "tick": 241,
+          "lots": "818"
+        },
+        {
+          "side": 1,
+          "tick": 224,
+          "lots": "895"
+        },
+        {
+          "side": 0,
+          "tick": 143,
+          "lots": "491"
+        },
+        {
+          "side": 0,
+          "tick": 90,
+          "lots": "312"
+        },
+        {
+          "side": 1,
+          "tick": 178,
+          "lots": "583"
+        },
+        {
+          "side": 0,
+          "tick": 71,
+          "lots": "797"
+        },
+        {
+          "side": 0,
+          "tick": 83,
+          "lots": "709"
+        },
+        {
+          "side": 0,
+          "tick": 52,
+          "lots": "733"
+        },
+        {
+          "side": 1,
+          "tick": 247,
+          "lots": "623"
+        },
+        {
+          "side": 1,
+          "tick": 28,
+          "lots": "722"
+        },
+        {
+          "side": 1,
+          "tick": 225,
+          "lots": "747"
+        },
+        {
+          "side": 0,
+          "tick": 123,
+          "lots": "308"
+        },
+        {
+          "side": 0,
+          "tick": 73,
+          "lots": "654"
+        },
+        {
+          "side": 0,
+          "tick": 94,
+          "lots": "565"
+        },
+        {
+          "side": 1,
+          "tick": 17,
+          "lots": "663"
+        },
+        {
+          "side": 1,
+          "tick": 40,
+          "lots": "909"
+        },
+        {
+          "side": 1,
+          "tick": 112,
+          "lots": "501"
+        }
+      ],
+      "result": {
+        "clearTick": 83,
+        "buyCutoff": 83,
+        "sellCutoff": 69,
+        "volumeLots": "4636",
+        "rB": "393",
+        "mB": "709",
+        "rS": "388",
+        "mS": "388"
+      }
+    },
+    {
+      "seed": 46,
+      "refTick": 30,
+      "orders": [
+        {
+          "side": 1,
+          "tick": 214,
+          "lots": "890"
+        },
+        {
+          "side": 1,
+          "tick": 211,
+          "lots": "283"
+        },
+        {
+          "side": 0,
+          "tick": 113,
+          "lots": "413"
+        },
+        {
+          "side": 1,
+          "tick": 130,
+          "lots": "710"
+        },
+        {
+          "side": 1,
+          "tick": 125,
+          "lots": "352"
+        },
+        {
+          "side": 0,
+          "tick": 154,
+          "lots": "730"
+        },
+        {
+          "side": 1,
+          "tick": 222,
+          "lots": "886"
+        },
+        {
+          "side": 1,
+          "tick": 185,
+          "lots": "474"
+        },
+        {
+          "side": 1,
+          "tick": 132,
+          "lots": "803"
+        },
+        {
+          "side": 0,
+          "tick": 24,
+          "lots": "178"
+        },
+        {
+          "side": 1,
+          "tick": 121,
+          "lots": "178"
+        },
+        {
+          "side": 1,
+          "tick": 23,
+          "lots": "143"
+        },
+        {
+          "side": 0,
+          "tick": 147,
+          "lots": "264"
+        },
+        {
+          "side": 1,
+          "tick": 131,
+          "lots": "756"
+        },
+        {
+          "side": 1,
+          "tick": 46,
+          "lots": "79"
+        },
+        {
+          "side": 1,
+          "tick": 34,
+          "lots": "895"
+        },
+        {
+          "side": 1,
+          "tick": 30,
+          "lots": "583"
+        },
+        {
+          "side": 0,
+          "tick": 220,
+          "lots": "392"
+        },
+        {
+          "side": 0,
+          "tick": 245,
+          "lots": "942"
+        },
+        {
+          "side": 0,
+          "tick": 101,
+          "lots": "533"
+        },
+        {
+          "side": 0,
+          "tick": 208,
+          "lots": "803"
+        },
+        {
+          "side": 1,
+          "tick": 131,
+          "lots": "825"
+        },
+        {
+          "side": 0,
+          "tick": 106,
+          "lots": "186"
+        },
+        {
+          "side": 0,
+          "tick": 127,
+          "lots": "444"
+        },
+        {
+          "side": 0,
+          "tick": 94,
+          "lots": "849"
+        },
+        {
+          "side": 1,
+          "tick": 86,
+          "lots": "515"
+        },
+        {
+          "side": 0,
+          "tick": 193,
+          "lots": "368"
+        },
+        {
+          "side": 1,
+          "tick": 58,
+          "lots": "941"
+        },
+        {
+          "side": 0,
+          "tick": 47,
+          "lots": "698"
+        },
+        {
+          "side": 0,
+          "tick": 192,
+          "lots": "658"
+        },
+        {
+          "side": 0,
+          "tick": 158,
+          "lots": "949"
+        },
+        {
+          "side": 1,
+          "tick": 216,
+          "lots": "215"
+        },
+        {
+          "side": 0,
+          "tick": 169,
+          "lots": "993"
+        },
+        {
+          "side": 1,
+          "tick": 129,
+          "lots": "608"
+        },
+        {
+          "side": 1,
+          "tick": 33,
+          "lots": "51"
+        },
+        {
+          "side": 1,
+          "tick": 103,
+          "lots": "321"
+        },
+        {
+          "side": 0,
+          "tick": 23,
+          "lots": "19"
+        },
+        {
+          "side": 0,
+          "tick": 110,
+          "lots": "390"
+        },
+        {
+          "side": 0,
+          "tick": 237,
+          "lots": "633"
+        },
+        {
+          "side": 0,
+          "tick": 209,
+          "lots": "41"
+        },
+        {
+          "side": 1,
+          "tick": 6,
+          "lots": "948"
+        },
+        {
+          "side": 0,
+          "tick": 158,
+          "lots": "654"
+        },
+        {
+          "side": 1,
+          "tick": 171,
+          "lots": "310"
+        },
+        {
+          "side": 0,
+          "tick": 76,
+          "lots": "802"
+        },
+        {
+          "side": 1,
+          "tick": 147,
+          "lots": "944"
+        },
+        {
+          "side": 1,
+          "tick": 39,
+          "lots": "613"
+        },
+        {
+          "side": 1,
+          "tick": 66,
+          "lots": "257"
+        }
+      ],
+      "result": {
+        "clearTick": 131,
+        "buyCutoff": 147,
+        "sellCutoff": 131,
+        "volumeLots": "7427",
+        "rB": "264",
+        "mB": "264",
+        "rS": "233",
+        "mS": "1581"
+      }
+    },
+    {
+      "seed": 47,
+      "refTick": 103,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 60,
+          "lots": "221"
+        },
+        {
+          "side": 0,
+          "tick": 188,
+          "lots": "152"
+        },
+        {
+          "side": 1,
+          "tick": 20,
+          "lots": "367"
+        },
+        {
+          "side": 1,
+          "tick": 76,
+          "lots": "935"
+        },
+        {
+          "side": 0,
+          "tick": 91,
+          "lots": "738"
+        },
+        {
+          "side": 0,
+          "tick": 218,
+          "lots": "22"
+        },
+        {
+          "side": 0,
+          "tick": 207,
+          "lots": "370"
+        },
+        {
+          "side": 0,
+          "tick": 137,
+          "lots": "450"
+        },
+        {
+          "side": 0,
+          "tick": 31,
+          "lots": "737"
+        },
+        {
+          "side": 0,
+          "tick": 234,
+          "lots": "277"
+        },
+        {
+          "side": 1,
+          "tick": 201,
+          "lots": "878"
+        },
+        {
+          "side": 1,
+          "tick": 191,
+          "lots": "239"
+        },
+        {
+          "side": 1,
+          "tick": 75,
+          "lots": "563"
+        },
+        {
+          "side": 1,
+          "tick": 60,
+          "lots": "868"
+        },
+        {
+          "side": 0,
+          "tick": 115,
+          "lots": "162"
+        },
+        {
+          "side": 1,
+          "tick": 250,
+          "lots": "214"
+        },
+        {
+          "side": 1,
+          "tick": 22,
+          "lots": "824"
+        },
+        {
+          "side": 1,
+          "tick": 11,
+          "lots": "871"
+        },
+        {
+          "side": 1,
+          "tick": 149,
+          "lots": "382"
+        },
+        {
+          "side": 0,
+          "tick": 159,
+          "lots": "338"
+        },
+        {
+          "side": 1,
+          "tick": 117,
+          "lots": "980"
+        },
+        {
+          "side": 0,
+          "tick": 155,
+          "lots": "394"
+        },
+        {
+          "side": 1,
+          "tick": 41,
+          "lots": "219"
+        },
+        {
+          "side": 0,
+          "tick": 214,
+          "lots": "579"
+        },
+        {
+          "side": 1,
+          "tick": 0,
+          "lots": "692"
+        },
+        {
+          "side": 0,
+          "tick": 4,
+          "lots": "789"
+        },
+        {
+          "side": 0,
+          "tick": 177,
+          "lots": "866"
+        },
+        {
+          "side": 1,
+          "tick": 197,
+          "lots": "665"
+        },
+        {
+          "side": 0,
+          "tick": 39,
+          "lots": "582"
+        },
+        {
+          "side": 1,
+          "tick": 192,
+          "lots": "806"
+        },
+        {
+          "side": 1,
+          "tick": 120,
+          "lots": "587"
+        },
+        {
+          "side": 0,
+          "tick": 195,
+          "lots": "503"
+        },
+        {
+          "side": 1,
+          "tick": 63,
+          "lots": "922"
+        },
+        {
+          "side": 1,
+          "tick": 106,
+          "lots": "913"
+        },
+        {
+          "side": 1,
+          "tick": 211,
+          "lots": "886"
+        },
+        {
+          "side": 0,
+          "tick": 164,
+          "lots": "860"
+        },
+        {
+          "side": 1,
+          "tick": 127,
+          "lots": "502"
+        },
+        {
+          "side": 1,
+          "tick": 154,
+          "lots": "63"
+        },
+        {
+          "side": 1,
+          "tick": 117,
+          "lots": "848"
+        },
+        {
+          "side": 0,
+          "tick": 253,
+          "lots": "695"
+        },
+        {
+          "side": 0,
+          "tick": 29,
+          "lots": "414"
+        },
+        {
+          "side": 0,
+          "tick": 114,
+          "lots": "544"
+        },
+        {
+          "side": 0,
+          "tick": 8,
+          "lots": "648"
+        },
+        {
+          "side": 0,
+          "tick": 153,
+          "lots": "449"
+        },
+        {
+          "side": 0,
+          "tick": 87,
+          "lots": "706"
+        },
+        {
+          "side": 1,
+          "tick": 83,
+          "lots": "376"
+        },
+        {
+          "side": 0,
+          "tick": 235,
+          "lots": "333"
+        },
+        {
+          "side": 1,
+          "tick": 4,
+          "lots": "916"
+        }
+      ],
+      "result": {
+        "clearTick": 91,
+        "buyCutoff": 91,
+        "sellCutoff": 83,
+        "volumeLots": "7553",
+        "rB": "559",
+        "mB": "738",
+        "rS": "376",
+        "mS": "376"
+      }
+    },
+    {
+      "seed": 48,
+      "refTick": 176,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 5,
+          "lots": "936"
+        },
+        {
+          "side": 0,
+          "tick": 82,
+          "lots": "717"
+        },
+        {
+          "side": 0,
+          "tick": 30,
+          "lots": "517"
+        },
+        {
+          "side": 0,
+          "tick": 123,
+          "lots": "253"
+        },
+        {
+          "side": 1,
+          "tick": 122,
+          "lots": "278"
+        },
+        {
+          "side": 0,
+          "tick": 60,
+          "lots": "513"
+        },
+        {
+          "side": 1,
+          "tick": 43,
+          "lots": "740"
+        },
+        {
+          "side": 0,
+          "tick": 140,
+          "lots": "486"
+        },
+        {
+          "side": 1,
+          "tick": 178,
+          "lots": "276"
+        },
+        {
+          "side": 1,
+          "tick": 22,
+          "lots": "548"
+        },
+        {
+          "side": 1,
+          "tick": 202,
+          "lots": "566"
+        },
+        {
+          "side": 0,
+          "tick": 102,
+          "lots": "971"
+        },
+        {
+          "side": 0,
+          "tick": 69,
+          "lots": "199"
+        },
+        {
+          "side": 1,
+          "tick": 179,
+          "lots": "195"
+        },
+        {
+          "side": 1,
+          "tick": 147,
+          "lots": "317"
+        },
+        {
+          "side": 0,
+          "tick": 25,
+          "lots": "32"
+        },
+        {
+          "side": 0,
+          "tick": 254,
+          "lots": "204"
+        },
+        {
+          "side": 0,
+          "tick": 210,
+          "lots": "568"
+        },
+        {
+          "side": 1,
+          "tick": 34,
+          "lots": "9"
+        },
+        {
+          "side": 0,
+          "tick": 186,
+          "lots": "161"
+        },
+        {
+          "side": 0,
+          "tick": 86,
+          "lots": "386"
+        },
+        {
+          "side": 1,
+          "tick": 23,
+          "lots": "933"
+        },
+        {
+          "side": 1,
+          "tick": 214,
+          "lots": "520"
+        },
+        {
+          "side": 0,
+          "tick": 42,
+          "lots": "865"
+        },
+        {
+          "side": 0,
+          "tick": 23,
+          "lots": "155"
+        },
+        {
+          "side": 1,
+          "tick": 83,
+          "lots": "183"
+        },
+        {
+          "side": 0,
+          "tick": 19,
+          "lots": "236"
+        },
+        {
+          "side": 1,
+          "tick": 252,
+          "lots": "327"
+        },
+        {
+          "side": 1,
+          "tick": 118,
+          "lots": "889"
+        },
+        {
+          "side": 0,
+          "tick": 136,
+          "lots": "378"
+        },
+        {
+          "side": 0,
+          "tick": 81,
+          "lots": "824"
+        },
+        {
+          "side": 1,
+          "tick": 0,
+          "lots": "119"
+        },
+        {
+          "side": 1,
+          "tick": 218,
+          "lots": "657"
+        },
+        {
+          "side": 0,
+          "tick": 71,
+          "lots": "959"
+        },
+        {
+          "side": 1,
+          "tick": 8,
+          "lots": "450"
+        },
+        {
+          "side": 1,
+          "tick": 11,
+          "lots": "613"
+        },
+        {
+          "side": 1,
+          "tick": 29,
+          "lots": "774"
+        },
+        {
+          "side": 0,
+          "tick": 61,
+          "lots": "485"
+        },
+        {
+          "side": 1,
+          "tick": 159,
+          "lots": "848"
+        },
+        {
+          "side": 1,
+          "tick": 187,
+          "lots": "551"
+        },
+        {
+          "side": 1,
+          "tick": 201,
+          "lots": "527"
+        },
+        {
+          "side": 0,
+          "tick": 77,
+          "lots": "955"
+        },
+        {
+          "side": 1,
+          "tick": 194,
+          "lots": "868"
+        },
+        {
+          "side": 1,
+          "tick": 116,
+          "lots": "305"
+        },
+        {
+          "side": 1,
+          "tick": 58,
+          "lots": "783"
+        },
+        {
+          "side": 1,
+          "tick": 169,
+          "lots": "215"
+        },
+        {
+          "side": 0,
+          "tick": 8,
+          "lots": "467"
+        },
+        {
+          "side": 0,
+          "tick": 22,
+          "lots": "78"
+        },
+        {
+          "side": 0,
+          "tick": 40,
+          "lots": "73"
+        }
+      ],
+      "result": {
+        "clearTick": 77,
+        "buyCutoff": 77,
+        "sellCutoff": 58,
+        "volumeLots": "4969",
+        "rB": "21",
+        "mB": "955",
+        "rS": "783",
+        "mS": "783"
+      }
+    },
+    {
+      "seed": 49,
+      "refTick": 249,
+      "orders": [
+        {
+          "side": 0,
+          "tick": 118,
+          "lots": "873"
+        },
+        {
+          "side": 1,
+          "tick": 133,
+          "lots": "785"
+        },
+        {
+          "side": 0,
+          "tick": 35,
+          "lots": "941"
+        },
+        {
+          "side": 0,
+          "tick": 218,
+          "lots": "977"
+        },
+        {
+          "side": 1,
+          "tick": 151,
+          "lots": "97"
+        },
+        {
+          "side": 1,
+          "tick": 254,
+          "lots": "1"
+        },
+        {
+          "side": 1,
+          "tick": 170,
+          "lots": "562"
+        },
+        {
+          "side": 1,
+          "tick": 219,
+          "lots": "448"
+        },
+        {
+          "side": 0,
+          "tick": 57,
+          "lots": "491"
+        },
+        {
+          "side": 1,
+          "tick": 33,
+          "lots": "329"
+        },
+        {
+          "side": 0,
+          "tick": 150,
+          "lots": "656"
+        },
+        {
+          "side": 0,
+          "tick": 24,
+          "lots": "649"
+        },
+        {
+          "side": 0,
+          "tick": 133,
+          "lots": "320"
+        },
+        {
+          "side": 1,
+          "tick": 26,
+          "lots": "787"
+        },
+        {
+          "side": 1,
+          "tick": 241,
+          "lots": "642"
+        },
+        {
+          "side": 0,
+          "tick": 63,
+          "lots": "349"
+        },
+        {
+          "side": 1,
+          "tick": 222,
+          "lots": "385"
+        },
+        {
+          "side": 0,
+          "tick": 22,
+          "lots": "368"
+        },
+        {
+          "side": 1,
+          "tick": 70,
+          "lots": "323"
+        },
+        {
+          "side": 1,
+          "tick": 129,
+          "lots": "793"
+        },
+        {
+          "side": 0,
+          "tick": 190,
+          "lots": "23"
+        },
+        {
+          "side": 0,
+          "tick": 73,
+          "lots": "348"
+        },
+        {
+          "side": 0,
+          "tick": 237,
+          "lots": "256"
+        },
+        {
+          "side": 0,
+          "tick": 164,
+          "lots": "799"
+        },
+        {
+          "side": 1,
+          "tick": 162,
+          "lots": "201"
+        },
+        {
+          "side": 1,
+          "tick": 136,
+          "lots": "55"
+        },
+        {
+          "side": 1,
+          "tick": 226,
+          "lots": "837"
+        },
+        {
+          "side": 0,
+          "tick": 189,
+          "lots": "18"
+        },
+        {
+          "side": 0,
+          "tick": 105,
+          "lots": "576"
+        },
+        {
+          "side": 1,
+          "tick": 19,
+          "lots": "799"
+        },
+        {
+          "side": 0,
+          "tick": 194,
+          "lots": "743"
+        },
+        {
+          "side": 1,
+          "tick": 241,
+          "lots": "383"
+        },
+        {
+          "side": 1,
+          "tick": 40,
+          "lots": "992"
+        },
+        {
+          "side": 0,
+          "tick": 189,
+          "lots": "520"
+        },
+        {
+          "side": 0,
+          "tick": 44,
+          "lots": "418"
+        },
+        {
+          "side": 1,
+          "tick": 24,
+          "lots": "624"
+        },
+        {
+          "side": 1,
+          "tick": 156,
+          "lots": "764"
+        },
+        {
+          "side": 1,
+          "tick": 215,
+          "lots": "792"
+        },
+        {
+          "side": 0,
+          "tick": 104,
+          "lots": "876"
+        },
+        {
+          "side": 1,
+          "tick": 53,
+          "lots": "828"
+        },
+        {
+          "side": 1,
+          "tick": 197,
+          "lots": "289"
+        },
+        {
+          "side": 0,
+          "tick": 9,
+          "lots": "720"
+        },
+        {
+          "side": 1,
+          "tick": 73,
+          "lots": "54"
+        },
+        {
+          "side": 0,
+          "tick": 121,
+          "lots": "686"
+        },
+        {
+          "side": 0,
+          "tick": 77,
+          "lots": "760"
+        },
+        {
+          "side": 1,
+          "tick": 243,
+          "lots": "280"
+        },
+        {
+          "side": 1,
+          "tick": 191,
+          "lots": "858"
+        },
+        {
+          "side": 0,
+          "tick": 251,
+          "lots": "176"
+        },
+        {
+          "side": 1,
+          "tick": 144,
+          "lots": "787"
+        },
+        {
+          "side": 0,
+          "tick": 209,
+          "lots": "265"
+        }
+      ],
+      "result": {
+        "clearTick": 129,
+        "buyCutoff": 133,
+        "sellCutoff": 129,
+        "volumeLots": "4753",
+        "rB": "320",
+        "mB": "320",
+        "rS": "17",
+        "mS": "793"
+      }
+    }
+  ]
+}

@@ -10,6 +10,7 @@ optimizer_runs = 2000
 network = "monad"
 hardfork = "monad:MonadTen"
 gas_limit = 30000000
+fs_permissions = [{ access = "write", path = "../packages/core/test/vectors.json" }]
 
 [profile.default.fuzz]
 runs = 1000
@@ -17,6 +18,7 @@ runs = 1000
 [profile.default.invariant]
 runs = 256
 depth = 200
+fail_on_revert = true
 
 [profile.pre_mip8]
 network = "monad"

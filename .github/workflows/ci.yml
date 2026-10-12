@@ -33,9 +33,13 @@ jobs:
         run: forge test
       - name: Historical hardfork tests
         working-directory: contracts
-        run: FOUNDRY_PROFILE=pre_mip8 forge test
+        run: FOUNDRY_PROFILE=pre_mip8 forge test --gas-limit 100000000
       - name: Local storage gate
         run: pnpm spike
+      - name: Forbidden inputs
+        run: bash contracts/script/check-forbidden.sh
+      - name: Golden vector freshness
+        run: git diff --exit-code -- packages/core/test/vectors.json
       - name: Storage layout and priority-input gates
         run: pnpm check:contracts
       - name: Generated ABI freshness
