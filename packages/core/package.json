@@ -9,7 +9,8 @@
     "./format": "./src/format.ts",
     "./gas": "./src/gas.ts",
     "./bench.json": "./src/bench.json",
-    "./addresses": "./src/addresses.ts"
+    "./addresses": "./src/addresses.ts",
+    "./settle": "./src/settle.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
