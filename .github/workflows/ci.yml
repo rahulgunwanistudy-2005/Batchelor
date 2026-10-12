@@ -36,6 +36,15 @@ jobs:
         run: FOUNDRY_PROFILE=pre_mip8 forge test --gas-limit 100000000
       - name: Local storage gate
         run: pnpm spike
+      - name: Auction gas benchmarks
+        run: pnpm bench
+      - name: Generated gas limit freshness
+        run: git diff --exit-code -- packages/core/src/gas.json
+      - name: Benchmark formatting
+        working-directory: contracts
+        run: forge fmt --check bench
+      - name: Explicit client gas policy
+        run: pnpm check:gas
       - name: Forbidden inputs
         run: bash contracts/script/check-forbidden.sh
       - name: Golden vector freshness
@@ -56,4 +65,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: storage-spike
-          path: contracts/bench/out/*.json
+          path: |
+            contracts/bench/out/*.json
+            contracts/bench/out/clear-*.log

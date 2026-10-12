@@ -1,3 +1,4 @@
+export { transactionGas } from '@batchelor/core/gas';
 import { createPublicClient, createWalletClient, http, webSocket } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { monad, monadTestnet } from 'viem/chains';
