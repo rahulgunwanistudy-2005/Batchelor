@@ -1,7 +1,7 @@
 {
   "storage": [
     {
-      "astId": 278,
+      "astId": 4728,
       "contract": "src/BatchAuction.sol:BatchAuction",
       "label": "bidTicks",
       "offset": 0,
@@ -9,7 +9,7 @@
       "type": "t_array(t_uint256)256_storage"
     },
     {
-      "astId": 282,
+      "astId": 4732,
       "contract": "src/BatchAuction.sol:BatchAuction",
       "label": "askTicks",
       "offset": 0,
@@ -17,15 +17,15 @@
       "type": "t_array(t_uint256)256_storage"
     },
     {
-      "astId": 355,
+      "astId": 4735,
       "contract": "src/BatchAuction.sol:BatchAuction",
       "label": "meta",
       "offset": 0,
       "slot": "512",
-      "type": "t_struct(BatchMeta)299_storage"
+      "type": "t_struct(BatchMeta)6818_storage"
     },
     {
-      "astId": 357,
+      "astId": 4737,
       "contract": "src/BatchAuction.sol:BatchAuction",
       "label": "refTick",
       "offset": 0,
@@ -33,23 +33,39 @@
       "type": "t_uint16"
     },
     {
-      "astId": 361,
+      "astId": 4739,
+      "contract": "src/BatchAuction.sol:BatchAuction",
+      "label": "bidLots",
+      "offset": 2,
+      "slot": "513",
+      "type": "t_uint64"
+    },
+    {
+      "astId": 4741,
+      "contract": "src/BatchAuction.sol:BatchAuction",
+      "label": "askLots",
+      "offset": 10,
+      "slot": "513",
+      "type": "t_uint64"
+    },
+    {
+      "astId": 4745,
       "contract": "src/BatchAuction.sol:BatchAuction",
       "label": "orders",
       "offset": 0,
       "slot": "514",
-      "type": "t_array(t_struct(Order)314_storage)dyn_storage"
+      "type": "t_array(t_struct(Order)6833_storage)dyn_storage"
     },
     {
-      "astId": 365,
+      "astId": 4749,
       "contract": "src/BatchAuction.sol:BatchAuction",
       "label": "results",
       "offset": 0,
       "slot": "515",
-      "type": "t_array(t_struct(Result)335_storage)dyn_storage"
+      "type": "t_array(t_struct(Result)6854_storage)dyn_storage"
     },
     {
-      "astId": 371,
+      "astId": 4755,
       "contract": "src/BatchAuction.sol:BatchAuction",
       "label": "tokenBalances",
       "offset": 0,
@@ -57,7 +73,7 @@
       "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))"
     },
     {
-      "astId": 375,
+      "astId": 4759,
       "contract": "src/BatchAuction.sol:BatchAuction",
       "label": "intentNonces",
       "offset": 0,
@@ -71,17 +87,17 @@
       "label": "address",
       "numberOfBytes": "20"
     },
-    "t_array(t_struct(Order)314_storage)dyn_storage": {
+    "t_array(t_struct(Order)6833_storage)dyn_storage": {
       "encoding": "dynamic_array",
-      "label": "struct BatchAuction.Order[]",
+      "label": "struct AuctionTypes.Order[]",
       "numberOfBytes": "32",
-      "base": "t_struct(Order)314_storage"
+      "base": "t_struct(Order)6833_storage"
     },
-    "t_array(t_struct(Result)335_storage)dyn_storage": {
+    "t_array(t_struct(Result)6854_storage)dyn_storage": {
       "encoding": "dynamic_array",
-      "label": "struct BatchAuction.Result[]",
+      "label": "struct AuctionTypes.Result[]",
       "numberOfBytes": "32",
-      "base": "t_struct(Result)335_storage"
+      "base": "t_struct(Result)6854_storage"
     },
     "t_array(t_uint256)256_storage": {
       "encoding": "inplace",
@@ -115,13 +131,13 @@
       "numberOfBytes": "32",
       "value": "t_uint64"
     },
-    "t_struct(BatchMeta)299_storage": {
+    "t_struct(BatchMeta)6818_storage": {
       "encoding": "inplace",
-      "label": "struct BatchAuction.BatchMeta",
+      "label": "struct AuctionTypes.BatchMeta",
       "numberOfBytes": "32",
       "members": [
         {
-          "astId": 284,
+          "astId": 6803,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "id",
           "offset": 0,
@@ -129,7 +145,7 @@
           "type": "t_uint64"
         },
         {
-          "astId": 286,
+          "astId": 6805,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "startBlock",
           "offset": 8,
@@ -137,7 +153,7 @@
           "type": "t_uint64"
         },
         {
-          "astId": 288,
+          "astId": 6807,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "bidMin",
           "offset": 16,
@@ -145,7 +161,7 @@
           "type": "t_uint16"
         },
         {
-          "astId": 290,
+          "astId": 6809,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "bidMax",
           "offset": 18,
@@ -153,7 +169,7 @@
           "type": "t_uint16"
         },
         {
-          "astId": 292,
+          "astId": 6811,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "askMin",
           "offset": 20,
@@ -161,7 +177,7 @@
           "type": "t_uint16"
         },
         {
-          "astId": 294,
+          "astId": 6813,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "askMax",
           "offset": 22,
@@ -169,7 +185,7 @@
           "type": "t_uint16"
         },
         {
-          "astId": 296,
+          "astId": 6815,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "orderCount",
           "offset": 24,
@@ -177,7 +193,7 @@
           "type": "t_uint32"
         },
         {
-          "astId": 298,
+          "astId": 6817,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "hasOpen",
           "offset": 28,
@@ -186,13 +202,13 @@
         }
       ]
     },
-    "t_struct(Order)314_storage": {
+    "t_struct(Order)6833_storage": {
       "encoding": "inplace",
-      "label": "struct BatchAuction.Order",
+      "label": "struct AuctionTypes.Order",
       "numberOfBytes": "64",
       "members": [
         {
-          "astId": 301,
+          "astId": 6820,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "owner",
           "offset": 0,
@@ -200,7 +216,7 @@
           "type": "t_address"
         },
         {
-          "astId": 303,
+          "astId": 6822,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "side",
           "offset": 20,
@@ -208,7 +224,7 @@
           "type": "t_uint8"
         },
         {
-          "astId": 305,
+          "astId": 6824,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "tick",
           "offset": 21,
@@ -216,7 +232,7 @@
           "type": "t_uint16"
         },
         {
-          "astId": 307,
+          "astId": 6826,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "claimed",
           "offset": 23,
@@ -224,7 +240,7 @@
           "type": "t_bool"
         },
         {
-          "astId": 309,
+          "astId": 6828,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "lots",
           "offset": 24,
@@ -232,7 +248,7 @@
           "type": "t_uint64"
         },
         {
-          "astId": 311,
+          "astId": 6830,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "batchId",
           "offset": 0,
@@ -240,7 +256,7 @@
           "type": "t_uint64"
         },
         {
-          "astId": 313,
+          "astId": 6832,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "escrow",
           "offset": 8,
@@ -249,13 +265,13 @@
         }
       ]
     },
-    "t_struct(Result)335_storage": {
+    "t_struct(Result)6854_storage": {
       "encoding": "inplace",
-      "label": "struct BatchAuction.Result",
+      "label": "struct AuctionTypes.Result",
       "numberOfBytes": "64",
       "members": [
         {
-          "astId": 316,
+          "astId": 6835,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "clearTick",
           "offset": 0,
@@ -263,7 +279,7 @@
           "type": "t_uint16"
         },
         {
-          "astId": 318,
+          "astId": 6837,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "buyCutoff",
           "offset": 2,
@@ -271,7 +287,7 @@
           "type": "t_uint16"
         },
         {
-          "astId": 320,
+          "astId": 6839,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "sellCutoff",
           "offset": 4,
@@ -279,7 +295,7 @@
           "type": "t_uint16"
         },
         {
-          "astId": 322,
+          "astId": 6841,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "volumeLots",
           "offset": 6,
@@ -287,7 +303,7 @@
           "type": "t_uint64"
         },
         {
-          "astId": 324,
+          "astId": 6843,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "clearedAt",
           "offset": 14,
@@ -295,7 +311,7 @@
           "type": "t_uint64"
         },
         {
-          "astId": 326,
+          "astId": 6845,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "clearGas",
           "offset": 22,
@@ -303,7 +319,7 @@
           "type": "t_uint32"
         },
         {
-          "astId": 328,
+          "astId": 6847,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "rB",
           "offset": 0,
@@ -311,7 +327,7 @@
           "type": "t_uint64"
         },
         {
-          "astId": 330,
+          "astId": 6849,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "mB",
           "offset": 8,
@@ -319,7 +335,7 @@
           "type": "t_uint64"
         },
         {
-          "astId": 332,
+          "astId": 6851,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "rS",
           "offset": 16,
@@ -327,7 +343,7 @@
           "type": "t_uint64"
         },
         {
-          "astId": 334,
+          "astId": 6853,
           "contract": "src/BatchAuction.sol:BatchAuction",
           "label": "mS",
           "offset": 24,
