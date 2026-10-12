@@ -44,9 +44,12 @@ def run(name, args, cwd=ROOT / 'contracts', env=None):
 
 
 def main():
+    global OUT
     parser = argparse.ArgumentParser()
+    parser.add_argument('--out', type=Path, default=OUT, help='Evidence directory (default: S2)')
     parser.add_argument('--stress', action='store_true', help='10,000 differential and permutation runs')
     args = parser.parse_args()
+    OUT = args.out.resolve()
     OUT.mkdir(parents=True, exist_ok=True)
     evidence = {'measuredAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'checks': {}}
     if args.stress:
