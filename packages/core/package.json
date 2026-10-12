@@ -8,7 +8,8 @@
     "./abi": "./src/abi.ts",
     "./format": "./src/format.ts",
     "./gas": "./src/gas.ts",
-    "./bench.json": "./src/bench.json"
+    "./bench.json": "./src/bench.json",
+    "./addresses": "./src/addresses.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",

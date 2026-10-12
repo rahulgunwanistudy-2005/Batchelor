@@ -23,3 +23,16 @@ coverage/
 !contracts/bench/out/*.json
 # Copy sanitized mainnet transaction receipts to deployments/ explicitly.
 **/dist/
+# Exact dry-run calldata is reviewable locally, never a successful deployment record.
+deployments/plans/
+services/bots/rehearsal-testnet.json
+services/bots/soak-testnet.json
+deployments/verification/
+# S4 sanitized verification evidence (raw traces and calldata plans stay ignored).
+!contracts/bench/out/s4/
+contracts/bench/out/s4/*
+!contracts/bench/out/s4/acceptance.json
+!contracts/bench/out/s4/deploy-plan-testnet.json
+!contracts/bench/out/s4/historical-summary.json
+!contracts/bench/out/s4/local-bots.json
+!contracts/bench/out/s4/local-regression.json
