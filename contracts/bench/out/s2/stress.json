@@ -1,0 +1,32 @@
+{
+  "measuredAt": "2026-10-12T15:12:34.073196+00:00",
+  "checks": {
+    "stress": {
+      "command": [
+        "/Users/rahul/Batchelor/.tools/foundry/bin/forge",
+        "test",
+        "--match-test",
+        "test_SameBlockOrderNeverMatters|testFuzz_ReferenceModel",
+        "--fuzz-runs",
+        "10000",
+        "-vv"
+      ],
+      "workingDirectory": "/Users/rahul/Batchelor/contracts",
+      "exitCode": 0,
+      "elapsedSeconds": 150.309,
+      "tests": [
+        {
+          "name": "testFuzz_ReferenceModelUniformLimitsRefundsAndConservation(uint256)",
+          "status": "PASS",
+          "runs": 10000
+        },
+        {
+          "name": "test_SameBlockOrderNeverMatters(uint256,uint256)",
+          "status": "PASS",
+          "runs": 10000
+        }
+      ]
+    }
+  },
+  "passed": true
+}

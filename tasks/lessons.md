@@ -32,3 +32,16 @@ Official Monad Foundry documentation now states that upstream Foundry v1.8+ supp
 ## Live spike preflight
 
 The user authorized the project `.env`, which provides `TESTNET_PRIVATE_KEY`. The script accepts that alias and requires an explicit testnet chain plus RPC chain-ID verification. The account failed the 30M-gas funding preflight (3.06 testnet MON at the checked gas price). No transaction was sent. Seeding 1,024 nonzero slots makes the pack’s ~0.05 MON budget too small.
+
+## S2 specification and harness
+
+- Original escrow is the liability for pending orders only. After clearing, solvency must sum remaining claim entitlements; counting already-spent original escrow alongside counterparties' claimed balances double-counts tokens. The S2 report gives a concrete example and invariant mapping.
+- Quote settlement must compute the full fraction with one final rounding. Using the rounded base delivery/receipt to compute quote breaks the specified rational math.
+- The fixed-domain EIP-712 helper remains storage-free. Test signatures independently encode the standard domain and individual fields; malformed signatures normalize through OZ tryRecover.
+- Place-time side-total uint64 limits prevent an accepted batch from becoming impossible to store/clear. The totals share slot 513 and do not shift the ladder or orders.
+- Permutation equality covers economic results and per-order fills. Gas telemetry and order IDs are not permutation-invariant economic data.
+- Foundry v1.8.0 file-level fs_permissions with a relative `..` path did not authorize a nonexistent output file; creating the intended vectors.json file fixes canonicalization. The tracked file lets CI overwrite it using permission limited to that exact file.
+- Golden-vector export is offline tooling; its 50 naive-book comparisons exceed a single 30M transaction. Only the exporter pauses harness gas metering. Default MonadTen economic/fuzz tests retain the 30M limit; never present exporter harness gas as a clearing benchmark.
+- vm.expectRevert must observe a deeper external call; pure-library error tests use an external test harness rather than an internal library call.
+
+- Historical MonadNine random-book harnesses combine up to 120 placements and two clears plus naive reference calculations in one test call, exceeding the S1 30M harness allowance. CI and the verification runner use an explicit 100M aggregate harness budget for historical correctness. The default profile and all production limits remain unchanged; no actual Monad transaction was attempted.

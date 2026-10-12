@@ -2,7 +2,7 @@
 
 **Every block, one price. No favorites.**
 
-A frequent batch auction for Monad. Orders in one block are intended to clear together at a uniform price. The project is at **S1: measured storage spike and development scaffold**. Trading, deposits, settlement, faucet drips, passkey onboarding, and live indexing are not implemented yet.
+A frequent batch auction for Monad. Orders in one block clear together at a uniform price. The project is at **S2: implemented auction core and correctness tests**. Deposits, direct and signed orders, cancellation, self-clearing, claims, withdrawals, and daily demo-token drips are implemented and tested locally. Passkey onboarding, live indexing, bots, and deployments remain later-session work.
 
 The local storage gate passed on identical bytecode under MonadNine and MonadTen. Run `pnpm spike` to reproduce it; measured evidence lives in [`contracts/bench/out/spike.json`](contracts/bench/out/spike.json). This measures storage reads and writes, **not auction clearing gas**. The live transaction comparison remains pending a funded throwaway testnet key.
 
@@ -30,7 +30,7 @@ cd contracts
 forge fmt --check
 forge build --sizes
 forge test
-FOUNDRY_PROFILE=pre_mip8 forge test
+FOUNDRY_PROFILE=pre_mip8 forge test --gas-limit 100000000
 cd ..
 pnpm spike
 pnpm check:contracts
@@ -61,16 +61,25 @@ For emitted-gas parity, set `CHAIN=testnet`, `RPC_HTTP`, and a funded throwaway 
 ## Layout
 
 ```text
-contracts/         Contract shells, demo token, benchmark probes and tests
+contracts/         Auction, settlement libraries, demo faucet, reference model and proofs
 packages/core/     Generated ABIs, unset deployments, bigint formatting
 services/bots/     Chain clients, serialized nonces, local health service
 apps/web/          SvelteKit pages: trade, receipt, orders, proof
 indexer/           S5 placeholder
 scripts/           ABI generation, storage/layout gates, testnet checks
-docs/              Sources and S1 verification report
+docs/              Sources and S1/S2 verification reports
 tasks/             Build plan and lessons
 ```
 
-See [`docs/S1_REPORT.md`](docs/S1_REPORT.md) for results, corrections, and pending gates. Auction correctness and clearing-gas bounds are later-session work. This scaffold must not be deployed as a functioning exchange.
+See [`docs/S2_REPORT.md`](docs/S2_REPORT.md) for the eight-invariant mapping, test results, storage layout, size output, and specification resolutions. [`docs/S1_REPORT.md`](docs/S1_REPORT.md) retains the storage spike evidence and pending live validation. Clearing-gas bounds and deployment validation are S3 work.
+
+To reproduce S2 acceptance gates and the 10,000-run checks:
+
+```sh
+python3 scripts/verify-auction.py
+python3 scripts/verify-auction.py --stress
+```
+
+Machine-readable evidence and exact output are written to `contracts/bench/out/s2/`. `packages/core/test/vectors.json` contains 50 deterministic books, exported by Foundry and cross-checked against the independent reference model. Quantity fields are decimal strings for future TypeScript bigint consumers.
 
 MIT licensed.
