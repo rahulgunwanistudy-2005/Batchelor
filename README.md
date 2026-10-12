@@ -2,7 +2,7 @@
 
 **Every block, one price. No favorites.**
 
-A frequent batch auction for Monad. Orders in one block clear together at a uniform price. The project is at **S4: deployment tooling and controlled demo bots implemented**. Deposits, direct and signed orders, cancellation, self-clearing, claims, withdrawals, and daily demo-token drips are implemented and tested locally. Keeper settlement, on-demand liquidity, a capped four-key priority bot and authenticated controls are implemented. Passkey onboarding and live indexing remain later-session work; S4 live bot deployment awaits configured keys and funding.
+A frequent batch auction for Monad. Orders in one block clear together at a uniform price. The project is at **S5: indexed receipts and history implemented**. Deposits, direct and signed orders, cancellation, self-clearing, claims, withdrawals, and daily demo-token drips are implemented and tested locally. Keeper settlement, on-demand liquidity, a capped four-key priority bot and authenticated controls are implemented. Envio v3 handlers and typed GraphQL queries now drive batch receipts, history and live gas statistics when connected. Passkey onboarding remains later-session work; live bot deployment and hosted indexing await configured deployments, credentials and funding.
 
 The local storage gate passed on identical bytecode under MonadNine and MonadTen. Run `pnpm spike` to reproduce it; measured evidence lives in [`contracts/bench/out/spike.json`](contracts/bench/out/spike.json). This measures storage reads and writes, **not auction clearing gas**. The live transaction comparison remains pending a funded throwaway testnet key.
 
@@ -62,10 +62,10 @@ For emitted-gas parity, set `CHAIN=testnet`, `RPC_HTTP`, and a funded throwaway 
 
 ```text
 contracts/         Auction, settlement libraries, demo faucet, reference model and proofs
-packages/core/     Generated ABIs, unset deployments, bigint formatting
+packages/core/     Generated ABIs, deployments, bigint formatting and exact settlement
 services/bots/     Keeper, Mo, Pete, authenticated conductor, rehearsal and soak tooling
 apps/web/          SvelteKit pages: trade, receipt, orders, proof
-indexer/           S5 placeholder
+indexer/           Envio handlers, audits and standalone Cloud package
 scripts/           ABI generation, storage/layout gates, testnet checks
 docs/              Sources and S1/S2/S3/S4 verification reports
 tasks/             Build plan and lessons
@@ -111,3 +111,7 @@ pnpm test:tooling          # Deployment receipt/constructor validation tests
 ```
 
 After a successful explicitly executed deployment, `pnpm gen` validates four successful CREATE receipts and generates addresses. Dry-run addresses never populate the app. Sourcify bundles are exported to `deployments/verification/`; **S4 contracts are not yet publicly deployed, verified or published to Sourcify**. The operations guide includes the verification commands; none is claimed as a successful live verification.
+
+## Indexed receipts
+
+See [indexer/README.md](indexer/README.md) for configuration, Cloud packaging, public web variables and the read-only rehearsal audit. The application shows unavailable-data states until a real endpoint and matching market are configured. S5's implementation, verification evidence and remaining hosted/mainnet gates are recorded in [docs/S5_REPORT.md](docs/S5_REPORT.md).

@@ -93,3 +93,28 @@ The code implementation is complete. Real testnet bot keys/funding, live deploym
 - [x] Hosting configuration, operations guide, measured evidence, report, README and lessons saved in the final documentation commit.
 
 Only local commits are authorized by this request. No push was performed.
+
+# S5 — Envio indexed receipts and history
+
+Scope: implement the supplied S5 indexer requirements on the existing contracts and bots. The user's request authorizes systematic local commits and overrides the bible's older Git prohibition. Preserve recorded toolchain corrections; do not invent hosted endpoints or deployments.
+
+- [x] Verify the current HyperIndex v3 API, chain identifiers and deployment prerequisites.
+- [x] Implement shared exact settlement with Foundry golden vectors.
+- [x] Add deployable indexer configuration, entities, handlers and real Envio mock-event tests.
+- [x] Add validated typed GraphQL queries and connect indexed data to receipt/history/proof screens.
+- [x] Add read-only rehearsal verification for transaction metadata, fills and sync lag.
+- [x] Run quality gates, review, document external acceptance gates and commit logical changes.
+
+
+## S5 outcome
+
+Shared settlement, Envio handlers/schema, standalone Cloud package, indexed web views and read-only acceptance tooling are implemented and verified. All 256 fills from the existing S3 real testnet batch matched historical contract previews. Contract/workspace/Cloud/source/layout/gas/contrast gates pass. No Cloud project/endpoint or mainnet market is configured, so hosted deployment, sync lag, three-batch mainnet rehearsal and hosted query/response remain external acceptance gates. See docs/S5_REPORT.md and indexer/README.md.
+
+## S5 commit organization
+
+- [x] `c1c66f0`: exact shared settlement and expanded Solidity golden vectors.
+- [x] `f4f9586`: Envio indexer, standalone Cloud artifact, typed queries, tests and real testnet replay evidence.
+- [x] `a1ff9f7`: indexed web receipt, history and gas statistics.
+- [x] S5 operations/report, sources, lessons and task status saved in the final documentation commit.
+
+All commits are local; no push or new chain transaction is included.

@@ -36,3 +36,14 @@ Copy into the repo as `docs/SOURCES.md`. "Single source" means one origin; reche
 - The supplied claim that no global mempool prevents every intra-batch reaction is too strong: local validators/RPC operators still see transactions. Documentation now bases the same-price claim on the tested allocation rules.
 - MIP-8 spec, blog, and standalone Foundry page were unavailable through the reader in this session; the accessible official deployment summary and the resolved local Foundry configuration supply the relevant implementation evidence.
 - All S3 gas figures come from the runner; live confirmation and transaction hashes are in `contracts/bench/out/clear-live-testnet.json`.
+
+## S5 rechecks — 13 Oct 2026
+
+| Claim | Primary source | Result |
+|---|---|---|
+| Monad mainnet/testnet names and endpoints | [Monad](https://envio.dev/chains/monad), [Monad testnet](https://envio.dev/chains/monad-testnet) | `monad` (143), `monad-testnet` (10143); use numeric IDs in verified v3 configs |
+| Current v3 registration, entity filtering and test helper | [Handlers](https://docs.envio.dev/docs/HyperIndex/event-handlers), [Testing](https://docs.envio.dev/docs/HyperIndex/testing) | `indexer.onEvent`, `getWhere`, `createTestIndexer().process({chains: ... simulate})`; pinned CLI 3.14.0 successfully code-generates |
+| Paid fee metadata selection | [Config reference](https://docs.envio.dev/docs/HyperIndex/config-schema-reference) | Receipt `effectiveGasPrice`, transaction index/hash/max-priority cap, block base fee selected |
+| Cloud deployment directory and dependency constraints | [Cloud troubleshooting](https://docs.envio.dev/docs/HyperIndex/envio-cloud-troubleshooting) | Only selected directory is uploaded; shared code requires a standalone package; exact Envio version pin |
+| Cloud dev-tier operations and endpoint retrieval | [Cloud CLI](https://docs.envio.dev/docs/HyperIndex/envio-cloud-cli) | Development tier and actual deployment endpoint are supported; no project/endpoint is invented |
+| Testnet handler/settlement compatibility | Repository `indexer/test/chain.test.ts`, [`indexer/evidence/testnet-replay.json`](../indexer/evidence/testnet-replay.json) | Actual S3 receipts replayed through Envio; 256 historical preview comparisons passed; this is not hosted sync evidence |
