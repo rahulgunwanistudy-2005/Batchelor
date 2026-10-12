@@ -1,0 +1,23 @@
+# Secrets
+.env*
+!.env.example
+*.pem
+*.key
+
+# Toolchains and dependencies
+.tools/
+node_modules/
+
+# Generated build artifacts
+**/out/
+**/cache/
+**/broadcast/
+**/.svelte-kit/
+**/.vercel/
+**/build/
+coverage/
+.DS_Store
+# Benchmark evidence is versioned, despite the Foundry out-directory rule.
+!contracts/bench/out/
+!contracts/bench/out/*.json
+# Copy sanitized mainnet transaction receipts to deployments/ explicitly.
