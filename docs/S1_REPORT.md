@@ -70,3 +70,5 @@ After funding the throwaway account, run `CHAIN=testnet pnpm spike:live`. The sc
 Local S1 implementation and quality gates pass. **S1 is not fully accepted until live parity passes.** Do not begin S2 under the pack's session-order rule. Auction uncrossing, settlement, invariants, gas bounds, live bots, relaying, Mera browser onboarding, Envio and deployments are later sessions.
 
 The source list retains the supplied verification labels. Toolchain, MIP-8 gas rules, network metadata and the Mera adapter were rechecked during S1; unrelated hackathon and bounty claims were not independently reverified.
+
+The user explicitly deferred live validation pending funding. [GitHub Quality gates passed](https://github.com/rahulgunwanistudy-2005/Batchelor/actions/runs/38264431177) for scaffold commit `74d01b9`, including fresh Linux installs, both hardforks, ABI freshness, builds and contrast checks.
