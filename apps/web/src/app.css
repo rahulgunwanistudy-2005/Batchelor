@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+:root {
+  color-scheme: light dark;
+  --paper: #f3f5f8; --ink: #16203a; --bid: #0e7c6b; --ask: #c23b67;
+  --clear: #4b33c8; --muted: #5d6782; --surface: #ffffff; --line: #dce1eb;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink); background: var(--paper);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #121826; --ink: #e6eaf2; --bid: #3cc4ae; --ask: #f07ca0;
+    --clear: #9c8cff; --muted: #9aa3ba; --surface: #1a2233; --line: #303b50;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-size: 16px; line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--clear); outline-offset: 5px; border-radius: 4px; }
+.skip { position: absolute; left: 16px; top: -100px; background: var(--surface); padding: 12px; z-index: 10; }
+.skip:focus { top: 16px; }
+.shell { max-width: 1320px; padding: 0 48px; margin: auto; }
+header { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 112px; border-bottom: 1px solid var(--line); }
+.wordmark, h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; }
+.wordmark { font-size: 28px; font-weight: 700; letter-spacing: -1.2px; }
+.wordmark span { color: var(--ask); }
+nav { display: flex; gap: 32px; font-size: 14px; font-weight: 500; }
+nav a { padding: 12px 0; color: var(--muted); }
+nav a[aria-current='page'] { color: var(--ink); border-bottom: 2px solid var(--clear); }
+main { min-height: calc(100vh - 230px); padding: 32px 0 56px; }
+.stage { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; }
+.status-dot { width: 6px; height: 6px; background: var(--muted); border-radius: 50%; }
+.intro { padding: 44px 0 32px; }
+h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -1.4px; line-height: 1.12; margin: 0 0 16px; max-width: 740px; }
+h2 { font-size: 20px; font-weight: 600; line-height: 1.3; margin: 0 0 16px; }
+h3 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+p { margin: 0; }
+.intro p, .card p { color: var(--muted); }
+.trade-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 24px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+.card-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.card-heading h2 { margin: 0; }
+.legend { display: flex; gap: 16px; font-size: 14px; }
+.bid { color: var(--bid); }.ask { color: var(--ask); }
+.book-empty { position: relative; display: grid; align-items: center; min-height: 280px; text-align: center; }
+.book-empty svg { position: absolute; inset: 24px 0; width: 100%; height: calc(100% - 48px); stroke: var(--muted); stroke-width: 1; fill: none; opacity: .2; }
+.book-empty svg .grid { opacity: .45; stroke-dasharray: 3 4; }
+.book-empty > div { position: relative; max-width: 300px; margin: auto; padding: 16px; background: var(--surface); }
+.book-empty p, .small, .card-note, .receipt-note { font-size: 14px; }
+.card-note { padding-top: 20px; border-top: 1px solid var(--line); }
+.ticket { display: flex; flex-direction: column; gap: 20px; }
+.ticket h2 { margin: 0; }
+.sides { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: center; }
+.sides span { border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+button { font: inherit; border: 1px solid var(--line); border-radius: 8px; padding: 14px; background: var(--paper); color: var(--muted); }
+button:disabled { cursor: not-allowed; }
+.receipt-note { color: var(--muted); margin-top: 24px; }
+.proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.empty-page { padding: 64px 28px; }
+footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 14px; }
+@media (max-width: 800px) { .shell { padding: 0 24px; }.trade-grid { grid-template-columns: 1fr; }.intro { padding-top: 32px; } }
+@media (max-width: 480px) {
+  .shell { padding: 0 20px; }header { min-height: 90px; gap: 12px; }nav { gap: 16px; }
+  .card { padding: 20px; }.card-heading { align-items: flex-start; flex-direction: column; }
+  .proof-grid { grid-template-columns: 1fr; }footer { flex-direction: column; }.book-empty { min-height: 250px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

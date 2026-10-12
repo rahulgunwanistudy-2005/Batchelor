@@ -1,0 +1,27 @@
+{
+  "name": "batchelor",
+  "private": true,
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=24 <25",
+    "pnpm": ">=9 <10"
+  },
+  "scripts": {
+    "gen": "node --experimental-strip-types scripts/gen-abi.ts",
+    "spike": "python3 scripts/spike.py",
+    "sample:testnet": "python3 scripts/sample-testnet.py",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "build": "pnpm -r build",
+    "check:contracts": "python3 scripts/check-contracts.py",
+    "spike:live": "node --env-file-if-exists=.env --experimental-strip-types scripts/live-spike.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.4",
+    "viem": "^2.40.0"
+  },
+  "type": "module"
+}

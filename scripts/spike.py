@@ -35,6 +35,7 @@ def main():
         # Do not silently run Ethereum or the wrong fork if configuration changes.
         assert "monad" in str(config.get("network", "")).lower(), config.get("network")
         assert hardfork.lower() in str(config.get("hardfork", "")).lower(), config.get("hardfork")
+        assert config.get("isolate") is True, "Benchmark calls must start isolated transactions"
         raw = run(["test", "--match-contract", "PageBenchTest|TransientGuardTest", "-vv"], env)
         print(raw, end="")
         measurements = {}

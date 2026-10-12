@@ -3,6 +3,7 @@
 !.env.example
 *.pem
 *.key
+Claude.md
 
 # Toolchains and dependencies
 .tools/
@@ -21,3 +22,4 @@ coverage/
 !contracts/bench/out/
 !contracts/bench/out/*.json
 # Copy sanitized mainnet transaction receipts to deployments/ explicitly.
+**/dist/

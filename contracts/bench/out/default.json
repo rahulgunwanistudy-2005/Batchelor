@@ -1,7 +1,7 @@
 {
   "network": "monad",
   "hardfork": "monad:MonadTen",
-  "runtimeBytecodeSha256": "6251751a045a1e08a1138d220717840222559dc7995c67d9bc8bf896aed98096",
+  "runtimeBytecodeSha256": "168854b8e5e8025a96b6cb25cbafb5de4bc460cc05e55002aed21d00a97b9844",
   "gas": {
     "contiguous512": 162086,
     "scattered512": 4245030,

@@ -1,0 +1,55 @@
+name: Quality gates
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: v1.8.0
+      - run: pnpm install --frozen-lockfile
+      - name: Contract formatting
+        working-directory: contracts
+        run: forge fmt --check
+      - name: Contract build and sizes
+        working-directory: contracts
+        run: forge build --sizes
+      - name: Contract tests
+        working-directory: contracts
+        run: forge test
+      - name: Historical hardfork tests
+        working-directory: contracts
+        run: FOUNDRY_PROFILE=pre_mip8 forge test
+      - name: Local storage gate
+        run: pnpm spike
+      - name: Storage layout and priority-input gates
+        run: pnpm check:contracts
+      - name: Generated ABI freshness
+        run: |
+          pnpm gen
+          git diff --exit-code -- packages/core/src/abi.ts
+      - run: pnpm exec tsc -p tsconfig.scripts.json
+      - run: pnpm -r typecheck
+      - run: pnpm -r lint
+      - run: pnpm -r test
+      - run: pnpm -r build
+      - run: python3 scripts/check-contrast.py
+      - name: Retain spike evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: storage-spike
+          path: contracts/bench/out/*.json

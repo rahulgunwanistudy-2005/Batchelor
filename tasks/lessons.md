@@ -19,3 +19,16 @@ Official Monad Foundry documentation now states that upstream Foundry v1.8+ supp
 - OZ 5.4.0 ReentrancyGuardTransient blocks reentrancy and releases its lock within the same transaction under both hardforks.
 - `vm.cool` on a freshly deployed contract in setUp made that contract appear empty in the isolated next transaction under this toolchain. It is redundant: Foundry's default `isolate=true` gives the measured external call a fresh transaction/access set. Removed the redundant hook; the cold-read deltas match the page/slot gas difference exactly (4,064,000 gas).
 - Mera 0.2.0 declaration: `toViemAccount(session: Secp256k1SigningSession, options?: ToViemAccountOptions): LocalAccount<"mera">`. Its declared methods include EIP-712 `signTypedData`. This confirms the adapter interface, not browser PRF/onboarding behavior.
+
+## Scaffold corrections
+
+- Mera 0.2.0 declares `engines.node >=24`. A strict Node 22 install fails. Root `.node-version`, engines, CI, typings, and Vercel runtime now use Node 24. pnpm stays at 9.15.9.
+- OZ 5.4.0 `EIP712` is not immutable-only: it declares `_nameFallback` and `_versionFallback` storage. Do not inherit it in BatchAuction; S2 must compute the fixed domain with storage-free helpers. The auction only inherits ReentrancyGuardTransient in S1.
+- The specified `Order` declarations fit in two slots, but Solidity packs `lots` at byte offset 24 in slot a. `batchId` and `escrow` occupy slot b. The bible's inline annotation for `lots` is inaccurate; no extra padding field was invented. Inspect output is saved by `scripts/check-contracts.py`.
+- Invoke Forge inside `contracts/`. With `--root contracts` from the repository root, Foundry v1.8.0's post-build Solar linter fails to resolve relative imports even though Solc succeeds. Running from the contract directory succeeds.
+- Whole-second RPC header timestamps yield median interval 0s over the sampled 200 contiguous headers; mean is recorded in `testnet-blocks.json`. This is quantized data, not evidence of a zero block time or a precise subsecond median.
+- `broadcast/` is fully ignored. Publish sanitized deployment evidence explicitly rather than allowlisting run-latest files that can contain transaction payloads from arbitrary networks.
+
+## Live spike preflight
+
+The user authorized the project `.env`, which provides `TESTNET_PRIVATE_KEY`. The script accepts that alias and requires an explicit testnet chain plus RPC chain-ID verification. The account failed the 30M-gas funding preflight (3.06 testnet MON at the checked gas price). No transaction was sent. Seeding 1,024 nonzero slots makes the pack’s ~0.05 MON budget too small.

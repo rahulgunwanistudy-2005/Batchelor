@@ -10,6 +10,10 @@ The user's request authorizes logical commits and pushes, overriding the build p
 - [x] Run the same benchmark bytecode under both profiles; report the full-book ratio before scaffolding.
 - [x] Check Mera typed-data signing from installed declarations.
 - [ ] Validate testnet measurements and sample block intervals where credentials/RPC access allow.
-- [ ] If the >=10x local gate passes, build the S1 contracts, workspace, bot health service, and web placeholders.
-- [ ] Generate ABIs, verify storage layout, run contract and TypeScript quality gates, and self-review.
+- [x] If the >=10x local gate passes, build the S1 contracts, workspace, bot health service, and web placeholders.
+- [x] Generate ABIs, verify storage layout, run contract and TypeScript quality gates, and self-review.
 - [ ] Record measured evidence, deferred gates, and reproducible instructions; commit and push logical milestones.
+
+## Status
+
+Local S1 implementation and quality gates pass. Live emitted-gas parity is pending testnet funding; the provided local key failed the preflight without sending a transaction. Do not begin S2 until that gate passes. See docs/S1_REPORT.md.

@@ -1,11 +1,11 @@
 {
-  "measuredAt": "2026-10-12T14:12:46.940340+00:00",
+  "measuredAt": "2026-10-12T14:37:56.198370+00:00",
   "forgeVersion": "forge Version: 1.8.0\nCommit SHA: 61ae26af36320d4fa1020f7db53785885e29eeb5\nBuild Timestamp: 2026-08-26T13:26:32.366590000Z (1787750792)\nBuild Profile: dist",
   "profiles": {
     "default": {
       "network": "monad",
       "hardfork": "monad:MonadTen",
-      "runtimeBytecodeSha256": "6251751a045a1e08a1138d220717840222559dc7995c67d9bc8bf896aed98096",
+      "runtimeBytecodeSha256": "168854b8e5e8025a96b6cb25cbafb5de4bc460cc05e55002aed21d00a97b9844",
       "gas": {
         "contiguous512": 162086,
         "scattered512": 4245030,
@@ -19,7 +19,7 @@
     "pre_mip8": {
       "network": "monad",
       "hardfork": "monad:MonadNine",
-      "runtimeBytecodeSha256": "6251751a045a1e08a1138d220717840222559dc7995c67d9bc8bf896aed98096",
+      "runtimeBytecodeSha256": "168854b8e5e8025a96b6cb25cbafb5de4bc460cc05e55002aed21d00a97b9844",
       "gas": {
         "contiguous512": 4226086,
         "scattered512": 4245030,

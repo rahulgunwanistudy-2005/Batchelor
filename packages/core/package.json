@@ -1,0 +1,9 @@
+{
+  "name": "@batchelor/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts", "./abi": "./src/abi.ts", "./format": "./src/format.ts" },
+  "scripts": { "typecheck": "tsc --noEmit", "lint": "tsc --noEmit", "test": "vitest run", "build": "tsc --noEmit" },
+  "dependencies": { "viem": "^2.40.0" }
+}

@@ -1,0 +1,26 @@
+{
+  "light": {
+    "ink on paper": 14.77,
+    "ink on surface": 16.131,
+    "muted on paper": 5.158,
+    "muted on surface": 5.633,
+    "bid on paper": 4.674,
+    "bid on surface": 5.104,
+    "ask on paper": 4.672,
+    "ask on surface": 5.103,
+    "clear on paper": 7.376,
+    "clear on surface": 8.056
+  },
+  "dark": {
+    "ink on paper": 14.705,
+    "ink on surface": 13.188,
+    "muted on paper": 7.027,
+    "muted on surface": 6.302,
+    "bid on paper": 8.189,
+    "bid on surface": 7.345,
+    "ask on paper": 6.836,
+    "ask on surface": 6.131,
+    "clear on paper": 6.424,
+    "clear on surface": 5.762
+  }
+}

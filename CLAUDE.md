@@ -165,7 +165,7 @@ slot 514+        Order[] orders          // contiguous from keccak(514); 2 slots
                  Result[] results        // contiguous; 2 slots/batch, index = batchId
                  mapping balances, nonces
 ```
-- Declare `bidTicks` and `askTicks` as the **first** state variables. **No inherited storage**: no OZ `ReentrancyGuard` (uses slot 0); use `ReentrancyGuardTransient` if the S1 spike confirms TSTORE works on Monad, else a hand-written lock placed after the arrays. `EIP712` and `Nonces`-style helpers must not shift slots 0–511 (OZ `EIP712` is immutable-only; verify with `forge inspect`).
+- Declare `bidTicks` and `askTicks` as the **first** state variables. **No inherited storage**: no OZ `ReentrancyGuard` (uses slot 0); use `ReentrancyGuardTransient` if the S1 spike confirms TSTORE works on Monad, else a hand-written lock placed after the arrays. `EIP712` and `Nonces`-style helpers must not shift slots 0–511 (OZ 5.4.0 `EIP712` has fallback string storage; do not inherit it in BatchAuction. Use a storage-free fixed-domain helper and verify with `forge inspect`).
 - **Lazy reset via batch tags:** a tick slot counts for batch `k` only if its tag equals `k`. Writing a new batch's order to a tick overwrites a stale tag (nonzero→nonzero write, no state growth). Nothing is ever zeroed after clearing. This is why §6.2's clear-before-write invariant is mandatory.
 - Gate (S2): `forge inspect BatchAuction storageLayout` shows `bidTicks` at slot 0 and `askTicks` at slot 256.
 
@@ -173,7 +173,7 @@ slot 514+        Order[] orders          // contiguous from keccak(514); 2 slots
 ```solidity
 struct Order {            // 2 slots
   address owner; uint8 side; uint16 tick; bool claimed;   // slot a (160+8+16+8)
-  uint64 lots; uint64 batchId; uint128 escrow;            // slot b
+  uint64 lots; uint64 batchId; uint128 escrow;            // lots packs into a; batchId and escrow in b
 }
 struct Result {           // 2 slots
   uint16 clearTick; uint16 buyCutoff; uint16 sellCutoff; uint64 volumeLots; uint64 clearedAt; uint32 clearGas; // a
@@ -272,10 +272,10 @@ Decisions (do not relitigate):
 ---
 
 ## 10. Stack (pinned; no additions without asking)
-- **Contracts:** Foundry ≥ 1.8 with Monad support (`foundryup`; `network = "monad"`), Solidity 0.8.28, `evm_version = "cancun"`, OpenZeppelin Contracts 5.x (ERC20, ERC20Permit, EIP712, ECDSA, Math, SafeERC20, ReentrancyGuardTransient), forge-std.
-- **TypeScript (everything off chain):** Node 22 LTS, pnpm 9 workspaces, TypeScript 5 strict, viem 2.x (≥ 2.40 for `monad` / `monadTestnet` chain exports), zod, vitest.
+- **Contracts:** official Foundry v1.8.0 with Monad support (`foundryup`; `network = "monad"`), Solidity 0.8.28, `evm_version = "cancun"`, OpenZeppelin Contracts 5.x (ERC20, ERC20Permit, EIP712, ECDSA, Math, SafeERC20, ReentrancyGuardTransient), forge-std.
+- **TypeScript (everything off chain):** Node 24 (Mera 0.2.0 requires >=24), pnpm 9 workspaces, TypeScript 5 strict, viem 2.x (≥ 2.40 for `monad` / `monadTestnet` chain exports), zod, vitest.
 - **Web:** SvelteKit 2 + Svelte 5 (runes), `@sveltejs/adapter-vercel` (static pages + 3 server routes), Tailwind CSS 4, `@category-labs/mera` ≥ 0.2, `@scure/bip32`, `@scure/bip39`. Charts are hand-written SVG, no chart library.
-- **Bots:** Node 22 + viem (WebSocket transport), `hono` for the tiny HTTP surface.
+- **Bots:** Node 24 + viem (WebSocket transport), `hono` for the tiny HTTP surface.
 - **Indexer:** Envio HyperIndex (CLI `envio`, v3 config), Envio Cloud dev tier.
 - **Deploy:** Vercel (web + relayer), Render background worker or Fly machine (bots), Envio Cloud (indexer).
 - **Fonts:** Bricolage Grotesque (display), IBM Plex Sans (text, tabular numerals), self-hosted via `@fontsource`.
@@ -386,7 +386,7 @@ WCAG AA contrast in both themes; keyboard focus visible; `prefers-reduced-motion
 ## 16. Agent operating rules
 1. Read this file and `tasks/lessons.md` first. Write the session plan to `tasks/todo.md` before code.
 2. Follow the engineering-workflow gates: plan → scaffold → vertical slice → self-review → quality gates → document.
-3. Never run history-mutating git commands (`add`, `commit`, `push`, `reset`, `rebase`, `checkout -- .`). Rahul commits after each session.
+3. The user explicitly authorizes logical commits and pushes in this session. Do not rewrite history or add attribution trailers.
 4. Never add a dependency outside §10 without asking.
 5. Never send a mainnet transaction without printing the exact call, gas limit, and expected cost first and getting Rahul's yes. Testnet and local anvil are free to use.
 6. Never commit keys. `.env*` except `.env.example` is gitignored; S8 runs a secret scan.
