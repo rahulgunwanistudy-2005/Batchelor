@@ -1,0 +1,14 @@
+{
+  "network": "monad",
+  "hardfork": "monad:MonadTen",
+  "runtimeBytecodeSha256": "6251751a045a1e08a1138d220717840222559dc7995c67d9bc8bf896aed98096",
+  "gas": {
+    "contiguous512": 162086,
+    "scattered512": 4245030,
+    "onePage32": 16166,
+    "fourPages32": 49158,
+    "writeOnePage64": 26774,
+    "writeSeparatePages64": 709542
+  },
+  "transientGuardPassed": true
+}

@@ -1,0 +1,23 @@
+[profile.default]
+src = "src"
+test = "test"
+out = "out"
+libs = ["lib"]
+solc_version = "0.8.28"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 2000
+network = "monad"
+hardfork = "monad:MonadTen"
+gas_limit = 30000000
+
+[profile.default.fuzz]
+runs = 1000
+
+[profile.default.invariant]
+runs = 256
+depth = 200
+
+[profile.pre_mip8]
+network = "monad"
+hardfork = "monad:MonadNine"
