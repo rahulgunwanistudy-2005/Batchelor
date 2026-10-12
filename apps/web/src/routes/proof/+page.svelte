@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { PageData } from './$types';
+  let { data }: { data: PageData } = $props();
   import { en } from '$lib/copy/en';
   import bench from '@batchelor/core/bench.json';
   import { gasLimits } from '@batchelor/core/gas';
@@ -31,6 +33,12 @@
     </table>
   </div>
   <p class="card-note">An order reserves {format(gasLimits.placeSelfClear)} gas to include a possible full-range self-clear. At 100 MON-gwei and zero priority fee, that declared limit costs {(gasLimits.placeSelfClear / 1e7).toFixed(4)} MON. Fees change with gas price.</p>
+</section>
+<section class="card measurements">
+  <h2>Live clearing gas</h2>
+  {#if data.stats && data.stats.count > 0}
+    <p>Median: {data.stats.medianClearGas?.toLocaleString() ?? 'Unavailable'} gas across the last {data.stats.count} indexed batches.</p>
+  {:else}<p>{data.indexerMessage ?? 'No cleared batches have been indexed yet.'}</p>{/if}
 </section>
 <div class="proof-grid">
   <section class="card"><h2>{en.proof.storage}</h2><p>{en.proof.storageDetail}</p></section>

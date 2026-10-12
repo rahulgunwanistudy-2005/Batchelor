@@ -1,4 +1,7 @@
 <script lang="ts">
+  import type { PageData } from './$types';
+  import { formatUnits } from 'viem';
+  let { data }: { data: PageData } = $props();
   import { en } from '$lib/copy/en';
 </script>
 
@@ -25,3 +28,15 @@
   </section>
 </div>
 <p class="receipt-note">{en.trade.receipt}</p>
+
+<section class="card history">
+  <h2>Recent batches</h2>
+  {#if data.batches.length}
+    <ul>{#each data.batches as batch (batch.id)}<li><a href={`/b/${batch.batchId.toString()}`}>Batch #{batch.batchId.toString()} · {batch.volumeLots > 0n && batch.price !== null ? `${formatUnits(batch.price, 6)} dUSD` : 'No matched volume'} · {batch.orderCount} active orders</a></li>{/each}</ul>
+  {:else}<p>{data.indexerMessage ?? 'No cleared batches have been indexed yet.'}</p>{/if}
+</section>
+<style>
+  .history { margin-top: 24px; } ul { list-style: none; padding: 0; margin: 0; }
+  li { border-top: 1px solid var(--line); padding: 12px 0; }
+  a { text-decoration: underline; text-underline-offset: 3px; }
+</style>

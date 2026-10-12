@@ -4,7 +4,7 @@ export const en = {
   nav: { trade: 'Trade', orders: 'My orders', proof: 'Proof' },
   skip: 'Skip to content',
   footer: 'Demo tokens on Monad mainnet. No real value.',
-  stage: 'Development scaffold · No market connected',
+  stage: 'Development build · Trading is not enabled',
   trade: {
     title: 'One batch. One clearing price.',
     description: 'Buy and sell orders in the same block meet at a single price.',
