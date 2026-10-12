@@ -20,6 +20,10 @@ library Uncross {
     }
 
     /// @dev Arrays contain every eligible order, indexed by tick minus lo.
+    /// Range validation bounds every index; at most 256 uint64 quantities are
+    /// summed, so intermediate totals fit uint256. Final volume is checked uint64.
+    /// Assembly avoids redundant bounds checks and candidate allocations in the
+    /// hottest loops. Only Solidity-allocated memory is read or written.
     function uncross(uint64[] memory bids, uint64[] memory asks, uint16 lo, uint16 hi, uint16 refTick)
         internal
         pure
@@ -31,53 +35,84 @@ library Uncross {
         }
         uint256 n = bids.length;
         uint256[] memory demand = new uint256[](n + 1);
-        for (uint256 j = n; j > 0; --j) {
-            demand[j - 1] = demand[j] + bids[j - 1];
-        }
         Candidates memory c;
-        uint256 supply;
-        for (uint256 j; j < n; ++j) {
-            supply += asks[j];
-            uint256 d = demand[j];
-            uint256 v = d < supply ? d : supply;
-            uint256 s = d > supply ? d - supply : supply - d;
-            uint16 tick = uint16(uint256(lo) + j);
-            if (v > c.volume || (v == c.volume && s < c.surplus)) {
-                c = Candidates(v, s, tick, tick, tick, d > supply, d < supply, d == supply);
-            } else if (v == c.volume && s == c.surplus) {
-                c.high = tick;
-                c.positive = c.positive || d > supply;
-                c.negative = c.negative || d < supply;
-                c.zero = c.zero || d == supply;
-                if (_distance(tick, refTick) < _distance(c.closest, refTick)) c.closest = tick;
+        assembly ("memory-safe") {
+            function at(p, j) -> v { v := mload(add(add(p, 32), mul(j, 32))) }
+            function distance(a, b) -> v {
+                switch gt(a, b)
+                case 1 { v := sub(a, b) }
+                default { v := sub(b, a) }
+            }
+            for { let j := n } gt(j, 0) {} {
+                let prev := sub(j, 1)
+                mstore(add(add(demand, 32), mul(prev, 32)), add(at(demand, j), at(bids, prev)))
+                j := prev
+            }
+            let supply := 0
+            for { let j := 0 } lt(j, n) { j := add(j, 1) } {
+                supply := add(supply, at(asks, j))
+                let d := at(demand, j)
+                let volume := supply
+                if lt(d, supply) { volume := d }
+                let surplus := sub(supply, d)
+                if gt(d, supply) { surplus := sub(d, supply) }
+                let tick := add(lo, j)
+                switch or(gt(volume, mload(c)), and(eq(volume, mload(c)), lt(surplus, mload(add(c, 32)))))
+                case 1 {
+                    mstore(c, volume)
+                    mstore(add(c, 32), surplus)
+                    mstore(add(c, 64), tick)
+                    mstore(add(c, 96), tick)
+                    mstore(add(c, 128), tick)
+                    mstore(add(c, 160), gt(d, supply))
+                    mstore(add(c, 192), lt(d, supply))
+                    mstore(add(c, 224), eq(d, supply))
+                }
+                default {
+                    if and(eq(volume, mload(c)), eq(surplus, mload(add(c, 32)))) {
+                        mstore(add(c, 96), tick)
+                        mstore(add(c, 160), or(mload(add(c, 160)), gt(d, supply)))
+                        mstore(add(c, 192), or(mload(add(c, 192)), lt(d, supply)))
+                        mstore(add(c, 224), or(mload(add(c, 224)), eq(d, supply)))
+                        // Ascending traversal gives exact-distance ties to the lower tick.
+                        if lt(distance(tick, refTick), distance(mload(add(c, 128)), refTick)) {
+                            mstore(add(c, 128), tick)
+                        }
+                    }
+                }
+            }
+            let volume := mload(c)
+            if volume {
+                mstore(add(r, 96), volume)
+                let tick := mload(add(c, 128))
+                if and(mload(add(c, 160)), iszero(or(mload(add(c, 192)), mload(add(c, 224))))) {
+                    tick := mload(add(c, 96))
+                }
+                if and(mload(add(c, 192)), iszero(or(mload(add(c, 160)), mload(add(c, 224))))) {
+                    tick := mload(add(c, 64))
+                }
+                mstore(r, tick)
+                for { let j := n } gt(j, 0) { j := sub(j, 1) } {
+                    if iszero(lt(at(demand, sub(j, 1)), volume)) {
+                        mstore(add(r, 32), add(lo, sub(j, 1)))
+                        mstore(add(r, 192), sub(volume, at(demand, j)))
+                        mstore(add(r, 224), at(bids, sub(j, 1)))
+                        break
+                    }
+                }
+                supply := 0
+                for { let j := 0 } lt(j, n) { j := add(j, 1) } {
+                    let amount := at(asks, j)
+                    if iszero(lt(add(supply, amount), volume)) {
+                        mstore(add(r, 64), add(lo, j))
+                        mstore(add(r, 256), sub(volume, supply))
+                        mstore(add(r, 288), amount)
+                        break
+                    }
+                    supply := add(supply, amount)
+                }
             }
         }
-        if (c.volume == 0) return r;
         if (c.volume > type(uint64).max) revert Overflow();
-        r.volumeLots = uint64(c.volume);
-        r.clearTick =
-            c.positive && !c.negative && !c.zero ? c.high : c.negative && !c.positive && !c.zero ? c.low : c.closest;
-        for (uint256 j = n; j > 0; --j) {
-            if (demand[j - 1] >= c.volume) {
-                r.buyCutoff = uint16(uint256(lo) + j - 1);
-                r.rB = uint64(c.volume - demand[j]);
-                r.mB = bids[j - 1];
-                break;
-            }
-        }
-        supply = 0;
-        for (uint256 j; j < n; ++j) {
-            if (supply + asks[j] >= c.volume) {
-                r.sellCutoff = uint16(uint256(lo) + j);
-                r.rS = uint64(c.volume - supply);
-                r.mS = asks[j];
-                break;
-            }
-            supply += asks[j];
-        }
-    }
-
-    function _distance(uint16 a, uint16 b) private pure returns (uint16) {
-        return a > b ? a - b : b - a;
     }
 }

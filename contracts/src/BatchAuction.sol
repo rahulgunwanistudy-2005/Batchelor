@@ -301,16 +301,39 @@ contract BatchAuction is AuctionTypes, ReentrancyGuardTransient {
             uint256 n = uint256(hi) - lo + 1;
             uint64[] memory bids = new uint64[](n);
             uint64[] memory asks = new uint64[](n);
-            for (uint256 j; j < n; ++j) {
-                bids[j] = _read(bidTicks[uint256(lo) + j], meta.id);
-                asks[j] = _read(askTicks[uint256(lo) + j], meta.id);
+            uint64 tag = meta.id;
+            // n <= 256 and lo+n <= 256. Copy each tagged ladder slot exactly once;
+            // cache the batch tag instead of rereading metadata for every tick.
+            assembly ("memory-safe") {
+                let mask := 0xffffffffffffffff
+                let bp := add(bids, 32)
+                let ap := add(asks, 32)
+                for { let j := 0 } lt(j, n) { j := add(j, 1) } {
+                    let b := sload(add(bidTicks.slot, add(lo, j)))
+                    let a := sload(add(askTicks.slot, add(lo, j)))
+                    mstore(add(bp, mul(j, 32)), mul(eq(shr(192, b), tag), and(b, mask)))
+                    mstore(add(ap, mul(j, 32)), mul(eq(shr(192, a), tag), and(a, mask)))
+                }
             }
             r = Uncross.uncross(bids, asks, lo, hi, refTick);
             if (r.volumeLots > 0) refTick = r.clearTick;
         }
         if (block.number > type(uint64).max) revert Overflow();
         r.clearedAt = uint64(block.number);
-        results[meta.id] = r;
+        Result storage stored = results[meta.id];
+        // Result occupies two slots. Store each packed slot once instead of
+        // read/modify/write for individual struct fields.
+        assembly ("memory-safe") {
+            let first := or(or(mload(r), shl(16, mload(add(r, 32)))), shl(32, mload(add(r, 64))))
+            first := or(first, shl(48, mload(add(r, 96))))
+            first := or(first, shl(112, mload(add(r, 128))))
+            first := or(first, shl(176, mload(add(r, 160))))
+            let second := or(mload(add(r, 192)), shl(64, mload(add(r, 224))))
+            second := or(second, shl(128, mload(add(r, 256))))
+            second := or(second, shl(192, mload(add(r, 288))))
+            sstore(stored.slot, first)
+            sstore(add(stored.slot, 1), second)
+        }
         meta.hasOpen = false;
     }
 
