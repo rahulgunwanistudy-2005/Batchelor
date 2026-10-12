@@ -68,3 +68,28 @@ Completed the supplied S3 implementation and live real-contract testnet gate. Bo
 - [x] Save the S3 report, sources, lessons, and regression evidence in a final documentation commit.
 
 All commits are local on `main`. Pushing was not requested. The pre-commit review found no whitespace errors or configured secret values in the changed files; saved acceptance and stress evidence both pass.
+
+# S4 — Deployment and controlled demo bots
+
+Scope: implement the supplied S4 requirements on the verified S3 core. The user's request authorizes systematic local commits. Documents describe requirements, not authorization to spend mainnet MON or publish hosting. Retain the Node 24 and immutable faucet-minter corrections.
+
+- [x] Add deterministic deployment, broadcast-derived validated addresses, funding preflight and verification instructions.
+- [x] Implement guarded HTTP/WS chain access, serialized recoverable nonces, keeper catch-up/claims, seeded Mo, four-key capped Pete and authenticated conductor.
+- [x] Add testnet-first rehearsal with real inclusion/fee/fill assertions, seeding workflow and soak evidence.
+- [x] Package a single HTTP service for Docker/Fly with health checks and secret-safe logs.
+- [x] Run focused behavior tests, contract gates and workspace checks; review, report live prerequisites honestly and commit logical milestones.
+
+
+## S4 outcome
+
+Deployment and funding tools, validated address generation, controlled bots, rehearsal/soak tools and Docker/Fly packaging are implemented. Contract/workspace/gas/layout/contrast gates pass. Read-only live testnet deployment simulation produced 7,217,349 gas and a 0.736169598 MON estimate; no new live transaction was sent. A five-minute local MonadTen simulation passed, with final-runtime inclusion/fee/settlement regression evidence retained.
+
+The code implementation is complete. Real testnet bot keys/funding, live deployment/verification/rehearsal/soak, mainnet credentials and explicit spending approval, and actual Docker/Fly build/deployment remain external gates. Public S4 addresses stay unset. See `docs/S4_REPORT.md` and `services/bots/README.md`.
+
+## S4 commit organization
+
+- [x] `ba1d1ca`: deterministic deployment, validated generation, funding and source-verification tooling with tests.
+- [x] `d2f6cbd`: runtime, control surface, strategies, recovery/reserve tests and rehearsal/soak integration tooling.
+- [x] Hosting configuration, operations guide, measured evidence, report, README and lessons saved in the final documentation commit.
+
+Only local commits are authorized by this request. No push was performed.

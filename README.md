@@ -2,7 +2,7 @@
 
 **Every block, one price. No favorites.**
 
-A frequent batch auction for Monad. Orders in one block clear together at a uniform price. The project is at **S3: measured auction clearing and confirmed it on testnet**. Deposits, direct and signed orders, cancellation, self-clearing, claims, withdrawals, and daily demo-token drips are implemented and tested locally. Passkey onboarding, live indexing, bots, and deployments remain later-session work.
+A frequent batch auction for Monad. Orders in one block clear together at a uniform price. The project is at **S4: deployment tooling and controlled demo bots implemented**. Deposits, direct and signed orders, cancellation, self-clearing, claims, withdrawals, and daily demo-token drips are implemented and tested locally. Keeper settlement, on-demand liquidity, a capped four-key priority bot and authenticated controls are implemented. Passkey onboarding and live indexing remain later-session work; S4 live bot deployment awaits configured keys and funding.
 
 The local storage gate passed on identical bytecode under MonadNine and MonadTen. Run `pnpm spike` to reproduce it; measured evidence lives in [`contracts/bench/out/spike.json`](contracts/bench/out/spike.json). This measures storage reads and writes, **not auction clearing gas**. The live transaction comparison remains pending a funded throwaway testnet key.
 
@@ -50,7 +50,7 @@ pnpm --filter @batchelor/bots start
 # GET http://127.0.0.1:3001/health
 ```
 
-The S1 health service binds to localhost. It reports which wallets are configured and explicitly marks bots as not started. It does not broadcast transactions or claim the RPC is healthy without checking it.
+The S4 service binds to `0.0.0.0` for hosting and refuses incomplete configuration. It checks both RPC chain IDs and market parameters before subscribing. Both `/wake` and `/unleash` require a bearer token; `/health` reports actual balances, subscription freshness, recent errors and settlement statistics. Mainnet sends require a separate approved activation.
 
 ## Live spike
 
@@ -63,11 +63,11 @@ For emitted-gas parity, set `CHAIN=testnet`, `RPC_HTTP`, and a funded throwaway 
 ```text
 contracts/         Auction, settlement libraries, demo faucet, reference model and proofs
 packages/core/     Generated ABIs, unset deployments, bigint formatting
-services/bots/     Chain clients, serialized nonces, local health service
+services/bots/     Keeper, Mo, Pete, authenticated conductor, rehearsal and soak tooling
 apps/web/          SvelteKit pages: trade, receipt, orders, proof
 indexer/           S5 placeholder
 scripts/           ABI generation, storage/layout gates, testnet checks
-docs/              Sources and S1/S2/S3 verification reports
+docs/              Sources and S1/S2/S3/S4 verification reports
 tasks/             Build plan and lessons
 ```
 
@@ -98,3 +98,16 @@ Full-range production clearing: **4,436,713 gas under MonadNine vs 342,713 under
 The S3 testnet market was deployed and its 256-order, 128-tick-per-side batch self-cleared in **213,565 gas**, exactly matching the local fixture. Addresses and seven successful transaction hashes are saved in `contracts/bench/out/clear-live-testnet.json`. This is a separate diagnostic deployment; mainnet trading is still unconfigured. No mainnet transaction was sent.
 
 `pnpm bench:live` is testnet-only and requires `TESTNET_PK` or `TESTNET_PRIVATE_KEY`. It preflights the remaining measured gas budget and checkpoints each broadcast. An existing passed checkpoint exits without new transactions. Preserve failed/interrupted evidence before attempting a new run; the script refuses changed bytecode, payloads, keys, or nonces.
+
+## Deployment and bots (S4)
+
+See [`services/bots/README.md`](services/bots/README.md) for configuration, funding, seeding, rehearsal, soak and Docker/Fly instructions. [`docs/S4_REPORT.md`](docs/S4_REPORT.md) distinguishes local evidence from pending live acceptance gates.
+
+```sh
+pnpm deploy:plan          # Read-only Foundry simulation; prints measured limits and current MON cost
+pnpm funding:plan         # Read-only wallet and per-burst budget; never transfers funds
+pnpm verify:bundle        # Export compiler metadata and exact sources locally
+pnpm test:tooling          # Deployment receipt/constructor validation tests
+```
+
+After a successful explicitly executed deployment, `pnpm gen` validates four successful CREATE receipts and generates addresses. Dry-run addresses never populate the app. Sourcify bundles are exported to `deployments/verification/`; **S4 contracts are not yet publicly deployed, verified or published to Sourcify**. The operations guide includes the verification commands; none is claimed as a successful live verification.

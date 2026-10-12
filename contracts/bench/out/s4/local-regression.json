@@ -1,0 +1,189 @@
+{
+  "environment": "local MonadTen Anvil, simulated MON only",
+  "passed": true,
+  "durationSeconds": 10,
+  "chainId": 10143,
+  "asha": {
+    "hash": "0x1f56f7261656848588b8bdae7c61ee436b98f1a836f1f75dcd13f81d1c966ce8",
+    "batch": "3",
+    "txIndex": 6
+  },
+  "pete": [
+    {
+      "hash": "0xbcbb624a350f9fd06542ce120d097b2370973a9dd6138c56942fc0cf41ac76a6",
+      "txIndex": 0
+    },
+    {
+      "hash": "0xea150a3657ad49c2eae8d99d0e8974ccfb031fbe5de820ba484e56d7346170fa",
+      "txIndex": 1
+    },
+    {
+      "hash": "0xcec6157f3df1a4b0b83045b192768726ce07119ee4fb17c704078d5101eb8238",
+      "txIndex": 2
+    },
+    {
+      "hash": "0x8dfef9940c218391449bf44d77b494d1d6bdad2c5565d551d8877a321002c6a8",
+      "txIndex": 3
+    }
+  ],
+  "market": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+  "faucet": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+  "demo": {
+    "passed": true,
+    "batchId": "3",
+    "price": "1005000",
+    "asha": {
+      "orderId": "30",
+      "batchId": "3",
+      "hash": "0x1f56f7261656848588b8bdae7c61ee436b98f1a836f1f75dcd13f81d1c966ce8",
+      "txIndex": 6,
+      "block": "26",
+      "baseFee": "17130993785",
+      "priorityFee": "1000000000",
+      "baseDelta": "5000000000000000",
+      "quoteDelta": "-5025",
+      "price": "1005000"
+    },
+    "pete": [
+      {
+        "orderId": "20",
+        "batchId": "3",
+        "hash": "0xbcbb624a350f9fd06542ce120d097b2370973a9dd6138c56942fc0cf41ac76a6",
+        "txIndex": 0,
+        "block": "26",
+        "baseFee": "17130993785",
+        "priorityFee": "194061935430",
+        "baseDelta": "5000000000000000",
+        "quoteDelta": "-5025",
+        "price": "1005000"
+      },
+      {
+        "orderId": "21",
+        "batchId": "3",
+        "hash": "0xea150a3657ad49c2eae8d99d0e8974ccfb031fbe5de820ba484e56d7346170fa",
+        "txIndex": 1,
+        "block": "26",
+        "baseFee": "17130993785",
+        "priorityFee": "194061935430",
+        "baseDelta": "5000000000000000",
+        "quoteDelta": "-5025",
+        "price": "1005000"
+      },
+      {
+        "orderId": "22",
+        "batchId": "3",
+        "hash": "0xcec6157f3df1a4b0b83045b192768726ce07119ee4fb17c704078d5101eb8238",
+        "txIndex": 2,
+        "block": "26",
+        "baseFee": "17130993785",
+        "priorityFee": "194061935430",
+        "baseDelta": "5000000000000000",
+        "quoteDelta": "-5025",
+        "price": "1005000"
+      },
+      {
+        "orderId": "23",
+        "batchId": "3",
+        "hash": "0x8dfef9940c218391449bf44d77b494d1d6bdad2c5565d551d8877a321002c6a8",
+        "txIndex": 3,
+        "block": "26",
+        "baseFee": "17130993785",
+        "priorityFee": "194061935430",
+        "baseDelta": "5000000000000000",
+        "quoteDelta": "-5025",
+        "price": "1005000"
+      }
+    ]
+  },
+  "clearTick": 101,
+  "volumeLots": "25",
+  "final": {
+    "status": "ok",
+    "awake": true,
+    "unleashed": false,
+    "lastHead": "38",
+    "lastClear": "14",
+    "balances": {
+      "KEEPER_PK": "9999.498344501119858",
+      "PETE_PK_1": "9999.029961749222742",
+      "MO_PK": "9999.863819721532528",
+      "PETE_PK_2": "9999.029961749222742",
+      "PETE_PK_3": "9999.029961749222742",
+      "PETE_PK_4": "9999.029961749222742"
+    },
+    "errorsLast5Minutes": [],
+    "stats": {
+      "clears": 14,
+      "sent": 70,
+      "receipts": 68,
+      "reverts": 0,
+      "skippedHeads": 0,
+      "maxClearLagBlocks": "0",
+      "claimsPending": 6,
+      "oldestClaimBatchAge": "0"
+    },
+    "chainId": 10143,
+    "burstBlocks": 10,
+    "remainingToday": 9
+  },
+  "samples": [
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": true,
+      "lastHead": "28",
+      "lastClear": "4",
+      "balances": {
+        "KEEPER_PK": "10000",
+        "PETE_PK_1": "10000",
+        "MO_PK": "10000",
+        "PETE_PK_2": "10000",
+        "PETE_PK_3": "10000",
+        "PETE_PK_4": "10000"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 4,
+        "sent": 34,
+        "receipts": 28,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 10,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "33",
+      "lastClear": "9",
+      "balances": {
+        "KEEPER_PK": "9999.498344501119858",
+        "PETE_PK_1": "9999.029961749222742",
+        "MO_PK": "9999.863819721532528",
+        "PETE_PK_2": "9999.029961749222742",
+        "PETE_PK_3": "9999.029961749222742",
+        "PETE_PK_4": "9999.029961749222742"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 9,
+        "sent": 60,
+        "receipts": 58,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 10,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    }
+  ]
+}
