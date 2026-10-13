@@ -1,0 +1,14 @@
+import { afterEach, beforeEach, expect, it, vi } from 'vitest';
+const mocks=vi.hoisted(()=>({create:vi.fn(),get:vi.fn(),env:{PUBLIC_RP_ID:'localhost'},dev:true}));
+vi.mock('$env/dynamic/public',()=>({env:mocks.env}));
+vi.mock('$app/environment',()=>({get dev(){return mocks.dev;}}));
+vi.mock('@category-labs/mera',async importOriginal=>({...await importOriginal<typeof import('@category-labs/mera')>(),createPasskeyWithPrfOutput:mocks.create,getPasskeyPrfOutput:mocks.get}));
+import { createAccount, signIn, relyingParty, recoveryPhrase, passkeyMessage } from './mera';
+import { signingSession } from './session';
+import { MeraError } from '@category-labs/mera';
+beforeEach(()=>{const storage=new Map<string,string>();vi.stubGlobal('localStorage',{getItem:(k:string)=>storage.get(k)??null,setItem:(k:string,v:string)=>storage.set(k,v)});vi.stubGlobal('location',{hostname:'localhost'});vi.stubGlobal('window',{isSecureContext:true});mocks.env.PUBLIC_RP_ID='localhost';mocks.dev=true;vi.clearAllMocks();mocks.create.mockResolvedValue({credentialId:'testCredential',transports:['internal'],prfOutput:new Uint8Array(32).fill(7)});mocks.get.mockImplementation(async()=>({credentialId:'testCredential',prfOutput:new Uint8Array(32).fill(7)}));});
+afterEach(()=>{signingSession.end();vi.unstubAllGlobals();});
+it('recreates the same standard account and stores only credential metadata',async()=>{const created=await createAccount();expect(JSON.parse(localStorage.getItem('batchelor.passkey.v1:localhost')!)).toEqual({credentialId:'testCredential',transports:['internal']});signingSession.end();expect((await signIn()).address).toBe(created.address);expect(mocks.get).toHaveBeenCalledWith({rpId:'localhost',credential:{credentialId:'testCredential',transports:['internal']}});});
+it('requires a fresh passkey prompt to export a compatible recovery phrase',async()=>{const account=await createAccount();const phrase=await recoveryPhrase();expect(phrase.split(' ')).toHaveLength(24);expect(mocks.get).toHaveBeenCalledOnce();expect(signingSession.get().address).toBe(account.address);});
+it('refuses production hostname inference and mismatched RP IDs',()=>{mocks.env.PUBLIC_RP_ID='';mocks.dev=false;expect(()=>relyingParty()).toThrow('not configured');mocks.env.PUBLIC_RP_ID='other.example';expect(()=>relyingParty()).toThrow('not configured');});
+it('maps PRF and insecure-context errors to actionable guidance',()=>{expect(passkeyMessage(new MeraError('PRF_UNAVAILABLE','internal details'))).toContain('Google Password Manager or iCloud Keychain');vi.stubGlobal('window',{isSecureContext:false});expect(()=>relyingParty()).toThrow('HTTPS');});

@@ -4,7 +4,13 @@ export const en = {
   nav: { trade: 'Trade', orders: 'My orders', proof: 'Proof' },
   skip: 'Skip to content',
   footer: 'Demo tokens on Monad mainnet. No real value.',
-  stage: 'Development build · Trading is not enabled',
+  stage: 'Every block, one clearing price',
+  wallet: {
+    PRF_UNAVAILABLE: "Passkey couldn't create a key on this browser. Save the passkey to Google Password Manager or iCloud Keychain, then try again.",
+    PASSKEY_OPERATION_FAILED: 'Passkey operation was cancelled or failed. Try again.',
+    CRYPTO_UNAVAILABLE: 'Passkeys need HTTPS. Open the secure Batchelor address, then try again.',
+    SESSION_ENDED: 'Your signing session expired. Sign in with your passkey again.'
+  },
   trade: {
     title: 'One batch. One clearing price.',
     description: 'Buy and sell orders in the same block meet at a single price.',
