@@ -11,7 +11,8 @@
     "./bench.json": "./src/bench.json",
     "./addresses": "./src/addresses.ts",
     "./settle": "./src/settle.ts",
-    "./replay": "./src/replay.ts"
+    "./replay": "./src/replay.ts",
+    "./rpc": "./src/rpc.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",

@@ -19,6 +19,12 @@ it('retains script nonces and frame restrictions while setting a runtime allowli
   expect(headers.get('Content-Security-Policy')).not.toContain('unsafe-inline');
   expect(headers.get('X-Content-Type-Options')).toBe('nosniff');
 });
+it('allows generated Dwellir transports using only a separately public key', () => {
+  expect(connectSources({ PUBLIC_CHAIN: 'testnet', PUBLIC_DWELLIR_API_KEY: 'browser-key', DWELLIR_API_KEY: 'server-secret' }))
+    .toEqual(["'self'", 'https://api-monad-testnet-full.n.dwellir.com', 'wss://api-monad-testnet-full.n.dwellir.com']);
+  expect(connectSources({ PUBLIC_CHAIN: 'testnet', DWELLIR_API_KEY: 'server-secret' })).toEqual(["'self'"]);
+  expect(() => connectSources({ PUBLIC_CHAIN: 'mainnet', PUBLIC_RPC_HTTP: 'https://api-monad-testnet-full.n.dwellir.com/browser-key' })).toThrow('network');
+});
 it('pauses underfunded gasless sends with typed, actionable UI copy', async () => {
   for (const balance of [parseEther('11.99'), parseEther('12') + 999n]) {
     const response = await respond(async () => { requireRelayReserve(balance, 100n, 10n); return {}; });

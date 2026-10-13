@@ -1,3 +1,5 @@
+import { resolveRpcUrl } from '@batchelor/core/rpc';
+
 /** Public browser endpoints only. Paths/query strings (which may carry credentials)
  * never enter a CSP header. Reject insecure production endpoints and userinfo. */
 export function connectSources(config: Record<string, string | undefined>, dev = false): string[] {
@@ -7,7 +9,11 @@ export function connectSources(config: Record<string, string | undefined>, dev =
     ['PUBLIC_RPC_WS', ['wss:', 'ws:']],
     ['PUBLIC_ENVIO_GRAPHQL_URL', ['https:', 'http:']]
   ] as const) {
-    const value = config[name];
+    let value = config[name];
+    if (name !== 'PUBLIC_ENVIO_GRAPHQL_URL' && ['mainnet', 'testnet'].includes(config.PUBLIC_CHAIN ?? '')) {
+      const network = config.PUBLIC_CHAIN as 'mainnet' | 'testnet';
+      if (value || config.PUBLIC_DWELLIR_API_KEY) value = resolveRpcUrl(network, name === 'PUBLIC_RPC_HTTP' ? 'http' : 'ws', value, config.PUBLIC_DWELLIR_API_KEY);
+    }
     if (!value) continue;
     const url = new URL(value);
     const local = dev && ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname);

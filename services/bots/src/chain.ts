@@ -1,5 +1,6 @@
 export { transactionGas } from '@batchelor/core/gas';
 import { transactionGas } from '@batchelor/core/gas';
+import { resolveRpcUrl } from '@batchelor/core/rpc';
 import { batchAuctionAbi, faucetAbi } from '@batchelor/core/abi';
 import { createPublicClient, createWalletClient, encodeFunctionData, http, keccak256, parseEther, webSocket } from 'viem';
 import type { Address, Hex } from 'viem';
@@ -16,6 +17,7 @@ const address = z.string().regex(/^0x[0-9a-fA-F]{40}$/).refine((v) => !/^0x0{40}
 const schema = z.object({
   CHAIN: z.enum(['mainnet', 'testnet']).default('testnet'),
   RPC_HTTP: rpcUrl(['https:', 'http:']).optional(), RPC_WS: rpcUrl(['wss:', 'ws:']).optional(),
+  DWELLIR_API_KEY: z.string().min(1).optional(),
   MARKET_ADDRESS: address.optional(), FAUCET_ADDRESS: address.optional(),
   KEEPER_PK: key.optional(), MO_PK: key.optional(), PETE_PK_1: key.optional(),
   PETE_PK_2: key.optional(), PETE_PK_3: key.optional(), PETE_PK_4: key.optional(),
@@ -42,13 +44,15 @@ export function readEnv(source: NodeJS.ProcessEnv = process.env): BotEnv {
 
 export function createChainClients(env: BotEnv) {
   const chain = env.CHAIN === 'mainnet' ? monad : monadTestnet;
-  const publicClient = createPublicClient({ chain, transport: http(env.RPC_HTTP, { timeout: 10_000, retryCount: 1 }) });
+  const rpcHttp = resolveRpcUrl(env.CHAIN, 'http', env.RPC_HTTP, env.DWELLIR_API_KEY);
+  const rpcWs = env.RPC_WS || env.DWELLIR_API_KEY ? resolveRpcUrl(env.CHAIN, 'ws', env.RPC_WS, env.DWELLIR_API_KEY) : undefined;
+  const publicClient = createPublicClient({ chain, transport: http(rpcHttp, { timeout: 10_000, retryCount: 1 }) });
   // The application watchdog owns restart/catch-up. viem's internal reconnect
   // path can print raw transport exceptions containing credential-bearing URLs.
-  const headClient = env.RPC_WS ? createPublicClient({ chain, transport: webSocket(env.RPC_WS, { timeout: 10_000, reconnect: false }) }) : null;
+  const headClient = rpcWs ? createPublicClient({ chain, transport: webSocket(rpcWs, { timeout: 10_000, reconnect: false }) }) : null;
   const wallets = new Map(keyNames.flatMap((name) => {
     const privateKey = env[name];
-    return privateKey ? [[name, createWalletClient({ account: privateKeyToAccount(privateKey as Hex), chain, transport: http(env.RPC_HTTP) })] as const] : [];
+    return privateKey ? [[name, createWalletClient({ account: privateKeyToAccount(privateKey as Hex), chain, transport: http(rpcHttp) })] as const] : [];
   }));
   return { chain, publicClient, headClient, wallets };
 }

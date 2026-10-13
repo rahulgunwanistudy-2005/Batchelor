@@ -1,3 +1,4 @@
+import { resolveArchiveRpc } from '@batchelor/core/rpc';
 import { pacedHttp } from './rpc.ts';
 /** Read-only live acceptance audit. No transaction sends and no eth_getLogs. */
 import { writeFile } from 'node:fs/promises';
@@ -5,12 +6,13 @@ import { createPublicClient, decodeEventLog, isAddress } from 'viem';
 import { batchAuctionAbi } from '@batchelor/core/abi';
 import { DEMO_LOT, DEMO_MIN_PRICE, DEMO_TICK_SIZE, escrowFor, fill } from '@batchelor/core/settle';
 import { createIndexerClient } from '../../apps/web/src/lib/api/graphql.ts';
+async function main() {
 const endpoint = process.env.ENVIO_GRAPHQL_URL;
 const market = process.env.MARKET_ADDRESS;
-const rpc = process.env.RPC_HTTP;
 const chainId = process.env.CHAIN === 'mainnet' ? 143 : process.env.CHAIN === 'testnet' ? 10143 : null;
+const rpc = resolveArchiveRpc(process.env.CHAIN === 'mainnet' ? 'mainnet' : 'testnet', process.env);
 const ids = (process.env.VERIFY_BATCH_IDS ?? '').split(',').filter(Boolean);
-if (!endpoint || !market || !isAddress(market) || !rpc || !chainId || new Set(ids).size < 3) throw new Error('Set CHAIN, RPC_HTTP, MARKET_ADDRESS, ENVIO_GRAPHQL_URL and three distinct VERIFY_BATCH_IDS');
+if (!endpoint || !market || !isAddress(market) || !rpc || !chainId || new Set(ids).size < 3) throw new Error('Set CHAIN, ARCHIVE_RPC_HTTP, MARKET_ADDRESS, ENVIO_GRAPHQL_URL and three distinct VERIFY_BATCH_IDS');
 const client = createPublicClient({ transport: pacedHttp(rpc) });
 if (await client.getChainId() !== chainId) throw new Error('RPC chain mismatch');
 const indexer = createIndexerClient({ endpoint, market, chainId });
@@ -72,3 +74,6 @@ const report = { source: 'live-read-only', chainId, market, endpoint, sampledAt:
 await writeFile(new URL('../rehearsal.json', import.meta.url), JSON.stringify(report, (_, value: unknown) => typeof value === 'bigint' ? value.toString() : value, 2) + '\n');
 console.log(JSON.stringify({ chainId, batches: ids, previewComparisons, finalClaimComparisons, maxLagSeconds, lagPassed: report.lagPassed }));
 if (!report.lagPassed) throw new Error('Indexer lag exceeded five seconds');
+
+}
+void main().catch(() => { console.error('Operation failed. Check configuration, RPC access, chain ID and saved evidence. Provider error details are omitted to protect credentials.'); process.exitCode = 1; });

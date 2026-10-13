@@ -1,6 +1,7 @@
 import { writeFile } from 'node:fs/promises';
 import { batchAuctionAbi, faucetAbi } from '@batchelor/core/abi';
 import { transactionGas } from '@batchelor/core/gas';
+import { resolveRpcUrl } from '@batchelor/core/rpc';
 import { createWalletClient, decodeEventLog, encodeFunctionData, http, parseGwei } from 'viem';
 import type { Address, Hex, TransactionReceipt } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
@@ -12,14 +13,14 @@ import type { DemoFill } from './rehearsal.js';
 async function main() {
   const env = readEnv();
   if (env.CHAIN !== 'testnet') throw new Error('Rehearsal sends are testnet only. Mainnet requires an approved separate run.');
-  if (!env.MARKET_ADDRESS || !env.FAUCET_ADDRESS || !env.BOTS_TOKEN || !env.RPC_WS) throw new Error('Missing rehearsal configuration.');
+  if (!env.MARKET_ADDRESS || !env.FAUCET_ADDRESS || !env.BOTS_TOKEN || (!env.RPC_WS && !env.DWELLIR_API_KEY)) throw new Error('Missing rehearsal configuration.');
   const key = process.env.ASHA_PK;
   if (!key || !/^0x[0-9a-fA-F]{64}$/.test(key)) throw new Error('Configure a funded throwaway ASHA_PK.');
   const clients = createChainClients(env); const client = clients.publicClient;
   if (await client.getChainId() !== 10143) throw new Error('Wrong chain.');
   const account = privateKeyToAccount(key as Hex);
   if ([...clients.wallets.values()].some((w) => w.account.address === account.address)) throw new Error('Asha must have a separate key.');
-  const wallet = createWalletClient({ account, chain: clients.chain, transport: http(env.RPC_HTTP) });
+  const wallet = createWalletClient({ account, chain: clients.chain, transport: http(resolveRpcUrl(env.CHAIN, 'http', env.RPC_HTTP, env.DWELLIR_API_KEY)) });
   const nonce = new NonceManager(client, account.address);
   const market = env.MARKET_ADDRESS as Address, faucet = env.FAUCET_ADDRESS as Address;
   const send = async (action: 'drip' | 'place', tick = 106): Promise<TransactionReceipt> => {

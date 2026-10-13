@@ -4,12 +4,14 @@ import { createPublicClient, createWalletClient, decodeEventLog, encodeFunctionD
 import type { Abi, Address, Hex } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { monadTestnet } from 'viem/chains';
+import { resolveRpcUrl } from '../packages/core/src/rpc.ts';
 
+async function main() {
 const root = fileURLToPath(new URL('../', import.meta.url));
 const privateKey = process.env.TESTNET_PK ?? process.env.TESTNET_PRIVATE_KEY;
 if (!privateKey || !/^0x[0-9a-fA-F]{64}$/.test(privateKey)) throw new Error('Set TESTNET_PK in an ignored local environment file.');
 if (process.env.CHAIN !== 'testnet') throw new Error('This script requires CHAIN=testnet.');
-const rpc = process.env.RPC_HTTP ?? 'https://testnet-rpc.monad.xyz';
+const rpc = resolveRpcUrl('testnet', 'http', process.env.RPC_HTTP, process.env.DWELLIR_API_KEY);
 const transport = http(rpc);
 const account = privateKeyToAccount(privateKey as Hex);
 const publicClient = createPublicClient({ chain: monadTestnet, transport });
@@ -68,3 +70,6 @@ await writeFile(`${root}/contracts/bench/out/live-testnet.json`, JSON.stringify(
 console.log(JSON.stringify(evidence, null, 2));
 // Certify receipts, code and accounting before a successful run is complete.
 await import(new URL('./verify-live-spike.ts', import.meta.url).href);
+
+}
+void main().catch(() => { console.error('Operation failed. Check configuration, RPC access, chain ID and saved evidence. Provider error details are omitted to protect credentials.'); process.exitCode = 1; });

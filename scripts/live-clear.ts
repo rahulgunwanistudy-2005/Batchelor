@@ -9,8 +9,10 @@ import { privateKeyToAccount } from 'viem/accounts';
 import { monadTestnet } from 'viem/chains';
 import { batchAuctionAbi } from '../packages/core/src/abi.ts';
 import { transactionGas } from '../packages/core/src/gas.ts';
+import { resolveRpcUrl } from '../packages/core/src/rpc.ts';
 import bench from '../packages/core/src/bench.json' with { type: 'json' };
 
+async function main() {
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = `${root}contracts/bench/out/clear-live-testnet.json`;
 type Tx = { action: string; hash: Hex; gasLimit: string; dataHash: Hex; blockNumber?: string; status?: string };
@@ -21,7 +23,7 @@ const key = process.env.TESTNET_PK ?? process.env.TESTNET_PRIVATE_KEY;
 if (!key || !/^0x[0-9a-fA-F]{64}$/.test(key)) throw new Error('Configure TESTNET_PK or TESTNET_PRIVATE_KEY in an ignored local .env.');
 if (process.env.CHAIN !== 'testnet') throw new Error('Requires explicit CHAIN=testnet.');
 const account = privateKeyToAccount(key as Hex);
-const transport = http(process.env.RPC_HTTP ?? monadTestnet.rpcUrls.default.http[0]);
+const transport = http(resolveRpcUrl('testnet', 'http', process.env.RPC_HTTP, process.env.DWELLIR_API_KEY));
 const client = createPublicClient({ chain: monadTestnet, transport });
 const wallet = createWalletClient({ account, chain: monadTestnet, transport });
 if (await client.getChainId() !== monadTestnet.id) throw new Error('Refusing any chain except Monad testnet 10143.');
@@ -131,8 +133,12 @@ try {
   console.log(`clearGas local ${local}, live ${live}; difference ${(relativeDifference * 100).toFixed(3)}%.`);
   if (evidence.status !== 'passed') throw new Error(evidence.reason);
 } catch (error) {
-  evidence.reason = error instanceof Error ? error.message : String(error);
+  // Provider exceptions can embed API keys, so persist only our parity result.
+  if (evidence.status !== 'parity_failed') evidence.reason = 'Run interrupted. Check configuration, funding and saved transaction receipts before retrying.';
   if (evidence.status !== 'parity_failed') evidence.status = 'interrupted';
   await persist();
   throw error;
 }
+
+}
+void main().catch(() => { console.error('Operation failed. Check configuration, RPC access, chain ID and saved evidence. Provider error details are omitted to protect credentials.'); process.exitCode = 1; });
