@@ -2,7 +2,7 @@
 
 **Every block, one price. No favorites.**
 
-A frequent batch auction for Monad. Orders in one block clear together at a uniform price. The project is at **S5: indexed receipts and history implemented**. Deposits, direct and signed orders, cancellation, self-clearing, claims, withdrawals, and daily demo-token drips are implemented and tested locally. Keeper settlement, on-demand liquidity, a capped four-key priority bot and authenticated controls are implemented. Envio v3 handlers and typed GraphQL queries now drive batch receipts, history and live gas statistics when connected. Passkey onboarding remains later-session work; live bot deployment and hosted indexing await configured deployments, credentials and funding.
+Batchelor is a fully onchain batch auction where everyone in a block gets the same price, and Monad's new page-based storage makes it cheap enough to clear every block. The project is at **S7: passkey trading, shareable receipts and measured proof implemented**. The auction, controlled bots and Envio read model are tested locally. Receipts include priority-fee lanes and an exact continuous-book replay; the Proof page uses generated contract evidence and live indexed gas statistics. Hosted services, production deployment and physical-device onboarding remain external acceptance gates.
 
 The local storage gate passed on identical bytecode under MonadNine and MonadTen. Run `pnpm spike` to reproduce it; measured evidence lives in [`contracts/bench/out/spike.json`](contracts/bench/out/spike.json). This measures storage reads and writes, **not auction clearing gas**. The live transaction comparison remains pending a funded throwaway testnet key.
 
@@ -119,3 +119,18 @@ See [indexer/README.md](indexer/README.md) for configuration, Cloud packaging, p
 ### S6 trading app
 
 The web app now supports Mera passkey accounts, gasless faucet/orders, a live block-pinned auction chart, bot controls, indexed account history, cancellation and direct withdrawal. See [S6 report](docs/S6_REPORT.md) for setup, measured verification and the remaining physical-phone/production gates. Choose the permanent production hostname and set `PUBLIC_RP_ID` before onboarding users. `pnpm web:test-local` verifies the actual web endpoints and 20 maker-only price comparisons on a temporary local MonadTen chain; it sends no live transaction.
+
+## S7 receipts and proof
+
+`/b/[id]` is server-rendered and exposes a data-generated PNG at `/b/[id]/og.png`. Set `PUBLIC_PETE_ADDRESSES` (comma-separated addresses) and `PUBLIC_MO_ADDRESS` to label known bots; unknown addresses stay unlabelled. A signed-in viewer or `?trader=0x…` highlights their orders. The share button copies the canonical receipt URL.
+
+`/proof` uses benchmark JSON, current Forge evidence, sourced prose from `docs/WHY_MONAD.md`, and the latest indexed gas sample. It displays median/p95 statistics, all eight correctness gates, recorded addresses and explicit verification status.
+
+```sh
+pnpm proof:tests           # Current Forge JSON and source/runtime/layout checks
+pnpm proof:generate        # Reject stale evidence and generate proof-page content
+pnpm --filter web build    # Regenerates proof before the production build
+pnpm receipts:test-local   # Three local real-chain batches, actual Envio handlers, SSR and PNG checks
+```
+
+A clean checkout must run `proof:tests` before building; CI does this automatically. Local receipt verification sends no live transaction. Optional visual checks are documented in [S7 report](docs/S7_REPORT.md), with light/dark screenshots and remaining hosted link-preview gates.

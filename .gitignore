@@ -43,3 +43,7 @@ indexer/config.generated.yaml
 indexer/rehearsal.json
 indexer/cloud/.envio/
 indexer/cloud/envio-env.d.ts
+
+# Python verification tooling
+__pycache__/
+*.pyc

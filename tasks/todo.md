@@ -146,3 +146,31 @@ The permanent production hostname, funded/hosted services, physical phone PRF on
 - [x] Local end-to-end tooling, screenshots, audit evidence and operations report saved in the final verification commit.
 
 All S6 commits are local on `main`. No push was requested or performed.
+
+
+# S7 — Shareable receipts, replay and measured proof
+
+Scope: implement the supplied S7 on the existing S1–S6 code. The documents define requirements; the user's direct request authorizes systematic local commits despite the older bible restriction. Preserve verified toolchain corrections. No mainnet spending or publishing is authorized.
+
+- [x] Read supplied bible, sources and S7, existing lessons and implementation.
+- [x] Implement exact continuous price/time replay and deterministic/property tests.
+- [x] Implement server-rendered receipts, actor labels, fee/fill lanes, comparisons, facts, share and generated OG image.
+- [x] Generate current contract test evidence and sourced proof content; show gas comparisons, order-count chart, live statistics and deployment status.
+- [x] Add illustrated collect/seal/clear explanation and review product copy.
+- [x] Verify local real-chain rehearsal, sampled settlements, previews, light/dark responsive screenshots and all applicable quality gates.
+- [x] Review and commit implementation and verification in logical groups; document any external gates.
+
+
+## S7 outcome
+
+Exact continuous replay, server-rendered receipts/PNG previews, actor/fee/fill lanes, comparisons/facts/share, generated correctness and gas proof, and illustrated collect/seal/clear panels are implemented. Three real local-chain batches pass actual Envio handlers with 18 contract preview matches; Pete/Asha settle at the same batch price and Pete's replay difference is nonzero. Both hardforks, workspace checks, build, source/layout/gas/contrast checks pass. Twelve light/dark browser cases at 375/768/1280px pass with zero WCAG A/AA violations; keyboard scrolling and hydrated clipboard sharing are verified.
+
+Public link-preview debugger, hosted/mainnet rehearsal and contract source verification remain external gates requiring the already-deferred production services. No mainnet send, publishing or push is included. Cancelled replay timing and rounded display averages are disclosed. See `docs/S7_REPORT.md` and `docs/verification/s7-*.json`.
+
+## S7 commit organization
+
+- [x] `7695393`: exact replay engine and deterministic/property tests.
+- [x] `75cc354`: server-rendered receipts, generated proof and illustrations.
+- [x] Actual Envio/local-chain and browser verification, screenshots and operations report saved in the final verification commit.
+
+All S7 commits are local on `main`. No push was requested or performed.

@@ -99,3 +99,12 @@ The user authorized the project `.env`, which provides `TESTNET_PRIVATE_KEY`. Th
 - Hosted in-memory quotas/nonce queues are per instance; latest/pending nonce checks reduce dedicated-key overlap but do not provide distributed exactly-once submission. Onchain intent nonces are the replay authority. Keep ambiguous-send messages actionable and never print underlying transport exceptions that may contain credentials.
 
 - Local fixture verification uses independent free ports and checks child-process readiness. A fixed-port retry while an earlier browser fixture was still alive accidentally reached its state and hit the faucet cooldown. Never reuse an existing fixture after a bind error. The final isolated run with lowercase environment addresses passes.
+
+## S7 receipts and proof
+
+- Forge v1.8 groups the three handler invariants into one campaign in JSON. Expand `invariant_predicate_results` and check every predicate status; the parent entry alone omits solvency and accounting names. The current 79 Forge result entries represent 81 test functions/invariant predicates. Each handler predicate shares the measured 256-run, 51,200-call campaign.
+- A source hash and settings hash guard keep the build from showing stale contract evidence. A fresh clone must run `pnpm proof:tests` before the web build. Generated test evidence is not a source-verification claim.
+- Indexed cancellations have no cancellation block/log metadata. The hypothetical continuous replay excludes cancelled orders and says so; it cannot reconstruct temporary liquidity. Weighted prices and differences stay bigint rationals; display formatting is the only rounding.
+- Native Node type stripping needs real `.ts` imports on the replay subpath; the core and web no-emit configurations explicitly allow these. Compiled bot gas imports remain self-contained.
+- A server-rendered button can be clicked before Svelte hydration attaches its handler. Browser load and `document.fonts.ready` do not establish hydration. Keep the share/refresh controls disabled until `onMount`; browser checks then wait for an enabled control. A static successful page fetch alone does not verify interaction. Run builds before starting the browser fixture to avoid shared generated-file churn.
+- PNG link cards rasterize the existing licensed brand fonts into a committed glyph atlas. Runtime generation uses Node zlib only; Pillow is optional offline regeneration tooling and adds no production dependency.

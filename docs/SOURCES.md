@@ -53,3 +53,9 @@ Copy into the repo as `docs/SOURCES.md`. "Single source" means one origin; reche
 Mera integration was checked against installed `@category-labs/mera` 0.2.0 declarations/source (`passkey`, `types`, `secp256k1`, `viem`) and the official Mera guide retained from S1. It uses the exact RP/user/credential option shapes and standard BIP-44 derivation; provider compatibility remains a physical-browser acceptance gate. The source pack's Node 22 recommendation remains superseded by Mera's Node >=24 requirement.
 
 Uncrossing/settlement and EIP-712 behavior are checked against the repository Solidity implementation and exported golden vectors, rather than assumed from prose. S6 introduces no new protocol claims from the supplied sources table. Local execution, price comparisons and Lighthouse outputs are recorded in `docs/verification/`; localhost addresses are fixture evidence, not public deployments.
+
+## S7 recheck (13 Oct 2026)
+
+- [Official gas pricing](https://docs.monad.xyz/developer-essentials/gas-pricing): confirmed limit billing, priority ordering, minimum base fee and 150M block capacity. These protocol values live in `docs/verification/monad-facts.json`; measured auction costs remain generated benchmark data.
+- [Official deployment summary](https://docs.monad.xyz/developer-essentials/summary): confirmed page-priced storage, approximate block interval, local mempools and MonadVision. The MIP-8 spec and current-facts URL were unavailable through the web reader during this recheck; no new claim relies on those failed reads.
+- [Mainnet MonadVision](https://monadvision.com) and [testnet MonadVision](https://testnet.monadvision.com): receipt explorer destinations are reachable. This does not confirm source verification for any project contract.
