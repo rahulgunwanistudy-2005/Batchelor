@@ -42,9 +42,6 @@ jobs:
       - name: Contract build and sizes
         working-directory: contracts
         run: forge build --sizes
-      - name: Contract tests
-        working-directory: contracts
-        run: python3 ../scripts/export-test-summary.py
       - name: Historical hardfork tests
         working-directory: contracts
         # Pre-MIP-8 clearing of a full book exceeds the 30M default; S8 verified with this limit.
@@ -70,6 +67,11 @@ jobs:
         run: pnpm check:contracts
       - name: Individually reviewed Slither findings
         run: python3 scripts/check-security.py
+      # Runs after Slither on purpose: Slither's forced rebuild wipes contracts/out,
+      # and the web build below needs the test summary this step writes there.
+      - name: Contract tests
+        working-directory: contracts
+        run: python3 ../scripts/export-test-summary.py
       - name: Generated ABI freshness
         run: |
           pnpm gen
