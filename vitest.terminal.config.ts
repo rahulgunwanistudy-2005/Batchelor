@@ -7,6 +7,7 @@ export default defineConfig({
   },
   test: {
     environment: "node",
-    include: ["src/**/*.test.ts", "packages/core/src/**/*.test.ts"],
+    // Named so no workspace package or tooling run picks this file up by default.
+    include: ["src/**/*.test.ts"],
   },
 });

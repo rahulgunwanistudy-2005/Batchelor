@@ -81,13 +81,13 @@ jobs:
       - run: pnpm test:tooling
       - run: pnpm -r build
       - name: Terminal typecheck
-        run: pnpm typecheck
+        run: pnpm terminal:typecheck
       - name: Terminal lint
-        run: pnpm lint
+        run: pnpm terminal:lint
       - name: Terminal tests
-        run: pnpm test
+        run: pnpm terminal:test
       - name: Terminal build
-        run: pnpm build
+        run: pnpm terminal:build
       - run: python3 scripts/check-contrast.py
       - name: Retain spike evidence
         uses: actions/upload-artifact@v6
