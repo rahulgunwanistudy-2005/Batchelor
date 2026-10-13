@@ -11,7 +11,7 @@ services:
     dockerfilePath: ./services/bots/Dockerfile
     dockerContext: .
     healthCheckPath: /livez
-    autoDeployTrigger: off
+    autoDeployTrigger: "off"
     maxShutdownDelaySeconds: 30
     envVars:
       - key: CHAIN
