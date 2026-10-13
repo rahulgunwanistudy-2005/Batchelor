@@ -1,0 +1,319 @@
+{
+  "generatedAt": "2026-10-13T18:53:07.581Z",
+  "chainId": 10143,
+  "network": "Monad testnet",
+  "deployer": "0x8cf8d07115760a5D4Db4a6561729E8ed4de4D8CA",
+  "transactionsSentByVerifier": 0,
+  "marketStartBlock": "70756591",
+  "finalDeploymentBlock": "70756599",
+  "planHash": "b61ee700cfe0405f8f034fde8f3f34ffe6e0c7ad5098214c17907a448593fca1",
+  "totals": {
+    "declaredGasLimit": "7217349",
+    "feeChargedMON": "0.736169598",
+    "approvedMaximumMON": "0.736169598",
+    "chargeBasis": "Declared transaction gas limit multiplied by receipt effectiveGasPrice, per Monad gas pricing rules",
+    "receiptGasUsed": "7217349",
+    "receiptGasNote": "This is the RPC receipt gasUsed field. On this deployment it equals the declared gas limits; it is not an independent EVM execution profiling measurement."
+  },
+  "bindings": {
+    "baseMinter": {
+      "expected": "0xAd20E8A597D1FEE68f74057eDDBf4CAEa408c98E",
+      "actual": "0xAd20E8A597D1FEE68f74057eDDBf4CAEa408c98E",
+      "passed": true
+    },
+    "quoteMinter": {
+      "expected": "0xAd20E8A597D1FEE68f74057eDDBf4CAEa408c98E",
+      "actual": "0xAd20E8A597D1FEE68f74057eDDBf4CAEa408c98E",
+      "passed": true
+    },
+    "marketBase": {
+      "expected": "0x5C82Cff303A6Ab6760d98aB91D6B7cC150dD5F08",
+      "actual": "0x5C82Cff303A6Ab6760d98aB91D6B7cC150dD5F08",
+      "passed": true
+    },
+    "marketQuote": {
+      "expected": "0xC1FF70231914808fbE51c03308542FBc81bdB077",
+      "actual": "0xC1FF70231914808fbE51c03308542FBc81bdB077",
+      "passed": true
+    },
+    "faucetBase": {
+      "expected": "0x5C82Cff303A6Ab6760d98aB91D6B7cC150dD5F08",
+      "actual": "0x5C82Cff303A6Ab6760d98aB91D6B7cC150dD5F08",
+      "passed": true
+    },
+    "faucetQuote": {
+      "expected": "0xC1FF70231914808fbE51c03308542FBc81bdB077",
+      "actual": "0xC1FF70231914808fbE51c03308542FBc81bdB077",
+      "passed": true
+    },
+    "faucetMarket": {
+      "expected": "0x2B74dA5CD3fae739D952cbA6D93DCfba5832Ff45",
+      "actual": "0x2B74dA5CD3fae739D952cbA6D93DCfba5832Ff45",
+      "passed": true
+    },
+    "baseDecimals": {
+      "expected": "18",
+      "actual": "18",
+      "passed": true
+    },
+    "quoteDecimals": {
+      "expected": "6",
+      "actual": "6",
+      "passed": true
+    },
+    "minPrice": {
+      "expected": "500000",
+      "actual": "500000",
+      "passed": true
+    },
+    "tickSize": {
+      "expected": "5000",
+      "actual": "5000",
+      "passed": true
+    },
+    "lot": {
+      "expected": "1000000000000000",
+      "actual": "1000000000000000",
+      "passed": true
+    },
+    "batchBlocks": {
+      "expected": "1",
+      "actual": "1",
+      "passed": true
+    },
+    "ticks": {
+      "expected": "256",
+      "actual": "256",
+      "passed": true
+    }
+  },
+  "contracts": [
+    {
+      "role": "base",
+      "name": "DemoToken",
+      "address": "0x5C82Cff303A6Ab6760d98aB91D6B7cC150dD5F08",
+      "creationHash": "0x9f1718443e50fae7bec8aa60c4dfb104ac2b098c9beb7b1d16860b57715ec177",
+      "blockNumber": "70756574",
+      "gasLimit": "1174546",
+      "effectiveGasPrice": "102000000000",
+      "feeChargedMON": "0.119803692",
+      "maxFeePerGas": "102000000000",
+      "maxPriorityFeePerGas": "2000000000",
+      "runtimeBytecodeKeccak256": "0xabb4ac12fb13787e6dbc5657c74f650f53dd563e0373d2cbfd776578dbfc6f01",
+      "runtimeBytecodeBytes": 4460,
+      "immutableReferencesChecked": 10,
+      "checks": {
+        "receiptSucceeded": true,
+        "contractAddressMatches": true,
+        "createAddressMatches": true,
+        "declaredGasMatchesPlan": true,
+        "nonceMatchesPlan": true,
+        "inputMatchesPlan": true,
+        "valueIsZero": true,
+        "feeCapMatchesPlan": true,
+        "priorityCapMatchesPlan": true,
+        "immutableMaskedRuntimeMatches": true
+      },
+      "transactionUrl": "https://testnet.monadvision.com/tx/0x9f1718443e50fae7bec8aa60c4dfb104ac2b098c9beb7b1d16860b57715ec177",
+      "contractUrl": "https://testnet.monadvision.com/address/0x5C82Cff303A6Ab6760d98aB91D6B7cC150dD5F08",
+      "sourceVerification": {
+        "status": "verified",
+        "match": "exact_match",
+        "creationMatch": "exact_match",
+        "runtimeMatch": "exact_match",
+        "httpStatus": 200,
+        "lookupUrl": "https://sourcify.dev/server/v2/contract/10143/0x5C82Cff303A6Ab6760d98aB91D6B7cC150dD5F08",
+        "jobId": "b1114be8-f2ca-4d04-acf2-74d869f18fb1",
+        "jobUrl": "https://sourcify.dev/server/verify-ui/jobs/b1114be8-f2ca-4d04-acf2-74d869f18fb1",
+        "publication": "completed_after_explicit_conditional_user_authorization",
+        "command": "../.tools/foundry/bin/forge verify-contract 0x5C82Cff303A6Ab6760d98aB91D6B7cC150dD5F08 src/DemoToken.sol:DemoToken --chain 10143 --verifier sourcify --compiler-version 0.8.28+commit.7893614a --creation-transaction-hash 0x9f1718443e50fae7bec8aa60c4dfb104ac2b098c9beb7b1d16860b57715ec177 --watch",
+        "matchId": "56064915",
+        "verifiedAt": "2026-10-13T18:58:06Z"
+      },
+      "receiptGasUsed": "1174546"
+    },
+    {
+      "role": "quote",
+      "name": "DemoToken",
+      "address": "0xC1FF70231914808fbE51c03308542FBc81bdB077",
+      "creationHash": "0x04b2c711deb49d91efa941040d03f7907fc9d5e647c87189abfd09a404f34544",
+      "blockNumber": "70756583",
+      "gasLimit": "1174599",
+      "effectiveGasPrice": "102000000000",
+      "feeChargedMON": "0.119809098",
+      "maxFeePerGas": "102000000000",
+      "maxPriorityFeePerGas": "2000000000",
+      "runtimeBytecodeKeccak256": "0xb1106994375cd16ec48e9297e9f636760ddc4848d8b0591fbfc8669a0cf0032f",
+      "runtimeBytecodeBytes": 4460,
+      "immutableReferencesChecked": 10,
+      "checks": {
+        "receiptSucceeded": true,
+        "contractAddressMatches": true,
+        "createAddressMatches": true,
+        "declaredGasMatchesPlan": true,
+        "nonceMatchesPlan": true,
+        "inputMatchesPlan": true,
+        "valueIsZero": true,
+        "feeCapMatchesPlan": true,
+        "priorityCapMatchesPlan": true,
+        "immutableMaskedRuntimeMatches": true
+      },
+      "transactionUrl": "https://testnet.monadvision.com/tx/0x04b2c711deb49d91efa941040d03f7907fc9d5e647c87189abfd09a404f34544",
+      "contractUrl": "https://testnet.monadvision.com/address/0xC1FF70231914808fbE51c03308542FBc81bdB077",
+      "sourceVerification": {
+        "status": "verified",
+        "match": "exact_match",
+        "creationMatch": "exact_match",
+        "runtimeMatch": "exact_match",
+        "httpStatus": 200,
+        "lookupUrl": "https://sourcify.dev/server/v2/contract/10143/0xC1FF70231914808fbE51c03308542FBc81bdB077",
+        "jobId": "ebd5fc4b-2f58-48ba-ae90-74efd90cb5a0",
+        "jobUrl": "https://sourcify.dev/server/verify-ui/jobs/ebd5fc4b-2f58-48ba-ae90-74efd90cb5a0",
+        "publication": "completed_after_explicit_conditional_user_authorization",
+        "command": "../.tools/foundry/bin/forge verify-contract 0xC1FF70231914808fbE51c03308542FBc81bdB077 src/DemoToken.sol:DemoToken --chain 10143 --verifier sourcify --compiler-version 0.8.28+commit.7893614a --creation-transaction-hash 0x04b2c711deb49d91efa941040d03f7907fc9d5e647c87189abfd09a404f34544 --watch",
+        "matchId": "56064941",
+        "verifiedAt": "2026-10-13T18:58:50Z"
+      },
+      "receiptGasUsed": "1174599"
+    },
+    {
+      "role": "market",
+      "name": "BatchAuction",
+      "address": "0x2B74dA5CD3fae739D952cbA6D93DCfba5832Ff45",
+      "creationHash": "0xf7d0962dc0a47502c549ecc191bb9aabea2ee3fc43b4902a3b8833dd102aac0a",
+      "blockNumber": "70756591",
+      "gasLimit": "4181963",
+      "effectiveGasPrice": "102000000000",
+      "feeChargedMON": "0.426560226",
+      "maxFeePerGas": "102000000000",
+      "maxPriorityFeePerGas": "2000000000",
+      "runtimeBytecodeKeccak256": "0x2b0898ce6ab9ddf097c25ab0c5acbec9b8d3cd8c68b723d73f05229cb7f0170e",
+      "runtimeBytecodeBytes": 17331,
+      "immutableReferencesChecked": 21,
+      "checks": {
+        "receiptSucceeded": true,
+        "contractAddressMatches": true,
+        "createAddressMatches": true,
+        "declaredGasMatchesPlan": true,
+        "nonceMatchesPlan": true,
+        "inputMatchesPlan": true,
+        "valueIsZero": true,
+        "feeCapMatchesPlan": true,
+        "priorityCapMatchesPlan": true,
+        "immutableMaskedRuntimeMatches": true
+      },
+      "transactionUrl": "https://testnet.monadvision.com/tx/0xf7d0962dc0a47502c549ecc191bb9aabea2ee3fc43b4902a3b8833dd102aac0a",
+      "contractUrl": "https://testnet.monadvision.com/address/0x2B74dA5CD3fae739D952cbA6D93DCfba5832Ff45",
+      "sourceVerification": {
+        "status": "verified",
+        "match": "exact_match",
+        "creationMatch": "exact_match",
+        "runtimeMatch": "exact_match",
+        "httpStatus": 200,
+        "lookupUrl": "https://sourcify.dev/server/v2/contract/10143/0x2B74dA5CD3fae739D952cbA6D93DCfba5832Ff45",
+        "jobId": "70141bdb-9d44-430d-8784-6e4a324b58e3",
+        "jobUrl": "https://sourcify.dev/server/verify-ui/jobs/70141bdb-9d44-430d-8784-6e4a324b58e3",
+        "publication": "completed_after_explicit_conditional_user_authorization",
+        "command": "../.tools/foundry/bin/forge verify-contract 0x2B74dA5CD3fae739D952cbA6D93DCfba5832Ff45 src/BatchAuction.sol:BatchAuction --chain 10143 --verifier sourcify --compiler-version 0.8.28+commit.7893614a --creation-transaction-hash 0xf7d0962dc0a47502c549ecc191bb9aabea2ee3fc43b4902a3b8833dd102aac0a --watch",
+        "matchId": "56064956",
+        "verifiedAt": "2026-10-13T18:59:18Z"
+      },
+      "receiptGasUsed": "4181963"
+    },
+    {
+      "role": "faucet",
+      "name": "Faucet",
+      "address": "0xAd20E8A597D1FEE68f74057eDDBf4CAEa408c98E",
+      "creationHash": "0x6ec4e425bf68b487db6191e2a149bfbf0222328da9ea3c9d8d03ffd0e9a206bd",
+      "blockNumber": "70756599",
+      "gasLimit": "686241",
+      "effectiveGasPrice": "102000000000",
+      "feeChargedMON": "0.069996582",
+      "maxFeePerGas": "102000000000",
+      "maxPriorityFeePerGas": "2000000000",
+      "runtimeBytecodeKeccak256": "0xd9a1a3f58590c55ffad2000204b75a675aa0a48394165fbeb91168602dc2a512",
+      "runtimeBytecodeBytes": 2483,
+      "immutableReferencesChecked": 13,
+      "checks": {
+        "receiptSucceeded": true,
+        "contractAddressMatches": true,
+        "createAddressMatches": true,
+        "declaredGasMatchesPlan": true,
+        "nonceMatchesPlan": true,
+        "inputMatchesPlan": true,
+        "valueIsZero": true,
+        "feeCapMatchesPlan": true,
+        "priorityCapMatchesPlan": true,
+        "immutableMaskedRuntimeMatches": true
+      },
+      "transactionUrl": "https://testnet.monadvision.com/tx/0x6ec4e425bf68b487db6191e2a149bfbf0222328da9ea3c9d8d03ffd0e9a206bd",
+      "contractUrl": "https://testnet.monadvision.com/address/0xAd20E8A597D1FEE68f74057eDDBf4CAEa408c98E",
+      "sourceVerification": {
+        "status": "verified",
+        "match": "exact_match",
+        "creationMatch": "exact_match",
+        "runtimeMatch": "exact_match",
+        "httpStatus": 200,
+        "lookupUrl": "https://sourcify.dev/server/v2/contract/10143/0xAd20E8A597D1FEE68f74057eDDBf4CAEa408c98E",
+        "jobId": "a47a01da-8a73-47fe-9936-92f313ad693a",
+        "jobUrl": "https://sourcify.dev/server/verify-ui/jobs/a47a01da-8a73-47fe-9936-92f313ad693a",
+        "publication": "completed_after_explicit_conditional_user_authorization",
+        "command": "../.tools/foundry/bin/forge verify-contract 0xAd20E8A597D1FEE68f74057eDDBf4CAEa408c98E src/Faucet.sol:Faucet --chain 10143 --verifier sourcify --compiler-version 0.8.28+commit.7893614a --creation-transaction-hash 0x6ec4e425bf68b487db6191e2a149bfbf0222328da9ea3c9d8d03ffd0e9a206bd --watch",
+        "matchId": "56064990",
+        "verifiedAt": "2026-10-13T18:59:50Z"
+      },
+      "receiptGasUsed": "686241"
+    }
+  ],
+  "publicSourceCheck": {
+    "url": "https://raw.githubusercontent.com/rahulgunwanistudy-2005/Batchelor/codex/s8-complete/contracts/src/BatchAuction.sol",
+    "httpStatus": 200,
+    "sourceMatchesLocal": true
+  },
+  "sources": [
+    "https://docs.sourcify.dev/docs/verify-via-foundry/",
+    "https://docs.sourcify.dev/docs/api/",
+    "https://docs.monad.xyz/developer-essentials/gas-pricing"
+  ],
+  "localSourceVerificationBundle": {
+    "status": "published_and_exact_verified",
+    "root": "deployments/verification",
+    "inventory": "deployments/verification/inventory.json",
+    "compilerVersion": "0.8.28+commit.7893614a",
+    "optimizer": {
+      "enabled": true,
+      "runs": 2000
+    },
+    "evmVersion": "cancun",
+    "types": [
+      {
+        "name": "DemoToken",
+        "metadataSha256": "d2213eacca7e0b9916f1174e501cca00a1988e0ab81d6a60e73f8e3e9a8e33e5",
+        "sourceCount": 20,
+        "totalSourceBytes": 149893
+      },
+      {
+        "name": "BatchAuction",
+        "metadataSha256": "284fc0a7e46f969ea960e609673755bfed0bfdb53b1e40d5a3cd17719153bde1",
+        "sourceCount": 16,
+        "totalSourceBytes": 127265
+      },
+      {
+        "name": "Faucet",
+        "metadataSha256": "57e0c87b7e6a79a1dc6d3d85c602baccab785d32bcf5255f8d4084dfa7a68ddc",
+        "sourceCount": 32,
+        "totalSourceBytes": 199842
+      }
+    ]
+  },
+  "sourcePublicationHistory": {
+    "initialAttempt": "rejected_by_automatic_approval_review_no_upload",
+    "authorization": "User authorized publication if harmless and beneficial; inspected inputs contain only already-public contract/library source and compiler metadata.",
+    "publishedAt": "2026-10-13T19:00:47.017Z",
+    "privateKeysUploaded": false,
+    "accountCredentialsUploaded": false,
+    "chainTransactionsSent": 0,
+    "verificationInputSourcesExactlyMatchInventory": true
+  },
+  "sourceVerificationStatus": "all_four_exact_match"
+}

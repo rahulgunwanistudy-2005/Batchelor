@@ -4,5 +4,5 @@ export type ChainId = 143 | 10143;
 export interface Deployment { market: Address; faucet: Address; base: Address; quote: Address; startBlock: string; hashes: string[] }
 export const addresses: Record<ChainId, Deployment | null> = {
   143: null,
-  10143: null,
+  10143: {"base":"0x5C82Cff303A6Ab6760d98aB91D6B7cC150dD5F08","quote":"0xC1FF70231914808fbE51c03308542FBc81bdB077","market":"0x2B74dA5CD3fae739D952cbA6D93DCfba5832Ff45","faucet":"0xAd20E8A597D1FEE68f74057eDDBf4CAEa408c98E","startBlock":"70756591","hashes":["0x9f1718443e50fae7bec8aa60c4dfb104ac2b098c9beb7b1d16860b57715ec177","0x04b2c711deb49d91efa941040d03f7907fc9d5e647c87189abfd09a404f34544","0xf7d0962dc0a47502c549ecc191bb9aabea2ee3fc43b4902a3b8833dd102aac0a","0x6ec4e425bf68b487db6191e2a149bfbf0222328da9ea3c9d8d03ffd0e9a206bd"]},
 };

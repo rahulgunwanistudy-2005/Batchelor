@@ -24,7 +24,9 @@ export function deploymentFromBroadcast(input: unknown, chainId: number): Deploy
     const receipt = data.receipts.find((r) => r.transactionHash.toLowerCase() === tx.hash.toLowerCase());
     if (!receipt || BigInt(receipt.status) !== 1n || receipt.contractAddress?.toLowerCase() !== tx.contractAddress.toLowerCase()) throw new Error('Deployment receipt missing, failed or mismatched.');
     addresses[fields[i]!] = tx.contractAddress as Address;
-    if (BigInt(receipt.blockNumber) > start) start = BigInt(receipt.blockNumber);
+    // Index from the auction's creation, not the later faucet confirmation.
+    // configure.ts verifies code was absent in the immediately preceding block.
+    if (i === 2) start = BigInt(receipt.blockNumber);
   }
   const [base, quote, market, faucet] = data.transactions;
   if (base!.arguments[3]?.toLowerCase() !== faucet!.contractAddress.toLowerCase() || quote!.arguments[3]?.toLowerCase() !== faucet!.contractAddress.toLowerCase()

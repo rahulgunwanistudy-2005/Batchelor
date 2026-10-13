@@ -1,4 +1,4 @@
-# Safe, inactive template. Run pnpm --filter @batchelor/indexer configure with a verified deployment.
+# Verified Monad testnet deployment; mainnet requires its own deployed address/start block.
 name: batchelor
 schema: schema.graphql
 address_format: lowercase
@@ -21,8 +21,9 @@ contracts:
           transaction_fields: [hash]
 chains:
   - id: 10143
-    skip: true
-    start_block: 0
+    start_block: 70756591
+    hypersync_config:
+      url: https://monad-testnet.hypersync.xyz
     contracts:
       - name: BatchAuction
-        address: []
+        address: ["0x2b74da5cd3fae739d952cba6d93dcfba5832ff45"]

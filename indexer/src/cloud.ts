@@ -10,7 +10,7 @@ const sources = {
   'src/settle.ts': await readFile(new URL('../../packages/core/src/settle.ts', import.meta.url), 'utf8'),
   'schema.graphql': await readFile(new URL('../schema.graphql', import.meta.url), 'utf8'),
   'tsconfig.json': JSON.stringify({ compilerOptions: { target: 'ES2022', module: 'ESNext', moduleResolution: 'Bundler', strict: true, skipLibCheck: true, noEmit: true, types: [] }, include: ['src/**/*.ts', 'envio-env.d.ts'] }, null, 2) + '\n',
-  'package.json': JSON.stringify({ name: 'batchelor-indexer-cloud', version: '0.0.0', private: true, type: 'module', engines: { node: '>=24 <25' }, scripts: { codegen: 'envio codegen', start: 'envio start', typecheck: 'envio codegen && tsc --noEmit' }, dependencies: { envio: '3.14.0', typescript: '5.9.3' } }, null, 2) + '\n',
+  'package.json': JSON.stringify({ name: 'batchelor-indexer-cloud', version: '0.0.0', private: true, type: 'module', packageManager: 'pnpm@10.32.0', engines: { node: '>=24 <25' }, scripts: { codegen: 'envio codegen', start: 'envio start', typecheck: 'envio codegen && tsc --noEmit' }, dependencies: { envio: '3.14.0', typescript: '5.9.3' } }, null, 2) + '\n',
 };
 for (const [path, source] of Object.entries(sources)) {
   const target = new URL(path, root);

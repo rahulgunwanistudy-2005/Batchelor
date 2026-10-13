@@ -12,8 +12,8 @@ function fixture() {
     receipts: addresses.map((a,i) => ({ transactionHash: `0x${String(i).repeat(64)}`, status: '0x1', blockNumber: String(100+i), contractAddress: a })) };
 }
 describe('confirmed deployment generation', () => {
-  it('extracts valid consecutive CREATEs and their mined receipts', () => {
-    const f = fixture(); expect(deploymentFromBroadcast(f,10143)).toMatchObject({ market: f.transactions[2]!.contractAddress, faucet: f.transactions[3]!.contractAddress, startBlock: '103' });
+  it('starts indexing at market creation even when the faucet mines later', () => {
+    const f = fixture(); expect(deploymentFromBroadcast(f,10143)).toMatchObject({ market: f.transactions[2]!.contractAddress, faucet: f.transactions[3]!.contractAddress, startBlock: '102' });
   });
   it('refuses dry run, failed receipts, wrong chain, shifted faucet nonce and wrong demo parameters', () => {
     const mutations = [
