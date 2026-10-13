@@ -115,3 +115,7 @@ After a successful explicitly executed deployment, `pnpm gen` validates four suc
 ## Indexed receipts
 
 See [indexer/README.md](indexer/README.md) for configuration, Cloud packaging, public web variables and the read-only rehearsal audit. The application shows unavailable-data states until a real endpoint and matching market are configured. S5's implementation, verification evidence and remaining hosted/mainnet gates are recorded in [docs/S5_REPORT.md](docs/S5_REPORT.md).
+
+### S6 trading app
+
+The web app now supports Mera passkey accounts, gasless faucet/orders, a live block-pinned auction chart, bot controls, indexed account history, cancellation and direct withdrawal. See [S6 report](docs/S6_REPORT.md) for setup, measured verification and the remaining physical-phone/production gates. Choose the permanent production hostname and set `PUBLIC_RP_ID` before onboarding users. `pnpm web:test-local` verifies the actual web endpoints and 20 maker-only price comparisons on a temporary local MonadTen chain; it sends no live transaction.

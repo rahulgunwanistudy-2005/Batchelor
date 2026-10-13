@@ -118,3 +118,31 @@ Shared settlement, Envio handlers/schema, standalone Cloud package, indexed web 
 - [x] S5 operations/report, sources, lessons and task status saved in the final documentation commit.
 
 All commits are local; no push or new chain transaction is included.
+
+# S6 — Passkey accounts and live gasless trading
+
+Scope: implement the supplied S6 requirements on the existing S1–S5 code. The user's explicit request authorizes systematic local commits, overriding the documents' older Git prohibition. Preserve verified Node 24, storage and gas corrections. No production hostname, hosted endpoint or funding is invented.
+
+- [x] Regenerate ABI and inspect actual Mera declarations; require explicit production RP ID.
+- [x] Implement bigint uncrossing and EIP-712 intents with golden-vector/signature tests.
+- [x] Implement Mera onboarding, recovery and ten-minute idle signing sessions.
+- [x] Implement validated, rate-limited, simulated server relay/drip/bot controls with shared gas.
+- [x] Implement coherent live WS snapshots with HTTP fallback, chart/tape, ticket and order lifecycle.
+- [x] Implement account balances, cancellation, indexed history and direct withdrawal.
+- [x] Verify behavior, contract/workspace gates, responsive/accessibility checks; record external gates and commit coherent groups.
+
+
+## S6 outcome
+
+Passkey accounts, validated gasless server routes, exact uncrossing/intents, live chart/tape/ticket, account controls and withdrawal gas measurements are implemented. Contract and workspace gates pass. Real local web endpoint execution includes a filled signed order, invalid-intent rejection and 20 consecutive maker-only price matches; both empty and connected trade screens score 100 in Lighthouse accessibility. Responsive live screenshots are retained at 375/768/1280px.
+
+The permanent production hostname, funded/hosted services, physical phone PRF onboarding under 60s/video and actual desktop Chrome local-profile PRF failure remain external acceptance gates. No mainnet send or push was performed. See docs/S6_REPORT.md.
+
+## S6 commit organization
+
+- [x] `c340dc1`: shared bigint auction/intent code and measured withdrawal gas.
+- [x] `c37e73f`: passkey sessions, validated server routes and behavior tests.
+- [x] `2ff58f1`: live trade chart/ticket, account controls and responsive styles.
+- [x] Local end-to-end tooling, screenshots, audit evidence and operations report saved in the final verification commit.
+
+All S6 commits are local on `main`. No push was requested or performed.

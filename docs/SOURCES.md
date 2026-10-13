@@ -47,3 +47,9 @@ Copy into the repo as `docs/SOURCES.md`. "Single source" means one origin; reche
 | Cloud deployment directory and dependency constraints | [Cloud troubleshooting](https://docs.envio.dev/docs/HyperIndex/envio-cloud-troubleshooting) | Only selected directory is uploaded; shared code requires a standalone package; exact Envio version pin |
 | Cloud dev-tier operations and endpoint retrieval | [Cloud CLI](https://docs.envio.dev/docs/HyperIndex/envio-cloud-cli) | Development tier and actual deployment endpoint are supported; no project/endpoint is invented |
 | Testnet handler/settlement compatibility | Repository `indexer/test/chain.test.ts`, [`indexer/evidence/testnet-replay.json`](../indexer/evidence/testnet-replay.json) | Actual S3 receipts replayed through Envio; 256 historical preview comparisons passed; this is not hosted sync evidence |
+
+## S6 implementation verification (13 Oct 2026)
+
+Mera integration was checked against installed `@category-labs/mera` 0.2.0 declarations/source (`passkey`, `types`, `secp256k1`, `viem`) and the official Mera guide retained from S1. It uses the exact RP/user/credential option shapes and standard BIP-44 derivation; provider compatibility remains a physical-browser acceptance gate. The source pack's Node 22 recommendation remains superseded by Mera's Node >=24 requirement.
+
+Uncrossing/settlement and EIP-712 behavior are checked against the repository Solidity implementation and exported golden vectors, rather than assumed from prose. S6 introduces no new protocol claims from the supplied sources table. Local execution, price comparisons and Lighthouse outputs are recorded in `docs/verification/`; localhost addresses are fixture evidence, not public deployments.

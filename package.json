@@ -23,7 +23,8 @@
     "funding:plan": "node --env-file-if-exists=.env --experimental-strip-types scripts/funding-plan.ts",
     "test:tooling": "vitest run scripts/*.test.ts",
     "verify:bundle": "node --experimental-strip-types scripts/verification-bundle.ts",
-    "bots:test-local": "node --experimental-strip-types scripts/test-bots-local.ts"
+    "bots:test-local": "node --experimental-strip-types scripts/test-bots-local.ts",
+    "web:test-local": "node --experimental-strip-types scripts/test-web-local.ts"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
