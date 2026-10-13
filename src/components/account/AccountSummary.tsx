@@ -1,9 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { readAccountBalances, type BalancesResult } from "@/lib/account/balances";
 import { networkConfig } from "@/lib/network/status";
+import { dripFaucet, withdraw } from "@/lib/trading/actions";
+import { loadMarketParams, parseTokenAmount, type MarketParams } from "@/lib/trading/params";
+import { useTradingBlocker } from "@/lib/trading/useTradingBlocker";
+import { useTransaction } from "@/lib/trading/useTransaction";
 import { isWrongChain, useWallet } from "@/lib/wallet/useWallet";
+import { TxStatus } from "@/components/trading/TxStatus";
 
 const REFRESH_MS = 10_000;
 
@@ -12,6 +17,22 @@ export function AccountSummary() {
   const wallet = useWallet();
   const address = wallet.status === "connected" ? wallet.address : null;
   const [result, setResult] = useState<{ for: string; value: BalancesResult } | null>(null);
+  const id = useId();
+  const blocker = useTradingBlocker();
+  const { state, run, busy } = useTransaction();
+  const [params, setParams] = useState<MarketParams | null>(null);
+  const [token, setToken] = useState<"base" | "quote">("quote");
+  const [amount, setAmount] = useState("");
+  const [successText, setSuccessText] = useState("Done.");
+
+  useEffect(() => {
+    let live = true;
+    loadMarketParams().then(
+      (loaded) => { if (live) setParams(loaded); },
+      () => { if (live) setParams(null); },
+    );
+    return () => { live = false; };
+  }, []);
 
   useEffect(() => {
     if (!address) return;
@@ -29,7 +50,19 @@ export function AccountSummary() {
       active = false;
       window.clearInterval(interval);
     };
-  }, [address]);
+  }, [address, state.phase]);
+
+  const decimals = params ? (token === "base" ? params.baseDecimals : params.quoteDecimals) : null;
+  const units = decimals !== null && amount.trim() !== "" ? parseTokenAmount(amount, decimals) : null;
+  const amountError = amount.trim() !== "" && units === null ? "Enter a positive amount with no more decimals than the token has." : null;
+  const hasFaucet = networkConfig.faucetAddress !== null;
+
+  const submitWithdraw = async () => {
+    if (!params || units === null) return;
+    setSuccessText("Withdrawn to your wallet.");
+    const done = await run((onPhase) => withdraw(token === "base" ? params.base : params.quote, units, onPhase));
+    if (done !== undefined) setAmount("");
+  };
 
   let walletText = "Not connected";
   if (wallet.status === "checking") walletText = "Checking";
@@ -65,11 +98,56 @@ export function AccountSummary() {
         <div><dt>Base balance</dt><dd className="proof-hash">{balances ? `${balances.base.amount} ${balances.base.symbol}` : "—"}</dd></div>
         <div><dt>Quote balance</dt><dd className="proof-hash">{balances ? `${balances.quote.amount} ${balances.quote.symbol}` : "—"}</dd></div>
       </dl>
-      <div className="account-actions">
-        <button className="connect-button" type="button" disabled title="Transactions are not enabled in this build">Deposit unavailable</button>
-        <button className="connect-button" type="button" disabled title="Transactions are not enabled in this build">Withdraw unavailable</button>
-      </div>
-      <p className="panel-footnote" style={{ marginBottom: 10 }} role="status">{note}</p>
+      <p className="panel-footnote" role="status">{note}</p>
+
+      <form
+        className="account-form"
+        noValidate
+        onSubmit={(event) => {
+          event.preventDefault();
+          void submitWithdraw();
+        }}
+      >
+        <label className="field-label" htmlFor={`${id}-amount`}>Withdraw to your wallet</label>
+        <div className="account-row">
+          <select aria-label="Token to withdraw" value={token} onChange={(event) => setToken(event.target.value === "base" ? "base" : "quote")}>
+            <option value="quote">{params?.quoteSymbol ?? "Quote"}</option>
+            <option value="base">{params?.baseSymbol ?? "Base"}</option>
+          </select>
+          <div className={`input-shell ${amountError ? "input-shell--error" : ""}`}>
+            <input
+              id={`${id}-amount`}
+              inputMode="decimal"
+              autoComplete="off"
+              maxLength={40}
+              placeholder="0.00"
+              value={amount}
+              onChange={(event) => setAmount(event.target.value)}
+              aria-invalid={amountError !== null}
+            />
+          </div>
+          <button className="connect-button" type="submit" disabled={blocker !== null || busy || units === null}>Withdraw</button>
+        </div>
+        {amountError && <p className="field-error">{amountError}</p>}
+        <div className="account-row">
+          <button
+            className="connect-button"
+            type="button"
+            disabled={blocker !== null || busy || !hasFaucet}
+            title={hasFaucet ? "Credits demo tokens to your deposited balance, once per address per 24 hours" : "No faucet address is configured"}
+            onClick={() => {
+              setSuccessText("Demo tokens credited to your deposited balance.");
+              void run((onPhase) => dripFaucet(onPhase));
+            }}
+          >
+            {hasFaucet ? "Get demo tokens" : "Faucet not configured"}
+          </button>
+        </div>
+        <TxStatus state={state} success={successText} />
+        <p className="fine-print">
+          {blocker ?? "Testnet demo tokens only, with no real value. Deposits from a wallet are not offered here: the faucet credits your balance directly."}
+        </p>
+      </form>
     </section>
   );
 }

@@ -23,9 +23,13 @@ function fakeReader(responses: Record<string, unknown> = {}, chainId = 10143) {
   };
   const reader = {
     getChainId: async () => chainId,
-    readContract: async ({ address, functionName }: { address: string; functionName: string }) => {
+    // Block n is given timestamp n * 60 s, so tests can place batches in time.
+    getBlock: async ({ blockNumber }: { blockNumber: bigint }) => ({ timestamp: blockNumber * BigInt(60) }),
+    readContract: async ({ address, functionName, args }: { address: string; functionName: string; args?: readonly unknown[] }) => {
       calls.push(functionName);
-      const key = address === AUCTION ? functionName : `${functionName}:${address}`;
+      const plain = address === AUCTION ? functionName : `${functionName}:${address}`;
+      const withArg = `${functionName}:${String(args?.[0])}`;
+      const key = withArg in responses ? withArg : plain;
       const value = key in responses ? responses[key] : defaults[key];
       if (value === undefined) throw new Error(`reverted: ${key}`);
       if (value instanceof Error) throw value;
@@ -85,9 +89,10 @@ describe("on-chain adapter: failures never produce data", () => {
     delete responses.LOT;
     expect((await adapter.getMarketSummary("default")).status).toBe("live");
   });
-  it("never claims candles", async () => {
-    const { adapter } = adapterWith();
+  it("reports no candles, not an empty chart, when nothing has traded", async () => {
+    const { adapter } = adapterWith({ openBatch: openBatch({ id: BigInt(1) }) });
     expect(await adapter.getCandles("default", "1h")).toMatchObject({ status: "unavailable", data: null });
+    expect((await adapter.getCandles("default", "2h")).status).toBe("error");
   });
 });
 
@@ -96,7 +101,7 @@ describe("on-chain adapter: summary and batch results", () => {
     const { adapter } = adapterWith({ result: clearedResult({ clearTick: 107 }) });
     expect((await adapter.getMarketSummary("default")).data).toEqual({
       marketId: "default", baseAsset: "ROSE", quoteAsset: "dUSD", lastClearingPrice: "1.035",
-      change24hPercent: null, currentBatchId: "7", lastClearingTimestamp: null,
+      change24hPercent: null, currentBatchId: "7", lastClearingTimestamp: 99 * 60_000,
     });
   });
   it("leaves the last price empty when the previous batch did not trade or nothing is open", async () => {
@@ -117,7 +122,7 @@ describe("on-chain adapter: summary and batch results", () => {
     const cleared = adapterWith({ result: clearedResult({ clearTick: 107 }) });
     expect((await cleared.adapter.getBatchResult("default", "6")).data).toEqual({
       marketId: "default", batchId: "6", clearingPrice: "1.035 dUSD", volume: "2.5 ROSE",
-      orderCount: null, clearGas: "41234", blockNumber: "99", clearedAtTimestamp: null,
+      orderCount: null, clearGas: "41234", blockNumber: "99", clearedAtTimestamp: 99 * 60_000,
     });
     const pending = adapterWith({ result: clearedResult({ clearedAt: BigInt(0) }) });
     expect(await pending.adapter.getBatchResult("default", "6")).toMatchObject({ status: "unavailable", data: null });
@@ -126,5 +131,40 @@ describe("on-chain adapter: summary and batch results", () => {
     const { adapter, calls } = adapterWith();
     for (const id of ["0", "-1", "abc", "1.5", ""]) expect((await adapter.getBatchResult("default", id)).status).toBe("error");
     expect(calls).toEqual([]);
+  });
+});
+
+describe("on-chain adapter: history", () => {
+  // Open batch 6; batches 1-5 cleared at blocks 10, 11, 70, 71, 72 (minutes, see fake getBlock).
+  const history = {
+    openBatch: openBatch({ id: BigInt(6) }),
+    "result:1": clearedResult({ clearTick: 100, volumeLots: BigInt(1000), clearedAt: BigInt(10) }),
+    "result:2": clearedResult({ clearTick: 104, volumeLots: BigInt(2000), clearedAt: BigInt(11) }),
+    "result:3": clearedResult({ clearTick: 90, volumeLots: BigInt(0), clearedAt: BigInt(70) }), // cleared, no trade
+    "result:4": clearedResult({ clearTick: 102, volumeLots: BigInt(500), clearedAt: BigInt(71) }),
+    "result:5": clearedResult({ clearTick: 98, volumeLots: BigInt(1500), clearedAt: BigInt(72) }),
+  };
+
+  it("lists cleared batches newest first, including ones that did not trade", async () => {
+    const { adapter } = adapterWith(history);
+    const result = await adapter.getRecentBatches("default", 3);
+    expect(result.data?.map((batch) => [batch.batchId, batch.clearingPrice])).toEqual([["5", "0.99 dUSD"], ["4", "1.01 dUSD"], ["3", null]]);
+  });
+  it("builds candles from clearing prices, skipping batches with no trade", async () => {
+    const { adapter } = adapterWith(history);
+    const hourly = (await adapter.getCandles("default", "1h")).data;
+    expect(hourly).toEqual([
+      { time: 0, open: "1", high: "1.02", low: "1", close: "1.02", volume: "3" },
+      { time: 3_600_000, open: "1.01", high: "1.01", low: "0.99", close: "0.99", volume: "2" },
+    ]);
+    expect((await adapter.getCandles("default", "1m")).data?.map((candle) => candle.time)).toEqual([600_000, 660_000, 4_260_000, 4_320_000]);
+  });
+  it("reads each cleared batch from the chain only once", async () => {
+    const { adapter, calls } = adapterWith(history);
+    await adapter.getRecentBatches("default", 5);
+    const before = calls.filter((name) => name === "result").length;
+    await adapter.getCandles("default", "1h");
+    await adapter.getBatchResult("default", "4");
+    expect(calls.filter((name) => name === "result").length).toBe(before);
   });
 });

@@ -10,6 +10,7 @@ import Link from "next/link";
 import { MarketChart } from "@/components/terminal/MarketChart";
 import { SystemStatus } from "@/components/terminal/SystemStatus";
 import { AutoRefresh } from "@/components/terminal/AutoRefresh";
+import { RecentBatches } from "@/components/terminal/RecentBatches";
 import { TopBar } from "@/components/terminal/TopBar";
 
 interface HomePageProps {
@@ -18,10 +19,11 @@ interface HomePageProps {
 
 export default async function HomePage({ searchParams }: HomePageProps) {
   const interval = parseCandleInterval((await searchParams).interval);
-  const [marketResult, bookResult, candleResult] = await Promise.all([
+  const [marketResult, bookResult, candleResult, historyResult] = await Promise.all([
     marketDataAdapter.getMarketSummary("default"),
     marketDataAdapter.getOrderBook("default"),
     marketDataAdapter.getCandles("default", interval),
+    marketDataAdapter.getRecentBatches("default", 12),
   ]);
 
   return (
@@ -37,6 +39,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <div className="terminal-grid">
           <div className="terminal-main">
             <MarketChart result={candleResult} interval={interval} />
+            <RecentBatches result={historyResult} />
             <div id="orders"><OrdersPanel /></div>
           </div>
           <div className="terminal-book">
@@ -55,12 +58,12 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             <h2>Designed around batch execution</h2>
             <p>Orders are grouped into batches. Eligible matches target a uniform clearing price; actual allocation and settlement are determined by the deployed auction rules.</p>
           </div>
-          <Link href="#auction" aria-label="Learn about auction history"><ExternalLink size={16} /></Link>
+          <Link href="#history" aria-label="Go to auction history"><ExternalLink size={16} /></Link>
         </section>
 
         <footer className="footer">
           <span>BATCHELOR <span className="brand-period">/</span> DEVELOPMENT BUILD</span>
-          <span>{contractReadsConfigured ? "Read-only: the order book comes from the configured contract." : "Market data is not connected."} No trades can be submitted.</span>
+          <span>{contractReadsConfigured ? "Data is read from the configured contract. Trading is limited to Monad testnet demo tokens." : "Market data is not connected. No trades can be submitted."}</span>
         </footer>
       </div>
     </main>

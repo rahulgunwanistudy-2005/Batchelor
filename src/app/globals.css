@@ -40,6 +40,7 @@ button { color: inherit; }
 .network-dot { width: 7px; height: 7px; border-radius: 50%; background: #5a6472; }
 .network-dot--connected { background: var(--green); }.network-dot--wrong-chain { background: var(--amber); }.network-dot--unavailable { background: var(--red); }
 .network-env { color: var(--muted); font-weight: 400; }
+.primary-button:not(:disabled) { cursor: pointer; }
 .connect-button { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer; height: 28px; border: 1px solid var(--line-strong); background: var(--surface-2); border-radius: var(--radius); padding: 0 10px; font-size: 11px; font-weight: 600; }
 .connect-button--warn { border-color: var(--amber); color: var(--amber); }
 .wallet-control { position: relative; display: flex; align-items: center; gap: 6px; }
@@ -152,6 +153,7 @@ button:disabled { cursor: not-allowed; opacity: .55; }
 .proof-confirmed { display: flex; align-items: center; gap: 8px; margin: 10px 0 0; font-size: 12px; }
 .live-check { display: flex; align-items: center; gap: 8px; margin: 0; padding: 9px 12px; border-bottom: 1px solid var(--line); font-size: 11px; }
 .live-table td { font-family: var(--font-mono), ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+.live-table tbody th { font-family: var(--font-mono), ui-monospace, monospace; }
 .live-table a, .live-facts a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
 .live-table th:last-child { width: auto; text-align: left; }
 .live-facts { border-top: 1px solid var(--line); }
@@ -187,6 +189,16 @@ button:disabled { cursor: not-allowed; opacity: .55; }
 .gas-bar { display: block; height: 100%; border-radius: 0 4px 4px 0; }
 .gas-bar-value { width: 76px; text-align: right; font-family: var(--font-mono), ui-monospace, monospace; font-size: 10px; font-variant-numeric: tabular-nums; }
 .gas-bar-row:hover .gas-bar-value { color: var(--accent); }
+.tx-status { margin: 8px 12px 0; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.tx-status a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.tx-status--ok { color: var(--green); }.tx-status--error { color: var(--red); }.tx-status--pending { color: var(--amber); }
+.orders-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 8px 12px; border-top: 1px solid var(--line); }
+.orders-actions .tx-status { margin: 0; }
+.account-form { margin-top: 10px; padding: 10px 0 12px; border-top: 1px solid var(--line); }
+.account-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 12px 8px; }
+.account-row .input-shell { flex: 1; min-width: 140px; margin: 0; }
+.account-row select { height: 32px; padding: 0 8px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--canvas); color: var(--ink); font: inherit; }
+.account-form .field-error { margin: -2px 12px 8px; }
 .methodology { display: flex; align-items: center; gap: 10px; padding: 9px 12px; margin-top: 6px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
 .method-icon { width: 28px; height: 28px; display: grid; place-items: center; flex: 0 0 auto; background: var(--surface-2); color: var(--accent); border-radius: var(--radius); }
 .methodology p { max-width: 800px; margin: 2px 0 0; color: var(--muted); font-size: 10px; line-height: 1.55; }

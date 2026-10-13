@@ -1,8 +1,10 @@
 import { BaseError, ContractFunctionRevertedError, erc20Abi, formatUnits, type Address, type PublicClient } from "viem";
 import { batchAuctionAbi } from "../../../packages/core/src/abi";
+import { CANDLE_INTERVALS, type CandleInterval } from "./intervals";
 import type {
   BatchResult,
   BookLevel,
+  Candle,
   MarketDataResult,
   MarketSummary,
   OrderBookSnapshot,
@@ -19,7 +21,7 @@ import type { MarketDataAdapter } from "./adapter";
  *   - `result(id).clearedAt` is the clearing block number, 0 if not cleared;
  *     `result` reverts with NotOpenBatch for an id that has no result yet.
  */
-export type ContractReader = Pick<PublicClient, "readContract" | "getChainId">;
+export type ContractReader = Pick<PublicClient, "readContract" | "getChainId" | "getBlock">;
 
 export interface OnchainConfig {
   reader: ContractReader;
@@ -37,6 +39,28 @@ interface MarketParams {
   tickSize: bigint;
   lot: bigint;
 }
+
+/** A cleared batch as stored on chain; immutable once cleared, so safe to cache. */
+interface ClearedBatch {
+  id: bigint;
+  clearTick: number;
+  volumeLots: bigint;
+  clearGas: number;
+  block: bigint;
+  timestampMs: number;
+}
+
+const INTERVAL_MS: Record<CandleInterval, number> = {
+  "1m": 60_000,
+  "5m": 300_000,
+  "15m": 900_000,
+  "1h": 3_600_000,
+  "4h": 14_400_000,
+  "1d": 86_400_000,
+};
+
+/** How many recent batches the chart reads; each costs two RPC calls the first time. */
+const HISTORY_BATCHES = 60;
 
 function failure<T>(message: string): MarketDataResult<T> {
   return { status: "error", data: null, message };
@@ -88,6 +112,64 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
     }
   }
 
+  const cleared = new Map<string, ClearedBatch>();
+
+  /** A cleared batch by id, or null if it has no result yet. */
+  async function loadCleared(id: bigint): Promise<ClearedBatch | null> {
+    const cached = cleared.get(id.toString());
+    if (cached) return cached;
+
+    let result;
+    try {
+      result = await reader.readContract({ ...auction, functionName: "result", args: [id] });
+    } catch (error) {
+      const revert = error instanceof BaseError ? error.walk((cause) => cause instanceof ContractFunctionRevertedError) : null;
+      if (revert instanceof ContractFunctionRevertedError && revert.data?.errorName === "NotOpenBatch") return null;
+      throw error;
+    }
+    if (result.clearedAt === BigInt(0)) return null;
+
+    const block = await reader.getBlock({ blockNumber: result.clearedAt });
+    const batch: ClearedBatch = {
+      id,
+      clearTick: result.clearTick,
+      volumeLots: result.volumeLots,
+      clearGas: result.clearGas,
+      block: result.clearedAt,
+      timestampMs: Number(block.timestamp) * 1000,
+    };
+    cleared.set(id.toString(), batch);
+    return batch;
+  }
+
+  /** The last batch that can have a result: before an open batch, or the last batch once none is open. */
+  async function lastResultId(): Promise<bigint> {
+    const open = await reader.readContract({ ...auction, functionName: "openBatch" });
+    return open.hasOpen ? open.id - BigInt(1) : open.id;
+  }
+
+  /** Up to `limit` cleared batches, newest first. */
+  async function recentCleared(limit: number): Promise<ClearedBatch[]> {
+    const lastId = await lastResultId();
+    const ids: bigint[] = [];
+    for (let id = lastId; id >= BigInt(1) && ids.length < limit; id -= BigInt(1)) ids.push(id);
+    const batches = await Promise.all(ids.map((id) => loadCleared(id)));
+    return batches.filter((batch): batch is ClearedBatch => batch !== null);
+  }
+
+  function toBatchResult(p: MarketParams, marketId: string, batch: ClearedBatch): BatchResult {
+    return {
+      marketId,
+      batchId: batch.id.toString(),
+      clearingPrice: batch.volumeLots > BigInt(0) ? `${tickPrice(p, batch.clearTick)} ${p.quoteSymbol}` : null,
+      volume: `${lotsToBase(p, batch.volumeLots)} ${p.baseSymbol}`,
+      orderCount: null,
+      clearGas: batch.clearGas.toString(),
+      blockNumber: batch.block.toString(),
+      clearedAtTimestamp: batch.timestampMs,
+    };
+  }
+
   return {
     getMarketSummary(marketId) {
       return guarded<MarketSummary>(async () => {
@@ -97,13 +179,8 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
         // The most recent batch that can have a result: the one before an
         // open batch, or the last batch itself once nothing is open.
         const lastId = open.hasOpen ? open.id - BigInt(1) : open.id;
-        let lastClearingPrice: string | null = null;
-        if (lastId >= BigInt(1)) {
-          const previous = await reader.readContract({ ...auction, functionName: "result", args: [lastId] });
-          if (previous.clearedAt > BigInt(0) && previous.volumeLots > BigInt(0)) {
-            lastClearingPrice = tickPrice(p, previous.clearTick);
-          }
-        }
+        const previous = lastId >= BigInt(1) ? await loadCleared(lastId) : null;
+        const traded = previous !== null && previous.volumeLots > BigInt(0);
 
         return {
           status: "live",
@@ -111,10 +188,10 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
             marketId,
             baseAsset: p.baseSymbol,
             quoteAsset: p.quoteSymbol,
-            lastClearingPrice,
+            lastClearingPrice: traded ? tickPrice(p, previous.clearTick) : null,
             change24hPercent: null,
             currentBatchId: open.hasOpen ? open.id.toString() : null,
-            lastClearingTimestamp: null,
+            lastClearingTimestamp: traded ? previous.timestampMs : null,
           },
         };
       });
@@ -144,12 +221,48 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
       });
     },
 
-    async getCandles() {
-      return {
-        status: "unavailable",
-        data: null,
-        message: "Price history needs an indexer; it cannot be read from the contract.",
-      };
+    getCandles(marketId, interval) {
+      if (!(CANDLE_INTERVALS as readonly string[]).includes(interval)) {
+        return Promise.resolve(failure<Candle[]>("Unsupported candle interval."));
+      }
+      const bucketMs = INTERVAL_MS[interval as CandleInterval];
+
+      return guarded<Candle[]>(async () => {
+        const p = await loadParams();
+        const batches = (await recentCleared(HISTORY_BATCHES)).filter((batch) => batch.volumeLots > BigInt(0)).reverse();
+        if (batches.length === 0) {
+          return { status: "unavailable", data: null, message: "No batch has traded on this market yet." };
+        }
+
+        // Oldest first. Each candle summarises the clearing prices of the batches in its interval.
+        const candles: { time: number; open: bigint; high: bigint; low: bigint; close: bigint; lots: bigint }[] = [];
+        for (const batch of batches) {
+          const price = p.minPrice + BigInt(batch.clearTick) * p.tickSize;
+          const time = Math.floor(batch.timestampMs / bucketMs) * bucketMs;
+          const last = candles[candles.length - 1];
+          if (last && last.time === time) {
+            if (price > last.high) last.high = price;
+            if (price < last.low) last.low = price;
+            last.close = price;
+            last.lots += batch.volumeLots;
+          } else {
+            candles.push({ time, open: price, high: price, low: price, close: price, lots: batch.volumeLots });
+          }
+        }
+
+        return {
+          status: "live",
+          data: candles.map((candle) => ({
+            time: candle.time,
+            open: formatUnits(candle.open, p.quoteDecimals),
+            high: formatUnits(candle.high, p.quoteDecimals),
+            low: formatUnits(candle.low, p.quoteDecimals),
+            close: formatUnits(candle.close, p.quoteDecimals),
+            volume: lotsToBase(p, candle.lots),
+          })),
+          message: `Built from the last ${batches.length} traded batch${batches.length === 1 ? "" : "es"} read from the contract.`,
+        };
+      });
     },
 
     getBatchResult(marketId, batchId) {
@@ -159,35 +272,19 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
 
       return guarded<BatchResult>(async () => {
         const p = await loadParams();
-        const notCleared: MarketDataResult<BatchResult> = {
-          status: "unavailable",
-          data: null,
-          message: "This batch does not exist yet or has not been cleared.",
-        };
-        let result;
-        try {
-          result = await reader.readContract({ ...auction, functionName: "result", args: [BigInt(batchId)] });
-        } catch (error) {
-          const revert = error instanceof BaseError ? error.walk((cause) => cause instanceof ContractFunctionRevertedError) : null;
-          if (revert instanceof ContractFunctionRevertedError && revert.data?.errorName === "NotOpenBatch") return notCleared;
-          throw error;
+        const batch = await loadCleared(BigInt(batchId));
+        if (!batch) {
+          return { status: "unavailable", data: null, message: "This batch does not exist yet or has not been cleared." };
         }
-        if (result.clearedAt === BigInt(0)) return notCleared;
+        return { status: "live", data: toBatchResult(p, marketId, batch) };
+      });
+    },
 
-        const traded = result.volumeLots > BigInt(0);
-        return {
-          status: "live",
-          data: {
-            marketId,
-            batchId,
-            clearingPrice: traded ? `${tickPrice(p, result.clearTick)} ${p.quoteSymbol}` : null,
-            volume: `${lotsToBase(p, result.volumeLots)} ${p.baseSymbol}`,
-            orderCount: null,
-            clearGas: result.clearGas.toString(),
-            blockNumber: result.clearedAt.toString(),
-            clearedAtTimestamp: null,
-          },
-        };
+    getRecentBatches(marketId, limit) {
+      return guarded<BatchResult[]>(async () => {
+        const p = await loadParams();
+        const batches = await recentCleared(Math.max(1, Math.min(limit, HISTORY_BATCHES)));
+        return { status: "live", data: batches.map((batch) => toBatchResult(p, marketId, batch)) };
       });
     },
   };

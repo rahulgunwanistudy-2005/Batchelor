@@ -15,7 +15,7 @@ export default function MyOrdersPage() {
         <OrdersPanel />
         <footer className="footer">
           <span>BATCHELOR <span className="brand-period">/</span> DEVELOPMENT BUILD</span>
-          <span>Read-only. No trades can be submitted.</span>
+          <span>Testnet demo tokens only. No real value.</span>
         </footer>
       </div>
     </main>

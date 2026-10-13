@@ -4,6 +4,7 @@ import type { DeploymentStatusResult } from "@/lib/network/status";
 import { useSystemStatus } from "@/lib/network/useSystemStatus";
 import { isWrongChain, useWallet, type WalletState } from "@/lib/wallet/useWallet";
 import type { DataStatus } from "@/types/market";
+import { useTradingBlocker } from "@/lib/trading/useTradingBlocker";
 import { describeNetwork } from "./NetworkStatus";
 
 type Tone = "ok" | "pending" | "warn" | "error" | "off";
@@ -39,6 +40,12 @@ function describeWallet(wallet: WalletState): Omit<Row, "name"> {
     return { tone: "warn", label: "Wrong network", detail: `The wallet is on chain ID ${wallet.chainId ?? "unknown"}, not the expected chain.` };
   }
   return { tone: "ok", label: "Connected", detail: "An account is connected for display only. This does not enable trading." };
+}
+
+function describeTrading(blocker: string | null): Omit<Row, "name"> {
+  return blocker === null
+    ? { tone: "ok", label: "Testnet, by approval", detail: "Orders can be sent on Monad testnet. Each one needs your approval in the wallet." }
+    : { tone: "off", label: "Unavailable", detail: blocker };
 }
 
 const NETWORK_TONES = {
@@ -80,6 +87,7 @@ export function SystemStatus({ feedStatus, feedMessage, readsConfigured, readsSt
   const { network, deployment } = useSystemStatus();
   const networkText = describeNetwork(network);
   const wallet = useWallet();
+  const blocker = useTradingBlocker();
 
   const rows: Row[] = [
     { name: "RPC connection", tone: NETWORK_TONES[network.state], ...networkText },
@@ -87,7 +95,7 @@ export function SystemStatus({ feedStatus, feedMessage, readsConfigured, readsSt
     { name: "Contract reads", ...describeReads(readsConfigured, readsStatus) },
     { name: "Price history feed", ...FEED[feedStatus], detail: feedMessage ?? "Status reported by the market-data adapter." },
     { name: "Wallet", ...describeWallet(wallet) },
-    { name: "Transactions", tone: "off", label: "Disabled", detail: "This build cannot submit deposits, orders, cancellations or claims." },
+    { name: "Transactions", ...describeTrading(blocker) },
   ];
 
   return (

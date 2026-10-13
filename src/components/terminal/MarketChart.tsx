@@ -145,7 +145,7 @@ export function MarketChart({ result, interval }: MarketChartProps) {
           </p>
         </div>
         <span className="market-chart-source">
-          {hasCandles ? "Verified feed" : "Feed unavailable"}
+          {hasCandles ? "Read from the contract" : "Feed unavailable"}
         </span>
       </div>
 
@@ -199,7 +199,7 @@ export function MarketChart({ result, interval }: MarketChartProps) {
       )}
 
       <div className="market-chart-footer">
-        <span>Source: market data adapter · {interval} interval</span>
+        <span>{hasCandles && result.message ? result.message : "Source: market data adapter"} · {interval} interval</span>
         <span>
           {hasCandles
             ? `${candles.length} candles`

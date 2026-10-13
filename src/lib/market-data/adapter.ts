@@ -28,6 +28,12 @@ export interface MarketDataAdapter {
     marketId: string,
     batchId: string
   ): Promise<MarketDataResult<BatchResult>>;
+
+  /** Most recent cleared batches, newest first. */
+  getRecentBatches(
+    marketId: string,
+    limit: number
+  ): Promise<MarketDataResult<BatchResult[]>>;
 }
 
 function unavailable<T>(
@@ -114,6 +120,12 @@ const unavailableAdapter: MarketDataAdapter = {
 
     return unavailable<BatchResult>(
       "Batch results are not connected."
+    );
+  },
+
+  async getRecentBatches() {
+    return unavailable<BatchResult[]>(
+      "Batch history is not connected."
     );
   },
 };

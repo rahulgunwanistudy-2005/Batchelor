@@ -54,6 +54,8 @@ export const networkConfig = {
   rpcUrl: parseRpcUrl(process.env.NEXT_PUBLIC_RPC_URL),
   /** Unset until a real deployment exists; never defaulted. */
   marketAddress: parseAddress(process.env.NEXT_PUBLIC_MARKET_ADDRESS),
+  /** Optional demo-token faucet for the market above. */
+  faucetAddress: parseAddress(process.env.NEXT_PUBLIC_FAUCET_ADDRESS),
 };
 
 function rpcClient(rpcUrl: string) {
