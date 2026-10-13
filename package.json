@@ -1,27 +1,30 @@
 {
   "name": "batchelor",
+  "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@9.15.9",
-  "engines": {
-    "node": ">=24 <25",
-    "pnpm": ">=9 <10"
-  },
   "scripts": {
-    "gen": "node --experimental-strip-types scripts/gen-abi.ts",
-    "spike": "python3 scripts/spike.py",
-    "sample:testnet": "python3 scripts/sample-testnet.py",
-    "typecheck": "pnpm -r typecheck",
-    "lint": "pnpm -r lint",
-    "test": "pnpm -r test",
-    "build": "pnpm -r build",
-    "check:contracts": "python3 scripts/check-contracts.py",
-    "spike:live": "node --env-file-if-exists=.env --experimental-strip-types scripts/live-spike.ts"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "lightweight-charts": "5.2.1",
+    "lucide-react": "^0.468.0",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "viem": "2.57.5"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0",
-    "typescript": "~5.9.3",
-    "vitest": "^3.2.4",
-    "viem": "^2.40.0"
-  },
-  "type": "module"
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^15.1.0",
+    "typescript": "^5.7.2",
+    "vitest": "3.2.7"
+  }
 }
