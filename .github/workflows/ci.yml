@@ -48,6 +48,8 @@ jobs:
       - name: Historical hardfork tests
         working-directory: contracts
         run: FOUNDRY_PROFILE=pre_mip8 forge test --gas-limit 100000000
+      - name: Live evidence regression tests
+        run: python3 -m unittest discover -s scripts -p test_spike.py
       - name: Local storage gate
         run: pnpm spike
       - name: Auction gas benchmarks

@@ -10,16 +10,16 @@ The user's request authorizes logical commits and pushes, overriding the build p
 - [x] Run the same benchmark bytecode under both profiles; report the full-book ratio before scaffolding.
 - [x] Check Mera typed-data signing from installed declarations.
 - [x] Sample and record 200 consecutive testnet headers.
-- [ ] Live emitted-gas parity: deferred by the user pending testnet funding.
+- [x] Live emitted-gas parity: completed 13 October 2026; six exact matches and eight verified receipts.
 - [x] If the >=10x local gate passes, build the S1 contracts, workspace, bot health service, and web placeholders.
 - [x] Generate ABIs, verify storage layout, run contract and TypeScript quality gates, and self-review.
 - [x] Record measured evidence, deferred gates, and reproducible instructions; commit and push logical milestones.
 
 ## Status
 
-Local S1 implementation and quality gates pass. Live emitted-gas parity is pending testnet funding; the provided local key failed the preflight without sending a transaction. The current S2 request supersedes that earlier session boundary; live validation remains recorded as pending. See docs/S1_REPORT.md.
+Local S1 implementation and quality gates pass. The initial funding deferral was superseded by the resumed live check on 13 October 2026: all six gas measurements match exactly, with eight verified receipts. All S1 gates are complete. See docs/S1_REPORT.md.
 
-GitHub Quality gates passed for scaffold commit `74d01b9`. The user explicitly chose to finish with live validation pending.
+GitHub Quality gates passed for scaffold commit `74d01b9`. The user initially deferred live validation; that gate was completed on 13 October 2026.
 
 # S2 — Auction core and correctness proofs
 
@@ -193,3 +193,13 @@ Operations/web recovery and CSP, individually reviewed Slither/CI and secret gat
 Public mainnet shipping/recording acceptance remains incomplete: production domain/deployment/hosting/funding, phone flows/recording/GIF/video, private-dashboard completion and actual mainnet receipt hashes are missing. Read-only mainnet preflight found all recording keys missing, sent zero transfers. Rahul's personal review and remote CI after an authorized push remain pending. See `docs/S8_REPORT.md`, `09_DEMO_SCRIPT.md`, `10_SUBMISSION.md` and `docs/verification/s8-*.json`.
 
 S8 is saved as focused local commits on `main`; no mainnet send, publishing, message, push or submission is included.
+
+# S1 — Complete live storage validation
+
+The user resumed the previously deferred testnet gate. Use only the configured throwaway testnet key; never expose it or send a mainnet transaction. The original chat authorizes systematic commits and pushes without attribution trailers. Local main and origin/main have diverged through other work; publish this focused validation independently instead of changing their histories.
+
+- [x] Inspect current source/evidence and read wallet funding and confirmed/pending nonce.
+- [x] Reproduce the local storage baseline against the current artifact.
+- [x] Run the live testnet probe and verify bytecode, receipts, checksums and six gas measurements.
+- [x] Persist receipts/costs and replace the pending S1 status with measured evidence.
+- [ ] Verify the changed tooling, commit and publish the focused validation without unrelated work.
