@@ -1,0 +1,10 @@
+title = "Batchelor secret scanning"
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Generated Solidity source SHA-256 values, not credentials"
+condition = "AND"
+paths = ['''(^|/)docs/(verification/(s7-contracts|s8-contracts|s8-security)\.json|security/slither-reviewed\.json)$''']
+regexTarget = "line"
+regexes = ['''^\s*"contracts/(src|test)/[A-Za-z0-9_./-]+\.sol": "[0-9a-f]{64}",?\s*$''']
