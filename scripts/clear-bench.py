@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACTS = ROOT / 'contracts'
 OUT = CONTRACTS / 'bench/out'
 FORGE = str(ROOT / '.tools/foundry/bin/forge') if (ROOT / '.tools/foundry/bin/forge').exists() else 'forge'
-ENTRYPOINTS = ['place', 'placeSelfClear', 'placeManySelfClear', 'placeForSelfClear', 'cancel', 'claim1', 'claim50', 'clear', 'drip']
+ENTRYPOINTS = ['place', 'placeSelfClear', 'placeManySelfClear', 'placeForSelfClear', 'cancel', 'claim1', 'claim50', 'clear', 'drip', 'withdraw']
 
 def generate_scattered():
     source = (CONTRACTS / 'src/BatchAuction.sol').read_text()
@@ -41,7 +41,7 @@ def run(args, profile='default'):
     return result.stdout
 
 
-def parse(raw):
+def parse(raw, historical=False):
     measurements = {}
     for line in re.findall(r'^\s*BENCH_JSON (\{.*\})\s*$', raw, re.MULTILINE):
         row = json.loads(line)
@@ -50,6 +50,7 @@ def parse(raw):
         measurements[row['name']] = row
     required = {'clear8', 'clear32', 'clear128', 'clear256', 'mapping8', 'mapping32', 'mapping128', 'mapping256',
                 'orders10', 'orders100', 'orders1000', *ENTRYPOINTS}
+    if historical: required.discard('withdraw')
     assert required <= measurements.keys(), f'Missing benchmarks: {required - measurements.keys()}'
     return measurements
 
@@ -121,7 +122,7 @@ def main():
     for fork, suffix in [('MonadTen', 'ten'), ('MonadNine', 'nine')]:
         path = OUT / f'clear-baseline-{suffix}.log'
         if path.exists():
-            baseline[fork] = parse(path.read_text())
+            baseline[fork] = parse(path.read_text(), historical=True)
     evidence = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
         'foundryVersion': run(['--version']).strip(), 'seed': 42,
         'measurement': {'clearing': 'Production Result.clearGas around _clear; excludes telemetry/event and transaction intrinsic gas',

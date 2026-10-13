@@ -1,7 +1,7 @@
 No files changed, compilation skipped
 
-Ran 29 tests for bench/ClearBench.t.sol:ClearBenchTest
-[PASS] test_cancel() (gas: 365658)
+Ran 31 tests for bench/ClearBench.t.sol:ClearBenchTest
+[PASS] test_cancel() (gas: 365680)
 Logs:
   BENCH_JSON {"name":"cancel","activeTicks":0,"orders":1,"gas":119215}
 
@@ -13,7 +13,7 @@ Logs:
 Logs:
   BENCH_JSON {"name":"claim1","activeTicks":256,"orders":514,"gas":4566487}
 
-[PASS] test_claim1Partial() (gas: 4713802)
+[PASS] test_claim1Partial() (gas: 4713839)
 Logs:
   BENCH_JSON {"name":"claim1:partial","activeTicks":2,"orders":2,"gas":4640467}
 
@@ -21,23 +21,23 @@ Logs:
 Logs:
   BENCH_JSON {"name":"claim50","activeTicks":256,"orders":563,"gas":7692075}
 
-[PASS] test_claim50Partial() (gas: 11406373)
+[PASS] test_claim50Partial() (gas: 11407145)
 Logs:
   BENCH_JSON {"name":"claim50:partial","activeTicks":2,"orders":51,"gas":8745075}
 
-[PASS] test_claim50ScatteredHistory() (gas: 12189959)
+[PASS] test_claim50ScatteredHistory() (gas: 12190731)
 Logs:
   BENCH_JSON {"name":"claim50:scatteredHistory","activeTicks":2,"orders":50,"gas":9529651}
 
-[PASS] test_clear() (gas: 4508397)
+[PASS] test_clear() (gas: 4508375)
 Logs:
   BENCH_JSON {"name":"clear","activeTicks":256,"orders":512,"gas":4493792}
 
-[PASS] test_clear128() (gas: 2367715)
+[PASS] test_clear128() (gas: 2367737)
 Logs:
   BENCH_JSON {"name":"clear128","activeTicks":128,"orders":256,"gas":2259565}
 
-[PASS] test_clear256() (gas: 4544884)
+[PASS] test_clear256() (gas: 4544842)
 Logs:
   BENCH_JSON {"name":"clear256","activeTicks":256,"orders":512,"gas":4436713}
 
@@ -49,12 +49,12 @@ Logs:
 Logs:
   BENCH_JSON {"name":"clear8","activeTicks":8,"orders":16,"gas":218311}
 
-[PASS] test_clearPlateau() (gas: 5019979)
+[PASS] test_clearPlateau() (gas: 5019957)
 Logs:
   BENCH_JSON {"name":"clear:plateau","activeTicks":2,"orders":2,"gas":4549328}
   BENCH_JSON {"name":"clearPlateau","activeTicks":2,"orders":2,"gas":4492249}
 
-[PASS] test_deploymentTooling() (gas: 39782835)
+[PASS] test_deploymentTooling() (gas: 39782850)
 Logs:
   BENCH_JSON {"name":"tooling:deployBase","activeTicks":0,"orders":0,"gas":1143120}
   BENCH_JSON {"name":"tooling:deployQuote","activeTicks":0,"orders":0,"gas":1143086}
@@ -63,7 +63,7 @@ Logs:
   BENCH_JSON {"name":"tooling:seed128","activeTicks":128,"orders":256,"gas":24721275}
   BENCH_JSON {"name":"live128","activeTicks":128,"orders":256,"gas":2259565}
 
-[PASS] test_drip() (gas: 12082076)
+[PASS] test_drip() (gas: 12082091)
 Logs:
   BENCH_JSON {"name":"drip","activeTicks":256,"orders":512,"gas":4828010}
 
@@ -79,7 +79,7 @@ Logs:
 Logs:
   BENCH_JSON {"name":"mapping32","activeTicks":32,"orders":64,"gas":629708}
 
-[PASS] test_mapping8() (gas: 5032348)
+[PASS] test_mapping8() (gas: 5032370)
 Logs:
   BENCH_JSON {"name":"mapping8","activeTicks":8,"orders":16,"gas":219079}
 
@@ -87,11 +87,11 @@ Logs:
 Logs:
   BENCH_JSON {"name":"orders10","activeTicks":1,"orders":10,"gas":632353}
 
-[PASS] test_orders100() (gas: 732347)
+[PASS] test_orders100() (gas: 732325)
 Logs:
   BENCH_JSON {"name":"orders100","activeTicks":1,"orders":100,"gas":632353}
 
-[PASS] test_orders1000() (gas: 732348)
+[PASS] test_orders1000() (gas: 732304)
 Logs:
   BENCH_JSON {"name":"orders1000","activeTicks":1,"orders":1000,"gas":632353}
 
@@ -107,11 +107,11 @@ Logs:
 Logs:
   BENCH_JSON {"name":"placeForSelfClear","activeTicks":256,"orders":512,"gas":4634538}
 
-[PASS] test_placeManyPlateau() (gas: 5677066)
+[PASS] test_placeManyPlateau() (gas: 5677089)
 Logs:
   BENCH_JSON {"name":"placeManySelfClear:plateau","activeTicks":2,"orders":2,"gas":5117461}
 
-[PASS] test_placeManySelfClear() (gas: 5131838)
+[PASS] test_placeManySelfClear() (gas: 5131793)
 Logs:
   BENCH_JSON {"name":"placeManySelfClear","activeTicks":256,"orders":512,"gas":4959325}
 
@@ -119,10 +119,18 @@ Logs:
 Logs:
   BENCH_JSON {"name":"placeSelfClear:plateau","activeTicks":2,"orders":2,"gas":4663805}
 
-[PASS] test_placeSelfClear() (gas: 4624806)
+[PASS] test_placeSelfClear() (gas: 4624828)
 Logs:
   BENCH_JSON {"name":"placeSelfClear","activeTicks":256,"orders":512,"gas":4590928}
 
-Suite result: ok. 29 passed; 0 failed; 0 skipped; finished in 4.87s (6.09s CPU time)
+[PASS] test_withdraw() (gas: 5153993)
+Logs:
+  BENCH_JSON {"name":"withdraw","activeTicks":2,"orders":2,"gas":4616675}
 
-Ran 1 test suite in 4.87s (4.87s CPU time): 29 tests passed, 0 failed, 0 skipped (29 total tests)
+[PASS] test_withdrawQuote() (gas: 5153965)
+Logs:
+  BENCH_JSON {"name":"withdraw:quote","activeTicks":2,"orders":2,"gas":4616653}
+
+Suite result: ok. 31 passed; 0 failed; 0 skipped; finished in 4.97s (6.46s CPU time)
+
+Ran 1 test suite in 4.98s (4.97s CPU time): 31 tests passed, 0 failed, 0 skipped (31 total tests)

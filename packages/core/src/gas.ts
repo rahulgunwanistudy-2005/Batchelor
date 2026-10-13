@@ -4,7 +4,7 @@ export const gasLimits = Object.freeze(limits);
 export type GasOperation = keyof typeof limits;
 
 /** Orders may arrive after sealing: always budget for a self-clear. */
-export function transactionGas(action: 'place' | 'placeFor' | 'placeMany' | 'cancel' | 'cancelFor' | 'claim' | 'clear' | 'drip', count = 1): bigint {
+export function transactionGas(action: 'place' | 'placeFor' | 'placeMany' | 'cancel' | 'cancelFor' | 'claim' | 'clear' | 'drip' | 'withdraw', count = 1): bigint {
   if (!Number.isSafeInteger(count) || count < 1) throw new Error('Expected a positive item count.');
   switch (action) {
     case 'place': return BigInt(limits.placeSelfClear);
@@ -18,6 +18,7 @@ export function transactionGas(action: 'place' | 'placeFor' | 'placeMany' | 'can
       return BigInt(count === 1 ? limits.claim1 : limits.claim50);
     case 'clear': return BigInt(limits.clear);
     case 'drip': return BigInt(limits.drip);
+    case 'withdraw': return BigInt(limits.withdraw);
   }
 }
 

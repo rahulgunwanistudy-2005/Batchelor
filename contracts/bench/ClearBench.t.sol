@@ -226,6 +226,20 @@ contract ClearBenchTest is Test {
         report("cancel", 0, 1, measure(address(market), abi.encodeCall(market.cancel, (0)), trader));
     }
 
+    function test_withdraw() public {
+        plateau();
+        vm.prank(trader);
+        base.transfer(address(777), base.balanceOf(trader));
+        report("withdraw", 2, 2, measure(address(market), abi.encodeCall(market.withdraw, (address(base), 1e15)), trader));
+    }
+
+    function test_withdrawQuote() public {
+        plateau();
+        vm.prank(trader);
+        quote.transfer(address(777), quote.balanceOf(trader));
+        report("withdraw:quote", 2, 2, measure(address(market), abi.encodeCall(market.withdraw, (address(quote), 1e6)), trader));
+    }
+
     function test_clear() public {
         full();
         report("clear", 256, 512, measure(address(market), abi.encodeCall(market.clear, ()), trader));
