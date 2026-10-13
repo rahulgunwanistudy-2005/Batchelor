@@ -6,13 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "dependencies": {
+    "lightweight-charts": "5.2.1",
     "lucide-react": "^0.468.0",
     "next": "^15.1.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "viem": "2.57.5"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
@@ -20,6 +24,7 @@
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.17.0",
     "eslint-config-next": "^15.1.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "3.2.7"
   }
 }
