@@ -54,11 +54,12 @@ export function createIndexerClient(config: IndexerConfig) {
     if (batch.chainId !== config.chainId || batch.market.toLowerCase() !== market || batch.batchId !== BigInt(batchId)) throw new IndexerError('The indexer returned a different market or batch.');
     const orders: IndexedOrder[] = [];
     for (let offset = 0; ; offset += 1000) {
-      const page = await query(`query BatchOrders($batch: String!, $offset: Int!) { Order(where: {batch_id: {_eq: $batch}}, order_by: [{txIndex: asc}, {logIndex: asc}], limit: 1000, offset: $offset) { ${orderFields} } }`, { batch: batch.id, offset }, z.object({ Order: z.array(orderSchema) }));
+      const page = await query(`query BatchOrders($batch: String!, $offset: Int!) { Order(where: {batch_id: {_eq: $batch}}, order_by: [{blockNumber: asc}, {txIndex: asc}, {logIndex: asc}], limit: 1000, offset: $offset) { ${orderFields} } }`, { batch: batch.id, offset }, z.object({ Order: z.array(orderSchema) }));
       orders.push(...page.Order);
       if (page.Order.length < 1000) break;
     }
     if (orders.length !== batch.placedCount || new Set(orders.map(o => o.id)).size !== orders.length || orders.some(o => o.chainId !== config.chainId || o.market.toLowerCase() !== market || o.batch_id !== batch.id)) throw new IndexerError('This batch is still syncing. Try again shortly.');
+    if (orders.filter(o => !o.cancelled).length !== batch.orderCount || (batch.clearedBlock !== null && [batch.clearTxHash, batch.clearTick, batch.price, batch.buyCutoff, batch.sellCutoff, batch.clearGas, batch.clearedAtTimestamp].some(value => value === null))) throw new IndexerError('This batch is still syncing. Try again shortly.');
     return { ...batch, orders };
   }
   async function recentBatches(limit = 60): Promise<IndexedBatch[]> {
@@ -74,7 +75,8 @@ export function createIndexerClient(config: IndexerConfig) {
   }
   async function batchStats(lastN = 500) {
     const batches = await recentBatches(limitValue(lastN));
-    return { count: batches.length, medianClearGas: median(batches.flatMap(b => b.clearGas === null ? [] : [b.clearGas])), volumeLots: batches.reduce((sum, b) => sum + b.volumeLots, 0n) };
+    const gases = batches.flatMap(b => b.clearGas === null ? [] : [b.clearGas]).sort((a,b) => a < b ? -1 : a > b ? 1 : 0);
+    return { count: batches.length, gasSampleCount: gases.length, p95ClearGas: gases.length ? gases[Math.ceil(gases.length * 0.95) - 1]! : null, medianClearGas: median(batches.flatMap(b => b.clearGas === null ? [] : [b.clearGas])), volumeLots: batches.reduce((sum, b) => sum + b.volumeLots, 0n) };
   }
   async function syncState() {
     const data = await query('query Sync($id: String!) { SyncState_by_pk(id: $id) { chainId processedBlock } }', { id: String(config.chainId) }, z.object({ SyncState_by_pk: z.object({ chainId: count, processedBlock: uint }).nullable() }));

@@ -47,5 +47,10 @@ def write_report(e, root):
             lines.append(f"- {t['action']}: [{t['hash']}](https://testnet.monadscan.com/tx/{t['hash']})")
     else:
         lines.append('Pending. Run `pnpm bench:live` with a funded throwaway testnet key. The script verifies chain ID 10143, preflights the entire run, persists transaction hashes, fills 128 ticks per side atomically, triggers a self-clear, and compares emitted `clearGas` to the exact local fixture within 5%. No live number is substituted for a local measurement.')
-    lines += ['', 'No mainnet deployment or transaction is part of this session.', '']
+    lines += ['', '## Proof page summary', '',
+        f"MIP-8 warms storage in pages of 128 slots. Batchelor places both ladders on four pages. The same full-book bytecode clears in {e['optimization']['after']['MonadNine']:,} gas under MonadNine and {e['optimization']['after']['MonadTen']:,} under MonadTen. [Monad storage rules](https://docs.monad.xyz/developer-essentials/summary).", '',
+        f"Monad charges the declared gas limit. An order therefore reserves {e['entrypoints']['placeSelfClear']['limit']:,} gas for a possible self-clear, with limits generated from measured fixtures and a 7.5% margin. [Gas billing](https://docs.monad.xyz/developer-essentials/gas-pricing), [Gas-limit guidance](https://www.category.xyz/blogs/setting-your-gas-limit-on-monad).", '',
+        'With approximately 300 ms blocks, one block collects one batch. The first transaction after sealing clears it; a keeper can supply that transaction during idle periods. [Block timing](https://docs.monad.xyz/developer-essentials/summary).', '',
+        'Monad uses local mempools, and priority fees can affect inclusion and ordering. Batchelor proves that reordering accepted orders inside a batch does not change its allocation. Limits and pro-rata cutoffs determine quantities; filled orders share one price. [Mempools and execution](https://docs.monad.xyz/developer-essentials/summary), [Priority ordering](https://docs.monad.xyz/developer-essentials/gas-pricing).', '',
+        'No mainnet deployment or transaction is part of this session.', '']
     (root / 'docs/WHY_MONAD.md').write_text('\n'.join(lines))

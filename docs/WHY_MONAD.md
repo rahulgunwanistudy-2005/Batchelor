@@ -78,4 +78,14 @@ Local 213,565 gas; live 213,565 gas; difference 0.00%.
 - seed128: [0x5199d37bd25958b7a0f55ca8463e731f9e0a646c843fbf86ec6d7636303b5d75](https://testnet.monadscan.com/tx/0x5199d37bd25958b7a0f55ca8463e731f9e0a646c843fbf86ec6d7636303b5d75)
 - selfClear: [0xaf5e9f396ea509af8458a82117ce85d25b64cfd5d343d92e3e3ea8f446bdd241](https://testnet.monadscan.com/tx/0xaf5e9f396ea509af8458a82117ce85d25b64cfd5d343d92e3e3ea8f446bdd241)
 
+## Proof page summary
+
+MIP-8 warms storage in pages of 128 slots. Batchelor places both ladders on four pages. The same full-book bytecode clears in 4,436,713 gas under MonadNine and 342,713 under MonadTen. [Monad storage rules](https://docs.monad.xyz/developer-essentials/summary).
+
+Monad charges the declared gas limit. An order therefore reserves 586,000 gas for a possible self-clear, with limits generated from measured fixtures and a 7.5% margin. [Gas billing](https://docs.monad.xyz/developer-essentials/gas-pricing), [Gas-limit guidance](https://www.category.xyz/blogs/setting-your-gas-limit-on-monad).
+
+With approximately 300 ms blocks, one block collects one batch. The first transaction after sealing clears it; a keeper can supply that transaction during idle periods. [Block timing](https://docs.monad.xyz/developer-essentials/summary).
+
+Monad uses local mempools, and priority fees can affect inclusion and ordering. Batchelor proves that reordering accepted orders inside a batch does not change its allocation. Limits and pro-rata cutoffs determine quantities; filled orders share one price. [Mempools and execution](https://docs.monad.xyz/developer-essentials/summary), [Priority ordering](https://docs.monad.xyz/developer-essentials/gas-pricing).
+
 No mainnet deployment or transaction is part of this session.

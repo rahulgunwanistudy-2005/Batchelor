@@ -6,6 +6,7 @@
   import UncrossChart from '$lib/viz/UncrossChart.svelte';
   import BatchTape from '$lib/viz/BatchTape.svelte';
   import Ticket from '$lib/ui/Ticket.svelte';
+  import HowItWorks from '$lib/viz/HowItWorks.svelte';
   let { data }: { data: PageData } = $props();
   let now=$state(0), bot=$state<{awake?:boolean;remainingToday?:number;status?:string}|null>(null), botMessage=$state(''), botBusy=$state(false);
   const progress=$derived($live.headAt ? Math.min(100,Math.max(0,(now-$live.headAt)/$live.intervalMs*100)) : 0);
@@ -29,4 +30,5 @@
   <Ticket />
 </div>
 {#if data.indexerMessage}<p class="receipt-note">{data.indexerMessage}</p>{/if}
+<HowItWorks />
 <style>.batch { margin:20px 0 8px; font-size:14px; }.progress { height:3px; background:var(--line); overflow:hidden; }.progress span { display:block; height:100%; background:var(--clear); }.bots { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:20px; }.bots p { flex-basis:100%; }.bots span { font-size:14px; }@media(prefers-reduced-motion:reduce){.progress span{width:100% !important;}}</style>

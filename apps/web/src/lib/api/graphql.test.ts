@@ -19,7 +19,7 @@ describe('indexed read model', () => {
     expect(JSON.parse(String(fetcher.mock.calls[0]?.[1]?.body)).variables).toEqual({ chain: 10143, market, id: '1' });
   });
   it('fetches all receipt pages instead of silently truncating at 1000', async () => {
-    const { client, fetcher } = fixture({ Batch: [{ ...batch, placedCount: 1001 }] }, { Order: Array.from({ length: 1000 }, (_, i) => ({ ...order, id: `${id}:${i}`, orderId: String(i), logIndex: i })) }, { Order: [{ ...order, id: `${id}:1000`, orderId: '1000', logIndex: 1000 }] });
+    const { client, fetcher } = fixture({ Batch: [{ ...batch, placedCount: 1001, orderCount: 1001 }] }, { Order: Array.from({ length: 1000 }, (_, i) => ({ ...order, id: `${id}:${i}`, orderId: String(i), logIndex: i })) }, { Order: [{ ...order, id: `${id}:1000`, orderId: '1000', logIndex: 1000 }] });
     expect((await client.batch(1n))?.orders).toHaveLength(1001);
     expect(JSON.parse(String(fetcher.mock.calls[2]?.[1]?.body)).variables.offset).toBe(1000);
   });
@@ -38,8 +38,17 @@ describe('indexed read model', () => {
   });
   it('computes statistics on the requested sample and handles no data', async () => {
     const rows = [100n, 200n, 400n, 300n].map((gas, i) => ({ ...batch, batchId: String(i + 1), clearGas: gas.toString() }));
-    expect(await fixture({ Batch: rows }).client.batchStats(4)).toEqual({ count: 4, medianClearGas: 250n, volumeLots: 4n });
-    expect(await fixture({ Batch: [] }).client.batchStats()).toEqual({ count: 0, medianClearGas: null, volumeLots: 0n });
+    expect(await fixture({ Batch: rows }).client.batchStats(4)).toEqual({ count: 4, gasSampleCount: 4, p95ClearGas: 400n, medianClearGas: 250n, volumeLots: 4n });
+    expect(await fixture({ Batch: [] }).client.batchStats()).toEqual({ count: 0, gasSampleCount: 0, p95ClearGas: null, medianClearGas: null, volumeLots: 0n });
+  });
+
+  it('does not render partial clearing evidence as a complete receipt', async () => {
+    await expect(fixture({ Batch: [{...batch, price: null}] }, { Order: [order] }).client.batch(1n)).rejects.toThrow('still syncing');
+    await expect(fixture({ Batch: [{...batch, orderCount: 2}] }, { Order: [order] }).client.batch(1n)).rejects.toThrow('still syncing');
+  });
+  it('keeps missing gas observations out of the percentile sample', async () => {
+    const stats=await fixture({Batch:[batch,{...batch,batchId:'2',clearGas:null}]}).client.batchStats();
+    expect(stats.count).toBe(2);expect(stats.gasSampleCount).toBe(1);expect(stats.p95ClearGas).toBe(123456n);
   });
   it('normalizes traders and validates bounds before sending', async () => {
     const { client, fetcher } = fixture({ Order: [order] });

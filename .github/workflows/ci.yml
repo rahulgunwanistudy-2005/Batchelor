@@ -30,7 +30,7 @@ jobs:
         run: forge build --sizes
       - name: Contract tests
         working-directory: contracts
-        run: forge test
+        run: python3 ../scripts/export-test-summary.py
       - name: Historical hardfork tests
         working-directory: contracts
         run: FOUNDRY_PROFILE=pre_mip8 forge test --gas-limit 100000000
