@@ -43,7 +43,9 @@ export function readEnv(source: NodeJS.ProcessEnv = process.env): BotEnv {
 export function createChainClients(env: BotEnv) {
   const chain = env.CHAIN === 'mainnet' ? monad : monadTestnet;
   const publicClient = createPublicClient({ chain, transport: http(env.RPC_HTTP, { timeout: 10_000, retryCount: 1 }) });
-  const headClient = env.RPC_WS ? createPublicClient({ chain, transport: webSocket(env.RPC_WS, { timeout: 10_000 }) }) : null;
+  // The application watchdog owns restart/catch-up. viem's internal reconnect
+  // path can print raw transport exceptions containing credential-bearing URLs.
+  const headClient = env.RPC_WS ? createPublicClient({ chain, transport: webSocket(env.RPC_WS, { timeout: 10_000, reconnect: false }) }) : null;
   const wallets = new Map(keyNames.flatMap((name) => {
     const privateKey = env[name];
     return privateKey ? [[name, createWalletClient({ account: privateKeyToAccount(privateKey as Hex), chain, transport: http(env.RPC_HTTP) })] as const] : [];

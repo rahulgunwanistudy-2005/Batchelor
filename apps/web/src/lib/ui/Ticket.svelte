@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, untrack } from 'svelte';
   import { formatUnits, parseUnits, type Hex } from 'viem';
-  import { batchAuctionAbi, escrowFor } from '@batchelor/core';
+  import { batchAuctionAbi, escrowFor, transactionGas } from '@batchelor/core';
   import { live } from '$lib/chain/live';
   import { chainConfig, publicClient } from '$lib/chain/client';
   import { walletAccount } from '$lib/wallet/session';
@@ -67,7 +67,7 @@
   <p>{$live.tickSize ? `${formatUnits(price,6)} dUSD per ROSE` : 'Waiting for market parameters'}</p>
   <label for="amount">Amount in ROSE</label><input id="amount" inputmode="decimal" bind:value={amount} />
   <p>{side===0 ? "You'll pay at most" : "You'll sell for at least"} {$live.tickSize ? formatUnits(total,6) : '—'} dUSD</p>
-  <p class="small">Network fee: covered by Batchelor</p>
+  <p class="small">Network fee: covered by Batchelor, charged on {transactionGas('placeFor').toLocaleString()} gas.</p>
   {#if $walletAccount && balances && (balances[0]===0n || balances[1]===0n)}<button class="secondary" disabled={busy} onclick={drip}>Get 100 ROSE and 100 dUSD</button>{/if}
   <button class="primary" disabled={busy || !$walletAccount || !enough || !Number.isInteger(tick) || tick<0 || tick>255 || !$live.head} onclick={place}>{busy ? 'Confirming…' : side===0 ? 'Place buy order' : 'Place sell order'}</button>
   {#if !lots && $live.lot}<p class="small">Enter a multiple of {formatUnits($live.lot,18)} ROSE.</p>{/if}

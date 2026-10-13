@@ -9,6 +9,7 @@ import { Keeper } from './keeper.js';
 import { Mo } from './mo.js';
 import { ControlError, Pete } from './pete.js';
 import { BotState } from './state.js';
+import { HeadWatchdog } from './watchdog.js';
 
 export async function startRuntime(env: BotEnv) {
   if (!env.MARKET_ADDRESS || !env.FAUCET_ADDRESS || !env.BOTS_TOKEN || !env.RPC_WS || keyNames.some((k) => !env[k])) {
@@ -50,7 +51,7 @@ export async function startRuntime(env: BotEnv) {
   let balanceAt = 0;
   const refreshBalances = async () => {
     await Promise.all([...clients.wallets].map(async ([name, wallet]) => {
-      state.balances.set(name, await clients.publicClient.getBalance({ address: wallet.account.address }));
+      state.balance(name, await clients.publicClient.getBalance({ address: wallet.account.address }));
     })); balanceAt = Date.now();
   };
   await refreshBalances();
@@ -103,8 +104,6 @@ export async function startRuntime(env: BotEnv) {
     finally { maintenanceRunning = false; }
   };
   const maintenanceTimer = setInterval(() => { void maintain(); }, 300);
-  const unwatchLogs = clients.headClient!.watchContractEvent({ address: market, abi: batchAuctionAbi, eventName: 'BatchCleared',
-    onLogs: () => { void maintain(); }, onError: () => state.error('logs', 'Log subscription unavailable; HTTP catch-up remains active.') });
   const pump = async (block: Block): Promise<void> => {
     if (running) { pending = block; state.skippedHeads++; return; }
     running = true;
@@ -114,8 +113,30 @@ export async function startRuntime(env: BotEnv) {
     } catch { state.error('head', 'Head processing failed.'); }
     finally { running = false; }
   };
-  const unwatch = clients.headClient!.watchBlocks({ emitOnBegin: true, onBlock: (block) => { void pump(block); },
-    onError: () => state.error('websocket', 'Head subscription unavailable.') });
+  let unwatch = () => {}; let unwatchLogs = () => {};
+  const subscribe = () => {
+    unwatchLogs = clients.headClient!.watchContractEvent({ address: market, abi: batchAuctionAbi, eventName: 'BatchCleared',
+      onLogs: () => { void maintain(); }, onError: () => state.error('logs', 'Log subscription unavailable; HTTP catch-up remains active.') });
+    unwatch = clients.headClient!.watchBlocks({ emitOnBegin: true, onBlock: (block) => {
+      if (block.number !== null) { watchdog.observed(block.number); state.lastSocketHeadAt = Date.now(); }
+      void pump(block);
+    }, onError: () => state.error('websocket', 'Head subscription unavailable.') });
+  };
+  const watchdog = new HeadWatchdog<Block>({
+    poll: () => clients.publicClient.getBlock(), deliver: block => { state.httpFallbackHeads++; return pump(block); },
+    error: (component, message) => state.error(component, message),
+    restart: async () => {
+      state.socketRestarts++;
+      unwatch(); unwatchLogs();
+      const socket = await clients.headClient!.transport.getRpcClient(); socket.close();
+      if (!stopped) {
+        if (await clients.headClient!.getChainId() !== clients.chain.id) throw new Error('RPC chain mismatch.');
+        if (!stopped) subscribe();
+      }
+    }
+  });
+  subscribe();
+  const watchdogTimer = setInterval(() => { void watchdog.tick(); }, 1000);
   const app = createConductor({ token: env.BOTS_TOKEN, wake: () => mo.wake(),
     unleash: () => {
       if (state.lastHead === null || Date.now() - state.lastHeadAt > 15_000) throw new ControlError('Waiting for a recent chain head.', 503);
@@ -123,7 +144,8 @@ export async function startRuntime(env: BotEnv) {
       return pete.unleash(state.lastHead);
     }, health: () => ({ ...state.snapshot(mo.awake, pete.active(state.lastHead ?? current)),
       chainId: clients.chain.id, burstBlocks: env.PETE_BURST_BLOCKS, remainingToday: pete.remainingToday }) });
-  return { app, state, stop: async () => { stopped = true; clearInterval(maintenanceTimer); unwatch(); unwatchLogs();
+  return { app, state, stop: async () => { stopped = true; clearInterval(maintenanceTimer); clearInterval(watchdogTimer);
+    await watchdog.stop(); unwatch(); unwatchLogs();
     // Allow the current bounded RPC operations to finish before process shutdown.
     while (running || maintenanceRunning) await new Promise((resolve) => setTimeout(resolve, 50));
     const socket = await clients.headClient!.transport.getRpcClient(); socket.close();

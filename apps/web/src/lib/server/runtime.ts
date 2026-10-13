@@ -1,10 +1,11 @@
 import { env } from '$env/dynamic/private';
 import { env as publicEnv } from '$env/dynamic/public';
-import { createPublicClient, createWalletClient, http, isAddress, parseEther, keccak256, type Hex, type Address } from 'viem';
+import { createPublicClient, createWalletClient, http, isAddress, keccak256, type Hex, type Address } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { monad, monadTestnet } from 'viem/chains';
 import { batchAuctionAbi, faucetAbi } from '@batchelor/core';
 import { ApiError, RateLimiter, type RelayDependencies } from './service';
+import { requireRelayReserve } from './reserve';
 export const limiter = new RateLimiter();
 let queue: Promise<unknown> = Promise.resolve();
 let uncertain: Hex | undefined;
@@ -40,7 +41,7 @@ export function dependencies(): RelayDependencies {
         }
         const balance = await c.client.getBalance({ address: c.account.address });
         const fee = await c.client.estimateFeesPerGas();
-        if (balance < parseEther('12') + gas * fee.maxFeePerGas) throw new ApiError('RELAYER_LOW_BALANCE', 'Network fees are temporarily unavailable. Try again later.', 503);
+        requireRelayReserve(balance, gas, fee.maxFeePerGas);
         const nonce = await c.client.getTransactionCount({ address: c.account.address, blockTag: 'pending' });
         // Dedicated relayer key; avoid racing an unresolved send from another instance.
         if (nonce !== await c.client.getTransactionCount({ address: c.account.address, blockTag: 'latest' })) throw new ApiError('RELAYER_BUSY', 'Another order is being confirmed. Try again shortly.', 503);

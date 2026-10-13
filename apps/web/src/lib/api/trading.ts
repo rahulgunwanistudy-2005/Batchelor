@@ -3,8 +3,12 @@ import { decodeEventLog, type Hex } from 'viem';
 import { chainConfig, publicClient } from '$lib/chain/client';
 import { signingSession } from '$lib/wallet/session';
 export async function api<T>(path: string, body?: unknown): Promise<T> {
-  const response = await fetch(path, body === undefined ? {} : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-  const result = await response.json();
+  let response: Response;
+  try { response = await fetch(path, body === undefined ? {} : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(30_000) }); }
+  catch { throw new Error('The service could not be reached. Refresh and try again shortly.'); }
+  let result;
+  try { result = await response.json(); }
+  catch { throw new Error('The service could not respond. Try again shortly.'); }
   if (!response.ok) throw new Error(result.error?.message ?? 'Request failed. Try again.');
   return result as T;
 }

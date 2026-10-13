@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { createConductor } from './conductor.js';
 import { createChainClients, feeCaps, readEnv } from './chain.js';
 import { Mo } from './mo.js';
@@ -45,4 +45,18 @@ it('health is honest about stale heads, missing balances and five-minute error e
   expect(state.snapshot(false, false).status).toBe('degraded');
   state.error('keeper', 'Safe diagnostic'); now = 300_001;
   expect(state.snapshot(false, false).errorsLast5Minutes).toEqual([]);
+  expect(state.snapshot(false, false).lastError).toMatchObject({ component: 'keeper', message: 'Safe diagnostic' });
+});
+it('logs low funding transitions once and clears them after replenishment', () => {
+  const log = vi.spyOn(console, 'log').mockImplementation(() => {});
+  try {
+    const state = new BotState();
+    state.balance('MO_PK', 14n * 10n ** 18n); state.balance('MO_PK', 13n * 10n ** 18n);
+    expect(log).toHaveBeenCalledOnce();
+    expect(state.snapshot(false, false).fundingWarnings).toEqual(['MO_PK']);
+    state.balance('MO_PK', 15n * 10n ** 18n);
+    expect(state.snapshot(false, false).fundingWarnings).toEqual([]);
+    expect(log).toHaveBeenCalledTimes(2);
+    state.balance('MO_PK', 14n * 10n ** 18n); expect(log).toHaveBeenCalledTimes(3);
+  } finally { log.mockRestore(); }
 });

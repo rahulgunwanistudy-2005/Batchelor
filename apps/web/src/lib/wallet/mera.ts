@@ -1,3 +1,4 @@
+import '$lib/validation';
 import { env } from '$env/dynamic/public';
 import { dev } from '$app/environment';
 import { createPasskeyWithPrfOutput, getPasskeyPrfOutput, createSecp256k1SigningSession, isMeraError, type PasskeyCredentialMetadata } from '@category-labs/mera';
