@@ -32,3 +32,7 @@ Official Monad Foundry documentation now states that upstream Foundry v1.8+ supp
 ## Live spike preflight
 
 The user authorized the project `.env`, which provides `TESTNET_PRIVATE_KEY`. The script accepts that alias and requires an explicit testnet chain plus RPC chain-ID verification. The account failed the 30M-gas funding preflight (3.06 testnet MON at the checked gas price). No transaction was sent. Seeding 1,024 nonzero slots makes the pack’s ~0.05 MON budget too small.
+
+## S1 live storage gate completed — 13 October 2026
+
+The wallet was funded with 12.246612 testnet MON before this run. Eight transactions succeeded on chain 10143, and all six emitted gas deltas exactly matched the local MonadTen baseline. Deployed bytecode, receipt/calldata/nonce sequence and event checksums were verified. Actual declared-limit fees total 3.20404338 testnet MON; post-validation balance is 9.04256862 testnet MON and reconciles exactly. Raw evidence is in contracts/bench/out/live-testnet.json. scripts/spike.py retains verified matching evidence across local reruns and marks changed bytecode/receipt failures/deviation stale. No mainnet transaction or key disclosure occurred.

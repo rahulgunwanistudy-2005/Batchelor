@@ -34,6 +34,8 @@ jobs:
       - name: Historical hardfork tests
         working-directory: contracts
         run: FOUNDRY_PROFILE=pre_mip8 forge test
+      - name: Live evidence regression tests
+        run: python3 -m unittest discover -s scripts -p test_spike.py
       - name: Local storage gate
         run: pnpm spike
       - name: Storage layout and priority-input gates

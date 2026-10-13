@@ -1,0 +1,191 @@
+{
+  "status": "passed",
+  "chainId": 10143,
+  "address": "0xfbc274c96b15cfd7728cabb56466dea69e1538d8",
+  "measuredAt": "2026-10-13T11:39:38.007Z",
+  "gas": {
+    "contiguous512": 162086,
+    "scattered512": 4245030,
+    "onePage32": 16166,
+    "fourPages32": 49158,
+    "writeOnePage64": 26774,
+    "writeSeparatePages64": 709542
+  },
+  "transactions": [
+    {
+      "action": "deploy",
+      "hash": "0xc1d9bda33959e1f096670c005e73f308f5a201adb29414408841566b7d90cd33",
+      "gasLimit": "416373",
+      "nonce": 7,
+      "blockNumber": "70672183",
+      "status": "success",
+      "receiptGasUsed": "416373",
+      "effectiveGasPriceWei": "102000000000",
+      "chargedFeeWei": "42470046000000000",
+      "chargedFeeMon": "0.042470046",
+      "receiptBlockHash": "0xd87438450b1254b85dcc0b1d39bbce1a2b6eed8492c5dcddca39d6b961676277",
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xc1d9bda33959e1f096670c005e73f308f5a201adb29414408841566b7d90cd33",
+      "valueWei": "0"
+    },
+    {
+      "action": "seed",
+      "hash": "0xbd953ef509ad44bf5f1afa0bc009383b8bc9a74fb31c7fd04ea7b5635583b1d2",
+      "gasLimit": "25197654",
+      "blockNumber": "70672190",
+      "nonce": 8,
+      "status": "success",
+      "receiptGasUsed": "25197654",
+      "effectiveGasPriceWei": "102000000000",
+      "chargedFeeWei": "2570160708000000000",
+      "chargedFeeMon": "2.570160708",
+      "receiptBlockHash": "0xafbedc244c0f9439395cec049f8cc6ba0a8d3ce217eb463872ed8f7b8cc484ab",
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xbd953ef509ad44bf5f1afa0bc009383b8bc9a74fb31c7fd04ea7b5635583b1d2",
+      "valueWei": "0"
+    },
+    {
+      "action": "readContiguous512",
+      "hash": "0xf54a7cab7b2ce61712e6386878c6232dd43376c4ac2933965e983b0e688b3abe",
+      "gasLimit": "201912",
+      "blockNumber": "70672196",
+      "nonce": 9,
+      "status": "success",
+      "receiptGasUsed": "201912",
+      "effectiveGasPriceWei": "102000000000",
+      "chargedFeeWei": "20595024000000000",
+      "chargedFeeMon": "0.020595024",
+      "receiptBlockHash": "0xc8bc779c12592d6e5800f0348564b357723770bc252e8854f4366b7e931a95d5",
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xf54a7cab7b2ce61712e6386878c6232dd43376c4ac2933965e983b0e688b3abe",
+      "valueWei": "0"
+    },
+    {
+      "action": "readScattered512",
+      "hash": "0x297be8a4a669a33ea4ab109f71c1cc2d71f3127fb1ee47f1a4dabeb6d357ba45",
+      "gasLimit": "4625876",
+      "blockNumber": "70672202",
+      "nonce": 10,
+      "status": "success",
+      "receiptGasUsed": "4625876",
+      "effectiveGasPriceWei": "102000000000",
+      "chargedFeeWei": "471839352000000000",
+      "chargedFeeMon": "0.471839352",
+      "receiptBlockHash": "0x232619d4e0a9764862c50382b62b50f95adc4028cb39426619515a23870e241a",
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x297be8a4a669a33ea4ab109f71c1cc2d71f3127fb1ee47f1a4dabeb6d357ba45",
+      "valueWei": "0"
+    },
+    {
+      "action": "readContiguous32OnePage",
+      "hash": "0x9d1ae910726a3dfdb382d030fa716b2c1ee42b91fe424ff4be3d89e5eb85b61e",
+      "gasLimit": "42633",
+      "blockNumber": "70672208",
+      "nonce": 11,
+      "status": "success",
+      "receiptGasUsed": "42633",
+      "effectiveGasPriceWei": "102000000000",
+      "chargedFeeWei": "4348566000000000",
+      "chargedFeeMon": "0.004348566",
+      "receiptBlockHash": "0x76ae7eeaac61d61d6d834aa46c20eef26d3e192418f2664c6cbefacf28c46557",
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x9d1ae910726a3dfdb382d030fa716b2c1ee42b91fe424ff4be3d89e5eb85b61e",
+      "valueWei": "0"
+    },
+    {
+      "action": "readContiguous32FourPages",
+      "hash": "0xbbbe1b3698a2fd796ea84af3b90d9077fc3ad3162d0a738206a2e69054f7d79d",
+      "gasLimit": "78661",
+      "blockNumber": "70672214",
+      "nonce": 12,
+      "status": "success",
+      "receiptGasUsed": "78661",
+      "effectiveGasPriceWei": "102000000000",
+      "chargedFeeWei": "8023422000000000",
+      "chargedFeeMon": "0.008023422",
+      "receiptBlockHash": "0x370a23c9c4ad0631e7183a6c4c45a232576f6f929399cbfcea1b63db463da320",
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xbbbe1b3698a2fd796ea84af3b90d9077fc3ad3162d0a738206a2e69054f7d79d",
+      "valueWei": "0"
+    },
+    {
+      "action": "write64OnePage",
+      "hash": "0xbb3684dec7e8b62497710792b683ae64bd2fa3532643d2ec5b3cdc88edcdf40b",
+      "gasLimit": "54028",
+      "blockNumber": "70672220",
+      "nonce": 13,
+      "status": "success",
+      "receiptGasUsed": "54028",
+      "effectiveGasPriceWei": "102000000000",
+      "chargedFeeWei": "5510856000000000",
+      "chargedFeeMon": "0.005510856",
+      "receiptBlockHash": "0xf3070eb6b3bbc9da7f19059faec9c219d2ec9d6f3948556a5d260068df9e2563",
+      "explorerUrl": "https://testnet.monadvision.com/tx/0xbb3684dec7e8b62497710792b683ae64bd2fa3532643d2ec5b3cdc88edcdf40b",
+      "valueWei": "0"
+    },
+    {
+      "action": "write64SeparatePages",
+      "hash": "0x6e93f479b769d7bf31a5ae0bfee4dd23d7694a14d8a8e3e9fc5524704f33d7d7",
+      "gasLimit": "795053",
+      "blockNumber": "70672226",
+      "nonce": 14,
+      "status": "success",
+      "receiptGasUsed": "795053",
+      "effectiveGasPriceWei": "102000000000",
+      "chargedFeeWei": "81095406000000000",
+      "chargedFeeMon": "0.081095406",
+      "receiptBlockHash": "0xa8a6268e2721c6981b4c1427457f9dd82db66669fc8dc0706b31e4f79cb4ed00",
+      "explorerUrl": "https://testnet.monadvision.com/tx/0x6e93f479b769d7bf31a5ae0bfee4dd23d7694a14d8a8e3e9fc5524704f33d7d7",
+      "valueWei": "0"
+    }
+  ],
+  "verifiedAt": "2026-10-13T11:46:33.727Z",
+  "sender": "0x8cf8d07115760a5d4db4a6561729e8ed4de4d8ca",
+  "runtimeBytecodeSha256": "775dd28935a7506ef359981d323d9ea3330c26bde82b15a4920bcf1b26038eea",
+  "bytecodeMatchesLocal": true,
+  "receiptsVerified": true,
+  "comparisons": [
+    {
+      "scenario": "contiguous512",
+      "localGas": 162086,
+      "liveGas": 162086,
+      "differenceGas": 0,
+      "checksum": "131328"
+    },
+    {
+      "scenario": "scattered512",
+      "localGas": 4245030,
+      "liveGas": 4245030,
+      "differenceGas": 0,
+      "checksum": "131328"
+    },
+    {
+      "scenario": "onePage32",
+      "localGas": 16166,
+      "liveGas": 16166,
+      "differenceGas": 0,
+      "checksum": "528"
+    },
+    {
+      "scenario": "fourPages32",
+      "localGas": 49158,
+      "liveGas": 49158,
+      "differenceGas": 0,
+      "checksum": "6288"
+    },
+    {
+      "scenario": "writeOnePage64",
+      "localGas": 26774,
+      "liveGas": 26774,
+      "differenceGas": 0,
+      "checksum": "0"
+    },
+    {
+      "scenario": "writeSeparatePages64",
+      "localGas": 709542,
+      "liveGas": 709542,
+      "differenceGas": 0,
+      "checksum": "0"
+    }
+  ],
+  "totalChargedFeeWei": "3204043380000000000",
+  "totalChargedFeeMon": "3.20404338",
+  "balanceBeforeMon": "12.246612",
+  "balanceAfterMon": "9.04256862",
+  "balanceNowMon": "9.04256862",
+  "walletBalanceChangeMatchesFees": true
+}
