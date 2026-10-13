@@ -7,6 +7,6 @@ export const load: PageLoad = async ({ url, fetch }) => {
     const indexer = publicIndexer(fetch);
     if (!indexer) return { orders: [], trader, message: 'Indexed order history is not connected yet.' };
     if (!isAddress(trader)) return { orders: [], trader, message: 'Enter a trader address to view its indexed orders.' };
-    return { orders: await indexer.ordersByTrader(trader), trader, message: null };
+    return { orders: await indexer.ordersByTrader(trader, 20), trader, message: null };
   } catch (error) { return { orders: [], trader, message: error instanceof Error ? error.message : 'Indexed data is unavailable.' }; }
 };

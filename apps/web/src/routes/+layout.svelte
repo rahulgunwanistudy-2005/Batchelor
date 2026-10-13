@@ -5,6 +5,7 @@
   import '@fontsource/ibm-plex-sans/400.css';
   import '@fontsource/ibm-plex-sans/500.css';
   import { page } from '$app/state';
+  import { env } from '$env/dynamic/public';
   import { en } from '$lib/copy/en';
   let { children } = $props();
 </script>
@@ -23,5 +24,5 @@
     <div class="stage"><span class="status-dot" aria-hidden="true"></span>{en.stage}</div>
     {@render children()}
   </main>
-  <footer><p>{en.tagline}</p><p>{en.footer}</p></footer>
+  <footer><p>{en.tagline}</p><p>Demo tokens on Monad{env.PUBLIC_CHAIN === 'testnet' ? ' testnet' : env.PUBLIC_CHAIN === 'mainnet' ? ' mainnet' : ''}. No real value.</p></footer>
 </div>
