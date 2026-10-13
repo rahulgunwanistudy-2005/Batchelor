@@ -35,7 +35,7 @@ export default function ProofPage() {
   return (
     <main className="app-shell">
       <TopBar active="proof" />
-      <div id="content" className="page-content proof-page">
+      <div id="content" className="page-content page-content--narrow">
         <section className="panel proof-hero">
           <h1>Proof</h1>
           {headline ? (
@@ -85,7 +85,7 @@ export default function ProofPage() {
               </div>
             </div>
             <GasBars scenarios={clearingScenarios} rowLabel="Book size" />
-            <p className="panel-footnote" style={{ marginBottom: 10 }}>
+            <p className="panel-footnote">
               Measured locally in Monad Foundry: {clearingEvidence.method}. Source: {clearingEvidence.sourceFile}.
             </p>
           </section>
@@ -104,15 +104,15 @@ export default function ProofPage() {
               <table className="gas-table live-table">
                 <caption className="sr-only">Gas used by each probe locally and in a real testnet transaction.</caption>
                 <thead>
-                  <tr><th scope="col">Probe</th><th scope="col">Local gas</th><th scope="col">Testnet gas</th><th scope="col">Difference</th><th scope="col">Transaction</th></tr>
+                  <tr><th scope="col">Probe</th><th scope="col" className="num">Local gas</th><th scope="col" className="num">Testnet gas</th><th scope="col" className="num">Difference</th><th scope="col">Transaction</th></tr>
                 </thead>
                 <tbody>
                   {liveComparisons.map((row) => (
                     <tr key={row.key}>
                       <th scope="row">{row.label}</th>
-                      <td>{gasFormat.format(row.localGas)}</td>
-                      <td>{gasFormat.format(row.liveGas)}</td>
-                      <td>{row.liveGas === row.localGas ? "0" : gasFormat.format(row.liveGas - row.localGas)}</td>
+                      <td className="num">{gasFormat.format(row.localGas)}</td>
+                      <td className="num">{gasFormat.format(row.liveGas)}</td>
+                      <td className="num">{row.liveGas === row.localGas ? "0" : gasFormat.format(row.liveGas - row.localGas)}</td>
                       <td>
                         {row.explorerUrl && row.txHash ? (
                           <a href={row.explorerUrl} target="_blank" rel="noopener noreferrer">{row.txHash.slice(0, 10)}…<span className="sr-only"> (opens the block explorer)</span></a>
@@ -138,7 +138,7 @@ export default function ProofPage() {
               <div><dt>Measured</dt><dd>{liveEvidence.measuredAt.slice(0, 16).replace("T", " ")} UTC</dd></div>
               <div><dt>Source file</dt><dd className="proof-hash">{liveEvidence.sourceFile}</dd></div>
             </dl>
-            <p className="panel-footnote" style={{ marginBottom: 10 }}>This is the storage benchmark contract, not the auction. No auction contract is deployed.</p>
+            <p className="panel-footnote">This is the storage benchmark contract, not the auction. No auction contract is deployed.</p>
           </section>
         )}
 
@@ -179,7 +179,7 @@ export default function ProofPage() {
                   <div key={name}><dt className="proof-hash">{name}</dt><dd className="proof-hash">{gasFormat.format(limit)}</dd></div>
                 ))}
               </dl>
-              <p className="panel-footnote" style={{ marginBottom: 10 }}>Monad charges for the declared limit, so each call sends a fixed, measured one.</p>
+              <p className="panel-footnote">Monad charges for the declared limit, so each call sends a fixed, measured one.</p>
             </section>
           )}
 
@@ -197,8 +197,8 @@ export default function ProofPage() {
         </div>
 
         <footer className="footer">
-          <span>BATCHELOR <span className="brand-period">/</span> DEVELOPMENT BUILD</span>
           <span>Every number on this page is read from a benchmark file in the repository.</span>
+          <span>Demo tokens on Monad testnet. No real value.</span>
         </footer>
       </div>
     </main>

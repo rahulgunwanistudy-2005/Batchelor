@@ -146,7 +146,8 @@ function selectAdapter(): MarketDataAdapter {
   }
 
   return createOnchainAdapter({
-    reader: createPublicClient({ transport: http(rpcUrl, { timeout: 8_000, retryCount: 0 }) }),
+    // Batched JSON-RPC and a few retries keep one page render within public RPC rate limits.
+    reader: createPublicClient({ transport: http(rpcUrl, { timeout: 10_000, retryCount: 3, retryDelay: 250, batch: { wait: 10 } }) }),
     address: marketAddress,
     expectedChainId,
   });

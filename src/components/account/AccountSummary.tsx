@@ -83,11 +83,11 @@ export function AccountSummary() {
   const balances = current?.status === "ready" ? current.balances : null;
 
   return (
-    <section className="panel">
+    <section className="panel" aria-labelledby="account-title">
       <div className="panel-heading">
         <div>
-          <h2>Account</h2>
-          <p className="panel-subtitle">Balances held inside the auction contract</p>
+          <h2 id="account-title">Account</h2>
+          <p className="panel-subtitle">Balances held inside the auction contract, ready to trade</p>
         </div>
       </div>
       <dl className="proof-facts">
@@ -95,8 +95,8 @@ export function AccountSummary() {
         {wallet.status === "connected" && (
           <div><dt>Wallet network</dt><dd>{isWrongChain(wallet) ? `Wrong network (chain ID ${wallet.chainId ?? "unknown"})` : `Chain ID ${wallet.chainId ?? "unknown"}`}</dd></div>
         )}
-        <div><dt>Base balance</dt><dd className="proof-hash">{balances ? `${balances.base.amount} ${balances.base.symbol}` : "—"}</dd></div>
-        <div><dt>Quote balance</dt><dd className="proof-hash">{balances ? `${balances.quote.amount} ${balances.quote.symbol}` : "—"}</dd></div>
+        <div><dt>{params?.baseSymbol ?? "Base"} balance</dt><dd>{balances ? `${balances.base.amount} ${balances.base.symbol}` : "—"}</dd></div>
+        <div><dt>{params?.quoteSymbol ?? "Quote"} balance</dt><dd>{balances ? `${balances.quote.amount} ${balances.quote.symbol}` : "—"}</dd></div>
       </dl>
       <p className="panel-footnote" role="status">{note}</p>
 
@@ -145,7 +145,7 @@ export function AccountSummary() {
         </div>
         <TxStatus state={state} success={successText} />
         <p className="fine-print">
-          {blocker ?? "Testnet demo tokens only, with no real value. Deposits from a wallet are not offered here: the faucet credits your balance directly."}
+          {blocker ?? "The faucet credits demo tokens straight to your balance here, once per address every 24 hours."}
         </p>
       </form>
     </section>

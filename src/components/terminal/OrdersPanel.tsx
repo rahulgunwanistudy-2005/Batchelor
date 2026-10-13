@@ -1,8 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { FileClock } from "lucide-react";
 import { formatUnits } from "viem";
 import { cancelOrder, claimOrders, clearBatch, MAX_CLAIM } from "@/lib/trading/actions";
 import {
@@ -18,14 +17,6 @@ import { useTradingBlocker } from "@/lib/trading/useTradingBlocker";
 import { useTransaction } from "@/lib/trading/useTransaction";
 import { useWallet } from "@/lib/wallet/useWallet";
 import { TxStatus } from "@/components/trading/TxStatus";
-
-const TABS = [
-  { key: "orders", label: "My orders" },
-  { key: "history", label: "Order history" },
-  { key: "fills", label: "Fills" },
-] as const;
-
-type TabKey = (typeof TABS)[number]["key"];
 
 const REFRESH_MS = 5_000;
 
@@ -55,12 +46,10 @@ function outcome(order: LocalOrder, status: OrderStatus, params: MarketParams): 
 }
 
 export function OrdersPanel() {
-  const id = useId();
   const router = useRouter();
   const wallet = useWallet();
   const blocker = useTradingBlocker();
   const { state, run, busy } = useTransaction();
-  const [active, setActive] = useState<TabKey>("orders");
   const [orders, setOrders] = useState<LocalOrder[]>([]);
   const [snapshot, setSnapshot] = useState<OrdersSnapshot | null>(null);
   const [params, setParams] = useState<MarketParams | null>(null);
@@ -85,15 +74,10 @@ export function OrdersPanel() {
     return () => window.removeEventListener(ORDERS_CHANGED_EVENT, reload);
   }, [address]);
 
-  const refresh = useCallback(async (list: LocalOrder[]) => {
-    const next = await readOrderStatuses(list);
-    return next;
-  }, []);
-
   useEffect(() => {
     let live = true;
     const load = () => {
-      void refresh(orders).then((next) => {
+      void readOrderStatuses(orders).then((next) => {
         if (live) setSnapshot(next);
       });
     };
@@ -103,7 +87,7 @@ export function OrdersPanel() {
       live = false;
       window.clearInterval(interval);
     };
-  }, [orders, refresh, state.phase]);
+  }, [orders, state.phase]);
 
   const act = async (text: string, action: Parameters<typeof run>[0]) => {
     setSuccessText(text);
@@ -115,103 +99,84 @@ export function OrdersPanel() {
   const disabled = blocker !== null || busy;
 
   return (
-    <section className="panel orders-panel">
+    <section className="panel" aria-labelledby="orders-title">
       <div className="panel-heading">
         <div>
-          <h2>Orders & fills</h2>
-          <p className="panel-subtitle">Your activity on this market</p>
-        </div>
-        <div className="tab-list" role="tablist" aria-label="Order sections">
-          {TABS.map((tab) => (
-            <button
-              type="button"
-              role="tab"
-              key={tab.key}
-              id={`${id}-tab-${tab.key}`}
-              aria-selected={tab.key === active}
-              aria-controls={`${id}-panel`}
-              className={`tab ${tab.key === active ? "tab--active" : ""}`}
-              onClick={() => setActive(tab.key)}
-            >
-              {tab.label}
-            </button>
-          ))}
+          <h2 id="orders-title">My orders</h2>
+          <p className="panel-subtitle">Orders placed from this browser, with their status read from the contract</p>
         </div>
       </div>
-      <div className="orders-table" role="tabpanel" id={`${id}-panel`} aria-labelledby={`${id}-tab-${active}`}>
-        {active !== "orders" ? (
-          <div className="orders-empty">
-            <FileClock size={22} />
-            <strong>{active === "history" ? "No order-history data available" : "No fill data available"}</strong>
-            <p>A complete history needs the indexer, which is not connected.</p>
-          </div>
-        ) : (
-          <>
-            <div className="orders-actions">
-              <button
-                type="button"
-                className="connect-button"
-                disabled={disabled || !snapshot?.openBatchId}
-                title="Anyone may clear a sealed batch. It does nothing if the batch is still open for orders."
-                onClick={() => void act("Clear sent. If the batch was sealed, it is now cleared.", (onPhase) => clearBatch(onPhase))}
-              >
-                {snapshot?.openBatchId ? `Clear batch #${snapshot.openBatchId}` : "No batch to clear"}
-              </button>
-              <button
-                type="button"
-                className="connect-button"
-                disabled={disabled || claimable.length === 0}
-                onClick={() => void act("Claimed. Your deposited balance is updated.", (onPhase) => claimOrders(claimable.map((order) => order.orderId), onPhase))}
-              >
-                {claimable.length > 0 ? `Claim ${claimable.length} order${claimable.length === 1 ? "" : "s"}` : "Nothing to claim"}
-              </button>
-              <TxStatus state={state} success={successText} />
-            </div>
-            {orders.length > 0 && params ? (
-              <div className="gas-table-scroll">
-                <table className="gas-table live-table">
-                  <thead>
-                    <tr><th scope="col">Order</th><th scope="col">Side</th><th scope="col">Limit price</th><th scope="col">Quantity</th><th scope="col">Status</th><th scope="col">On claim</th><th scope="col"><span className="sr-only">Actions</span></th></tr>
-                  </thead>
-                  <tbody>
-                    {orders.map((order) => {
-                      const status = snapshot?.statuses[order.orderId];
-                      return (
-                        <tr key={order.orderId}>
-                          <th scope="row">#{order.orderId} <span className="muted">batch {order.batchId}</span></th>
-                          <td className={order.side === "buy" ? "change--up" : "change--down"}>{order.side === "buy" ? "Buy" : "Sell"}</td>
-                          <td>{formatUnits(tickPrice(params, order.tick), params.quoteDecimals)} {params.quoteSymbol}</td>
-                          <td>{formatUnits(BigInt(order.lots) * params.lot, params.baseDecimals)} {params.baseSymbol}</td>
-                          <td>{status ? STATE_TEXT[status.state] : "Checking…"}</td>
-                          <td>{status ? outcome(order, status, params) : "—"}</td>
-                          <td>
-                            {status?.state === "open" && (
-                              <button
-                                type="button"
-                                className="connect-button"
-                                disabled={disabled}
-                                onClick={() => void act(`Order #${order.orderId} cancelled.`, (onPhase) => cancelOrder(order.orderId, onPhase))}
-                              >
-                                Cancel
-                              </button>
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <div className="orders-empty">
-                <FileClock size={22} />
-                <strong>{address ? "No orders placed from this browser" : "Connect a wallet to see your orders"}</strong>
-                <p>Orders are listed from this browser&apos;s own record; orders placed elsewhere need the indexer.</p>
-              </div>
-            )}
-          </>
-        )}
+      {address && (
+      <div className="orders-actions">
+        <button
+          type="button"
+          className="connect-button"
+          disabled={disabled || !snapshot?.openBatchId}
+          title="Anyone may clear a sealed batch. It does nothing if the batch is still open for orders."
+          onClick={() => void act("Clear sent. If the batch was sealed, it is now cleared.", (onPhase) => clearBatch(onPhase))}
+        >
+          {snapshot?.openBatchId ? `Clear batch #${snapshot.openBatchId}` : "No batch to clear"}
+        </button>
+        <button
+          type="button"
+          className="connect-button"
+          disabled={disabled || claimable.length === 0}
+          onClick={() => void act("Claimed. Your balance is updated.", (onPhase) => claimOrders(claimable.map((order) => order.orderId), onPhase))}
+        >
+          {claimable.length > 0 ? `Claim ${claimable.length} order${claimable.length === 1 ? "" : "s"}` : "Nothing to claim"}
+        </button>
+        <TxStatus state={state} success={successText} />
       </div>
+      )}
+      {orders.length > 0 && params ? (
+        <div className="table-scroll">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Side</th>
+                <th scope="col" className="num">Limit price</th>
+                <th scope="col" className="num">Amount</th>
+                <th scope="col">Status</th>
+                <th scope="col">On claim</th>
+                <th scope="col"><span className="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => {
+                const status = snapshot?.statuses[order.orderId];
+                return (
+                  <tr key={order.orderId}>
+                    <th scope="row">#{order.orderId} <span className="muted">· batch {order.batchId}</span></th>
+                    <td className={order.side === "buy" ? "bid" : "ask"}>{order.side === "buy" ? "Buy" : "Sell"}</td>
+                    <td className="num">{formatUnits(tickPrice(params, order.tick), params.quoteDecimals)} {params.quoteSymbol}</td>
+                    <td className="num">{formatUnits(BigInt(order.lots) * params.lot, params.baseDecimals)} {params.baseSymbol}</td>
+                    <td>{status ? STATE_TEXT[status.state] : "Checking…"}</td>
+                    <td>{status ? outcome(order, status, params) : "—"}</td>
+                    <td>
+                      {status?.state === "open" && (
+                        <button
+                          type="button"
+                          className="connect-button"
+                          disabled={disabled}
+                          onClick={() => void act(`Order #${order.orderId} cancelled.`, (onPhase) => cancelOrder(order.orderId, onPhase))}
+                        >
+                          Cancel
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="orders-empty">
+          <strong>{address ? "No orders placed from this browser yet" : "Connect a wallet to see your orders"}</strong>
+          {address ? "Place an order and it will appear here with its fill." : "Orders you place here are listed with their status and fill."}
+        </div>
+      )}
     </section>
   );
 }

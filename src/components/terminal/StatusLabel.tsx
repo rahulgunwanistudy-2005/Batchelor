@@ -1,18 +1,18 @@
-import { Circle, Radio } from "lucide-react";
 import type { DataStatus } from "@/types/market";
 
-export function StatusLabel({ status }: { status: DataStatus }) {
-  const label = {
-    live: "Live data",
-    loading: "Connecting",
-    unavailable: "Not connected",
-    error: "Data error",
-  }[status];
+const LABELS: Record<DataStatus, string> = {
+  live: "Reading from the contract",
+  loading: "Connecting",
+  unavailable: "No market configured",
+  error: "Contract could not be read",
+};
 
+export function StatusLabel({ status }: { status: DataStatus }) {
+  const tone = status === "live" ? "ok" : status === "error" ? "error" : status === "loading" ? "pending" : "off";
   return (
     <span className={`status status--${status}`}>
-      {status === "live" ? <Radio size={12} /> : <Circle size={8} />}
-      {label}
+      <span className={`system-dot system-dot--${tone}`} aria-hidden="true" />
+      {LABELS[status]}
     </span>
   );
 }

@@ -20,6 +20,7 @@ function fakeReader(responses: Record<string, unknown> = {}, chainId = 10143) {
     BASE, QUOTE, N_TICKS: 256, MIN_PRICE: BigInt(500_000), TICK_SIZE: BigInt(5_000), LOT: BigInt(10) ** BigInt(15),
     [`symbol:${BASE}`]: "ROSE", [`decimals:${BASE}`]: 18, [`symbol:${QUOTE}`]: "dUSD", [`decimals:${QUOTE}`]: 6,
     openBatch: openBatch(),
+    refTick: 100,
   };
   const reader = {
     getChainId: async () => chainId,
@@ -57,6 +58,13 @@ describe("on-chain adapter: order book", () => {
     expect(result.data?.batchId).toBe("7");
     expect(result.data?.bids).toEqual([{ price: "0.995", quantity: "0.001" }, { price: "0.99", quantity: "1.5" }]);
     expect(result.data?.asks).toEqual([{ price: "1.005", quantity: "2" }, { price: "1.015", quantity: "0.25" }]);
+  });
+  it("reports where a crossing book would clear, using the contract's rules", async () => {
+    // 2.0 ROSE bid at 1.02 against 1.5 ROSE offered at 1.00: 1.5 trades, buy pressure picks the highest tick.
+    const { adapter } = adapterWith({ ladder: ladder({ 104: BigInt(2000) }, { 100: BigInt(1500) }) });
+    expect((await adapter.getOrderBook("default")).data?.indicative).toEqual({ price: "1.02", volume: "1.5" });
+    const apart = adapterWith({ ladder: ladder({ 98: BigInt(1500) }, { 101: BigInt(2000) }) });
+    expect((await apart.adapter.getOrderBook("default")).data?.indicative).toBeNull();
   });
   it("reports an empty live book, without reading the ladder, when no batch is open", async () => {
     const { adapter, calls } = adapterWith({ openBatch: openBatch({ hasOpen: false }) });

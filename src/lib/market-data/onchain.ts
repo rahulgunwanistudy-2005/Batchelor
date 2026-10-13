@@ -1,5 +1,6 @@
 import { BaseError, ContractFunctionRevertedError, erc20Abi, formatUnits, type Address, type PublicClient } from "viem";
 import { batchAuctionAbi } from "../../../packages/core/src/abi";
+import { uncross } from "../../../packages/core/src/uncross";
 import { CANDLE_INTERVALS, type CandleInterval } from "./intervals";
 import type {
   BatchResult,
@@ -113,11 +114,22 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
   }
 
   const cleared = new Map<string, ClearedBatch>();
+  const loading = new Map<string, Promise<ClearedBatch | null>>();
 
-  /** A cleared batch by id, or null if it has no result yet. */
-  async function loadCleared(id: bigint): Promise<ClearedBatch | null> {
-    const cached = cleared.get(id.toString());
-    if (cached) return cached;
+  /** A cleared batch by id, or null if it has no result yet. Concurrent callers share one read. */
+  function loadCleared(id: bigint): Promise<ClearedBatch | null> {
+    const key = id.toString();
+    const cached = cleared.get(key);
+    if (cached) return Promise.resolve(cached);
+    let pending = loading.get(key);
+    if (!pending) {
+      pending = readCleared(id).finally(() => loading.delete(key));
+      loading.set(key, pending);
+    }
+    return pending;
+  }
+
+  async function readCleared(id: bigint): Promise<ClearedBatch | null> {
 
     let result;
     try {
@@ -142,9 +154,26 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
     return batch;
   }
 
+  // One page render asks for the open batch several times; share a single read briefly.
+  let openRead: { at: number; value: ReturnType<typeof readOpen> } | null = null;
+  function readOpen() {
+    return reader.readContract({ ...auction, functionName: "openBatch" });
+  }
+  function openBatch() {
+    const now = Date.now();
+    if (!openRead || now - openRead.at > 500) {
+      const value = readOpen();
+      openRead = { at: now, value };
+      value.catch(() => {
+        if (openRead?.value === value) openRead = null;
+      });
+    }
+    return openRead.value;
+  }
+
   /** The last batch that can have a result: before an open batch, or the last batch once none is open. */
   async function lastResultId(): Promise<bigint> {
-    const open = await reader.readContract({ ...auction, functionName: "openBatch" });
+    const open = await openBatch();
     return open.hasOpen ? open.id - BigInt(1) : open.id;
   }
 
@@ -174,7 +203,7 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
     getMarketSummary(marketId) {
       return guarded<MarketSummary>(async () => {
         const p = await loadParams();
-        const open = await reader.readContract({ ...auction, functionName: "openBatch" });
+        const open = await openBatch();
 
         // The most recent batch that can have a result: the one before an
         // open batch, or the last batch itself once nothing is open.
@@ -200,14 +229,18 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
     getOrderBook(marketId) {
       return guarded<OrderBookSnapshot>(async () => {
         const p = await loadParams();
-        const open = await reader.readContract({ ...auction, functionName: "openBatch" });
+        const open = await openBatch();
         const snapshot = (bids: BookLevel[], asks: BookLevel[]): MarketDataResult<OrderBookSnapshot> => ({
           status: "live",
-          data: { marketId, batchId: open.hasOpen ? open.id.toString() : null, bids, asks, timestamp: Date.now() },
+          data: { marketId, batchId: open.hasOpen ? open.id.toString() : null, bids, asks, timestamp: Date.now(), indicative },
         });
+        let indicative: OrderBookSnapshot["indicative"] = null;
         if (!open.hasOpen) return snapshot([], []);
 
-        const [bidLots, askLots] = await reader.readContract({ ...auction, functionName: "ladder", args: [0, p.nTicks - 1] });
+        const [[bidLots, askLots], refTick] = await Promise.all([
+          reader.readContract({ ...auction, functionName: "ladder", args: [0, p.nTicks - 1] }),
+          reader.readContract({ ...auction, functionName: "refTick" }),
+        ]);
         if (bidLots.length !== p.nTicks || askLots.length !== p.nTicks) {
           return failure<OrderBookSnapshot>("The contract returned a ladder of unexpected length.");
         }
@@ -216,6 +249,11 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
           lots.flatMap((quantity, tick) =>
             quantity > BigInt(0) ? [{ price: tickPrice(p, tick), quantity: lotsToBase(p, quantity) }] : [],
           );
+        // The contract's own uncrossing rules, mirrored in packages/core and checked against Solidity vectors.
+        const crossing = uncross(bidLots, askLots, 0, refTick);
+        if (crossing.volumeLots > BigInt(0)) {
+          indicative = { price: tickPrice(p, crossing.clearTick), volume: lotsToBase(p, crossing.volumeLots) };
+        }
         // Best price first on both sides: highest bid, lowest ask.
         return snapshot(levels(bidLots).reverse(), levels(askLots));
       });

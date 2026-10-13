@@ -2,20 +2,19 @@
 
 import { useEffect, useId, useState } from "react";
 import { useRouter } from "next/navigation";
-import { LockKeyhole } from "lucide-react";
 import { formatUnits } from "viem";
 import { readAccountBalances, type AccountBalances } from "@/lib/account/balances";
 import { GAS, placeOrder } from "@/lib/trading/actions";
 import { saveLocalOrder } from "@/lib/trading/orders";
-import { escrowFor, loadMarketParams, priceToTick, quantityToLots, type MarketParams, type Side } from "@/lib/trading/params";
+import { escrowFor, loadMarketParams, priceToTick, quantityToLots, tickPrice, type MarketParams, type Side } from "@/lib/trading/params";
 import { useTradingBlocker } from "@/lib/trading/useTradingBlocker";
 import { useTransaction } from "@/lib/trading/useTransaction";
 import { useWallet } from "@/lib/wallet/useWallet";
 import { TxStatus } from "@/components/trading/TxStatus";
 
 interface OrderEntryProps {
-  baseAsset?: string;
-  quoteAsset?: string;
+  /** Where the price stepper starts when the field is empty: the indicative or last clearing price. */
+  referencePrice?: string | null;
 }
 
 const gasFormat = new Intl.NumberFormat("en-US");
@@ -25,7 +24,7 @@ const gasFormat = new Intl.NumberFormat("en-US");
  * wallet, on Monad testnet only. Nothing is sent without a click here
  * and an approval in the wallet.
  */
-export function OrderEntry({ baseAsset = "BASE", quoteAsset = "QUOTE" }: OrderEntryProps) {
+export function OrderEntry({ referencePrice = null }: OrderEntryProps) {
   const id = useId();
   const router = useRouter();
   const wallet = useWallet();
@@ -74,8 +73,21 @@ export function OrderEntry({ baseAsset = "BASE", quoteAsset = "QUOTE" }: OrderEn
 
   const mine = address && balances?.for === address ? balances.value : null;
   const available = mine ? (side === "buy" ? `${mine.quote.amount} ${mine.quote.symbol}` : `${mine.base.amount} ${mine.base.symbol}`) : "—";
-  const base = params?.baseSymbol ?? baseAsset;
-  const quote = params?.quoteSymbol ?? quoteAsset;
+  const base = params?.baseSymbol ?? "";
+  const quote = params?.quoteSymbol ?? "";
+
+  /** Moves the price one tick, starting from the reference price when the field is empty or off the grid. */
+  const step = (direction: 1 | -1) => {
+    if (!params) return;
+    const current = priceToTick(params, price);
+    const reference = referencePrice ? priceToTick(params, referencePrice) : null;
+    let next: number;
+    if (current.ok) next = current.value + direction;
+    else if (reference?.ok) next = reference.value;
+    else next = 0;
+    next = Math.min(params.nTicks - 1, Math.max(0, next));
+    setPrice(formatUnits(tickPrice(params, next), params.quoteDecimals));
+  };
 
   const submit = async () => {
     if (!ready || !address) return;
@@ -99,6 +111,7 @@ export function OrderEntry({ baseAsset = "BASE", quoteAsset = "QUOTE" }: OrderEn
   return (
     <form
       className="panel order-entry"
+      aria-labelledby={`${id}-title`}
       noValidate
       onSubmit={(event) => {
         event.preventDefault();
@@ -107,65 +120,72 @@ export function OrderEntry({ baseAsset = "BASE", quoteAsset = "QUOTE" }: OrderEn
     >
       <div className="panel-heading">
         <div>
-          <h2>Place order</h2>
-          <p className="panel-subtitle">Limit order · one batch</p>
+          <h2 id={`${id}-title`}>Your order</h2>
+          <p className="panel-subtitle">A limit order for one batch. Unfilled amounts come back when you claim.</p>
         </div>
-        {blocker && <span className="status status--unavailable"><LockKeyhole size={12} /> Not enabled</span>}
       </div>
-      <div className="segmented" role="group" aria-label="Order side">
-        <button type="button" className={side === "buy" ? "segmented--buy" : undefined} aria-pressed={side === "buy"} onClick={() => setSide("buy")}>Buy</button>
-        <button type="button" className={side === "sell" ? "segmented--sell" : undefined} aria-pressed={side === "sell"} onClick={() => setSide("sell")}>Sell</button>
-      </div>
-
-      <label className="field-label" htmlFor={`${id}-price`}>Limit price</label>
-      <div className={`input-shell ${priceError ? "input-shell--error" : ""}`}>
-        <input
-          id={`${id}-price`}
-          inputMode="decimal"
-          autoComplete="off"
-          maxLength={32}
-          placeholder="0.00"
-          value={price}
-          onChange={(event) => setPrice(event.target.value)}
-          aria-invalid={priceError !== null}
-          aria-describedby={priceError ? `${id}-price-error` : undefined}
-        />
-        <span>{quote}</span>
-      </div>
-      {priceError && <p className="field-error" id={`${id}-price-error`}>{priceError}</p>}
-
-      <label className="field-label" htmlFor={`${id}-quantity`}>Quantity</label>
-      <div className={`input-shell ${quantityError ? "input-shell--error" : ""}`}>
-        <input
-          id={`${id}-quantity`}
-          inputMode="decimal"
-          autoComplete="off"
-          maxLength={32}
-          placeholder="0.00"
-          value={quantity}
-          onChange={(event) => setQuantity(event.target.value)}
-          aria-invalid={quantityError !== null}
-          aria-describedby={quantityError ? `${id}-quantity-error` : undefined}
-        />
-        <span>{base}</span>
-      </div>
-      {quantityError && <p className="field-error" id={`${id}-quantity-error`}>{quantityError}</p>}
-
-      <div className="order-summary">
-        <div>
-          <span>{side === "buy" ? "You'll pay at most" : "You'll sell at most"}</span>
-          <strong>{escrowText ?? "—"}</strong>
+      <div className="panel-body">
+        <div className="segmented" role="group" aria-label="Order side">
+          <button type="button" className={side === "buy" ? "segmented--buy" : undefined} aria-pressed={side === "buy"} onClick={() => setSide("buy")}>Buy{base ? ` ${base}` : ""}</button>
+          <button type="button" className={side === "sell" ? "segmented--sell" : undefined} aria-pressed={side === "sell"} onClick={() => setSide("sell")}>Sell{base ? ` ${base}` : ""}</button>
         </div>
-        <div><span>Available (deposited)</span><strong>{available}</strong></div>
-        <div><span>Network fee</span><strong>charged on {gasFormat.format(GAS.place)} gas</strong></div>
+
+        <div className="field">
+          <label className="field-label" htmlFor={`${id}-price`}>Limit price</label>
+          <div className="field-row">
+            <button type="button" className="stepper" aria-label="Lower the price by one tick" disabled={!params} onClick={() => step(-1)}>−</button>
+            <div className={`input-shell ${priceError ? "input-shell--error" : ""}`}>
+              <input
+                id={`${id}-price`}
+                inputMode="decimal"
+                autoComplete="off"
+                maxLength={32}
+                placeholder={referencePrice ?? "0.00"}
+                value={price}
+                onChange={(event) => setPrice(event.target.value)}
+                aria-invalid={priceError !== null}
+                aria-describedby={priceError ? `${id}-price-error` : undefined}
+              />
+              {quote && <span>{quote}</span>}
+            </div>
+            <button type="button" className="stepper" aria-label="Raise the price by one tick" disabled={!params} onClick={() => step(1)}>+</button>
+          </div>
+          {priceError
+            ? <p className="field-error" id={`${id}-price-error`}>{priceError}</p>
+            : params && <p className="field-hint">Prices move in steps of {formatUnits(params.tickSize, params.quoteDecimals)} {quote}.</p>}
+        </div>
+
+        <div className="field">
+          <label className="field-label" htmlFor={`${id}-quantity`}>Amount{base ? ` in ${base}` : ""}</label>
+          <div className={`input-shell ${quantityError ? "input-shell--error" : ""}`}>
+            <input
+              id={`${id}-quantity`}
+              inputMode="decimal"
+              autoComplete="off"
+              maxLength={32}
+              placeholder="0.00"
+              value={quantity}
+              onChange={(event) => setQuantity(event.target.value)}
+              aria-invalid={quantityError !== null}
+              aria-describedby={quantityError ? `${id}-quantity-error` : undefined}
+            />
+            {base && <span>{base}</span>}
+          </div>
+          {quantityError && <p className="field-error" id={`${id}-quantity-error`}>{quantityError}</p>}
+        </div>
+
+        <dl className="order-summary">
+          <div><dt>{side === "buy" ? "You'll pay at most" : "You'll sell at most"}</dt><dd>{escrowText ?? "—"}</dd></div>
+          <div><dt>Available to trade</dt><dd>{available}</dd></div>
+          <div><dt>Network fee</dt><dd>Charged on {gasFormat.format(GAS.place)} gas</dd></div>
+        </dl>
+
+        <button className="primary-button" type="submit" disabled={blocker !== null || !ready || busy}>
+          {busy ? "Working…" : `Place ${side} order`}
+        </button>
+        <TxStatus state={state} success={placedBatch ? `Order placed in batch #${placedBatch}. It clears with the next transaction after the batch seals.` : "Order placed."} />
+        {blocker && <p className="fine-print">{blocker}</p>}
       </div>
-      <button className="primary-button" type="submit" disabled={blocker !== null || !ready || busy}>
-        {busy ? "Working…" : `Place ${side} order`}
-      </button>
-      <TxStatus state={state} success={placedBatch ? `Order placed in batch #${placedBatch}. It clears with the next transaction after the batch seals.` : "Order placed."} />
-      <p className="fine-print">
-        {blocker ?? "Testnet demo tokens only. The amount shown is locked when you place the order; anything unfilled is returned when you claim."}
-      </p>
     </form>
   );
 }

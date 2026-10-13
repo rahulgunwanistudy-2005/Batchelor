@@ -27,6 +27,11 @@ export interface OrderBookSnapshot {
   bids: BookLevel[];
   asks: BookLevel[];
   timestamp: number;
+  /**
+   * Where the open batch would clear if it sealed now, from the same
+   * uncrossing rules the contract applies. Null when the book does not cross.
+   */
+  indicative: { price: string; volume: string } | null;
 }
 
 export interface Candle {
