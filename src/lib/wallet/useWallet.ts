@@ -239,3 +239,9 @@ export function isWrongChain(wallet: WalletState): boolean {
 export function useWallet(): WalletState {
   return useSyncExternalStore(subscribe, () => state, () => initialState);
 }
+
+/** The connected wallet's provider and account, for sending a transaction the user asked for. */
+export function getWalletSession(): { provider: EIP1193Provider; address: Address; chainId: number | null } | null {
+  if (state.status !== "connected" || !state.address || !boundProvider) return null;
+  return { provider: boundProvider, address: state.address, chainId: state.chainId };
+}

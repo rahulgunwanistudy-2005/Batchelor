@@ -22,9 +22,9 @@ interface MarketChartProps {
   interval: CandleInterval;
 }
 
-const UP_COLOR = "#2ebd85";
-const DOWN_COLOR = "#f0556a";
-const VOLUME_PANE_HEIGHT = 84;
+const UP_COLOR = "#3cc4ae";
+const DOWN_COLOR = "#f07ca0";
+const VOLUME_PANE_HEIGHT = 96;
 
 export function MarketChart({ result, interval }: MarketChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,21 +49,22 @@ export function MarketChart({ result, interval }: MarketChartProps) {
       layout: {
         background: {
           type: ColorType.Solid,
-          color: "#12161c",
+          color: "#1a2133",
         },
-        textColor: "#848e9c",
+        textColor: "#9aa3ba",
         attributionLogo: true,
-        panes: { separatorColor: "#1f252e" },
+        fontFamily: "IBM Plex Sans, system-ui, sans-serif",
+        panes: { separatorColor: "rgba(154, 163, 186, 0.2)" },
       },
       grid: {
-        vertLines: { color: "#181d25" },
-        horzLines: { color: "#181d25" },
+        vertLines: { color: "rgba(154, 163, 186, 0.08)" },
+        horzLines: { color: "rgba(154, 163, 186, 0.08)" },
       },
       rightPriceScale: {
-        borderColor: "#1f252e",
+        borderColor: "rgba(154, 163, 186, 0.2)",
       },
       timeScale: {
-        borderColor: "#1f252e",
+        borderColor: "rgba(154, 163, 186, 0.2)",
         timeVisible: true,
         secondsVisible: false,
       },
@@ -81,17 +82,20 @@ export function MarketChart({ result, interval }: MarketChartProps) {
         borderDownColor: DOWN_COLOR,
         wickUpColor: UP_COLOR,
         wickDownColor: DOWN_COLOR,
+        // The axis already labels this level; a second label on top of it only collides.
+        lastValueVisible: false,
+        priceLineVisible: false,
       });
       series.setData(candles);
     } else {
-      const series = chart.addSeries(LineSeries, { color: "#9c8cff", lineWidth: 2 });
+      const series = chart.addSeries(LineSeries, { color: "#9c8cff", lineWidth: 2, lastValueVisible: false, priceLineVisible: false });
       series.setData(candles.map(({ time, close }) => ({ time, value: close })));
     }
 
     const volumeBars = candles.flatMap(({ time, open, close, volume }) =>
       volume === null
         ? []
-        : [{ time, value: volume, color: close >= open ? "rgba(46, 189, 133, .5)" : "rgba(240, 85, 106, .5)" }],
+        : [{ time, value: volume, color: close >= open ? "rgba(60, 196, 174, .45)" : "rgba(240, 124, 160, .45)" }],
     );
 
     if (volumeBars.length > 0) {
@@ -101,6 +105,8 @@ export function MarketChart({ result, interval }: MarketChartProps) {
         1,
       );
       volumeSeries.setData(volumeBars);
+      // Head-room keeps the volume axis labels clear of the price pane above.
+      volumeSeries.priceScale().applyOptions({ scaleMargins: { top: 0.3, bottom: 0 } });
       chart.panes()[1]?.setHeight(VOLUME_PANE_HEIGHT);
     }
 
@@ -122,7 +128,7 @@ export function MarketChart({ result, interval }: MarketChartProps) {
 
   const hasCandles = candles.length > 0;
 
-  let statusMessage = "Historical prices will appear here.";
+  let statusMessage = "Clearing prices will appear here once batches have traded.";
 
   if (result.status === "loading") {
     statusMessage = "Loading verified market data…";
@@ -136,25 +142,13 @@ export function MarketChart({ result, interval }: MarketChartProps) {
   }
 
   return (
-    <section className="panel market-chart-panel">
-      <div className="market-chart-header">
-        <div>
-          <h2 className="market-chart-title">Market overview</h2>
-          <p className="market-chart-subtitle">
-            Batch-clearing price history
-          </p>
-        </div>
-        <span className="market-chart-source">
-          {hasCandles ? "Verified feed" : "Feed unavailable"}
-        </span>
-      </div>
-
+    <>
       <div className="chart-toolbar">
         <nav className="chart-toolbar-group" aria-label="Candle interval">
           {CANDLE_INTERVALS.map((option) => (
             <Link
               key={option}
-              href={`/?interval=${option}`}
+              href={`/?view=history&interval=${option}`}
               scroll={false}
               className={`chart-tool ${option === interval ? "chart-tool--active" : ""}`}
               aria-current={option === interval ? "true" : undefined}
@@ -163,49 +157,31 @@ export function MarketChart({ result, interval }: MarketChartProps) {
             </Link>
           ))}
         </nav>
-        <div className="chart-toolbar-group" role="group" aria-label="Chart type">
-          <button
-            type="button"
-            className={`chart-tool ${chartType === "candles" ? "chart-tool--active" : ""}`}
-            aria-pressed={chartType === "candles"}
-            disabled={!hasCandles}
-            onClick={() => setChartType("candles")}
-          >
-            <CandlestickChart size={13} /> Candles
-          </button>
-          <button
-            type="button"
-            className={`chart-tool ${chartType === "line" ? "chart-tool--active" : ""}`}
-            aria-pressed={chartType === "line"}
-            disabled={!hasCandles}
-            onClick={() => setChartType("line")}
-          >
-            <LineChart size={13} /> Line
-          </button>
-        </div>
+        {hasCandles && (
+          <div className="chart-toolbar-group" role="group" aria-label="Chart type">
+            <button type="button" className={`chart-tool ${chartType === "candles" ? "chart-tool--active" : ""}`} aria-pressed={chartType === "candles"} onClick={() => setChartType("candles")}>
+              <CandlestickChart size={14} /> Candles
+            </button>
+            <button type="button" className={`chart-tool ${chartType === "line" ? "chart-tool--active" : ""}`} aria-pressed={chartType === "line"} onClick={() => setChartType("line")}>
+              <LineChart size={14} /> Line
+            </button>
+          </div>
+        )}
       </div>
 
       {hasCandles ? (
-        <div
-          ref={containerRef}
-          className="market-chart-canvas"
-          aria-label="Market price and volume chart"
-        />
+        <div ref={containerRef} className="market-chart-canvas" aria-label="Clearing price and volume chart" />
       ) : (
         <div className="market-chart-state" role="status">
-          <strong>Price history unavailable</strong>
-          <p>{statusMessage}</p>
+          <strong>No price history yet</strong>
+          <span>{statusMessage}</span>
         </div>
       )}
 
-      <div className="market-chart-footer">
-        <span>Source: market data adapter · {interval} interval</span>
-        <span>
-          {hasCandles
-            ? `${candles.length} candles`
-            : "Awaiting a connected data source"}
-        </span>
-      </div>
-    </section>
+      <p className="market-chart-footer">
+        <span>{hasCandles ? `${candles.length} ${interval} candle${candles.length === 1 ? "" : "s"}` : `${interval} interval`}</span>
+        <span>{hasCandles && result.message ? result.message : ""}</span>
+      </p>
+    </>
   );
 }

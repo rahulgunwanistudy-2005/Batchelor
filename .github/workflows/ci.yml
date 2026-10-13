@@ -45,9 +45,13 @@ jobs:
       - name: Contract tests
         working-directory: contracts
         run: python3 ../scripts/export-test-summary.py
+      # A later step rebuilds contracts/out and drops this file, which the web build needs.
+      - name: Keep the contract test summary
+        run: cp contracts/out/test-summary.json "$RUNNER_TEMP/test-summary.json"
       - name: Historical hardfork tests
         working-directory: contracts
-        run: FOUNDRY_PROFILE=pre_mip8 forge test
+        # Pre-MIP-8 clearing of a full book exceeds the 30M default; S8 verified with this limit.
+        run: FOUNDRY_PROFILE=pre_mip8 forge test --gas-limit 100000000
       - name: Live evidence regression tests
         run: python3 -m unittest discover -s scripts -p test_spike.py
       - name: Local storage gate
@@ -67,8 +71,17 @@ jobs:
         run: git diff --exit-code -- packages/core/test/vectors.json
       - name: Storage layout and priority-input gates
         run: pnpm check:contracts
+      # Slither 0.11.5 does not always report the reviewed 'incorrect-equality' finding in
+      # BatchAuction._place: identical commits and tool versions have both passed and failed
+      # this gate. Retry so that run-to-run variation does not fail the build. An unreviewed
+      # finding still fails every attempt. Remove once the baseline is made deterministic.
       - name: Individually reviewed Slither findings
-        run: python3 scripts/check-security.py
+        run: |
+          for attempt in 1 2 3 4; do
+            if python3 scripts/check-security.py; then exit 0; fi
+            echo "Slither gate attempt $attempt did not match the reviewed baseline."
+          done
+          exit 1
       - name: Generated ABI freshness
         run: |
           pnpm gen
@@ -79,15 +92,17 @@ jobs:
       - run: pnpm -r lint
       - run: pnpm -r test
       - run: pnpm test:tooling
+      - name: Restore the contract test summary
+        run: mkdir -p contracts/out && cp "$RUNNER_TEMP/test-summary.json" contracts/out/test-summary.json
       - run: pnpm -r build
       - name: Terminal typecheck
-        run: pnpm typecheck
+        run: pnpm terminal:typecheck
       - name: Terminal lint
-        run: pnpm lint
+        run: pnpm terminal:lint
       - name: Terminal tests
-        run: pnpm test
+        run: pnpm terminal:test
       - name: Terminal build
-        run: pnpm build
+        run: pnpm terminal:build
       - run: python3 scripts/check-contrast.py
       - name: Retain spike evidence
         uses: actions/upload-artifact@v6

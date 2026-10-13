@@ -1,3 +1,4 @@
+import live from "../../../contracts/bench/out/live-testnet.json";
 import spike from "../../../contracts/bench/out/spike.json";
 import bench from "../../../packages/core/src/bench.json";
 import gasBounds from "../../../packages/core/src/gas.json";
@@ -53,11 +54,98 @@ export const storageProvenance = {
   sourceFile: "contracts/bench/out/spike.json",
 };
 
+/** Gas for the contract's own clearing step at each book size, under both rule sets. */
+export const clearingScenarios: StorageScenario[] = bench.scenarios.flatMap((row) =>
+  validGas(row.monadNine) && validGas(row.monadTen) && Number.isSafeInteger(row.activeTicks)
+    ? [{
+        key: row.name,
+        label: `${row.activeTicks} active ticks, ${row.orders} orders`,
+        before: row.monadNine,
+        after: row.monadTen,
+      }]
+    : [],
+);
+
+const largestClearing = clearingScenarios.reduce<StorageScenario | null>(
+  (largest, row) => (largest === null || row.before > largest.before ? row : largest),
+  null,
+);
+
+export const clearingEvidence = {
+  largest: largestClearing,
+  sameBytecode: bench.acceptance.sameBytecode === true,
+  method: bench.measurement.clearing,
+  generatedAt: bench.generatedAt,
+  sourceFile: "packages/core/src/bench.json",
+};
+
+/** Explicit gas limit each client sends per contract call (Monad bills the declared limit). */
+export const gasLimits: { name: string; limit: number }[] = Object.entries(gasBounds).flatMap(([name, limit]) =>
+  validGas(limit) ? [{ name, limit }] : [],
+);
+
 export const pendingMeasurements = {
-  auctionClearingMeasured: bench.status === "measured" && bench.auctionClearing !== null,
-  gasBoundsMeasured: gasBounds.status === "measured" && gasBounds.bounds !== null,
-  liveTestnetStatus: spike.liveTestnet.status,
+  auctionClearingMeasured: clearingScenarios.length > 0,
+  gasBoundsMeasured: gasLimits.length > 0,
+  liveTestnetPassed: spike.liveTestnet.status === "passed" && live.status === "passed",
   liveTestnetReason: spike.liveTestnet.reason,
+};
+
+export interface LiveComparison {
+  key: string;
+  label: string;
+  localGas: number;
+  liveGas: number;
+  /** Explorer link for the measuring transaction, when the evidence has a well-formed one. */
+  txHash: string | null;
+  explorerUrl: string | null;
+}
+
+// Evidence names each measuring transaction by action, not by scenario key.
+const SCENARIO_ACTIONS: Record<string, string> = {
+  contiguous512: "readContiguous512",
+  scattered512: "readScattered512",
+  onePage32: "readContiguous32OnePage",
+  fourPages32: "readContiguous32FourPages",
+  writeOnePage64: "write64OnePage",
+  writeSeparatePages64: "write64SeparatePages",
+};
+
+const TX_HASH = /^0x[0-9a-f]{64}$/;
+const EXPLORER_TX_PREFIX = "https://testnet.monadvision.com/tx/";
+
+/** Only link out when the URL is exactly the known explorer plus this transaction's hash. */
+function safeExplorerUrl(hash: string, url: unknown): string | null {
+  return TX_HASH.test(hash) && url === `${EXPLORER_TX_PREFIX}${hash}` ? url : null;
+}
+
+const successfulTransactions = live.transactions.filter((tx) => tx.status === "success");
+
+export const liveComparisons: LiveComparison[] = live.comparisons.flatMap((row) => {
+  const label = SCENARIO_LABELS[row.scenario];
+  if (!label || !validGas(row.localGas) || !validGas(row.liveGas)) return [];
+  const tx = successfulTransactions.find((candidate) => candidate.action === SCENARIO_ACTIONS[row.scenario]);
+  const explorerUrl = tx ? safeExplorerUrl(tx.hash, tx.explorerUrl) : null;
+  return [{ key: row.scenario, label, localGas: row.localGas, liveGas: row.liveGas, txHash: tx && TX_HASH.test(tx.hash) ? tx.hash : null, explorerUrl }];
+});
+
+const deployTx = successfulTransactions.find((tx) => tx.action === "deploy");
+
+export const liveEvidence = {
+  passed: pendingMeasurements.liveTestnetPassed,
+  chainId: live.chainId,
+  address: /^0x[0-9a-fA-F]{40}$/.test(live.address) ? live.address : null,
+  measuredAt: live.measuredAt,
+  verifiedAt: live.verifiedAt,
+  runtimeBytecodeSha256: live.runtimeBytecodeSha256,
+  bytecodeMatchesLocal: live.bytecodeMatchesLocal === true && live.runtimeBytecodeSha256 === spike.profiles.default.runtimeBytecodeSha256,
+  receiptsVerified: live.receiptsVerified === true,
+  transactionCount: successfulTransactions.length,
+  allTransactionsSucceeded: successfulTransactions.length === live.transactions.length,
+  exactMatches: liveComparisons.filter((row) => row.localGas === row.liveGas).length,
+  totalFeeMon: /^\d+(\.\d+)?$/.test(live.totalChargedFeeMon) ? live.totalChargedFeeMon : null,
+  deployExplorerUrl: deployTx ? safeExplorerUrl(deployTx.hash, deployTx.explorerUrl) : null,
+  sourceFile: "contracts/bench/out/live-testnet.json",
 };
 
 export const deployments = [

@@ -6,8 +6,8 @@ import type {
   MarketSummary,
   OrderBookSnapshot,
 } from "@/types/market";
-import { createPublicClient, http } from "viem";
-import { networkConfig } from "@/lib/network/status";
+import { createPublicClient } from "viem";
+import { networkConfig, rpcTransport } from "@/lib/network/status";
 import { createOnchainAdapter } from "./onchain";
 
 export interface MarketDataAdapter {
@@ -28,6 +28,12 @@ export interface MarketDataAdapter {
     marketId: string,
     batchId: string
   ): Promise<MarketDataResult<BatchResult>>;
+
+  /** Most recent cleared batches, newest first. */
+  getRecentBatches(
+    marketId: string,
+    limit: number
+  ): Promise<MarketDataResult<BatchResult[]>>;
 }
 
 function unavailable<T>(
@@ -116,26 +122,32 @@ const unavailableAdapter: MarketDataAdapter = {
       "Batch results are not connected."
     );
   },
+
+  async getRecentBatches() {
+    return unavailable<BatchResult[]>(
+      "Batch history is not connected."
+    );
+  },
 };
 
+/** True when a chain, RPC and market address are all configured. */
+export const contractReadsConfigured =
+  networkConfig.expectedChainId !== null && networkConfig.rpcUrl !== null && networkConfig.marketAddress !== null;
+
 /**
- * Contract reads stay off unless explicitly enabled AND a chain, RPC and
- * market address are all configured. The on-chain adapter has not been
- * run against a real deployment; see onchain.ts before enabling it.
+ * Reads come from the auction contract once a chain, RPC and market
+ * address are configured. No address is ever defaulted, so without one
+ * every result stays "unavailable".
  */
 function selectAdapter(): MarketDataAdapter {
   const { expectedChainId, rpcUrl, marketAddress } = networkConfig;
-  if (
-    process.env.NEXT_PUBLIC_CONTRACT_READS !== "enabled" ||
-    expectedChainId === null ||
-    rpcUrl === null ||
-    marketAddress === null
-  ) {
+  if (expectedChainId === null || rpcUrl === null || marketAddress === null) {
     return unavailableAdapter;
   }
 
   return createOnchainAdapter({
-    reader: createPublicClient({ transport: http(rpcUrl, { timeout: 8_000, retryCount: 0 }) }),
+    // Batched JSON-RPC and a few retries keep one page render within public RPC rate limits.
+    reader: createPublicClient({ transport: rpcTransport({ timeout: 10_000, retryCount: 3, retryDelay: 250, batch: { wait: 10 } }) }),
     address: marketAddress,
     expectedChainId,
   });

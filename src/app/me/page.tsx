@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AccountSummary } from "@/components/account/AccountSummary";
+import { OrderHistory } from "@/components/account/OrderHistory";
 import { OrdersPanel } from "@/components/terminal/OrdersPanel";
 import { TopBar } from "@/components/terminal/TopBar";
 
@@ -9,13 +10,17 @@ export default function MyOrdersPage() {
   return (
     <main className="app-shell">
       <TopBar active="orders" />
-      <div id="content" className="page-content proof-page">
-        <h1 className="sr-only">My orders</h1>
+      <div id="content" className="page-content page-content--narrow">
+        <header className="page-heading">
+          <h1>Your account</h1>
+          <p className="page-lede">Balances you hold inside the auction contract, and the orders you have placed from this browser.</p>
+        </header>
         <AccountSummary />
         <OrdersPanel />
+        <OrderHistory />
         <footer className="footer">
-          <span>BATCHELOR <span className="brand-period">/</span> DEVELOPMENT BUILD</span>
-          <span>Market data is not connected. No trades can be submitted.</span>
+          <span>Balances and order status are read from the auction contract.</span>
+          <span>Demo tokens on Monad testnet. No real value.</span>
         </footer>
       </div>
     </main>
