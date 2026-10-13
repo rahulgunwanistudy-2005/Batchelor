@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { GasBars } from "@/components/proof/GasBars";
 import { LiveBytecodeCheck } from "@/components/proof/LiveBytecodeCheck";
 import { TopBar } from "@/components/terminal/TopBar";
-import { deployments, liveComparisons, liveEvidence, pendingMeasurements, storageProvenance, storageScenarios } from "@/lib/proof/benchmarks";
+import { clearingEvidence, clearingScenarios, deployments, gasLimits, liveComparisons, liveEvidence, pendingMeasurements, storageProvenance, storageScenarios } from "@/lib/proof/benchmarks";
 
 export const metadata: Metadata = {
   title: "Proof — Batchelor",
@@ -16,16 +16,12 @@ export default function ProofPage() {
   const measuredAt = new Date(storageProvenance.measuredAt);
 
   const pending = [
-    {
-      name: "Auction clearing gas",
-      done: pendingMeasurements.auctionClearingMeasured,
-      detail: "Gas to clear a full book under each hardfork. Needs the auction contract's clearing logic.",
-    },
-    {
-      name: "Per-entrypoint gas bounds",
-      done: pendingMeasurements.gasBoundsMeasured,
-      detail: "Worst-case gas for each contract call, used as explicit gas limits.",
-    },
+    ...(pendingMeasurements.auctionClearingMeasured
+      ? []
+      : [{ name: "Auction clearing gas", done: false, detail: "Gas to clear a full book under each hardfork." }]),
+    ...(pendingMeasurements.gasBoundsMeasured
+      ? []
+      : [{ name: "Per-entrypoint gas bounds", done: false, detail: "Worst-case gas for each contract call, used as explicit gas limits." }]),
     ...(pendingMeasurements.liveTestnetPassed
       ? []
       : [{ name: "Live testnet measurement", done: false, detail: pendingMeasurements.liveTestnetReason }]),
@@ -59,7 +55,7 @@ export default function ProofPage() {
             </p>
           )}
           <p className="proof-caveat">
-            These are storage-probe measurements, not auction clearing costs. Each figure includes the probe&apos;s own loop, bounds-check and checksum work, and excludes transaction overhead.
+            The headline is a storage-probe measurement, not an auction clearing cost; clearing is measured separately below. Each figure includes the probe&apos;s own loop, bounds-check and checksum work, and excludes transaction overhead.
           </p>
         </section>
 
@@ -76,6 +72,24 @@ export default function ProofPage() {
             <p className="proof-empty">No valid storage measurements were found.</p>
           )}
         </section>
+
+        {clearingScenarios.length > 0 && (
+          <section className="panel">
+            <div className="panel-heading">
+              <div>
+                <h2>Auction clearing gas, before and after MIP-8</h2>
+                <p className="panel-subtitle">
+                  Gas for the contract&apos;s own clearing step, by book size
+                  {clearingEvidence.sameBytecode ? ", same bytecode under both rule sets" : ""}
+                </p>
+              </div>
+            </div>
+            <GasBars scenarios={clearingScenarios} rowLabel="Book size" />
+            <p className="panel-footnote" style={{ marginBottom: 10 }}>
+              Measured locally in Monad Foundry: {clearingEvidence.method}. Source: {clearingEvidence.sourceFile}.
+            </p>
+          </section>
+        )}
 
         {liveEvidence.passed && liveEvidence.address && (
           <section className="panel">
@@ -156,6 +170,18 @@ export default function ProofPage() {
               ))}
             </ul>
           </section>
+
+          {gasLimits.length > 0 && (
+            <section className="panel">
+              <div className="panel-heading"><h2>Gas limit per call</h2></div>
+              <dl className="proof-facts">
+                {gasLimits.map(({ name, limit }) => (
+                  <div key={name}><dt className="proof-hash">{name}</dt><dd className="proof-hash">{gasFormat.format(limit)}</dd></div>
+                ))}
+              </dl>
+              <p className="panel-footnote" style={{ marginBottom: 10 }}>Monad charges for the declared limit, so each call sends a fixed, measured one.</p>
+            </section>
+          )}
 
           <section className="panel">
             <div className="panel-heading"><h2>Contract addresses</h2></div>

@@ -12,7 +12,7 @@ function ratio(scenario: StorageScenario): string {
  * Bars share one linear scale per row, because rows differ by two orders
  * of magnitude and are not meant to be compared against each other.
  */
-export function GasBars({ scenarios }: { scenarios: StorageScenario[] }) {
+export function GasBars({ scenarios, rowLabel = "Probe" }: { scenarios: StorageScenario[]; rowLabel?: string }) {
   return (
     <div className="gas-bars">
       <ul className="gas-legend" aria-label="Series">
@@ -21,9 +21,9 @@ export function GasBars({ scenarios }: { scenarios: StorageScenario[] }) {
       </ul>
       <div className="gas-table-scroll">
         <table className="gas-table">
-          <caption className="sr-only">Gas used by each storage probe before and after MIP-8. Bars are scaled within each row.</caption>
+          <caption className="sr-only">Gas used in each row before and after MIP-8. Bars are scaled within each row.</caption>
           <thead>
-            <tr><th scope="col">Probe</th><th scope="col">Gas used</th><th scope="col">Before ÷ after</th></tr>
+            <tr><th scope="col">{rowLabel}</th><th scope="col">Gas used</th><th scope="col">Before ÷ after</th></tr>
           </thead>
           <tbody>
             {scenarios.map((scenario) => {

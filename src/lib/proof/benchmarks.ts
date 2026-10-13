@@ -54,9 +54,39 @@ export const storageProvenance = {
   sourceFile: "contracts/bench/out/spike.json",
 };
 
+/** Gas for the contract's own clearing step at each book size, under both rule sets. */
+export const clearingScenarios: StorageScenario[] = bench.scenarios.flatMap((row) =>
+  validGas(row.monadNine) && validGas(row.monadTen) && Number.isSafeInteger(row.activeTicks)
+    ? [{
+        key: row.name,
+        label: `${row.activeTicks} active ticks, ${row.orders} orders`,
+        before: row.monadNine,
+        after: row.monadTen,
+      }]
+    : [],
+);
+
+const largestClearing = clearingScenarios.reduce<StorageScenario | null>(
+  (largest, row) => (largest === null || row.before > largest.before ? row : largest),
+  null,
+);
+
+export const clearingEvidence = {
+  largest: largestClearing,
+  sameBytecode: bench.acceptance.sameBytecode === true,
+  method: bench.measurement.clearing,
+  generatedAt: bench.generatedAt,
+  sourceFile: "packages/core/src/bench.json",
+};
+
+/** Explicit gas limit each client sends per contract call (Monad bills the declared limit). */
+export const gasLimits: { name: string; limit: number }[] = Object.entries(gasBounds).flatMap(([name, limit]) =>
+  validGas(limit) ? [{ name, limit }] : [],
+);
+
 export const pendingMeasurements = {
-  auctionClearingMeasured: bench.status === "measured" && bench.auctionClearing !== null,
-  gasBoundsMeasured: gasBounds.status === "measured" && gasBounds.bounds !== null,
+  auctionClearingMeasured: clearingScenarios.length > 0,
+  gasBoundsMeasured: gasLimits.length > 0,
   liveTestnetPassed: spike.liveTestnet.status === "passed" && live.status === "passed",
   liveTestnetReason: spike.liveTestnet.reason,
 };
