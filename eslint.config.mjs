@@ -16,6 +16,9 @@ export default defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored Solidity libraries and Foundry output are not this app's code.
+    "contracts/**",
+    "indexer/**",
     "apps/**",
     "packages/**",
     "services/**",
