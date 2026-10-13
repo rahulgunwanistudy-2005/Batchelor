@@ -1,0 +1,52 @@
+# Free testnet bot conductor. The web app runs separately on Vercel.
+# Select this release branch when importing the Blueprint from GitHub.
+services:
+  - type: web
+    name: batchelor-bots-testnet
+    runtime: docker
+    repo: https://github.com/rahulgunwanistudy-2005/Batchelor
+    branch: codex/host-render-vercel
+    plan: free
+    region: singapore
+    dockerfilePath: ./services/bots/Dockerfile
+    dockerContext: .
+    healthCheckPath: /livez
+    autoDeployTrigger: off
+    maxShutdownDelaySeconds: 30
+    envVars:
+      - key: CHAIN
+        value: testnet
+      - key: MAINNET_SENDS_ENABLED
+        value: "false"
+      - key: MARKET_ADDRESS
+        value: "0x2B74dA5CD3fae739D952cbA6D93DCfba5832Ff45"
+      - key: FAUCET_ADDRESS
+        value: "0xAd20E8A597D1FEE68f74057eDDBf4CAEa408c98E"
+      - key: START_BLOCK
+        value: "70756591"
+      - key: PORT
+        value: "10000"
+      - key: PETE_BURST_BLOCKS
+        value: "20"
+      - key: PETE_DAILY_CAP
+        value: "1"
+      - key: MO_AWAKE_SECONDS
+        value: "90"
+      - key: RPC_HTTP
+        sync: false
+      - key: RPC_WS
+        sync: false
+      - key: BOTS_TOKEN
+        sync: false
+      - key: KEEPER_PK
+        sync: false
+      - key: MO_PK
+        sync: false
+      - key: PETE_PK_1
+        sync: false
+      - key: PETE_PK_2
+        sync: false
+      - key: PETE_PK_3
+        sync: false
+      - key: PETE_PK_4
+        sync: false

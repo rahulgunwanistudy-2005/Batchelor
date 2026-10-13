@@ -3,12 +3,21 @@ import { readEnv } from './chain.js';
 import { startRuntime } from './runtime.js';
 
 async function main() {
-  const env = readEnv(); const runtime = await startRuntime(env);
+  const env = readEnv();
+  let runtime: Awaited<ReturnType<typeof startRuntime>> | undefined;
   const server = createServer(async (request, response) => {
     try {
       // These routes accept no request body; stream bodies never enter the process.
       if (Number(request.headers['content-length'] ?? '0') > 0 || request.headers['transfer-encoding']) {
         response.writeHead(413); response.end(); request.resume(); return;
+      }
+      // Bind immediately while complete historical recovery runs. Render checks
+      // process liveness; trading clients continue to use the readiness endpoint.
+      if (!runtime) {
+        const alive = request.url === '/livez' && ['GET', 'HEAD'].includes(request.method ?? 'GET');
+        response.writeHead(alive ? 200 : 503, { 'Content-Type': 'application/json' });
+        response.end(request.method === 'HEAD' ? undefined : JSON.stringify({ status: alive ? 'alive' : 'starting' }));
+        return;
       }
       const headers = new Headers();
       if (request.headers.authorization) headers.set('Authorization', request.headers.authorization);
@@ -19,12 +28,21 @@ async function main() {
     } catch { response.writeHead(500); response.end('{"error":"Request failed."}'); }
   });
   server.requestTimeout = 10_000; server.headersTimeout = 10_000;
-  server.listen(env.PORT, '0.0.0.0', () => runtime.state.log('listening', { port: env.PORT }));
+  server.listen(env.PORT, '0.0.0.0');
   let stopping = false;
   const stop = () => { if (stopping) return; stopping = true;
-    server.close(); void runtime.stop().finally(() => process.exit(0));
+    server.close();
+    if (!runtime) { process.exit(0); }
+    void runtime.stop().finally(() => process.exit(0));
     setTimeout(() => process.exit(1), 15_000).unref();
   };
   process.on('SIGTERM', stop); process.on('SIGINT', stop);
+  try {
+    runtime = await startRuntime(env);
+    runtime.state.log('listening', { port: env.PORT });
+  } catch {
+    server.close();
+    throw new Error('Startup failed.');
+  }
 }
 void main().catch(() => { console.error('{"event":"startup_failed","message":"Check configuration, chain and funding; no exception details logged."}'); process.exit(1); });

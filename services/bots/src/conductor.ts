@@ -10,6 +10,8 @@ export interface Controls {
 }
 export function createConductor(controls: Controls) {
   const app = new Hono();
+  // Hosting liveness is separate from funded, synced trading readiness.
+  app.get('/livez', (c) => c.json({ status: 'alive' }));
   app.get('/health', (c) => {
     const health = controls.health();
     return c.json(health, health.status === 'ok' ? 200 : 503);

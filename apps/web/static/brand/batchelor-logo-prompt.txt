@@ -1,0 +1,4 @@
+Mode: Built-in image generation, followed by built-in image editing.
+Asset: batchelor-logo.png
+
+Edit the generated Batchelor logo. Keep the compact standalone mark, three brand colors, violet horizontal clearing line, transparent square canvas, and bold clean geometric style. Correct the auction geometry: show TWO separate complete staircase curves crossing in the center. The TEAL curve must run from TOP LEFT downward through the center to BOTTOM RIGHT. The ROSE curve must run from BOTTOM LEFT upward through the center to TOP RIGHT. All four diagonal arms must be visible, making a balanced distinctive X-like staircase silhouette. The violet horizontal line spans left to right at the central intersection. Flat solid fills without gradients or shadows. No text, axes, arrows, border, extra icons or mockup. Genuine transparency.

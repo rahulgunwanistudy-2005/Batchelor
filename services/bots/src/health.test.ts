@@ -24,6 +24,11 @@ describe('authenticated conductor', () => {
   it('returns service unavailable when health is degraded', async () => {
     const app = createConductor({ token, wake: () => {}, unleash: () => ({ remainingToday: 1, startBlock: '1' }), health: () => ({ status: 'degraded' }) });
     expect((await app.request('/health')).status).toBe(503);
+    expect((await app.request('/livez')).status).toBe(200);
+    expect(await (await app.request('/livez')).json()).toEqual({ status: 'alive' });
+    // Hosting liveness never authorizes trading controls or masks readiness.
+    expect((await app.request('/wake', { method: 'POST' })).status).toBe(401);
+    expect((await app.request('/unleash', { method: 'POST' })).status).toBe(401);
   });
   it('does not consume multiple caps for concurrent requests during one burst', async () => {
     const { app } = setup();
@@ -37,7 +42,7 @@ it('validates configuration without leaking malformed key values', () => {
   expect(() => readEnv({ KEEPER_PK: 'secret-value' })).toThrow('KEEPER_PK');
   try { readEnv({ KEEPER_PK: 'secret-value' }); } catch (error) { expect(String(error)).not.toContain('secret-value'); }
   expect(readEnv({ KEEPER_PK: '' }).KEEPER_PK).toBeUndefined();
-  expect(createChainClients(readEnv({})).wallets.size).toBe(0);
+  expect(createChainClients(readEnv({ RPC_HTTP: 'http://127.0.0.1:18545' })).wallets.size).toBe(0);
   expect(feeCaps(100n, 1000n)).toEqual({ maxFeePerGas: 1200n, maxPriorityFeePerGas: 1000n });
 });
 it('health is honest about stale heads, missing balances and five-minute error expiry', () => {
