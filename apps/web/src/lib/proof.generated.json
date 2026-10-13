@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T09:23:51.192209+00:00",
+  "generatedAt": "2026-10-13T09:43:28.832340+00:00",
   "command": "forge test --json",
   "profile": "MonadTen",
   "testCount": 81,

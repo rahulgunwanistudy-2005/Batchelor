@@ -44,6 +44,11 @@ const runtimeModule = await import(new URL('../services/bots/dist/runtime.js', i
 const token = 'local-integration-only-control-token';
 const source: NodeJS.ProcessEnv = { CHAIN: 'testnet', RPC_HTTP: rpc, RPC_WS: rpc.replace('http:','ws:'),
   MARKET_ADDRESS: market, FAUCET_ADDRESS: faucet, BOTS_TOKEN: token, START_BLOCK: '0', PETE_BURST_BLOCKS: '10', MO_AWAKE_SECONDS: '90' };
+if(process.env.LOCAL_MONAD_WS) {
+  const proxy=new URL(process.env.LOCAL_MONAD_WS);
+  if(!['localhost','127.0.0.1'].includes(proxy.hostname)||proxy.protocol!=='ws:')throw new Error('Websocket fixture must be loopback.');
+  source.RPC_WS=proxy.href;
+}
 chainModule.keyNames.forEach((name, i) => { source[name] = toHex(accounts[i+1]!.getHdKey().privateKey!); });
 const env = chainModule.readEnv(source);
 const runtime = await runtimeModule.startRuntime(env);
@@ -86,6 +91,19 @@ try {
   const demoModule = await import(new URL('../services/bots/dist/rehearsal.js', import.meta.url).href) as typeof import('../services/bots/src/rehearsal.ts');
   const demo = demoModule.verifyDemo(await inspect(event.args.orderId, ashaHash),
     await Promise.all(peteLogs.map((l) => inspect(l.args.orderId, l.transactionHash))), 10n);
+  let recovery: { httpCatchUp: boolean; socketResubscribed: boolean; restartAttempts: number } | undefined;
+  if(process.env.S8_SOCKET_RECOVERY==='1') {
+    if(!process.env.LOCAL_MONAD_WS)throw new Error('Recovery requires the local socket proxy.');
+    const before=runtime.state.lastHead!,droppedAt=Date.now();
+    const control=new URL('/drop',process.env.LOCAL_MONAD_WS.replace('ws:','http:'));
+    if(!(await fetch(control,{method:'POST'})).ok)throw new Error('Socket outage injection failed.');
+    await wait(7500);
+    const httpCatchUp=runtime.state.lastHead!>before&&runtime.state.httpFallbackHeads>0;
+    await wait(10500);
+    const socketResubscribed=runtime.state.lastSocketHeadAt>droppedAt+6000&&Date.now()-runtime.state.lastSocketHeadAt<4000;
+    recovery={httpCatchUp,socketResubscribed,restartAttempts:runtime.state.socketRestarts};
+    if(!httpCatchUp||!socketResubscribed||recovery.restartAttempts<2)throw new Error('Socket watchdog recovery failed.');
+  }
   const duration = Number(process.env.LOCAL_SOAK_SECONDS ?? '300');
   if (!Number.isInteger(duration) || duration < 10 || duration > 300) throw new Error('Local soak seconds must be 10..300.');
   const until = Date.now() + duration*1000; const samples: unknown[] = [];
@@ -95,11 +113,12 @@ try {
     await wait(5000);
   }
   const finalResponse = await runtime.app.request('/health'); const final = await finalResponse.json();
-  const passed = finalResponse.status === 200 && runtime.state.maxClearLag <= 2n && runtime.state.oldestClaimBatchAge <= 10n && runtime.state.reverts === 0;
+  const healthy = recovery ? runtime.state.lastHead!==null&&Date.now()-runtime.state.lastHeadAt<4000&&finalResponse.status===503 : finalResponse.status===200;
+  const passed = healthy && runtime.state.maxClearLag <= 2n && runtime.state.oldestClaimBatchAge <= 10n && runtime.state.reverts === 0;
   await mkdir(`${root}contracts/bench/out/s4`, {recursive:true});
   await writeFile(process.env.LOCAL_EVIDENCE_OUTPUT ?? `${root}contracts/bench/out/s4/local-bots.json`,JSON.stringify({environment:'local MonadTen Anvil, simulated MON only',passed,durationSeconds:duration,chainId:10143,
     asha:{hash:ashaHash, batch:event.args.batchId.toString(),txIndex:receipt.transactionIndex},pete:peteLogs.map((l)=>({hash:l.transactionHash,txIndex:l.transactionIndex})),
-    market, faucet, demo, clearTick:result.clearTick,volumeLots:result.volumeLots.toString(),final,samples},(_,v:unknown)=>typeof v==='bigint'?v.toString():v,2)+'\n');
+    market, faucet, demo, recovery, clearTick:result.clearTick,volumeLots:result.volumeLots.toString(),final,samples},(_,v:unknown)=>typeof v==='bigint'?v.toString():v,2)+'\n');
   if (!passed) throw new Error('Local soak gate failed.');
   console.log(JSON.stringify({event:'local_integration_passed',durationSeconds:duration,ashaHash,batch:event.args.batchId.toString()}));
 } finally { await runtime.stop(); }

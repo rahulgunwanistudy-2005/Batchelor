@@ -4,7 +4,7 @@ import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { createPublicClient, createWalletClient, encodeDeployData, getContractAddress, http, decodeEventLog, type Abi, type Hex } from 'viem';
+import { createPublicClient, createWalletClient, encodeDeployData, getContractAddress, http, decodeEventLog, toHex, type Abi, type Hex } from 'viem';
 import { mnemonicToAccount } from 'viem/accounts';
 import { monadTestnet } from 'viem/chains';
 import { batchAuctionAbi } from '../packages/core/src/abi.ts';
@@ -53,6 +53,13 @@ try {
   const expiredResponse=await api('/api/relay',{intent:intentJSON(expired),sig:await person.signTypedData(intentData(10143,market,expired))},400);if(expiredResponse.error?.code!=='EXPIRED')throw new Error('Expiry guard failed.');
   const wrong=buildIntent({trader:person.address,action:0,side:0,tick:120,lots:1000n,orderId:0n,nonce:0n});
   const bad=await api('/api/relay',{intent:intentJSON(wrong),sig:await mo.signTypedData(intentData(10143,market,wrong))},400);if(bad.error?.code!=='BAD_SIGNATURE')throw new Error('Signature guard failed.');
+  if (process.env.S8_VERIFY === '1') {
+    const funded = await client.getBalance({address:deployer.address});
+    await rpcCall('anvil_setBalance',[deployer.address,toHex(11n*10n**18n)]);
+    const paused = await api('/api/relay',{intent:intentJSON(wrong),sig:await person.signTypedData(intentData(10143,market,wrong))},503);
+    if(paused.error?.code!=='RELAYER_LOW_BALANCE'||!paused.error.message.startsWith('Gasless orders are paused.'))throw new Error('Low funding guard/copy failed.');
+    await rpcCall('anvil_setBalance',[deployer.address,toHex(funded)]);
+  }
   const samples:unknown[]=[];
   const mm=createWalletClient({chain:monadTestnet,account:mo,transport:http(rpc)});
   for(let j=-1;j<20;j++) {
@@ -85,7 +92,27 @@ try {
   }
   async function signedWire() {const i=buildIntent({trader:person.address,action:0,side:0,tick:105,lots:100n,orderId:0n,nonce:0n});return {intent:intentJSON(i),sig:await person.signTypedData(intentData(10143,market,i))};}
   await mkdir(`${root}docs/verification`,{recursive:true});
-  await writeFile(`${root}docs/verification/s6-local.json`,JSON.stringify({environment:'Ephemeral local MonadTen Anvil; simulated MON, no live deployment',passed:true,chainId:10143,market,faucet,guards:['bad signature','expired deadline','replayed nonce'],consecutivePriceMatches:samples.length,samples},(_,v)=>typeof v==='bigint'?v.toString():v,2)+'\n');
+  const guards=['bad signature','expired deadline','replayed nonce'];
+  if(process.env.S8_VERIFY==='1') {
+    const nonce=await client.getTransactionCount({address:deployer.address});
+    let limited=false;
+    const old=await signedWire();
+    for(let i=0;i<8;i++) {
+      const response=await fetch(origin+'/api/relay',{method:'POST',headers:{'Content-Type':'application/json',Origin:origin},body:JSON.stringify(old)});
+      const data=await response.json() as {error:{code:string}};
+      if(response.status===429&&data.error.code==='RATE_LIMITED'){limited=true;break;}
+    }
+    if(!limited)throw new Error('Address quota failed.');
+    limited=false;
+    for(let i=0;i<25;i++) {
+      const response=await fetch(origin+'/api/relay',{method:'POST',headers:{'Content-Type':'application/json',Origin:origin},body:'{}'});
+      const data=await response.json() as {error:{code:string}};
+      if(response.status===429&&data.error.code==='RATE_LIMITED'){limited=true;break;}
+    }
+    if(!limited||await client.getTransactionCount({address:deployer.address})!==nonce)throw new Error('IP quota/no-send guard failed.');
+    guards.push('low funding pause','per-address quota','per-IP quota','rejections send no transaction');
+  }
+  await writeFile(`${root}docs/verification/${process.env.S8_VERIFY==='1'?'s8-web':'s6-local'}.json`,JSON.stringify({environment:'Ephemeral local MonadTen Anvil; simulated MON, no live deployment',passed:true,chainId:10143,market,faucet,guards,consecutivePriceMatches:samples.length,samples},(_,v)=>typeof v==='bigint'?v.toString():v,2)+'\n');
   const hold=Number(process.env.LOCAL_WEB_HOLD_SECONDS??0);
   if(!Number.isInteger(hold)||hold<0||hold>300)throw new Error('Local fixture lifetime must be 0..300 seconds.');
   if(hold) { const fixture = await mm.writeContract({address:market,abi:batchAuctionAbi,functionName:'placeMany',args:[[0,1],[130,90],[1000n,1000n]],gas:transactionGas('placeMany')}); await client.waitForTransactionReceipt({hash:fixture}); console.log(`Local browser fixture at ${origin}`); await delay(hold*1000); }
