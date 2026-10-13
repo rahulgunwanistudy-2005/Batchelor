@@ -1,14 +1,8 @@
 import { ExternalLink, Layers3 } from "lucide-react";
-import { AuctionPanel } from "@/components/terminal/AuctionPanel";
-import { MarketHeader } from "@/components/terminal/MarketHeader";
-import { OrderBook } from "@/components/terminal/OrderBook";
-import { OrderEntry } from "@/components/terminal/OrderEntry";
-import { OrdersPanel } from "@/components/terminal/OrdersPanel";
+import { LiveMarketPanels } from "@/components/terminal/LiveMarketPanels";
 import { marketDataAdapter } from "@/lib/market-data/adapter";
 import { parseCandleInterval } from "@/lib/market-data/intervals";
 import Link from "next/link";
-import { MarketChart } from "@/components/terminal/MarketChart";
-import { SystemStatus } from "@/components/terminal/SystemStatus";
 import { TopBar } from "@/components/terminal/TopBar";
 
 interface HomePageProps {
@@ -30,22 +24,11 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       <div id="content" className="page-content">
         <h1 className="sr-only">Trading terminal</h1>
 
-        <MarketHeader result={marketResult} />
-
-        <div className="terminal-grid">
-          <div className="terminal-main">
-            <MarketChart result={candleResult} interval={interval} />
-            <div id="orders"><OrdersPanel /></div>
-          </div>
-          <div className="terminal-book">
-            <OrderBook result={bookResult} />
-            <SystemStatus feedStatus={marketResult.status} feedMessage={marketResult.message} />
-          </div>
-          <aside className="terminal-side">
-            <OrderEntry baseAsset={marketResult.data?.baseAsset} quoteAsset={marketResult.data?.quoteAsset} />
-            <AuctionPanel result={marketResult} />
-          </aside>
-        </div>
+        <LiveMarketPanels
+          key={interval}
+          initial={{ market: marketResult, book: bookResult, candles: candleResult }}
+          interval={interval}
+        />
 
         <section className="methodology" id="methodology">
           <div className="method-icon"><Layers3 size={18} /></div>
@@ -53,7 +36,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             <h2>Designed around batch execution</h2>
             <p>Orders are grouped into batches. Eligible matches target a uniform clearing price; actual allocation and settlement are determined by the deployed auction rules.</p>
           </div>
-          <Link href="#auction" aria-label="Learn about auction history"><ExternalLink size={16} /></Link>
+          <Link href="#auction" aria-label="Learn about auction status"><ExternalLink size={16} /></Link>
         </section>
 
         <footer className="footer">

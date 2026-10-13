@@ -3,23 +3,24 @@
 A professional batch-auction trading terminal for Monad. The initial scaffold intentionally has **no fabricated market data and no simulated trades**.
 
 ## Requirements
-- Node.js 20.9+
-- npm
+- Node.js 24+
+- pnpm 9
 
 ## Run locally
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 Open http://localhost:3000.
 
 ## Architecture
-- `src/app/`: route and global styling
-- `src/components/terminal/`: presentation-only terminal components
-- `src/lib/market-data/`: typed data contract and adapter boundary
-- `src/types/`: domain types
+- The root package scripts run the Next.js app in `src/app/`.
+- `src/components/terminal/`: terminal UI
+- `src/lib/market-data/`: typed market-data adapter and optional contract reads
+- `src/types/`: shared domain types
+- `apps/web/`: separate SvelteKit scaffold; it is not started by the root `pnpm dev` command.
 
-The initial adapter returns `unavailable`, not invented prices or orders. Replace it when the backend/API, contract addresses, ABI and event/indexing strategy are agreed.
+The market pages refresh the configured adapter periodically. Without a verified market deployment and indexer, data remains unavailable rather than using invented prices or orders. Wallet connection is display-only and trading, funding, balances, and order history are not enabled.
 
 ## Before connecting real data
 Confirm:

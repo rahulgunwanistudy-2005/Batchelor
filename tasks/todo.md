@@ -20,3 +20,12 @@ The user's request authorizes logical commits and pushes, overriding the build p
 Local S1 implementation and quality gates pass. Live emitted-gas parity is pending testnet funding; the provided local key failed the preflight without sending a transaction. Do not begin S2 until that gate passes. See docs/S1_REPORT.md.
 
 GitHub Quality gates passed for scaffold commit `74d01b9`. The user explicitly chose to finish with live validation pending.
+
+## Frontend flow follow-through
+
+- [x] Add live refresh for the configured market-data and batch-result adapters without fabricating data.
+- [x] Correct navigation and auction-status copy so labels match implemented behavior.
+- [x] Document the active Next.js frontend and ignore generated SvelteKit output.
+- [x] Run frontend lint, typecheck, tests, and production build; inspect the trade, account, proof, and receipt routes.
+
+Frontend validation: targeted ESLint and TypeScript checks passed, 47 tests passed, production build passed, and local smoke tests returned 200 for `/`, `/me`, `/proof`, `/b/1`, `/api/market`, and `/api/batches/1` (invalid batch ID returns 400). Full-repository ESLint still fails on the pre-existing generated `indexer/.envio/types.d.ts` empty-object lint error.

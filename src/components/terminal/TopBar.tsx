@@ -13,7 +13,7 @@ export function TopBar({ active }: { active?: "trade" | "orders" | "proof" }) {
       <nav className="main-nav" aria-label="Main navigation">
         <Link href="/" className={`nav-link ${active === "trade" ? "nav-link--active" : ""}`} aria-current={active === "trade" ? "page" : undefined}><Activity size={15} /> Trade</Link>
         <Link href="/me" className={`nav-link ${active === "orders" ? "nav-link--active" : ""}`} aria-current={active === "orders" ? "page" : undefined}><BookOpen size={15} /> My orders</Link>
-        <Link href="/#auction" className="nav-link">Auction history</Link>
+        <Link href="/#auction" className="nav-link">Auction status</Link>
         <Link href="/proof" className={`nav-link ${active === "proof" ? "nav-link--active" : ""}`} aria-current={active === "proof" ? "page" : undefined}><ShieldCheck size={15} /> Proof</Link>
       </nav>
       <div className="topbar-actions">

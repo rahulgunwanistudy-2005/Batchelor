@@ -3,7 +3,16 @@ import type { MarketDataResult, MarketSummary } from "@/types/market";
 
 export function AuctionPanel({ result }: { result: MarketDataResult<MarketSummary> }) {
   const market = result.data;
-  const batchStatus = market && "batchStatus" in market ? market.batchStatus : undefined;
+  const statusText = result.status === "live"
+    ? "Market data connected"
+    : result.status === "loading"
+      ? "Connecting to market data"
+      : "Market data unavailable";
+  const batchText = market?.currentBatchId
+    ? `Open batch ${market.currentBatchId}`
+    : result.status === "live"
+      ? "No open batch reported"
+      : "Batch information unavailable";
   return (
     <section className="panel auction-panel" id="auction">
       <div className="panel-heading">
@@ -14,10 +23,10 @@ export function AuctionPanel({ result }: { result: MarketDataResult<MarketSummar
         <Clock3 size={17} className="muted-icon" />
       </div>
       <div className="auction-state">
-        <span className={`state-dot ${market ? "state-dot--ready" : ""}`} />
+        <span className={`state-dot ${result.status === "live" ? "state-dot--ready" : ""}`} />
         <div>
-          <strong>{batchStatus === "open" ? "Orders accepted" : batchStatus === "clearing" ? "Clearing in progress" : batchStatus === "settled" ? "Batch settled" : "Awaiting connection"}</strong>
-          <p>{market?.currentBatchId ? `Batch ${market.currentBatchId}` : "Batch information unavailable"}</p>
+          <strong>{statusText}</strong>
+          <p>{batchText}</p>
         </div>
       </div>
       <div className="auction-rule">
