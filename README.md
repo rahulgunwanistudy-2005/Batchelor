@@ -1,6 +1,6 @@
 # Batchelor
 
-**Every block, one price. No favorites.**
+A professional batch-auction trading terminal for Monad. The initial scaffold intentionally has **no fabricated market data and no simulated trades**.
 
 Batchelor is a fully onchain batch auction where everyone in a block gets the same price, and Monad's new page-based storage makes it cheap enough to clear every block.
 
@@ -97,3 +97,32 @@ In-memory relay quotas/queues and Pete caps reset with processes and do not enfo
 OpenAI **Codex** drafted code, tests, tooling, UI and documentation under Rahul's direction. Rahul supplied the uncrossing, rounding, invariant and storage specifications. Automated/reference/manual agent reviews are recorded; Rahul's independent line-by-line sign-off remains a release gate. **The product uses no AI at runtime.** [Component disclosure](docs/AI_DISCLOSURE.md) gives the breakdown. Original project code began in this repository during the 12–13 October 2026 build; [commit evidence](docs/verification/s8-commits.json) records its history.
 
 Project code is [MIT](LICENSE). Third-party notices remain applicable: OpenZeppelin/forge-std, viem, SvelteKit, Hono, Zod, Tailwind and scure are MIT; Mera is MIT OR Apache-2.0; brand fonts use SIL OFL. Envio 3.14.0 has its own generator/generated-code licensing terms and is not represented as MIT or OSI licensed. See its installed `licenses/README.md` and [sources](docs/SOURCES.md).
+## Requirements
+- Node.js 20.9+
+- npm
+
+## Run locally
+```bash
+npm install
+npm run dev
+```
+Open http://localhost:3000.
+
+## Architecture
+- `src/app/`: route and global styling
+- `src/components/terminal/`: presentation-only terminal components
+- `src/lib/market-data/`: typed data contract and adapter boundary
+- `src/types/`: domain types
+
+The initial adapter returns `unavailable`, not invented prices or orders. Replace it when the backend/API, contract addresses, ABI and event/indexing strategy are agreed.
+
+## Before connecting real data
+Confirm:
+1. Monad network (testnet or mainnet) and chain ID.
+2. Market pair and token addresses/decimals.
+3. Source of truth for order book and batch state (contract reads, events, indexer/API).
+4. Clearing-price and partial-fill rules.
+5. Transaction confirmation/finality behavior and explorer URL.
+
+## Design direction
+Trading information density follows professional exchange terminals; charting is reserved for actual sourced OHLCV data. Do not copy Kraken or TradingView branding/assets.

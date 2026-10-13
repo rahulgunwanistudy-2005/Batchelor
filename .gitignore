@@ -47,3 +47,7 @@ indexer/cloud/envio-env.d.ts
 # Python verification tooling
 __pycache__/
 *.pyc
+
+# Next.js terminal at the repository root
+.next/
+*.tsbuildinfo
