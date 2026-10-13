@@ -51,3 +51,7 @@ __pycache__/
 # Next.js terminal at the repository root
 .next/
 *.tsbuildinfo
+
+# Python verification caches
+__pycache__/
+*.pyc

@@ -47,7 +47,7 @@ jobs:
         run: python3 ../scripts/export-test-summary.py
       - name: Historical hardfork tests
         working-directory: contracts
-        run: FOUNDRY_PROFILE=pre_mip8 forge test --gas-limit 100000000
+        run: FOUNDRY_PROFILE=pre_mip8 forge test
       - name: Live evidence regression tests
         run: python3 -m unittest discover -s scripts -p test_spike.py
       - name: Local storage gate
