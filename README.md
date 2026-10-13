@@ -8,7 +8,7 @@ The S1–S8 implementation includes the auction, Mera passkey accounts, gasless 
 
 ![Receipt from real local-chain transactions, indexed by the Envio handler fixture](docs/screens/s7-receipt-light-1280.png)
 
-This screenshot is from a local MonadTen rehearsal, not a public mainnet recording. A demo GIF and live link will be added after the production recording gate passes. [Recording script](09_DEMO_SCRIPT.md) · [Submission draft](10_SUBMISSION.md) · [S8 verification/status](docs/S8_REPORT.md).
+This screenshot is from a local MonadTen rehearsal, not a public mainnet recording. A demo GIF and live link will be added after the production recording gate passes. [Recording script](docs/DEMO.md) · [Submission draft](docs/SUBMISSION.md) · [S8 verification/status](docs/S8_REPORT.md).
 
 ## Try it in 60 seconds
 
@@ -58,6 +58,8 @@ bash contracts/bench/run.sh
 
 The web builds without keys and shows honest unavailable/unconfigured states. Copy `.env.example` into ignored service env files to configure services; put web PUBLIC variables in `apps/web/.env` or hosting settings. Select the permanent `PUBLIC_RP_ID` before onboarding. Private server `CHAIN`/`MARKET_ADDRESS` must mirror public configuration. [Bot runbook](services/bots/README.md), [indexer guide](indexer/README.md), [operations](docs/OPERATIONS.md).
 
+For Dwellir, set private `DWELLIR_API_KEY` and leave `RPC_HTTP`/`RPC_WS` blank to select the Monad full-node endpoints for `CHAIN`. Browser clients use a separate, quota-limited `PUBLIC_DWELLIR_API_KEY`; never expose the server key or a wallet private key. Explicit URLs remain supported, including loopback development chains. Historical state validation retains its previous provider or uses `ARCHIVE_RPC_HTTP`, because Dwellir's catalog lists no Monad archive nodes. The integration is implemented; authenticated connectivity and hackathon credit activation remain unverified. [RPC setup and migration status](docs/DWELLIR_MIGRATION.md).
+
 ## Quality and security
 
 ```sh
@@ -80,9 +82,9 @@ CI also runs formatting, size checks, historical MonadNine tests, repeated bench
 
 ## Deployments and receipts
 
-**Mainnet:** BatchAuction, ROSE, dUSD and Faucet are unset in [generated addresses](packages/core/src/addresses.ts). **Public demo testnet:** also unset. The separate S3 testnet diagnostic addresses/tx hashes remain in [live proof evidence](contracts/bench/out/clear-live-testnet.json). Successful broadcast receipts, never dry-run predictions, populate public addresses through `pnpm gen`.
+**Mainnet:** BatchAuction, ROSE, dUSD and Faucet are unset in [generated addresses](packages/core/src/addresses.ts). **Demo testnet:** four contracts successfully deployed; addresses and receipts are in [deployment evidence](docs/verification/testnet-deployment.json). Hosted trading services and physical-device onboarding remain pending. The separate S3 testnet diagnostic addresses/tx hashes remain in [live proof evidence](contracts/bench/out/clear-live-testnet.json). Successful broadcast receipts, never dry-run predictions, populate public addresses through `pnpm gen`.
 
-`/b/[id]` renders an indexed receipt and data-generated PNG preview; `/me` shows balances/orders/withdrawal; `/proof` shows benchmark evidence, eight economic gates and the latest available indexed gas sample. Actor addresses configure honest Pete/Mo labels. Missing endpoints are shown as unavailable rather than mocked history. Contract source-verification status remains pending.
+`/b/[id]` renders an indexed receipt and data-generated PNG preview; `/me` shows balances/orders/withdrawal; `/proof` shows benchmark evidence, eight economic gates and the latest available indexed gas sample. Actor addresses configure honest Pete/Mo labels. Missing endpoints are shown as unavailable rather than mocked history. The four demo testnet contracts have confirmed exact creation/runtime source matches on Sourcify; the separate diagnostic benchmark market remains unconfirmed.
 
 `pnpm deploy:plan`, `pnpm funding:plan` and `pnpm verify:bundle` prepare reviewable calls, budgets and compiler sources. They do not publish or fund services. Mainnet calls/costs must be approved before sending; read-only budget tools require no spending approval.
 
@@ -97,3 +99,7 @@ In-memory relay quotas/queues and Pete caps reset with processes and do not enfo
 OpenAI **Codex** drafted code, tests, tooling, UI and documentation under Rahul's direction. Rahul supplied the uncrossing, rounding, invariant and storage specifications. Automated/reference/manual agent reviews are recorded; Rahul's independent line-by-line sign-off remains a release gate. **The product uses no AI at runtime.** [Component disclosure](docs/AI_DISCLOSURE.md) gives the breakdown. Original project code began in this repository during the 12–13 October 2026 build; [commit evidence](docs/verification/s8-commits.json) records its history.
 
 Project code is [MIT](LICENSE). Third-party notices remain applicable: OpenZeppelin/forge-std, viem, SvelteKit, Hono, Zod, Tailwind and scure are MIT; Mera is MIT OR Apache-2.0; brand fonts use SIL OFL. Envio 3.14.0 has its own generator/generated-code licensing terms and is not represented as MIT or OSI licensed. See its installed `licenses/README.md` and [sources](docs/SOURCES.md).
+
+## Complete the public release
+
+Follow the [release checklist](docs/RELEASE_CHECKLIST.md) for account access, funding approval, deployment, hosting, live-device verification and actual submission. `pnpm release:check` is a read-only audit; its report distinguishes configured prerequisites from unperformed live acceptance. Mainnet sending remains disabled until the exact campaign is reviewed.

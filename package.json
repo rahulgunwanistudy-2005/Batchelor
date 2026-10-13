@@ -24,6 +24,7 @@
     "check:gas": "node --experimental-strip-types scripts/check-gas.ts",
     "deploy:plan": "node --env-file-if-exists=.env --experimental-strip-types scripts/deploy.ts",
     "funding:plan": "node --env-file-if-exists=.env --experimental-strip-types scripts/funding-plan.ts",
+    "release:check": "node --env-file-if-exists=.env.mainnet.local --experimental-strip-types scripts/release-preflight.ts",
     "test:tooling": "vitest run scripts/*.test.ts",
     "verify:bundle": "node --experimental-strip-types scripts/verification-bundle.ts",
     "bots:test-local": "node --experimental-strip-types scripts/test-bots-local.ts",

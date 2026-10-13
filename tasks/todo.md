@@ -203,3 +203,31 @@ The user resumed the previously deferred testnet gate. Use only the configured t
 - [x] Run the live testnet probe and verify bytecode, receipts, checksums and six gas measurements.
 - [x] Persist receipts/costs and replace the pending S1 status with measured evidence.
 - [x] Verify changed tooling and publish codex/live-storage-validation without unrelated application work.
+
+# Dwellir migration and final build readiness
+
+Current user request explicitly authorizes subagents, a new branch, local commits, and finishing remaining code work. Push and PR creation require the user's final choice. No mainnet spending is authorized by a generic build request; retain the exact-call/cost approval gate.
+
+- [x] Phase 1: CLI absent; installation suggested; fetched official full catalog through docs fallback. Environments are testnet and mainnet; keys requested locally. Account credit status awaits authenticated dashboard access.
+- [x] Phase 2: parallel first-party endpoint/auth/method audit; distinguish live full-node traffic, archive-dependent history, specialized Envio services and loopback fixtures.
+- [x] Phase 3: official catalog lists both Monad chains as full-only; preserve archive workflows. No Hyperliquid or client-specific traces are used. Credentialed matching/smoke remains pending keys.
+- [x] Phase 4 implementation: created migration branch; implemented shared Dwellir configuration and preserve unsupported/specialized transports; avoid private credentials in public browser settings.
+- [x] Complete keeper batching and honest gas funding budgets, preserving measured limits and maximum claim-age gates.
+- [x] Run workspace/security/integration gates and record concrete release prerequisites; hosted/device acceptance remains pending.
+- [ ] Phase 5: commit focused changes on the branch; summarize migrated/flagged/unsupported paths and ask whether to push/open a PR.
+
+## Release completion progress
+
+- [x] Fixed CI benchmark formatting and fresh-host proof generation; source-hashed evidence fails closed.
+- [x] Verified standalone Envio pnpm10 build/lock and the bot Docker image.
+- [x] Fixed relayer uncertainty recovery and scanner path-exemption bug with meaningful regressions.
+- [x] Prepared separate ignored signer settings and read-only service/campaign preflights.
+- [x] Deployed four contracts on Monad testnet; capped deployment charged 0.736169598 testMON.
+- [x] Corrected index start to auction creation block 70756591 and activated standalone Cloud config.
+- [x] Rahul provided Rules v3.0: testnet permitted, public open source and public <=3minute actual-operation video mandatory; deadline14Oct09:29IST.
+- [x] Dwellir device authorization completed: CLI reports Free5M/month, 100k/day, 10responses/s and one privatekey; Developervoucher activation still pending. Authenticated endpoint smoke underway.
+- [x] Published the inspected public-source bundle under Rahul’s conditional approval; allfour testnetcontracts have exact creation/runtime Sourcify matches.
+- [ ] Obtain authorized hosting and funded dedicated bot/relayer wallets, final HTTPS passkey host, hosted indexed receipts/health and physical-device recording.
+- [ ] Commit completed release fixes, ask requested push/PR choice, record actual public video and submitted portal confirmation.
+
+Latest constraint: no real-money spending, mainnet broadcasts, paid upgrades or overages; use testnetMON and verified free/credited services only.

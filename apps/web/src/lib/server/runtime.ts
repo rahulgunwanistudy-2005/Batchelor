@@ -6,16 +6,21 @@ import { monad, monadTestnet } from 'viem/chains';
 import { batchAuctionAbi, faucetAbi } from '@batchelor/core';
 import { ApiError, RateLimiter, type RelayDependencies } from './service';
 import { requireRelayReserve } from './reserve';
+import { resolveRpcUrl } from '@batchelor/core/rpc';
+import { submissionResolved, type UncertainSubmission } from './submission';
 export const limiter = new RateLimiter();
 let queue: Promise<unknown> = Promise.resolve();
-let uncertain: Hex | undefined;
+let uncertain: UncertainSubmission | undefined;
 function config() {
-  if (!['testnet', 'mainnet'].includes(env.CHAIN ?? '') || publicEnv.PUBLIC_CHAIN !== env.CHAIN || !env.RPC_HTTP || !isAddress(env.MARKET_ADDRESS ?? '') || env.MARKET_ADDRESS?.toLowerCase() !== publicEnv.PUBLIC_MARKET_ADDRESS?.toLowerCase() || !/^0x[0-9a-fA-F]{64}$/.test(env.RELAYER_PK ?? '')) throw new ApiError('NOT_CONFIGURED', 'Gasless trading is not connected yet.', 503);
+  if (!['testnet', 'mainnet'].includes(env.CHAIN ?? '') || publicEnv.PUBLIC_CHAIN !== env.CHAIN || !isAddress(env.MARKET_ADDRESS ?? '') || env.MARKET_ADDRESS?.toLowerCase() !== publicEnv.PUBLIC_MARKET_ADDRESS?.toLowerCase() || !/^0x[0-9a-fA-F]{64}$/.test(env.RELAYER_PK ?? '')) throw new ApiError('NOT_CONFIGURED', 'Gasless trading is not connected yet.', 503);
+  let rpc: string;
+  try { rpc = resolveRpcUrl(env.CHAIN as 'mainnet' | 'testnet', 'http', env.RPC_HTTP, env.DWELLIR_API_KEY); }
+  catch { throw new ApiError('NOT_CONFIGURED', 'Gasless trading is not connected yet.', 503); }
   if (env.CHAIN === 'mainnet' && env.MAINNET_SENDS_ENABLED !== 'true') throw new ApiError('NOT_ENABLED', 'Gasless trading is awaiting activation.', 503);
   const chain = env.CHAIN === 'mainnet' ? monad : monadTestnet;
   const account = privateKeyToAccount(env.RELAYER_PK as Hex);
-  const client = createPublicClient({ chain, transport: http(env.RPC_HTTP, { retryCount: 1, timeout: 10_000 }) });
-  const wallet = createWalletClient({ account, chain, transport: http(env.RPC_HTTP, { retryCount: 0, timeout: 10_000 }) });
+  const client = createPublicClient({ chain, transport: http(rpc, { retryCount: 1, timeout: 10_000 }) });
+  const wallet = createWalletClient({ account, chain, transport: http(rpc, { retryCount: 0, timeout: 10_000 }) });
   return { chain, account, client, wallet, market: env.MARKET_ADDRESS as Address };
 }
 export async function botControl(action: 'health' | 'wake' | 'unleash') {
@@ -35,8 +40,7 @@ export function dependencies(): RelayDependencies {
       const work = async (): Promise<Hex> => {
         if (await c.client.getChainId() !== c.chain.id) throw new ApiError('WRONG_CHAIN', 'Trading service is connected to the wrong network.', 503);
         if (uncertain) {
-          const receipt = await c.client.getTransactionReceipt({ hash: uncertain }).catch(() => null);
-          if (!receipt) throw new ApiError('SEND_PENDING', 'A previous network submission is still being confirmed. Try again shortly.', 503);
+          if (!await submissionResolved(c.client, c.account.address, uncertain)) throw new ApiError('SEND_PENDING', 'A previous network submission is still being confirmed. Try again shortly.', 503);
           uncertain = undefined;
         }
         const balance = await c.client.getBalance({ address: c.account.address });
@@ -64,7 +68,7 @@ export function dependencies(): RelayDependencies {
         const raw = await c.wallet.signTransaction({ to: action === 'drip' ? env.FAUCET_ADDRESS as Address : c.market, data, gas, nonce, ...fee });
         const hash = keccak256(raw);
         try { return await c.client.sendRawTransaction({ serializedTransaction: raw }); }
-        catch { uncertain = hash; throw new ApiError('SUBMISSION_UNCERTAIN', `Network confirmation is delayed. Check transaction ${hash} before retrying.`, 503); }
+        catch { uncertain = { hash, senderNonce: nonce }; throw new ApiError('SUBMISSION_UNCERTAIN', `Network confirmation is delayed. Check transaction ${hash} before retrying.`, 503); }
       };
       const result = queue.then(work, work); queue = result.catch(() => undefined); return result;
     }
