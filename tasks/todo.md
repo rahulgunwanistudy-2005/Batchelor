@@ -174,3 +174,22 @@ Public link-preview debugger, hosted/mainnet rehearsal and contract source verif
 - [x] Actual Envio/local-chain and browser verification, screenshots and operations report saved in the final verification commit.
 
 All S7 commits are local on `main`. No push was requested or performed.
+
+# S8 — Security, operations and release readiness
+
+Scope: implement the supplied S8 requirements on S1–S7. The user's direct instruction authorizes systematic local commits, overriding the documents' historical Git prohibition. Preserve measured/toolchain corrections. Documents do not authorize mainnet spending, publication, messages or hackathon submission. Production services remain unconfigured.
+
+- [x] Read supplied bible, sources and S8; inspect previous lessons and current implementation.
+- [x] Run Slither and secret scanning; resolve or individually justify findings; retain reproducible evidence and CI gates.
+- [x] Harden relayer failure copy, bot connection recovery/funding diagnostics and web CSP/error boundaries with meaningful regression tests.
+- [x] Finalize README, mechanism/security/AI/operations documentation and source provenance.
+- [x] Prepare honest demo/submission assets, read-only funding readiness and commit-window evidence; record external blockers.
+- [x] Run contract/workspace/build/local integration/browser gates, review changes and make focused local commits.
+
+## S8 outcome
+
+Operations/web recovery and CSP, individually reviewed Slither/CI and secret gates, measured recording budgets, release docs/AI disclosure, shot readiness and an honest submission draft are implemented. Contract tests pass on both forks; workspace checks/builds, real endpoint quotas/reserve tests, 20 price matches, three indexed receipt fixtures and a real socket outage pass. The production browser audit passes 30 light/dark responsive cases with zero A/AA violations and blocks inline scripts/third-party connections. Slither has 23 justified findings and zero unreviewed findings; complete reachable history/project source scan is clean.
+
+Public mainnet shipping/recording acceptance remains incomplete: production domain/deployment/hosting/funding, phone flows/recording/GIF/video, private-dashboard completion and actual mainnet receipt hashes are missing. Read-only mainnet preflight found all recording keys missing, sent zero transfers. Rahul's personal review and remote CI after an authorized push remain pending. See `docs/S8_REPORT.md`, `09_DEMO_SCRIPT.md`, `10_SUBMISSION.md` and `docs/verification/s8-*.json`.
+
+S8 is saved as focused local commits on `main`; no mainnet send, publishing, message, push or submission is included.

@@ -2,135 +2,98 @@
 
 **Every block, one price. No favorites.**
 
-Batchelor is a fully onchain batch auction where everyone in a block gets the same price, and Monad's new page-based storage makes it cheap enough to clear every block. The project is at **S7: passkey trading, shareable receipts and measured proof implemented**. The auction, controlled bots and Envio read model are tested locally. Receipts include priority-fee lanes and an exact continuous-book replay; the Proof page uses generated contract evidence and live indexed gas statistics. Hosted services, production deployment and physical-device onboarding remain external acceptance gates.
+Batchelor is a fully onchain batch auction where everyone in a block gets the same price, and Monad's new page-based storage makes it cheap enough to clear every block.
 
-The local storage gate passed on identical bytecode under MonadNine and MonadTen. Run `pnpm spike` to reproduce it; measured evidence lives in [`contracts/bench/out/spike.json`](contracts/bench/out/spike.json). This measures storage reads and writes, **not auction clearing gas**. The live transaction comparison remains pending a funded throwaway testnet key.
+The S1–S8 implementation includes the auction, Mera passkey accounts, gasless intents, controlled bots, Envio history, shareable receipts, exact continuous-book replay and measured proof. **The public mainnet demo is not yet deployed.** Mainnet contract addresses, permanent production domain, hosted services, physical-phone onboarding, public GIF/video and submission remain release gates. Local testing and diagnostic testnet transactions are identified separately throughout the repo.
 
-## Development
+![Receipt from real local-chain transactions, indexed by the Envio handler fixture](docs/screens/s7-receipt-light-1280.png)
 
-Use Node **24.19.0**, pnpm **9.15.9**, official Foundry **v1.8.0**, and Solidity **0.8.28**. Mera 0.2.0 requires Node >=24; this corrects the build pack's Node 22 pin. Official Foundry supports MonadTen; the legacy Monad fork does not.
+This screenshot is from a local MonadTen rehearsal, not a public mainnet recording. A demo GIF and live link will be added after the production recording gate passes. [Recording script](09_DEMO_SCRIPT.md) · [Submission draft](10_SUBMISSION.md) · [S8 verification/status](docs/S8_REPORT.md).
 
-```sh
-git clone --recurse-submodules https://github.com/rahulgunwanistudy-2005/Batchelor.git
-cd Batchelor
-pnpm install --frozen-lockfile
-cd contracts
-forge build
-cd ..
-pnpm gen
-pnpm --filter web dev
+## Try it in 60 seconds
+
+On the eventual production domain: create a passkey account, get 100 ROSE and 100 dUSD, choose a buy limit/amount, place a gasless order, and open its batch receipt. You need no wallet extension, seed phrase or MON. The receipt shows the real orders, their priority fees, one clearing price and an explicitly simulated continuous-book comparison. Fresh-device completion under 60 seconds three times on mainnet is still pending; mocked passkey tests do not establish device support.
+
+## Three measured headline numbers
+
+| Full book: 256 ticks per side, 512 ladder slots | Result |
+|---|---:|
+| MonadNine clearing | 4,436,713 gas |
+| MonadTen clearing, same bytecode | 342,713 gas |
+| Reduction | 12.946× |
+
+These are generated from [bench.json](packages/core/src/bench.json), not estimates. `clearGas` measures `_clear`, excluding telemetry/event and intrinsic transaction gas. Clients reserve measured worst-case self-clear budgets: 586,000 gas for a direct order and 633,000 for a relayed order. The 250K clearing target remains unmet. A separate real testnet 128-tick-per-side batch emitted 213,565 gas, matching its local fixture exactly; [transaction evidence](contracts/bench/out/clear-live-testnet.json) is diagnostic, not the public demo. [Why Monad](docs/WHY_MONAD.md) explains page layout, limit billing, block timing and the precise ordering guarantee.
+
+## Architecture
+
+```text
+                         Monad (mainnet 143 / testnet 10143)
+                    BatchAuction · ROSE · dUSD · Faucet
+                       ▲              ▲              │ events
+                  signed intents   direct bot calls   ▼
+Web / Mera ───► /api/relay/drip ──► keeper · Mo · Pete  Envio HyperIndex
+  │                /api/wake ───► conductor            │ GraphQL
+  ├── RPC / WS: live block-pinned ladder               │
+  └──────────────── receipts / history / statistics ◄──┘
+            packages/core: ABI, addresses, gas, settlement, replay
 ```
 
-Copy `.env.example` to an ignored `.env` only when configuring local services. No real key is required to build or test. All deployments are unset; the pages display honest empty states.
+Matching and settlement are onchain. The first transaction after sealing clears the previous batch before writing a new one; the keeper supplies a transaction during idle periods. Mo wakes for 90 seconds after activity. Pete sends four priority-fee buys per block only when explicitly unleashed. Envio drives receipt/history features; there is no product database or AI matching engine.
 
-## Verification
+## Run locally
+
+Use Node **24.19.0**, pnpm **9.15.9**, Foundry **v1.8.0**, Solidity **0.8.28**. The supplied Node 22 pin is superseded by Mera 0.2.0's Node >=24 requirement. Clone with submodules.
 
 ```sh
+pnpm i --frozen-lockfile
 cd contracts
-forge fmt --check
-forge build --sizes
+forge build
 forge test
-FOUNDRY_PROFILE=pre_mip8 forge test --gas-limit 100000000
 cd ..
-pnpm spike
+pnpm proof:tests
+pnpm dev
+# Reproduce both-hardfork gas evidence:
+bash contracts/bench/run.sh
+```
+
+The web builds without keys and shows honest unavailable/unconfigured states. Copy `.env.example` into ignored service env files to configure services; put web PUBLIC variables in `apps/web/.env` or hosting settings. Select the permanent `PUBLIC_RP_ID` before onboarding. Private server `CHAIN`/`MARKET_ADDRESS` must mirror public configuration. [Bot runbook](services/bots/README.md), [indexer guide](indexer/README.md), [operations](docs/OPERATIONS.md).
+
+## Quality and security
+
+```sh
+pnpm proof:tests              # 81 contract tests/predicates, source/runtime/layout gates
 pnpm check:contracts
+pnpm check:gas
 pnpm gen
-pnpm exec tsc -p tsconfig.scripts.json
 pnpm -r typecheck
 pnpm -r lint
 pnpm -r test
+pnpm test:tooling
 pnpm -r build
+pnpm check:security           # Requires slither-analyzer==0.11.5
+pnpm check:secrets            # Requires Gitleaks, full reachable Git history
+pnpm web:test-local          # Real endpoints on a temporary loopback MonadTen chain
+pnpm receipts:test-local     # Real local transactions through actual Envio handlers
 ```
 
-`lint` uses strict TypeScript/Svelte diagnostics, including unused locals and parameters. The contract check validates ladder slots, packed struct sizes, and absence of priority-related opcodes in production runtime instructions. Solidity sources are checked too. CI runs both hardforks and rejects a storage ratio below 10x.
+CI also runs formatting, size checks, historical MonadNine tests, repeated benchmarks, generated ABI/gas/vector freshness and contrast checks. `lint` means strict TS/Svelte diagnostics. The proof exporter requires ≥1,000 fuzz runs and 256 invariant runs at depth 200. Slither's 23 findings are individually justified; new findings or changed source hashes fail the gate. The exact source/opcode check forbids gasprice, coinbase, prevrandao and blockhash inputs. Secret scanning has only a narrowly shaped source-hash false-positive exception. [Security review](docs/SECURITY.md) describes scope and risks; this is not an independent audit.
 
-```sh
-pnpm --filter @batchelor/bots build
-pnpm --filter @batchelor/bots start
-# GET http://127.0.0.1:3001/health
-```
+## Deployments and receipts
 
-The S4 service binds to `0.0.0.0` for hosting and refuses incomplete configuration. It checks both RPC chain IDs and market parameters before subscribing. Both `/wake` and `/unleash` require a bearer token; `/health` reports actual balances, subscription freshness, recent errors and settlement statistics. Mainnet sends require a separate approved activation.
+**Mainnet:** BatchAuction, ROSE, dUSD and Faucet are unset in [generated addresses](packages/core/src/addresses.ts). **Public demo testnet:** also unset. The separate S3 testnet diagnostic addresses/tx hashes remain in [live proof evidence](contracts/bench/out/clear-live-testnet.json). Successful broadcast receipts, never dry-run predictions, populate public addresses through `pnpm gen`.
 
-## Live spike
+`/b/[id]` renders an indexed receipt and data-generated PNG preview; `/me` shows balances/orders/withdrawal; `/proof` shows benchmark evidence, eight economic gates and the latest available indexed gas sample. Actor addresses configure honest Pete/Mo labels. Missing endpoints are shown as unavailable rather than mocked history. Contract source-verification status remains pending.
 
-`pnpm sample:testnet` saves 200 consecutive testnet headers and interval statistics. Header timestamps have whole-second resolution; their median cannot establish subsecond cadence.
+`pnpm deploy:plan`, `pnpm funding:plan` and `pnpm verify:bundle` prepare reviewable calls, budgets and compiler sources. They do not publish or fund services. Mainnet calls/costs must be approved before sending; read-only budget tools require no spending approval.
 
-For emitted-gas parity, set `CHAIN=testnet`, `RPC_HTTP`, and a funded throwaway `TESTNET_PK` (or `TESTNET_PRIVATE_KEY`) in `.env`, then run `pnpm spike:live`. The script rejects every chain ID except 10143, deploys and seeds PageBench, and checks six measurements against local MonadTen within 5%. It saves addresses and transaction hashes to `contracts/bench/out/live-testnet.json`. Seeding 1,024 nonzero slots requires substantially more gas than a read; the script checks funding and caps every transaction at the protocol limit. Never use a production or mainnet key.
+## Limitations
 
-## Layout
+Orders last one batch; there are no resting GTC orders, multiple markets, fees, real-asset markets, or price oracle. Demo tokens have no real value. Liquidity is supplied by a bot that sleeps between visits. Rounding dust stays in the contract. Same-price/permutation proofs apply to accepted orders within one batch; fees can still influence inclusion and which batch an order reaches. Quantities and tiny-order effective rates can differ because of cutoffs and rounding. No mempool privacy is promised. Continuous replay is hypothetical and excludes cancelled orders whose cancellation timing is not indexed.
 
-```text
-contracts/         Auction, settlement libraries, demo faucet, reference model and proofs
-packages/core/     Generated ABIs, deployments, bigint formatting and exact settlement
-services/bots/     Keeper, Mo, Pete, authenticated conductor, rehearsal and soak tooling
-apps/web/          SvelteKit pages: trade, receipt, orders, proof
-indexer/           Envio handlers, audits and standalone Cloud package
-scripts/           ABI generation, storage/layout gates, testnet checks
-docs/              Sources and S1/S2/S3/S4 verification reports
-tasks/             Build plan and lessons
-```
+In-memory relay quotas/queues and Pete caps reset with processes and do not enforce global multi-instance limits. Hosted reliability, RPC capacity, funding and physical passkey-provider support need real release verification. [Design](docs/DESIGN.md) describes the mechanism, rounding and v2 resting-order ideas; [operations](docs/OPERATIONS.md) records recovery/funding policies.
 
-See [`docs/S2_REPORT.md`](docs/S2_REPORT.md) for the eight-invariant mapping, test results, storage layout, size output, and specification resolutions. [`docs/S1_REPORT.md`](docs/S1_REPORT.md) retains the storage spike evidence and pending live validation. See [`docs/WHY_MONAD.md`](docs/WHY_MONAD.md) for S3 clearing costs, page-layout ablation, explicit client gas limits, and live testnet transaction evidence.
+## AI assistance and provenance
 
-To reproduce S2 acceptance gates and the 10,000-run checks:
+OpenAI **Codex** drafted code, tests, tooling, UI and documentation under Rahul's direction. Rahul supplied the uncrossing, rounding, invariant and storage specifications. Automated/reference/manual agent reviews are recorded; Rahul's independent line-by-line sign-off remains a release gate. **The product uses no AI at runtime.** [Component disclosure](docs/AI_DISCLOSURE.md) gives the breakdown. Original project code began in this repository during the 12–13 October 2026 build; [commit evidence](docs/verification/s8-commits.json) records its history.
 
-```sh
-python3 scripts/verify-auction.py
-python3 scripts/verify-auction.py --stress
-```
-
-Machine-readable evidence and exact output are written to `contracts/bench/out/s2/`. `packages/core/test/vectors.json` contains 50 deterministic books, exported by Foundry and cross-checked against the independent reference model. Quantity fields are decimal strings for future TypeScript bigint consumers.
-
-MIT licensed.
-
-## Auction gas proof (S3)
-
-```sh
-pnpm bench                 # Runs both hardforks twice and regenerates evidence/limits/report
-pnpm check:gas             # Rejects auction transaction clients without shared explicit gas
-python3 scripts/verify-auction.py --out contracts/bench/out/s3
-python3 scripts/verify-auction.py --stress --out contracts/bench/out/s3
-```
-
-Full-range production clearing: **4,436,713 gas under MonadNine vs 342,713 under MonadTen (12.946×)**. The 250K optimization target remains unmet. The runner keeps the pre-optimization measurements and checks identical bytecode, exact repeatability, and order-count independence. `packages/core/src/gas.json` contains transaction limits; `transactionGas` selects self-clearing budgets and rejects oversized order/claim chunks. The `/proof` page displays measured values.
-
-The S3 testnet market was deployed and its 256-order, 128-tick-per-side batch self-cleared in **213,565 gas**, exactly matching the local fixture. Addresses and seven successful transaction hashes are saved in `contracts/bench/out/clear-live-testnet.json`. This is a separate diagnostic deployment; mainnet trading is still unconfigured. No mainnet transaction was sent.
-
-`pnpm bench:live` is testnet-only and requires `TESTNET_PK` or `TESTNET_PRIVATE_KEY`. It preflights the remaining measured gas budget and checkpoints each broadcast. An existing passed checkpoint exits without new transactions. Preserve failed/interrupted evidence before attempting a new run; the script refuses changed bytecode, payloads, keys, or nonces.
-
-## Deployment and bots (S4)
-
-See [`services/bots/README.md`](services/bots/README.md) for configuration, funding, seeding, rehearsal, soak and Docker/Fly instructions. [`docs/S4_REPORT.md`](docs/S4_REPORT.md) distinguishes local evidence from pending live acceptance gates.
-
-```sh
-pnpm deploy:plan          # Read-only Foundry simulation; prints measured limits and current MON cost
-pnpm funding:plan         # Read-only wallet and per-burst budget; never transfers funds
-pnpm verify:bundle        # Export compiler metadata and exact sources locally
-pnpm test:tooling          # Deployment receipt/constructor validation tests
-```
-
-After a successful explicitly executed deployment, `pnpm gen` validates four successful CREATE receipts and generates addresses. Dry-run addresses never populate the app. Sourcify bundles are exported to `deployments/verification/`; **S4 contracts are not yet publicly deployed, verified or published to Sourcify**. The operations guide includes the verification commands; none is claimed as a successful live verification.
-
-## Indexed receipts
-
-See [indexer/README.md](indexer/README.md) for configuration, Cloud packaging, public web variables and the read-only rehearsal audit. The application shows unavailable-data states until a real endpoint and matching market are configured. S5's implementation, verification evidence and remaining hosted/mainnet gates are recorded in [docs/S5_REPORT.md](docs/S5_REPORT.md).
-
-### S6 trading app
-
-The web app now supports Mera passkey accounts, gasless faucet/orders, a live block-pinned auction chart, bot controls, indexed account history, cancellation and direct withdrawal. See [S6 report](docs/S6_REPORT.md) for setup, measured verification and the remaining physical-phone/production gates. Choose the permanent production hostname and set `PUBLIC_RP_ID` before onboarding users. `pnpm web:test-local` verifies the actual web endpoints and 20 maker-only price comparisons on a temporary local MonadTen chain; it sends no live transaction.
-
-## S7 receipts and proof
-
-`/b/[id]` is server-rendered and exposes a data-generated PNG at `/b/[id]/og.png`. Set `PUBLIC_PETE_ADDRESSES` (comma-separated addresses) and `PUBLIC_MO_ADDRESS` to label known bots; unknown addresses stay unlabelled. A signed-in viewer or `?trader=0x…` highlights their orders. The share button copies the canonical receipt URL.
-
-`/proof` uses benchmark JSON, current Forge evidence, sourced prose from `docs/WHY_MONAD.md`, and the latest indexed gas sample. It displays median/p95 statistics, all eight correctness gates, recorded addresses and explicit verification status.
-
-```sh
-pnpm proof:tests           # Current Forge JSON and source/runtime/layout checks
-pnpm proof:generate        # Reject stale evidence and generate proof-page content
-pnpm --filter web build    # Regenerates proof before the production build
-pnpm receipts:test-local   # Three local real-chain batches, actual Envio handlers, SSR and PNG checks
-```
-
-A clean checkout must run `proof:tests` before building; CI does this automatically. Local receipt verification sends no live transaction. Optional visual checks are documented in [S7 report](docs/S7_REPORT.md), with light/dark screenshots and remaining hosted link-preview gates.
+Project code is [MIT](LICENSE). Third-party notices remain applicable: OpenZeppelin/forge-std, viem, SvelteKit, Hono, Zod, Tailwind and scure are MIT; Mera is MIT OR Apache-2.0; brand fonts use SIL OFL. Envio 3.14.0 has its own generator/generated-code licensing terms and is not represented as MIT or OSI licensed. See its installed `licenses/README.md` and [sources](docs/SOURCES.md).

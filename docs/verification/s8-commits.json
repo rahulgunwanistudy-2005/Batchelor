@@ -1,0 +1,183 @@
+{
+  "scope": "HEAD ancestry at preparation time; subsequent S8 commits appear on next run",
+  "buildWindowStartUTC": "2026-09-01T00:00:00+00:00",
+  "allAuthoredAndCommittedSinceStart": true,
+  "commitCount": 29,
+  "initialRepository": "Recorded as empty before S1 in tasks/lessons.md; third-party submodules/dependencies disclosed separately.",
+  "commits": [
+    {
+      "hash": "35a2554d53b0470acb9d536f7734f1e65c1ddbfa",
+      "authoredAt": "2026-10-12T19:38:38+05:30",
+      "committedAt": "2026-10-12T19:38:38+05:30",
+      "subject": "docs: establish project specification and S1 verification plan"
+    },
+    {
+      "hash": "5383e6c172a8518c40984c896a94fe7deb3a61ef",
+      "authoredAt": "2026-10-12T19:44:11+05:30",
+      "committedAt": "2026-10-12T19:44:11+05:30",
+      "subject": "test: prove page storage savings across Monad hardforks"
+    },
+    {
+      "hash": "74d01b98b7276bf172ca72104339f1b64fe3e71e",
+      "authoredAt": "2026-10-12T20:08:35+05:30",
+      "committedAt": "2026-10-12T20:08:35+05:30",
+      "subject": "feat: scaffold contracts, core workspace, bot service and web routes"
+    },
+    {
+      "hash": "b5d38668ed9ac00606a55a8bf15da8a069436eb1",
+      "authoredAt": "2026-10-12T20:10:59+05:30",
+      "committedAt": "2026-10-12T20:10:59+05:30",
+      "subject": "docs: record passing CI and deferred testnet validation"
+    },
+    {
+      "hash": "af9fdfd8672c4b78f797e09a60680811e40768b9",
+      "authoredAt": "2026-10-12T22:18:26+05:30",
+      "committedAt": "2026-10-12T22:18:26+05:30",
+      "subject": "feat(core): implement page-aligned batch auction and settlement"
+    },
+    {
+      "hash": "cdf287f66d92f57aa6def47ff1f7d5c48a89cd26",
+      "authoredAt": "2026-10-12T22:18:47+05:30",
+      "committedAt": "2026-10-12T22:18:47+05:30",
+      "subject": "test(core): verify auction fairness, solvency, and settlement"
+    },
+    {
+      "hash": "cd09cd8b9e30f21d7441bffab2256c1f4f2e3f56",
+      "authoredAt": "2026-10-12T22:19:34+05:30",
+      "committedAt": "2026-10-12T22:19:34+05:30",
+      "subject": "docs(core): record S2 acceptance evidence and remaining gates"
+    },
+    {
+      "hash": "c37a68ee5b050ac69e35f752b9bd685e22a836dd",
+      "authoredAt": "2026-10-13T03:52:41+05:30",
+      "committedAt": "2026-10-13T03:52:41+05:30",
+      "subject": "perf(contracts): reduce page-aligned auction clearing costs"
+    },
+    {
+      "hash": "93aa3bddc675b0dfcf5edfef67aa312c26100f09",
+      "authoredAt": "2026-10-13T03:52:53+05:30",
+      "committedAt": "2026-10-13T03:52:53+05:30",
+      "subject": "test(gas): benchmark auction clearing across Monad hardforks"
+    },
+    {
+      "hash": "796b60829769c67a6c176f0b3b005c3e8ba1e693",
+      "authoredAt": "2026-10-13T03:53:10+05:30",
+      "committedAt": "2026-10-13T03:53:10+05:30",
+      "subject": "feat(gas): enforce shared limits and verify testnet clearing parity"
+    },
+    {
+      "hash": "917b789ed530996e266dffef7880e5d49eaf423c",
+      "authoredAt": "2026-10-13T03:53:14+05:30",
+      "committedAt": "2026-10-13T03:53:14+05:30",
+      "subject": "feat(web): display measured auction gas and testnet proof"
+    },
+    {
+      "hash": "b7c1706809207996abb8426993e703eda6d75a88",
+      "authoredAt": "2026-10-13T03:53:34+05:30",
+      "committedAt": "2026-10-13T03:54:17+05:30",
+      "subject": "docs(gas): record S3 benchmarks, live proof, and verification evidence"
+    },
+    {
+      "hash": "ba1d1cac62ba1b714dfd838c3c3411eb8b872bf3",
+      "authoredAt": "2026-10-13T04:25:14+05:30",
+      "committedAt": "2026-10-13T04:25:14+05:30",
+      "subject": "feat(deploy): add deterministic auction deployment and validated receipts"
+    },
+    {
+      "hash": "d2f6cbd8a3fbb4a26aad7726e48e39a1f315e1f5",
+      "authoredAt": "2026-10-13T04:25:27+05:30",
+      "committedAt": "2026-10-13T04:25:27+05:30",
+      "subject": "feat(bots): run controlled liquidity and priority demos with keeper settlement"
+    },
+    {
+      "hash": "11dc478f11f2dd81264b7f4df67dae1ae9b17b74",
+      "authoredAt": "2026-10-13T04:26:02+05:30",
+      "committedAt": "2026-10-13T04:26:02+05:30",
+      "subject": "docs(operations): package bots and record S4 verification evidence"
+    },
+    {
+      "hash": "c1c66f0b1d7985ed838f9383fc55c469b259a346",
+      "authoredAt": "2026-10-13T04:52:58+05:30",
+      "committedAt": "2026-10-13T04:52:58+05:30",
+      "subject": "feat(core): mirror exact settlement with Solidity fill vectors"
+    },
+    {
+      "hash": "f4f95866e19f524c1a51611537aef31c2635cd12",
+      "authoredAt": "2026-10-13T04:53:05+05:30",
+      "committedAt": "2026-10-13T04:53:05+05:30",
+      "subject": "feat(indexer): index auction receipts and verify real testnet fills"
+    },
+    {
+      "hash": "a1ff9f7a1c2ebd7632cf1dfa3b80c13b1074831f",
+      "authoredAt": "2026-10-13T04:53:10+05:30",
+      "committedAt": "2026-10-13T04:53:10+05:30",
+      "subject": "feat(web): display indexed receipts history and live batch statistics"
+    },
+    {
+      "hash": "b5c663643689acdb273273dd93441c2c2c2f0fbb",
+      "authoredAt": "2026-10-13T04:53:33+05:30",
+      "committedAt": "2026-10-13T04:53:33+05:30",
+      "subject": "docs: record S5 verification and hosted deployment prerequisites"
+    },
+    {
+      "hash": "c340dc116cfcb7282991ad5fda887ececb33e524",
+      "authoredAt": "2026-10-13T07:01:42+05:30",
+      "committedAt": "2026-10-13T07:01:42+05:30",
+      "subject": "feat(core): mirror uncrossing and intents with measured withdrawal gas"
+    },
+    {
+      "hash": "c37e73f7abcb560e79e1243382f56d95cc97c4ed",
+      "authoredAt": "2026-10-13T07:02:01+05:30",
+      "committedAt": "2026-10-13T07:02:01+05:30",
+      "subject": "feat(web): add Mera sessions and validated gasless server routes"
+    },
+    {
+      "hash": "2ff58f1551dff7475eacd11e54f2303bda79f363",
+      "authoredAt": "2026-10-13T07:02:13+05:30",
+      "committedAt": "2026-10-13T07:02:13+05:30",
+      "subject": "feat(web): enable live trading chart and account order controls"
+    },
+    {
+      "hash": "3f8423a5031e41c0dc64ccebd561a32a852c7ab5",
+      "authoredAt": "2026-10-13T07:03:13+05:30",
+      "committedAt": "2026-10-13T07:03:13+05:30",
+      "subject": "test(web): record S6 integration and accessibility verification"
+    },
+    {
+      "hash": "76953934e7453288e696fc629dc89501b70c555d",
+      "authoredAt": "2026-10-13T14:57:38+05:30",
+      "committedAt": "2026-10-13T14:57:38+05:30",
+      "subject": "feat(core): add exact price-time counterfactual replay"
+    },
+    {
+      "hash": "75cc354a50fa0b7f76568aa4de0deb24cda40795",
+      "authoredAt": "2026-10-13T14:57:58+05:30",
+      "committedAt": "2026-10-13T14:57:58+05:30",
+      "subject": "feat(web): add shareable batch receipts and generated Monad proof"
+    },
+    {
+      "hash": "0e674698518d6bba7654bfb09d6ffc6fb644adf5",
+      "authoredAt": "2026-10-13T14:58:36+05:30",
+      "committedAt": "2026-10-13T14:58:36+05:30",
+      "subject": "test(web): verify S7 receipts, replay and accessible proof views"
+    },
+    {
+      "hash": "b5abfa3a0f3b3e9dd2a9ab2de9c155cd2fd60217",
+      "authoredAt": "2026-10-13T15:39:36+05:30",
+      "committedAt": "2026-10-13T15:39:36+05:30",
+      "subject": "feat(ops): recover stalled bots and enforce secure web failure handling"
+    },
+    {
+      "hash": "3b59405ad658d50b49e89fb7aaed0617956b747f",
+      "authoredAt": "2026-10-13T15:39:54+05:30",
+      "committedAt": "2026-10-13T15:39:54+05:30",
+      "subject": "chore(security): gate reviewed Slither findings and scan complete history"
+    },
+    {
+      "hash": "678752eb8de33a3aa55323cc12306af758bb28eb",
+      "authoredAt": "2026-10-13T15:39:57+05:30",
+      "committedAt": "2026-10-13T15:39:57+05:30",
+      "subject": "test(release): verify reserve limits, socket recovery and production CSP"
+    }
+  ]
+}
