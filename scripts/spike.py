@@ -35,7 +35,8 @@ def live_summary(path, profile):
             if type(value) is not int or value <= 0 or abs(value - local) / local > .05:
                 raise ValueError(f"Live/local gas exceeds 5% for {name}.")
             deviations.append(abs(value - local) / local * 100)
-        return {"status": "passed", "chainId": 10143, "address": live["address"],
+        return {"status": "passed", "reason": "Verified testnet receipts and bytecode; all six measurements meet the 5% parity gate.",
+                "chainId": 10143, "address": live["address"],
                 "evidence": "contracts/bench/out/live-testnet.json", "measuredAt": live["measuredAt"],
                 "verifiedAt": live["verifiedAt"], "maxDeviationPercent": max(deviations),
                 "runtimeBytecodeSha256": live["runtimeBytecodeSha256"]}

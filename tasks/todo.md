@@ -202,4 +202,4 @@ The user resumed the previously deferred testnet gate. Use only the configured t
 - [x] Reproduce the local storage baseline against the current artifact.
 - [x] Run the live testnet probe and verify bytecode, receipts, checksums and six gas measurements.
 - [x] Persist receipts/costs and replace the pending S1 status with measured evidence.
-- [ ] Verify the changed tooling, commit and publish the focused validation without unrelated work.
+- [x] Verify changed tooling and publish codex/live-storage-validation without unrelated application work.
