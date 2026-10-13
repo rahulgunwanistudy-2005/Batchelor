@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AccountSummary } from "@/components/account/AccountSummary";
+import { OrderHistory } from "@/components/account/OrderHistory";
 import { OrdersPanel } from "@/components/terminal/OrdersPanel";
 import { TopBar } from "@/components/terminal/TopBar";
 
@@ -16,6 +17,7 @@ export default function MyOrdersPage() {
         </header>
         <AccountSummary />
         <OrdersPanel />
+        <OrderHistory />
         <footer className="footer">
           <span>Balances and order status are read from the auction contract.</span>
           <span>Demo tokens on Monad testnet. No real value.</span>

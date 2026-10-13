@@ -1,5 +1,5 @@
-import { createPublicClient, erc20Abi, formatUnits, http, parseAbi, type Address } from "viem";
-import { networkConfig } from "@/lib/network/status";
+import { createPublicClient, erc20Abi, formatUnits, parseAbi, type Address } from "viem";
+import { networkConfig, rpcTransport } from "@/lib/network/status";
 
 export interface AccountBalances {
   base: { symbol: string; amount: string };
@@ -27,7 +27,7 @@ export async function readAccountBalances(trader: Address): Promise<BalancesResu
   if (!rpcUrl || expectedChainId === null || !marketAddress) return { status: "unconfigured" };
 
   try {
-    const client = createPublicClient({ transport: http(rpcUrl, { timeout: 8_000, retryCount: 0 }) });
+    const client = createPublicClient({ transport: rpcTransport({ batch: { wait: 10 } }) });
     if ((await client.getChainId()) !== expectedChainId) return { status: "error" };
 
     const auction = { address: marketAddress, abi: auctionViews } as const;

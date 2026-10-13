@@ -1,5 +1,5 @@
-import { createPublicClient, http, parseAbi, type Address } from "viem";
-import { networkConfig } from "@/lib/network/status";
+import { createPublicClient, parseAbi, type Address } from "viem";
+import { networkConfig, rpcTransport } from "@/lib/network/status";
 import type { Side } from "./params";
 
 /** An order this browser placed. Kept locally because there is no indexer to list orders by owner. */
@@ -90,7 +90,7 @@ export async function readOrderStatuses(orders: LocalOrder[]): Promise<OrdersSna
   if (!rpcUrl || !marketAddress) return null;
 
   try {
-    const client = createPublicClient({ transport: http(rpcUrl, { timeout: 8_000, retryCount: 0 }) });
+    const client = createPublicClient({ transport: rpcTransport({ batch: { wait: 10 } }) });
     const market = { address: marketAddress, abi: orderViews } as const;
     const open = await client.readContract({ ...market, functionName: "openBatch" });
     const openBatchId = open.hasOpen ? open.id.toString() : null;

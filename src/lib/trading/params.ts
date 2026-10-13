@@ -1,5 +1,5 @@
-import { createPublicClient, erc20Abi, formatUnits, http, parseAbi, parseUnits, type Address } from "viem";
-import { networkConfig } from "@/lib/network/status";
+import { createPublicClient, erc20Abi, formatUnits, parseAbi, parseUnits, type Address } from "viem";
+import { networkConfig, rpcTransport } from "@/lib/network/status";
 
 export type Side = "buy" | "sell";
 
@@ -40,7 +40,7 @@ export function loadMarketParams(): Promise<MarketParams> {
   }
 
   cached ??= (async () => {
-    const client = createPublicClient({ transport: http(rpcUrl, { timeout: 8_000, retryCount: 0 }) });
+    const client = createPublicClient({ transport: rpcTransport({ batch: { wait: 10 } }) });
     if ((await client.getChainId()) !== expectedChainId) throw new Error("The RPC endpoint is on the wrong chain.");
 
     const market = { address: marketAddress, abi: paramViews } as const;

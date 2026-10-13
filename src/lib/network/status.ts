@@ -1,4 +1,4 @@
-import { createPublicClient, http, isAddress, type Address } from "viem";
+import { createPublicClient, fallback, http, isAddress, type Address, type HttpTransportConfig, type Transport } from "viem";
 
 export type NetworkState =
   | "connecting"
@@ -49,19 +49,42 @@ function parseAddress(value: string | undefined): Address | null {
   return trimmed && isAddress(trimmed) ? trimmed : null;
 }
 
+/** One or more endpoints, comma-separated, in order of preference. Invalid entries are dropped. */
+function parseRpcUrls(value: string | undefined): string[] {
+  return (value ?? "").split(",").flatMap((entry) => parseRpcUrl(entry) ?? []);
+}
+
+const publicRpcUrls = parseRpcUrls(process.env.NEXT_PUBLIC_RPC_URL);
+// Server-only endpoints (for example a keyed provider URL) never reach the browser bundle.
+const serverRpcUrls = typeof window === "undefined" ? parseRpcUrls(process.env.RPC_URL) : [];
+
 export const networkConfig = {
   expectedChainId: parseChainId(process.env.NEXT_PUBLIC_CHAIN_ID),
-  rpcUrl: parseRpcUrl(process.env.NEXT_PUBLIC_RPC_URL),
+  /** The first public endpoint; null when none is configured. */
+  rpcUrl: publicRpcUrls[0] ?? null,
+  rpcUrls: publicRpcUrls,
+  /** Optional Envio HyperIndex GraphQL endpoint for order history and receipts. */
+  indexerUrl: parseRpcUrl(process.env.NEXT_PUBLIC_ENVIO_GRAPHQL_URL),
   /** Unset until a real deployment exists; never defaulted. */
   marketAddress: parseAddress(process.env.NEXT_PUBLIC_MARKET_ADDRESS),
   /** Optional demo-token faucet for the market above. */
   faucetAddress: parseAddress(process.env.NEXT_PUBLIC_FAUCET_ADDRESS),
 };
 
-function rpcClient(rpcUrl: string) {
-  return createPublicClient({
-    transport: http(rpcUrl, { timeout: RPC_TIMEOUT_MS, retryCount: 0 }),
-  });
+/**
+ * Transport over every configured endpoint. With more than one, a failed
+ * request moves on to the next endpoint instead of failing the read.
+ * On the server, RPC_URL endpoints are tried before the public ones.
+ */
+export function rpcTransport(options: HttpTransportConfig = {}): Transport {
+  const urls = [...serverRpcUrls, ...publicRpcUrls];
+  if (urls.length === 0) throw new Error("No RPC endpoint is configured.");
+  const transports = urls.map((url) => http(url, { timeout: RPC_TIMEOUT_MS, retryCount: 0, ...options }));
+  return transports.length === 1 ? transports[0] : fallback(transports, { rank: false });
+}
+
+function rpcClient() {
+  return createPublicClient({ transport: rpcTransport() });
 }
 
 /**
@@ -77,7 +100,7 @@ export async function checkNetworkStatus(): Promise<NetworkStatusResult> {
   }
 
   try {
-    const reportedChainId = await rpcClient(rpcUrl).getChainId();
+    const reportedChainId = await rpcClient().getChainId();
 
     return {
       state: reportedChainId === expectedChainId ? "connected" : "wrong-chain",
@@ -102,7 +125,7 @@ export async function checkDeploymentStatus(): Promise<DeploymentStatusResult> {
   if (rpcUrl === null) return { state: "pending", address };
 
   try {
-    const code = await rpcClient(rpcUrl).getCode({ address });
+    const code = await rpcClient().getCode({ address });
     return { state: code && code !== "0x" ? "code-found" : "no-code", address };
   } catch {
     return { state: "unavailable", address };

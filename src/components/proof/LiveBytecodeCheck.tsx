@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createPublicClient, hexToBytes, http, isAddress } from "viem";
-import { networkConfig } from "@/lib/network/status";
+import { createPublicClient, hexToBytes, isAddress } from "viem";
+import { networkConfig, rpcTransport } from "@/lib/network/status";
 
 type CheckState = "checking" | "match" | "mismatch" | "no-code" | "unavailable" | "skipped";
 
@@ -41,7 +41,7 @@ export function LiveBytecodeCheck({ address, chainId, expectedSha256 }: LiveByte
     async function check(): Promise<CheckState> {
       if (!rpcUrl || expectedChainId !== chainId || !isAddress(address)) return "skipped";
       try {
-        const client = createPublicClient({ transport: http(rpcUrl, { timeout: 8_000, retryCount: 0 }) });
+        const client = createPublicClient({ transport: rpcTransport() });
         if ((await client.getChainId()) !== chainId) return "skipped";
         const code = await client.getCode({ address });
         if (!code || code === "0x") return "no-code";

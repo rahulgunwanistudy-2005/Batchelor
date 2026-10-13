@@ -5,7 +5,6 @@ import {
   createWalletClient,
   custom,
   defineChain,
-  http,
   parseEventLogs,
   UserRejectedRequestError,
   type Address,
@@ -13,7 +12,7 @@ import {
 } from "viem";
 import { batchAuctionAbi, faucetAbi } from "../../../packages/core/src/abi";
 import gasLimits from "../../../packages/core/src/gas.json";
-import { networkConfig } from "@/lib/network/status";
+import { networkConfig, rpcTransport } from "@/lib/network/status";
 import { getWalletSession } from "@/lib/wallet/useWallet";
 import type { Side } from "./params";
 
@@ -73,7 +72,7 @@ function context() {
   return {
     account: session.address,
     market: marketAddress,
-    reader: createPublicClient({ chain, transport: http(rpcUrl, { timeout: 10_000, retryCount: 0 }) }),
+    reader: createPublicClient({ chain, transport: rpcTransport({ timeout: 10_000 }) }),
     wallet: createWalletClient({ account: session.address, chain, transport: custom(session.provider) }),
   };
 }

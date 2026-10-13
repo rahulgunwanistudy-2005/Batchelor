@@ -6,8 +6,8 @@ import type {
   MarketSummary,
   OrderBookSnapshot,
 } from "@/types/market";
-import { createPublicClient, http } from "viem";
-import { networkConfig } from "@/lib/network/status";
+import { createPublicClient } from "viem";
+import { networkConfig, rpcTransport } from "@/lib/network/status";
 import { createOnchainAdapter } from "./onchain";
 
 export interface MarketDataAdapter {
@@ -147,7 +147,7 @@ function selectAdapter(): MarketDataAdapter {
 
   return createOnchainAdapter({
     // Batched JSON-RPC and a few retries keep one page render within public RPC rate limits.
-    reader: createPublicClient({ transport: http(rpcUrl, { timeout: 10_000, retryCount: 3, retryDelay: 250, batch: { wait: 10 } }) }),
+    reader: createPublicClient({ transport: rpcTransport({ timeout: 10_000, retryCount: 3, retryDelay: 250, batch: { wait: 10 } }) }),
     address: marketAddress,
     expectedChainId,
   });
