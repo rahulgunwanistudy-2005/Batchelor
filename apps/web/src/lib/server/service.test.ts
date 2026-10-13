@@ -1,0 +1,18 @@
+import { describe, expect, it, vi } from 'vitest';
+import { privateKeyToAccount } from 'viem/accounts';
+import { buildIntent, intentData, intentJSON, transactionGas } from '@batchelor/core';
+import { relay, RateLimiter, type RelayDependencies } from './service';
+const account=privateKeyToAccount(`0x${'11'.repeat(32)}`), other=privateKeyToAccount(`0x${'33'.repeat(32)}`), market=`0x${'22'.repeat(20)}` as const;
+function dependencies():RelayDependencies { return {chainId:10143,market,now:()=>100,nonce:vi.fn(async()=>0n),send:vi.fn(async()=>`0x${'ab'.repeat(32)}` as const),wake:vi.fn(async()=>undefined)}; }
+async function wire(options={}) { const intent=buildIntent({trader:account.address,action:0,side:0,tick:100,lots:1n,orderId:0n,nonce:0n,...options},100);return {intent:intentJSON(intent),sig:await account.signTypedData(intentData(10143,market,intent))}; }
+describe('relay verification',()=>{
+  it('accepts a valid intent and uses the shared measured gas',async()=>{const d=dependencies();const result=await relay(await wire(),d);expect(result.hash).toMatch(/^0x/);expect(d.send).toHaveBeenCalledWith('placeFor',expect.any(Array),transactionGas('placeFor'));expect(d.wake).toHaveBeenCalledOnce();});
+  it('rejects a signature made by another account before sending',async()=>{const d=dependencies(),w=await wire();const i=buildIntent({trader:account.address,action:0,side:0,tick:100,lots:1n,orderId:0n,nonce:0n},100);w.sig=await other.signTypedData(intentData(10143,market,i));await expect(relay(w,d)).rejects.toMatchObject({code:'BAD_SIGNATURE'});expect(d.send).not.toHaveBeenCalled();});
+  it('rejects expired and excessive deadlines',async()=>{for(const deadline of [99n,161n]) {const d=dependencies();await expect(relay(await wire({deadline}),d)).rejects.toMatchObject({code:deadline===99n?'EXPIRED':'BAD_DEADLINE'});expect(d.send).not.toHaveBeenCalled();}});
+  it('rejects a replay after the chain nonce advances',async()=>{const d=dependencies(),w=await wire();await relay(w,d);d.nonce=async()=>1n;await expect(relay(w,d)).rejects.toMatchObject({code:'BAD_NONCE'});expect(d.send).toHaveBeenCalledOnce();});
+  it('rejects the wrong chain and market signature',async()=>{for(const change of [{chainId:143},{market:`0x${'44'.repeat(20)}` as const}]) {const d={...dependencies(),...change};await expect(relay(await wire(),d)).rejects.toMatchObject({code:'BAD_SIGNATURE'});expect(d.send).not.toHaveBeenCalled();}});
+  it('rejects unsafe quantities, unknown fields and zero lots',async()=>{for(const change of [{lots:0},{lots:'18446744073709551616'},{tick:256},{unexpected:1}]) {const d=dependencies(),w=await wire();await expect(relay({...w,intent:{...w.intent,...change}},d)).rejects.toBeDefined();expect(d.send).not.toHaveBeenCalled();}});
+  it('simulates cancellations through the same dependency, without waking bots',async()=>{const d=dependencies();await relay(await wire({action:1,lots:0n,orderId:7n}),d);expect(d.send).toHaveBeenCalledWith('cancelFor',expect.any(Array),transactionGas('cancelFor'));expect(d.wake).not.toHaveBeenCalled();});
+  it('allows retry after failed submission without consuming a local intent nonce',async()=>{const d=dependencies(),w=await wire();d.send=vi.fn().mockRejectedValueOnce(new Error('simulation')).mockResolvedValueOnce('0xabc');await expect(relay(w,d)).rejects.toThrow('simulation');expect((await relay(w,d)).hash).toBe('0xabc');});
+});
+it('rate limits by bucket and expires entries',()=>{let now=0;const r=new RateLimiter(()=>now);r.take('one',1);expect(()=>r.take('one',1)).toThrow('Too many');r.take('two',1);now=60_000;expect(()=>r.take('one',1)).not.toThrow();});

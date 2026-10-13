@@ -1,0 +1,77 @@
+{
+  "environment": "Ephemeral local MonadTen Anvil; real local transactions replayed through actual Envio handlers; loopback GraphQL fixture, not hosted Envio",
+  "passed": true,
+  "chainId": 10143,
+  "market": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+  "asha": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+  "pete": [
+    "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
+    "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65",
+    "0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc",
+    "0x976EA74026E726554dB657fA54763abd0C3a0aa9"
+  ],
+  "receipts": [
+    {
+      "batchId": "1",
+      "price": "900000",
+      "peteContinuousPrice": "1200000",
+      "peteDifference": "300000",
+      "ashaContinuousPrice": "1100000",
+      "clearGas": "153470",
+      "peteTxIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ashaTxIndex": 4,
+      "previewComparisons": 6
+    },
+    {
+      "batchId": "2",
+      "price": "905000",
+      "peteContinuousPrice": "1205000",
+      "peteDifference": "300000",
+      "ashaContinuousPrice": "1105000",
+      "clearGas": "152570",
+      "peteTxIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ashaTxIndex": 4,
+      "previewComparisons": 6
+    },
+    {
+      "batchId": "3",
+      "price": "910000",
+      "peteContinuousPrice": "1210000",
+      "peteDifference": "300000",
+      "ashaContinuousPrice": "1110000",
+      "clearGas": "152570",
+      "peteTxIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ashaTxIndex": 4,
+      "previewComparisons": 6
+    }
+  ],
+  "previewComparisons": 18,
+  "serverRendered": true,
+  "og": {
+    "contentType": "image/png",
+    "width": 1200,
+    "height": 630
+  },
+  "stats": {
+    "count": 3,
+    "gasSampleCount": 3,
+    "p95ClearGas": "153470",
+    "medianClearGas": "152570",
+    "volumeLots": "75"
+  }
+}

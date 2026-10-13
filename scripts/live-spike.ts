@@ -66,3 +66,5 @@ for (const functionName of ['readContiguous512', 'readScattered512', 'readContig
 const evidence = { status: 'passed', chainId: 10143, address, measuredAt: new Date().toISOString(), gas, transactions };
 await writeFile(`${root}/contracts/bench/out/live-testnet.json`, JSON.stringify(evidence, null, 2) + '\n');
 console.log(JSON.stringify(evidence, null, 2));
+// Certify receipts, code and accounting before a successful run is complete.
+await import(new URL('./verify-live-spike.ts', import.meta.url).href);

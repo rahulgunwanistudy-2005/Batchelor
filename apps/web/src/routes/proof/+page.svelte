@@ -1,9 +1,28 @@
-<script lang="ts">import { en } from '$lib/copy/en';</script>
-<svelte:head><title>{en.nav.proof} · {en.brand}</title></svelte:head>
-<section class="intro"><h1>{en.proof.title}</h1><p>{en.proof.description}</p></section>
-<div class="proof-grid">
-  <section class="card"><h2>{en.proof.storage}</h2><p>{en.proof.storageDetail}</p></section>
-  <section class="card"><h2>{en.proof.settlement}</h2><p>{en.proof.settlementDetail}</p></section>
-  <section class="card"><h2>{en.proof.clearing}</h2><p>{en.proof.clearingDetail}</p></section>
-  <section class="card"><h2>{en.proof.deployed}</h2><p>{en.proof.deployedDetail}</p></section>
-</div>
+<script lang="ts">
+ import type { PageData } from './$types';
+ import { invalidateAll } from '$app/navigation';
+ import GasBars from '$lib/viz/GasBars.svelte';
+ import proof from '$lib/proof.generated.json';
+ import bench from '@batchelor/core/bench.json';
+ import { formatUnits } from '@batchelor/core/format';
+ import { gasLimits } from '@batchelor/core/gas';
+ let {data}:{data:PageData}=$props();
+ const full=bench.scenarios.filter(row=>row.name.startsWith('clear')).at(-1)!;
+ const liveFixture=bench.scenarios.find(row=>row.monadTen===bench.liveTestnet.local)!;
+ const format=(n:number|bigint)=>n.toLocaleString('en-US');
+ const share=(gas:bigint)=>`${formatUnits(gas*1000000n/BigInt(proof.network.blockGasLimit),4)}%`;
+ const explorer=$derived(data.chainId===143?'https://monadvision.com':'https://testnet.monadvision.com');
+ const contracts=$derived(data.deployment?Object.entries(data.deployment).filter(([key])=>['market','base','quote','faucet'].includes(key)):[]);
+</script>
+<svelte:head><title>The mechanism, measured · Batchelor</title><meta name="description" content="Measured clearing gas, contract test evidence and live batch statistics."/></svelte:head>
+<section class="intro"><h1>The mechanism, measured.</h1><p>Same production bytecode, two storage rules. Each claim below links to measured or published evidence.</p></section>
+<section class="card"><h2>A full book uses {full.ratio.toFixed(2)}× less clearing gas</h2><p>Local cold-call measurements reproduced under both hardforks. Measured {bench.generatedAt.slice(0,10)}.</p><GasBars/><p class="note">An order reserves {format(gasLimits.placeSelfClear)} gas for a possible self-clear. At the published minimum base fee of {formatUnits(BigInt(proof.network.minimumBaseFee),9)} MON-gwei with zero priority, the declared limit costs {formatUnits(BigInt(gasLimits.placeSelfClear)*BigInt(proof.network.minimumBaseFee),18)} MON.</p></section>
+<section class="card"><h2>Live clearing gas</h2><button class="secondary refresh" onclick={()=>invalidateAll()}>Refresh measurements</button>
+{#if data.stats && data.stats.gasSampleCount>0}<dl><dt>Sample</dt><dd>{data.stats.gasSampleCount} measured batches of the last {data.stats.count} indexed batches</dd><dt>Median</dt><dd>{format(data.stats.medianClearGas!)} gas · {share(data.stats.medianClearGas!)} of a block</dd><dt>p95 (nearest rank)</dt><dd>{format(data.stats.p95ClearGas!)} gas · {share(data.stats.p95ClearGas!)} of a block</dd></dl>{:else}<p>{data.indexerMessage??'No cleared batches have been indexed yet.'}</p>{/if}
+<p class="note">Block capacity: {format(BigInt(proof.network.blockGasLimit))} gas. <a href={proof.network.source} target="_blank" rel="noreferrer">Monad gas documentation</a>, checked {proof.network.checkedOn}. Internal clearing work excludes event and transaction overhead.</p></section>
+<section class="card"><h2>Eight correctness gates</h2><p>{proof.testCount} tests passed under {proof.profile}. Evidence generated {proof.generatedAt.slice(0,10)} from {proof.command} and production source/runtime checks.</p><div class="gates">{#each proof.invariants as gate}<article><h3>{gate.label}</h3><p class="test-name">{gate.name}</p><p class="note">Passed · {format(gate.runs)} {gate.label==='No priority inputs'?'source and runtime check':'runs'}{'calls' in gate&&gate.calls!==null?` · ${format(gate.calls as number)} calls`:''}</p></article>{/each}</div><p class="note">Several properties share the differential test, which independently checks settlement, limits, refunds and conservation. After clearing, solvency counts remaining claim entitlements.</p></section>
+<section class="card"><h2>Contracts and verification</h2>
+{#if contracts.length}<p>{data.chainId===143?'Monad mainnet':'Monad testnet'} · successful deployment receipts recorded. Explorer source verification has not been confirmed.</p><dl>{#each contracts as [name,address]}<dt>{name}</dt><dd><a href={`${explorer}/address/${address}`} target="_blank" rel="noreferrer">{address}</a></dd>{/each}</dl>{:else}<p>Production deployment addresses are not recorded. Source verification is unconfirmed.</p>{#if data.configuredMarket}<p class="note">Connected market: <a href={`${explorer}/address/${data.configuredMarket}`} target="_blank" rel="noreferrer">{data.configuredMarket}</a>. This configuration is not deployment or verification evidence.</p>{/if}{/if}
+{#if bench.liveTestnet.status==='passed'}<h3>Benchmark testnet confirmation</h3><p>{liveFixture.activeTicks} ticks per side cleared in {format(bench.liveTestnet.live)} gas, matching the local {format(bench.liveTestnet.local)}-gas fixture.</p><p class="note"><a href={`https://testnet.monadvision.com/address/${bench.liveTestnet.market}`} target="_blank" rel="noreferrer">Benchmark market</a> · <a href={`https://testnet.monadvision.com/tx/${bench.liveTestnet.hash}`} target="_blank" rel="noreferrer">Real testnet clearing transaction</a>. Benchmark source verification is unconfirmed.</p>{/if}</section>
+<section class="card"><h2>Why Monad</h2><div class="why">{#each proof.whyMonad as paragraph}<p>{paragraph.text}<span class="sources">{#each paragraph.links as link}<a href={link.url} target="_blank" rel="noreferrer">{link.label}</a>{/each}</span></p>{/each}</div></section>
+<style>.card{margin-bottom:24px}.refresh{margin-bottom:20px}.note{font-size:14px;margin-top:20px}a{text-decoration:underline;text-underline-offset:3px}dl{display:grid;grid-template-columns:1fr 2fr;gap:12px;margin:24px 0 0}dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere}.gates{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}.gates article{border-top:1px solid var(--line);padding-top:20px}.test-name{font-size:14px;overflow-wrap:anywhere}.gates .note{margin-top:8px}.why{display:grid;gap:24px}.sources{display:flex;gap:8px 20px;flex-wrap:wrap;margin-top:8px;font-size:14px}h3{margin-top:24px}@media(max-width:600px){.gates,dl{grid-template-columns:1fr}dd{margin-bottom:12px}}</style>

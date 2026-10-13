@@ -1,0 +1,401 @@
+{
+  "passed": true,
+  "environment": "Production Vite preview with local TLS GraphQL serving actual Envio-handler fixture data; RPC unconfigured for this browser audit",
+  "checks": [
+    {
+      "name": "receipt",
+      "theme": "light",
+      "width": 375,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 26
+      }
+    },
+    {
+      "name": "proof",
+      "theme": "light",
+      "width": 375,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 28
+      }
+    },
+    {
+      "name": "orders",
+      "theme": "light",
+      "width": 375,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 19
+      }
+    },
+    {
+      "name": "trade",
+      "theme": "light",
+      "width": 375,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 24
+      }
+    },
+    {
+      "name": "error",
+      "theme": "light",
+      "width": 375,
+      "status": 404,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 16
+      }
+    },
+    {
+      "name": "receipt",
+      "theme": "light",
+      "width": 768,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 26
+      }
+    },
+    {
+      "name": "proof",
+      "theme": "light",
+      "width": 768,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 27
+      }
+    },
+    {
+      "name": "orders",
+      "theme": "light",
+      "width": 768,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 19
+      }
+    },
+    {
+      "name": "trade",
+      "theme": "light",
+      "width": 768,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 24
+      }
+    },
+    {
+      "name": "error",
+      "theme": "light",
+      "width": 768,
+      "status": 404,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 16
+      }
+    },
+    {
+      "name": "receipt",
+      "theme": "light",
+      "width": 1280,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 25
+      }
+    },
+    {
+      "name": "proof",
+      "theme": "light",
+      "width": 1280,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 27
+      }
+    },
+    {
+      "name": "orders",
+      "theme": "light",
+      "width": 1280,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 19
+      }
+    },
+    {
+      "name": "trade",
+      "theme": "light",
+      "width": 1280,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 24
+      }
+    },
+    {
+      "name": "error",
+      "theme": "light",
+      "width": 1280,
+      "status": 404,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 16
+      }
+    },
+    {
+      "name": "receipt",
+      "theme": "dark",
+      "width": 375,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 26
+      }
+    },
+    {
+      "name": "proof",
+      "theme": "dark",
+      "width": 375,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 28
+      }
+    },
+    {
+      "name": "orders",
+      "theme": "dark",
+      "width": 375,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 19
+      }
+    },
+    {
+      "name": "trade",
+      "theme": "dark",
+      "width": 375,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 24
+      }
+    },
+    {
+      "name": "error",
+      "theme": "dark",
+      "width": 375,
+      "status": 404,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 16
+      }
+    },
+    {
+      "name": "receipt",
+      "theme": "dark",
+      "width": 768,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 26
+      }
+    },
+    {
+      "name": "proof",
+      "theme": "dark",
+      "width": 768,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 27
+      }
+    },
+    {
+      "name": "orders",
+      "theme": "dark",
+      "width": 768,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 19
+      }
+    },
+    {
+      "name": "trade",
+      "theme": "dark",
+      "width": 768,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 24
+      }
+    },
+    {
+      "name": "error",
+      "theme": "dark",
+      "width": 768,
+      "status": 404,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 16
+      }
+    },
+    {
+      "name": "receipt",
+      "theme": "dark",
+      "width": 1280,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 25
+      }
+    },
+    {
+      "name": "proof",
+      "theme": "dark",
+      "width": 1280,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 27
+      }
+    },
+    {
+      "name": "orders",
+      "theme": "dark",
+      "width": 1280,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 19
+      }
+    },
+    {
+      "name": "trade",
+      "theme": "dark",
+      "width": 1280,
+      "status": 200,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 24
+      }
+    },
+    {
+      "name": "error",
+      "theme": "dark",
+      "width": 1280,
+      "status": 404,
+      "productionCsp": true,
+      "hydrated": true,
+      "overflow": false,
+      "accessibility": {
+        "violations": 0,
+        "passes": 16
+      }
+    }
+  ],
+  "blocked": {
+    "inlineScript": true,
+    "thirdPartyConnection": true
+  },
+  "noMainnetTransactions": true
+}

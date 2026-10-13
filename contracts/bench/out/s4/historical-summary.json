@@ -1,0 +1,58 @@
+{
+  "profile": "MonadNine",
+  "passed": true,
+  "suites": {
+    "bench/ClearBench.t.sol:ClearBenchTest": {
+      "passed": 29,
+      "failed": 0
+    },
+    "bench/PageBench.t.sol:PageBenchTest": {
+      "passed": 6,
+      "failed": 0
+    },
+    "bench/TransientGuard.t.sol:TransientGuardTest": {
+      "passed": 1,
+      "failed": 0
+    },
+    "test/DemoToken.t.sol:DemoTokenTest": {
+      "passed": 1,
+      "failed": 0
+    },
+    "test/fuzz/AuctionFuzz.t.sol:AuctionFuzzTest": {
+      "passed": 2,
+      "failed": 0
+    },
+    "test/invariant/AuctionInvariant.t.sol:AuctionInvariantTest": {
+      "passed": 1,
+      "failed": 0
+    },
+    "test/unit/BatchAuction.t.sol:BatchAuctionTest": {
+      "passed": 14,
+      "failed": 0
+    },
+    "test/unit/Deploy.t.sol:DeployTest": {
+      "passed": 3,
+      "failed": 0
+    },
+    "test/unit/Faucet.t.sol:FaucetTest": {
+      "passed": 1,
+      "failed": 0
+    },
+    "test/unit/Settle.t.sol:SettleTest": {
+      "passed": 5,
+      "failed": 0
+    },
+    "test/unit/TokenSafety.t.sol:TokenSafetyTest": {
+      "passed": 2,
+      "failed": 0
+    },
+    "test/unit/Uncross.t.sol:UncrossTest": {
+      "passed": 11,
+      "failed": 0
+    },
+    "test/vectors/ExportVectors.t.sol:ExportVectorsTest": {
+      "passed": 1,
+      "failed": 0
+    }
+  }
+}

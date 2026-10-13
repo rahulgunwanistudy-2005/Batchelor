@@ -1,0 +1,68 @@
+{
+  "verifiedAt": "2026-10-13T01:31:25.051626+00:00",
+  "passed": true,
+  "baseCommit": "b5c663643689acdb273273dd93441c2c2c2f0fbb",
+  "contracts": {
+    "tests": 79,
+    "fuzzRuns": 1000,
+    "invariantRuns": 256,
+    "invariantDepth": 200
+  },
+  "coreTests": 111,
+  "webTests": 28,
+  "makerOnlyPriceMatches": 20,
+  "lighthouseAccessibility": {
+    "s6-lighthouse": 100,
+    "s6-lighthouse-live": 100
+  },
+  "responsiveWidths": [
+    375,
+    768,
+    1280
+  ],
+  "checks": [
+    "ABI generation",
+    "workspace typecheck/lint/tests",
+    "final web typecheck/tests/build",
+    "contract format/build/sizes/tests",
+    "storage layout and forbidden inputs",
+    "shared gas policy",
+    "both-theme contrast",
+    "37 reproducible benchmarks per hardfork",
+    "configured-secret scan",
+    "git diff --check"
+  ],
+  "sourceSha256": {
+    "packages/core/src/uncross.ts": "d8c14b0ac5870f9b988b689b0a09dc276fdeb60316ff872db7942dcd27d8b48b",
+    "packages/core/src/intents.ts": "2e85af2f11b781fdf9def3d0a741a51a726af0efe503cb766424d1651a54701a",
+    "apps/web/src/lib/wallet/mera.ts": "e75ebb87ccf505ad61d4bb92b68c8f3b517a5c971c0699f895901dbe485b6302",
+    "apps/web/src/lib/wallet/session.ts": "5f2f116313e69f5d09734fb7ddaeb47c7216dc4c58eb4818015c8cf9bf2b27d0",
+    "apps/web/src/lib/server/runtime.ts": "0bece1a4bdc6c08e17f1720b3a0d5c888cccaeb756419f2eb452908999b26fb9",
+    "apps/web/src/lib/server/service.ts": "051867864f0bcf070ec8ec6db1e305f4d49b78d5a45fea2247db61d42c67778a",
+    "apps/web/src/lib/chain/live.ts": "9fb8f274d87b02430fe6ade17f81d7d56b0aa4b37a9050e867b5667f0a74f829",
+    "apps/web/src/lib/ui/Ticket.svelte": "51c6217238fdeeea60e0db7372efdc19fefa63bd9b4fbcfc2f2fb141f0451d03",
+    "apps/web/src/routes/me/+page.svelte": "874bd26f42f925f8cd1c5dbbc057ebfe4a0c6ba20a1c0e853c3653b8cea86ddd"
+  },
+  "verificationLogSha256": {
+    "workspaceTypecheck": "6223df75c26b0fa71dd381d8579cc45ee89a123a40fe7abaabd59218061a73e3",
+    "workspaceLint": "0e4e21f05c60d2157a6ed8212edf295a9799df3118a3fc6b8561e0649b7c775d",
+    "workspaceTests": "21504cf8c42163aa59fe27c7a343d4e9dd7be26ec65f4d7b3ebc0f7ed56702bc",
+    "finalWebTypecheck": "628ab1baf514e1afd50e8e8138181e7c18596e377501ffed7e5384128e769c03",
+    "finalWebTests": "8f732a8af2bec3897fd853ed2caf117119c97384340d840ee3f56ab56662d9aa",
+    "webBuild": "4aa8c26957faa7bde8bad354d6a8621270123bfbeb822914b3b83ef7eb346274",
+    "contracts": "61ae9bc2233c401140d1e64575e8a19ff37812489840da98fb76352a4b2bb41f",
+    "contractSizes": "80b6fd95ad2743b8bdb5d1338f31dcfa899c071e2a96a0217d177a441c4ee0ad",
+    "contractLayout": "afd27aabcd6c2ef19cb01385e2c706bd5792793427dcd21151605663f24634cf",
+    "benchmarks": "004a3a47cd6f282dea37cadb79c7ba11eaabfd29cef5148116f6d6b2eafeaf2d",
+    "localIntegration": "9c9d693bdede13da2d902aa8af6e545d2769d7ab70235bd62741d0e7fdad75f4",
+    "tooling": "1a9768da9853ef5b37b38a582e84f944fd3a81d402718b751b94aa3752d9cea0"
+  },
+  "externalGates": [
+    "permanent production RP ID",
+    "funded hosted services/indexer",
+    "real phone onboarding under 60 seconds and video",
+    "actual desktop Chrome local-profile PRF failure"
+  ],
+  "mainnetTransactions": false,
+  "pushPerformed": false
+}

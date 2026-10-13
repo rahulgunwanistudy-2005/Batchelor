@@ -1,0 +1,86 @@
+No files changed, compilation skipped
+
+Ran 20 tests for bench/ClearBench.t.sol:ClearBenchTest
+[PASS] test_cancel() (gas: 365528)
+Logs:
+  BENCH_JSON {"name":"cancel","activeTicks":0,"orders":1,"gas":119215}
+
+[PASS] test_claim1() (gas: 5610988)
+Logs:
+  BENCH_JSON {"name":"claim1","activeTicks":256,"orders":514,"gas":4942530}
+
+[PASS] test_claim50() (gas: 27277519)
+Logs:
+  BENCH_JSON {"name":"claim50","activeTicks":256,"orders":563,"gas":8068118}
+
+[PASS] test_clear() (gas: 4884237)
+Logs:
+  BENCH_JSON {"name":"clear","activeTicks":256,"orders":512,"gas":4869835}
+
+[PASS] test_clear128() (gas: 2555942)
+Logs:
+  BENCH_JSON {"name":"clear128","activeTicks":128,"orders":256,"gas":2448018}
+
+[PASS] test_clear256() (gas: 4920681)
+Logs:
+  BENCH_JSON {"name":"clear256","activeTicks":256,"orders":512,"gas":4812756}
+
+[PASS] test_clear32() (gas: 782273)
+Logs:
+  BENCH_JSON {"name":"clear32","activeTicks":32,"orders":64,"gas":674328}
+
+[PASS] test_clear8() (gas: 338526)
+Logs:
+  BENCH_JSON {"name":"clear8","activeTicks":8,"orders":16,"gas":230581}
+
+[PASS] test_drip() (gas: 12689989)
+Logs:
+  BENCH_JSON {"name":"drip","activeTicks":256,"orders":512,"gas":5204053}
+
+[PASS] test_mapping128() (gas: 9736013)
+Logs:
+  BENCH_JSON {"name":"mapping128","activeTicks":128,"orders":256,"gas":2463253}
+
+[PASS] test_mapping256() (gas: 14480742)
+Logs:
+  BENCH_JSON {"name":"mapping256","activeTicks":256,"orders":512,"gas":4843223}
+
+[PASS] test_mapping32() (gas: 6177176)
+Logs:
+  BENCH_JSON {"name":"mapping32","activeTicks":32,"orders":64,"gas":678139}
+
+[PASS] test_mapping8() (gas: 5286824)
+Logs:
+  BENCH_JSON {"name":"mapping8","activeTicks":8,"orders":16,"gas":231536}
+
+[PASS] test_orders10() (gas: 782846)
+Logs:
+  BENCH_JSON {"name":"orders10","activeTicks":2,"orders":10,"gas":683067}
+
+[PASS] test_orders100() (gas: 782781)
+Logs:
+  BENCH_JSON {"name":"orders100","activeTicks":2,"orders":100,"gas":683067}
+
+[PASS] test_orders1000() (gas: 782781)
+Logs:
+  BENCH_JSON {"name":"orders1000","activeTicks":2,"orders":1000,"gas":683067}
+
+[PASS] test_place() (gas: 279631)
+Logs:
+  BENCH_JSON {"name":"place","activeTicks":0,"orders":0,"gas":229003}
+
+[PASS] test_placeForSelfClear() (gas: 5157758)
+Logs:
+  BENCH_JSON {"name":"placeForSelfClear","activeTicks":256,"orders":512,"gas":5010581}
+
+[PASS] test_placeManySelfClear() (gas: 5507655)
+Logs:
+  BENCH_JSON {"name":"placeManySelfClear","activeTicks":256,"orders":512,"gas":5335368}
+
+[PASS] test_placeSelfClear() (gas: 5000690)
+Logs:
+  BENCH_JSON {"name":"placeSelfClear","activeTicks":256,"orders":512,"gas":4966971}
+
+Suite result: ok. 20 passed; 0 failed; 0 skipped; finished in 471.47ms (2.79s CPU time)
+
+Ran 1 test suite in 490.02ms (471.47ms CPU time): 20 tests passed, 0 failed, 0 skipped (20 total tests)

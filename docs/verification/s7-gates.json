@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "command": "forge fmt --check",
+      "status": "passed"
+    },
+    {
+      "command": "forge build --sizes",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm proof:tests",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm proof:generate",
+      "status": "passed"
+    },
+    {
+      "command": "FOUNDRY_PROFILE=pre_mip8 forge test --gas-limit 100000000",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm -r typecheck",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm -r lint",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm -r test",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm -r build",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm test:tooling",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm exec tsc -p tsconfig.scripts.json",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm check:gas",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm --filter @batchelor/indexer cloud:check",
+      "status": "passed"
+    },
+    {
+      "command": "python3 scripts/check-contrast.py",
+      "status": "passed"
+    },
+    {
+      "command": "pnpm receipts:test-local (with optional Playwright and axe)",
+      "status": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed"
+    }
+  ],
+  "testCounts": {
+    "core": 118,
+    "web": 34,
+    "bots": 26,
+    "indexerDefault": 7,
+    "tooling": 3,
+    "localIndexerPreviewComparisons": 18,
+    "forgeEntriesPerHardfork": 79,
+    "forgeTestsAndPredicatesPerHardfork": 81
+  },
+  "browserCases": 12,
+  "wcagViolations": 0,
+  "staleProofRejected": true,
+  "existingBuildWarnings": [
+    "optional ws bufferutil and utf-8-validate modules absent"
+  ],
+  "externalGates": [
+    "hosted/mainnet receipts and indexer",
+    "public social-platform link-preview debugger",
+    "contract source verification"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-13T10:09:57.501352+00:00",
+  "benchGeneratedAt": "2026-10-13T00:53:34.933859+00:00",
+  "benchmarks": [
+    {
+      "name": "clear32",
+      "activeTicks": 32,
+      "orders": 64,
+      "scanTicks": 32,
+      "monadNine": 626636,
+      "monadTen": 116636,
+      "ratio": 5.372577934771425
+    },
+    {
+      "name": "clear128",
+      "activeTicks": 128,
+      "orders": 256,
+      "scanTicks": 128,
+      "monadNine": 2259565,
+      "monadTen": 213565,
+      "ratio": 10.580221478238476
+    },
+    {
+      "name": "clear256",
+      "activeTicks": 256,
+      "orders": 512,
+      "scanTicks": 256,
+      "monadNine": 4436713,
+      "monadTen": 342713,
+      "ratio": 12.945855570112602
+    }
+  ],
+  "gasPolicy": {
+    "place": 200000,
+    "placeSelfClear": 586000,
+    "placeManySelfClear": 944000,
+    "placeForSelfClear": 633000,
+    "cancel": 147000,
+    "claim1": 571000,
+    "claim50": 4973000,
+    "clear": 490000,
+    "drip": 788000,
+    "withdraw": 562000
+  },
+  "productionDeployment": "unset in packages/core/src/addresses.ts",
+  "publication": "not performed",
+  "video": "not recorded or uploaded",
+  "submission": "prepared draft only",
+  "pending": [
+    "Permanent production domain/RP ID",
+    "Funded mainnet contracts, relayer and six bot keys",
+    "Hosted web, bot service and Envio endpoint",
+    "Public source verification and hosted soak",
+    "Three fresh-device mainnet flows under 60 seconds",
+    "Actual recording receipt/hashes, GIF and <=3 minute public video",
+    "Private-dashboard registration/rules/bounties and complete submission",
+    "Rahul independent review sign-off"
+  ],
+  "commitWindowPassed": true,
+  "dayOfMarginGate": "Not achievable on supplied 13 October deadline day; not claimed passed."
+}

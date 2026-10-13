@@ -1,0 +1,64 @@
+{
+  "chainId": 10143,
+  "account": "0x8cf8d07115760a5D4Db4a6561729E8ed4de4D8CA",
+  "liveBaseFee": "100000000000",
+  "gasPrice": "102000000000",
+  "calls": [
+    {
+      "constructor": "DemoToken",
+      "args": [
+        "Rose",
+        "ROSE",
+        "18",
+        "0xA960D621a79C8640CEA385b29790f4F51A2A28A6"
+      ],
+      "nonce": "0x7",
+      "gasLimit": "1174546",
+      "costMON": "0.119803692"
+    },
+    {
+      "constructor": "DemoToken",
+      "args": [
+        "Demo USD",
+        "dUSD",
+        "6",
+        "0xA960D621a79C8640CEA385b29790f4F51A2A28A6"
+      ],
+      "nonce": "0x8",
+      "gasLimit": "1174599",
+      "costMON": "0.119809098"
+    },
+    {
+      "constructor": "BatchAuction",
+      "args": [
+        "0xFBC274c96B15CFD7728cAbB56466DeA69e1538D8",
+        "0x28E6b4A4b3371Eac032017d3ae31d547805Cc492",
+        "500000",
+        "5000",
+        "1000000000000000",
+        "1",
+        "100"
+      ],
+      "nonce": "0x9",
+      "gasLimit": "4181963",
+      "costMON": "0.426560226"
+    },
+    {
+      "constructor": "Faucet",
+      "args": [
+        "0xFBC274c96B15CFD7728cAbB56466DeA69e1538D8",
+        "0x28E6b4A4b3371Eac032017d3ae31d547805Cc492",
+        "0x599C8C7f310562baC2360F6E2E5dB37296078Fb8"
+      ],
+      "nonce": "0xa",
+      "gasLimit": "686241",
+      "costMON": "0.069996582"
+    }
+  ],
+  "totalGas": "7217349",
+  "costMON": "0.736169598",
+  "balanceMON": "7.246612",
+  "broadcast": false,
+  "status": "dry_run_only",
+  "transactionsSent": 0
+}

@@ -1,0 +1,67 @@
+{
+  "chainId": 143,
+  "block": "113009785",
+  "baseFeePerGas": "100000000000",
+  "priorityMultiplier": "10",
+  "burstBlocks": "20",
+  "declaredPlaceGas": "586000",
+  "peteBurstExpectedMON": "51.568",
+  "peteBurstMaxReservedMON": "56.256",
+  "moBurstExpectedMON": "1.90688",
+  "keeperClaim50ExpectedMON": "0.502273",
+  "recording": {
+    "bursts": 3,
+    "moAwakeSeconds": 600,
+    "blockIntervalPlanningMs": 300,
+    "moQuotes": 2000,
+    "peteThreeBurstsMaxMON": "168.768",
+    "moTenMinutesMaxMON": "379.488",
+    "ready": false,
+    "note": "Maximum EIP1559 caps at the sampled base fee; excludes keeper/relayer spend. Recheck immediately before recording; faster blocks or rising fees need more MON."
+  },
+  "wallets": [
+    {
+      "name": "RELAYER_PK",
+      "status": "key_missing",
+      "targetMON": "40",
+      "recordingReady": false
+    },
+    {
+      "name": "KEEPER_PK",
+      "status": "key_missing",
+      "targetMON": "20",
+      "recordingReady": false
+    },
+    {
+      "name": "MO_PK",
+      "status": "key_missing",
+      "targetMON": "394.488",
+      "recordingReady": false
+    },
+    {
+      "name": "PETE_PK_1",
+      "status": "key_missing",
+      "targetMON": "57.192",
+      "recordingReady": false
+    },
+    {
+      "name": "PETE_PK_2",
+      "status": "key_missing",
+      "targetMON": "57.192",
+      "recordingReady": false
+    },
+    {
+      "name": "PETE_PK_3",
+      "status": "key_missing",
+      "targetMON": "57.192",
+      "recordingReady": false
+    },
+    {
+      "name": "PETE_PK_4",
+      "status": "key_missing",
+      "targetMON": "57.192",
+      "recordingReady": false
+    }
+  ],
+  "transfersSent": 0
+}

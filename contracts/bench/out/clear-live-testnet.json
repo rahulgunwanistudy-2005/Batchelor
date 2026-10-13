@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "chainId": 10143,
+  "account": "0x8cf8d07115760a5D4Db4a6561729E8ed4de4D8CA",
+  "startNonce": 0,
+  "benchmarkHash": "15c27ad06fe613392d0fd65c49f2695d803235e209f6c9d2c9a0616b7bcf05c6",
+  "addresses": {
+    "base": "0x0FE024Ceb0DB79cC720D005C415e77D93d74A439",
+    "quote": "0xE3e7031cf56699D953b9756d5daB58e75C3c9425",
+    "market": "0x955873f812240bc0A284FEf6408F441aB50Ca83B",
+    "faucet": "0xb735e825B8DC7B6e260663Fa193132Ee18de0a25"
+  },
+  "transactions": [
+    {
+      "action": "deployBase",
+      "hash": "0x68a0cfc8841d461cfe925c2fe499862a40b760bdfc4ccc7520b3f50d7da13d4a",
+      "gasLimit": "1325000",
+      "dataHash": "0xaa0ab624415b5ef4d248a3c1e6e45bc7b983ea5dfbf202fba7e1cc7685b20b30",
+      "blockNumber": "70454090",
+      "status": "success"
+    },
+    {
+      "action": "deployQuote",
+      "hash": "0x789f7421f8a56252193a95255c686c3faadacef3d03d9ada62b37a147013aa62",
+      "gasLimit": "1325000",
+      "dataHash": "0xce327d434deaa0e71dbe74ff1bf5af909ba55f84de4ef032aa75d9af6f877b22",
+      "blockNumber": "70454097",
+      "status": "success"
+    },
+    {
+      "action": "deployMarket",
+      "hash": "0x312a89642f687985bd6a108bd4aa779d10b60db5c1c6926281c409bd2782fcba",
+      "gasLimit": "4511000",
+      "dataHash": "0x1ff8d9c25e847cc2df22a67db1a9b6b2c16f46c12adbc29da66ed1dcf396fbf2",
+      "blockNumber": "70454104",
+      "status": "success"
+    },
+    {
+      "action": "deployFaucet",
+      "hash": "0x5773e023b81793b5c52465dd610e8abdaf5296d03a76e98b91075898628cc797",
+      "gasLimit": "813000",
+      "dataHash": "0xb3011bfcf8989df3aed49e058b00779475793066f1ba37b391b686a65f9bea9f",
+      "blockNumber": "70454112",
+      "status": "success"
+    },
+    {
+      "action": "drip",
+      "hash": "0xb1fe87637f2e4a4887051c16f2b18fabf6d9fd19f7853e6e909bcfbeddf7c838",
+      "gasLimit": "788000",
+      "dataHash": "0x8aeb5dfc3d858e424fc31136da748ba74e142a227ffe038ae6e87c9c6680d7ef",
+      "blockNumber": "70454121",
+      "status": "success"
+    },
+    {
+      "action": "seed128",
+      "hash": "0x5199d37bd25958b7a0f55ca8463e731f9e0a646c843fbf86ec6d7636303b5d75",
+      "gasLimit": "17646000",
+      "dataHash": "0x59ff559c82ea33d888dbcfbcca3a2b0ab756fa05ad3fab0d80ba3a2198028789",
+      "blockNumber": "70454126",
+      "status": "success"
+    },
+    {
+      "action": "selfClear",
+      "hash": "0xaf5e9f396ea509af8458a82117ce85d25b64cfd5d343d92e3e3ea8f446bdd241",
+      "gasLimit": "586000",
+      "dataHash": "0xf93e40775f4e4a31162d9819c21400d04a059d8b45e9bdb3a1a8831b9c5cd595",
+      "blockNumber": "70454132",
+      "status": "success"
+    }
+  ],
+  "generatedAt": "2026-10-12T17:13:10.762Z",
+  "parity": {
+    "local": 213565,
+    "live": 213565,
+    "relativeDifference": 0,
+    "hash": "0xaf5e9f396ea509af8458a82117ce85d25b64cfd5d343d92e3e3ea8f446bdd241"
+  },
+  "reason": "Emitted clearGas is within 5% of the identical local fixture."
+}

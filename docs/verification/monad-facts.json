@@ -1,0 +1,6 @@
+{
+  "checkedOn": "2026-10-13",
+  "blockGasLimit": "150000000",
+  "minimumBaseFee": "100000000000",
+  "source": "https://docs.monad.xyz/developer-essentials/gas-pricing"
+}

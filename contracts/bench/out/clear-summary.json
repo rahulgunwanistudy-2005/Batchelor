@@ -1,0 +1,884 @@
+{
+  "generatedAt": "2026-10-13T00:53:34.933859+00:00",
+  "foundryVersion": "forge Version: 1.8.0\nCommit SHA: 61ae26af36320d4fa1020f7db53785885e29eeb5\nBuild Timestamp: 2026-08-26T13:26:32.366590000Z (1787750792)\nBuild Profile: dist",
+  "seed": 42,
+  "measurement": {
+    "clearing": "Production Result.clearGas around _clear; excludes telemetry/event and transaction intrinsic gas",
+    "entrypoints": "Isolated callee gas before refunds plus 21000 and exact 4/16 calldata intrinsic gas",
+    "setup": "Gas metering paused for book setup only; resumed before every measured production call",
+    "orderCount": "Identical 500 lots per side at two occupied ticks spanning 32 scanned ticks; 10 orders cannot populate 32 ticks per side"
+  },
+  "scenarios": [
+    {
+      "name": "clear8",
+      "activeTicks": 8,
+      "orders": 16,
+      "scanTicks": 8,
+      "monadNine": 218311,
+      "monadTen": 92311,
+      "ratio": 2.364951089252635
+    },
+    {
+      "name": "clear32",
+      "activeTicks": 32,
+      "orders": 64,
+      "scanTicks": 32,
+      "monadNine": 626636,
+      "monadTen": 116636,
+      "ratio": 5.372577934771425
+    },
+    {
+      "name": "clear128",
+      "activeTicks": 128,
+      "orders": 256,
+      "scanTicks": 128,
+      "monadNine": 2259565,
+      "monadTen": 213565,
+      "ratio": 10.580221478238476
+    },
+    {
+      "name": "clear256",
+      "activeTicks": 256,
+      "orders": 512,
+      "scanTicks": 256,
+      "monadNine": 4436713,
+      "monadTen": 342713,
+      "ratio": 12.945855570112602
+    },
+    {
+      "name": "orders10",
+      "activeTicks": 1,
+      "orders": 10,
+      "scanTicks": 32,
+      "monadNine": 632353,
+      "monadTen": 122353,
+      "ratio": 5.168267226794603
+    },
+    {
+      "name": "orders100",
+      "activeTicks": 1,
+      "orders": 100,
+      "scanTicks": 32,
+      "monadNine": 632353,
+      "monadTen": 122353,
+      "ratio": 5.168267226794603
+    },
+    {
+      "name": "orders1000",
+      "activeTicks": 1,
+      "orders": 1000,
+      "scanTicks": 32,
+      "monadNine": 632353,
+      "monadTen": 122353,
+      "ratio": 5.168267226794603
+    }
+  ],
+  "ablation": [
+    {
+      "activeTicks": 8,
+      "monadTenContiguous": 92311,
+      "monadTenMapping": 189079,
+      "ratio": 2.0482824365460237
+    },
+    {
+      "activeTicks": 32,
+      "monadTenContiguous": 116636,
+      "monadTenMapping": 599708,
+      "ratio": 5.141705819815495
+    },
+    {
+      "activeTicks": 128,
+      "monadTenContiguous": 213565,
+      "monadTenMapping": 2241853,
+      "ratio": 10.497286540397537
+    },
+    {
+      "activeTicks": 256,
+      "monadTenContiguous": 342713,
+      "monadTenMapping": 4431289,
+      "ratio": 12.930028916323572
+    }
+  ],
+  "entrypoints": {
+    "place": {
+      "measuredWorst": 185303,
+      "limit": 200000
+    },
+    "placeSelfClear": {
+      "measuredWorst": 545105,
+      "limit": 586000
+    },
+    "placeManySelfClear": {
+      "measuredWorst": 878061,
+      "limit": 944000
+    },
+    "placeForSelfClear": {
+      "measuredWorst": 588615,
+      "limit": 633000
+    },
+    "cancel": {
+      "measuredWorst": 136186,
+      "limit": 147000
+    },
+    "claim1": {
+      "measuredWorst": 530267,
+      "limit": 571000
+    },
+    "claim50": {
+      "measuredWorst": 4625651,
+      "limit": 4973000
+    },
+    "clear": {
+      "measuredWorst": 455328,
+      "limit": 490000
+    },
+    "drip": {
+      "measuredWorst": 732910,
+      "limit": 788000
+    },
+    "withdraw": {
+      "measuredWorst": 522575,
+      "limit": 562000
+    }
+  },
+  "profiles": {
+    "MonadTen": {
+      "runtimeBytecodeSha256": "15c27ad06fe613392d0fd65c49f2695d803235e209f6c9d2c9a0616b7bcf05c6",
+      "measurements": {
+        "cancel": {
+          "name": "cancel",
+          "activeTicks": 0,
+          "orders": 1,
+          "gas": 92415
+        },
+        "cancel:relayed": {
+          "name": "cancel:relayed",
+          "activeTicks": 1,
+          "orders": 1,
+          "gas": 136186
+        },
+        "claim1": {
+          "name": "claim1",
+          "activeTicks": 256,
+          "orders": 514,
+          "gas": 456387
+        },
+        "claim1:partial": {
+          "name": "claim1:partial",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 530267
+        },
+        "claim50": {
+          "name": "claim50",
+          "activeTicks": 256,
+          "orders": 563,
+          "gas": 2666675
+        },
+        "claim50:partial": {
+          "name": "claim50:partial",
+          "activeTicks": 2,
+          "orders": 51,
+          "gas": 3714675
+        },
+        "claim50:scatteredHistory": {
+          "name": "claim50:scatteredHistory",
+          "activeTicks": 2,
+          "orders": 50,
+          "gas": 4625651
+        },
+        "clear": {
+          "name": "clear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 399792
+        },
+        "clear128": {
+          "name": "clear128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 213565
+        },
+        "clear256": {
+          "name": "clear256",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 342713
+        },
+        "clear32": {
+          "name": "clear32",
+          "activeTicks": 32,
+          "orders": 64,
+          "gas": 116636
+        },
+        "clear8": {
+          "name": "clear8",
+          "activeTicks": 8,
+          "orders": 16,
+          "gas": 92311
+        },
+        "clear:plateau": {
+          "name": "clear:plateau",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 455328
+        },
+        "clearPlateau": {
+          "name": "clearPlateau",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 398249
+        },
+        "tooling:deployBase": {
+          "name": "tooling:deployBase",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 1132120
+        },
+        "tooling:deployQuote": {
+          "name": "tooling:deployQuote",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 1132086
+        },
+        "tooling:deployMarket": {
+          "name": "tooling:deployMarket",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 3896881
+        },
+        "tooling:deployFaucet": {
+          "name": "tooling:deployFaucet",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 689176
+        },
+        "tooling:seed128": {
+          "name": "tooling:seed128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 16414675
+        },
+        "live128": {
+          "name": "live128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 213565
+        },
+        "drip": {
+          "name": "drip",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 732910
+        },
+        "mapping128": {
+          "name": "mapping128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 2241853
+        },
+        "mapping256": {
+          "name": "mapping256",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4431289
+        },
+        "mapping32": {
+          "name": "mapping32",
+          "activeTicks": 32,
+          "orders": 64,
+          "gas": 599708
+        },
+        "mapping8": {
+          "name": "mapping8",
+          "activeTicks": 8,
+          "orders": 16,
+          "gas": 189079
+        },
+        "orders10": {
+          "name": "orders10",
+          "activeTicks": 1,
+          "orders": 10,
+          "gas": 122353
+        },
+        "orders100": {
+          "name": "orders100",
+          "activeTicks": 1,
+          "orders": 100,
+          "gas": 122353
+        },
+        "orders1000": {
+          "name": "orders1000",
+          "activeTicks": 1,
+          "orders": 1000,
+          "gas": 122353
+        },
+        "place": {
+          "name": "place",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 185303
+        },
+        "placeForSelfClear:plateau": {
+          "name": "placeForSelfClear:plateau",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 588615
+        },
+        "placeForSelfClear": {
+          "name": "placeForSelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 515838
+        },
+        "placeManySelfClear:plateau": {
+          "name": "placeManySelfClear:plateau",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 878061
+        },
+        "placeManySelfClear": {
+          "name": "placeManySelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 720525
+        },
+        "placeSelfClear:plateau": {
+          "name": "placeSelfClear:plateau",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 545105
+        },
+        "placeSelfClear": {
+          "name": "placeSelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 472328
+        },
+        "withdraw": {
+          "name": "withdraw",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 522575
+        },
+        "withdraw:quote": {
+          "name": "withdraw:quote",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 522553
+        }
+      },
+      "reproducible": true
+    },
+    "MonadNine": {
+      "runtimeBytecodeSha256": "15c27ad06fe613392d0fd65c49f2695d803235e209f6c9d2c9a0616b7bcf05c6",
+      "measurements": {
+        "cancel": {
+          "name": "cancel",
+          "activeTicks": 0,
+          "orders": 1,
+          "gas": 119215
+        },
+        "cancel:relayed": {
+          "name": "cancel:relayed",
+          "activeTicks": 1,
+          "orders": 1,
+          "gas": 163086
+        },
+        "claim1": {
+          "name": "claim1",
+          "activeTicks": 256,
+          "orders": 514,
+          "gas": 4566487
+        },
+        "claim1:partial": {
+          "name": "claim1:partial",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 4640467
+        },
+        "claim50": {
+          "name": "claim50",
+          "activeTicks": 256,
+          "orders": 563,
+          "gas": 7692075
+        },
+        "claim50:partial": {
+          "name": "claim50:partial",
+          "activeTicks": 2,
+          "orders": 51,
+          "gas": 8745075
+        },
+        "claim50:scatteredHistory": {
+          "name": "claim50:scatteredHistory",
+          "activeTicks": 2,
+          "orders": 50,
+          "gas": 9529651
+        },
+        "clear": {
+          "name": "clear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4493792
+        },
+        "clear128": {
+          "name": "clear128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 2259565
+        },
+        "clear256": {
+          "name": "clear256",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4436713
+        },
+        "clear32": {
+          "name": "clear32",
+          "activeTicks": 32,
+          "orders": 64,
+          "gas": 626636
+        },
+        "clear8": {
+          "name": "clear8",
+          "activeTicks": 8,
+          "orders": 16,
+          "gas": 218311
+        },
+        "clear:plateau": {
+          "name": "clear:plateau",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 4549328
+        },
+        "clearPlateau": {
+          "name": "clearPlateau",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 4492249
+        },
+        "tooling:deployBase": {
+          "name": "tooling:deployBase",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 1143120
+        },
+        "tooling:deployQuote": {
+          "name": "tooling:deployQuote",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 1143086
+        },
+        "tooling:deployMarket": {
+          "name": "tooling:deployMarket",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 3907881
+        },
+        "tooling:deployFaucet": {
+          "name": "tooling:deployFaucet",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 689176
+        },
+        "tooling:seed128": {
+          "name": "tooling:seed128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 24721275
+        },
+        "live128": {
+          "name": "live128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 2259565
+        },
+        "drip": {
+          "name": "drip",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4828010
+        },
+        "mapping128": {
+          "name": "mapping128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 2271853
+        },
+        "mapping256": {
+          "name": "mapping256",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4461289
+        },
+        "mapping32": {
+          "name": "mapping32",
+          "activeTicks": 32,
+          "orders": 64,
+          "gas": 629708
+        },
+        "mapping8": {
+          "name": "mapping8",
+          "activeTicks": 8,
+          "orders": 16,
+          "gas": 219079
+        },
+        "orders10": {
+          "name": "orders10",
+          "activeTicks": 1,
+          "orders": 10,
+          "gas": 632353
+        },
+        "orders100": {
+          "name": "orders100",
+          "activeTicks": 1,
+          "orders": 100,
+          "gas": 632353
+        },
+        "orders1000": {
+          "name": "orders1000",
+          "activeTicks": 1,
+          "orders": 1000,
+          "gas": 632353
+        },
+        "place": {
+          "name": "place",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 229003
+        },
+        "placeForSelfClear:plateau": {
+          "name": "placeForSelfClear:plateau",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 4707415
+        },
+        "placeForSelfClear": {
+          "name": "placeForSelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4634538
+        },
+        "placeManySelfClear:plateau": {
+          "name": "placeManySelfClear:plateau",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 5117461
+        },
+        "placeManySelfClear": {
+          "name": "placeManySelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4959325
+        },
+        "placeSelfClear:plateau": {
+          "name": "placeSelfClear:plateau",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 4663805
+        },
+        "placeSelfClear": {
+          "name": "placeSelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4590928
+        },
+        "withdraw": {
+          "name": "withdraw",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 4616675
+        },
+        "withdraw:quote": {
+          "name": "withdraw:quote",
+          "activeTicks": 2,
+          "orders": 2,
+          "gas": 4616653
+        }
+      },
+      "reproducible": true
+    }
+  },
+  "acceptance": {
+    "sameBytecode": true,
+    "reproducible": true,
+    "fullRangeRatio": 12.945855570112602,
+    "orderCountVariation": {
+      "MonadNine": 0.0,
+      "MonadTen": 0.0
+    },
+    "liveTestnet": "passed"
+  },
+  "optimization": {
+    "before": {
+      "MonadTen": {
+        "cancel": {
+          "name": "cancel",
+          "activeTicks": 0,
+          "orders": 1,
+          "gas": 92415
+        },
+        "claim1": {
+          "name": "claim1",
+          "activeTicks": 256,
+          "orders": 514,
+          "gas": 832630
+        },
+        "claim50": {
+          "name": "claim50",
+          "activeTicks": 256,
+          "orders": 563,
+          "gas": 3042918
+        },
+        "clear": {
+          "name": "clear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 776035
+        },
+        "clear128": {
+          "name": "clear128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 402218
+        },
+        "clear256": {
+          "name": "clear256",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 718956
+        },
+        "clear32": {
+          "name": "clear32",
+          "activeTicks": 32,
+          "orders": 64,
+          "gas": 164528
+        },
+        "clear8": {
+          "name": "clear8",
+          "activeTicks": 8,
+          "orders": 16,
+          "gas": 104781
+        },
+        "drip": {
+          "name": "drip",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 1109153
+        },
+        "mapping128": {
+          "name": "mapping128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 2433453
+        },
+        "mapping256": {
+          "name": "mapping256",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4813423
+        },
+        "mapping32": {
+          "name": "mapping32",
+          "activeTicks": 32,
+          "orders": 64,
+          "gas": 648339
+        },
+        "mapping8": {
+          "name": "mapping8",
+          "activeTicks": 8,
+          "orders": 16,
+          "gas": 201736
+        },
+        "orders10": {
+          "name": "orders10",
+          "activeTicks": 2,
+          "orders": 10,
+          "gas": 173267
+        },
+        "orders100": {
+          "name": "orders100",
+          "activeTicks": 2,
+          "orders": 100,
+          "gas": 173267
+        },
+        "orders1000": {
+          "name": "orders1000",
+          "activeTicks": 2,
+          "orders": 1000,
+          "gas": 173267
+        },
+        "place": {
+          "name": "place",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 185303
+        },
+        "placeForSelfClear": {
+          "name": "placeForSelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 892081
+        },
+        "placeManySelfClear": {
+          "name": "placeManySelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 1096768
+        },
+        "placeSelfClear": {
+          "name": "placeSelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 848571
+        }
+      },
+      "MonadNine": {
+        "cancel": {
+          "name": "cancel",
+          "activeTicks": 0,
+          "orders": 1,
+          "gas": 119215
+        },
+        "claim1": {
+          "name": "claim1",
+          "activeTicks": 256,
+          "orders": 514,
+          "gas": 4942530
+        },
+        "claim50": {
+          "name": "claim50",
+          "activeTicks": 256,
+          "orders": 563,
+          "gas": 8068118
+        },
+        "clear": {
+          "name": "clear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4869835
+        },
+        "clear128": {
+          "name": "clear128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 2448018
+        },
+        "clear256": {
+          "name": "clear256",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4812756
+        },
+        "clear32": {
+          "name": "clear32",
+          "activeTicks": 32,
+          "orders": 64,
+          "gas": 674328
+        },
+        "clear8": {
+          "name": "clear8",
+          "activeTicks": 8,
+          "orders": 16,
+          "gas": 230581
+        },
+        "drip": {
+          "name": "drip",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 5204053
+        },
+        "mapping128": {
+          "name": "mapping128",
+          "activeTicks": 128,
+          "orders": 256,
+          "gas": 2463253
+        },
+        "mapping256": {
+          "name": "mapping256",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4843223
+        },
+        "mapping32": {
+          "name": "mapping32",
+          "activeTicks": 32,
+          "orders": 64,
+          "gas": 678139
+        },
+        "mapping8": {
+          "name": "mapping8",
+          "activeTicks": 8,
+          "orders": 16,
+          "gas": 231536
+        },
+        "orders10": {
+          "name": "orders10",
+          "activeTicks": 2,
+          "orders": 10,
+          "gas": 683067
+        },
+        "orders100": {
+          "name": "orders100",
+          "activeTicks": 2,
+          "orders": 100,
+          "gas": 683067
+        },
+        "orders1000": {
+          "name": "orders1000",
+          "activeTicks": 2,
+          "orders": 1000,
+          "gas": 683067
+        },
+        "place": {
+          "name": "place",
+          "activeTicks": 0,
+          "orders": 0,
+          "gas": 229003
+        },
+        "placeForSelfClear": {
+          "name": "placeForSelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 5010581
+        },
+        "placeManySelfClear": {
+          "name": "placeManySelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 5335368
+        },
+        "placeSelfClear": {
+          "name": "placeSelfClear",
+          "activeTicks": 256,
+          "orders": 512,
+          "gas": 4966971
+        }
+      }
+    },
+    "after": {
+      "MonadNine": 4436713,
+      "MonadTen": 342713
+    },
+    "changes": [
+      "Cache batch tag and copy tagged ladder with bounded memory-safe loop",
+      "Reuse candidates and bounded memory-safe auction loops",
+      "Pack Result into exactly two storage writes"
+    ]
+  },
+  "toolingGas": {
+    "tooling:deployBase": 1325000,
+    "tooling:deployQuote": 1325000,
+    "tooling:deployMarket": 4511000,
+    "tooling:deployFaucet": 813000,
+    "tooling:seed128": 17646000
+  },
+  "liveTestnet": {
+    "status": "passed",
+    "local": 213565,
+    "live": 213565,
+    "relativeDifference": 0,
+    "hash": "0xaf5e9f396ea509af8458a82117ce85d25b64cfd5d343d92e3e3ea8f446bdd241",
+    "market": "0x955873f812240bc0A284FEf6408F441aB50Ca83B"
+  }
+}

@@ -1,0 +1,1802 @@
+{
+  "environment": "local MonadTen Anvil, simulated MON only",
+  "passed": true,
+  "durationSeconds": 300,
+  "chainId": 10143,
+  "asha": {
+    "hash": "0xc4ed681d9a2751bb7677ac340f3ebe075d09c42b7c9fb42ed01e64e72867f7fc",
+    "batch": "3",
+    "txIndex": 6
+  },
+  "pete": [
+    {
+      "hash": "0x22539d1153c2cb4ffe3192980974b4be13f525f0da5054b187d33d9780cb038b",
+      "txIndex": 0
+    },
+    {
+      "hash": "0x36aa93f264cbc3b6f890c0afce25f7ab6a7e601393baf87fefb557bacee69d95",
+      "txIndex": 1
+    },
+    {
+      "hash": "0xce22a678308820b73f4e5e0dabf642a88cd9942953757b32a846febd447f23d1",
+      "txIndex": 2
+    },
+    {
+      "hash": "0x27619376c90a1c0eafcd11c29997a60fdf61832d74ad130dfd2454607bac9c70",
+      "txIndex": 3
+    }
+  ],
+  "clearTick": 101,
+  "volumeLots": "25",
+  "final": {
+    "status": "ok",
+    "awake": true,
+    "unleashed": false,
+    "lastHead": "522",
+    "lastClear": "304",
+    "balances": {
+      "KEEPER_PK": "9997.750701668674984",
+      "PETE_PK_4": "9999.029961715991268",
+      "PETE_PK_1": "9999.029961715991268",
+      "PETE_PK_2": "9999.029961715991268",
+      "PETE_PK_3": "9999.029961715991268",
+      "MO_PK": "9999.530185322408032"
+    },
+    "errorsLast5Minutes": [],
+    "stats": {
+      "clears": 304,
+      "sent": 650,
+      "receipts": 648,
+      "reverts": 0,
+      "skippedHeads": 0,
+      "maxClearLagBlocks": "0",
+      "claimsPending": 6,
+      "oldestClaimBatchAge": "0"
+    },
+    "chainId": 10143,
+    "burstBlocks": 10,
+    "remainingToday": 9
+  },
+  "samples": [
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": true,
+      "lastHead": "222",
+      "lastClear": "4",
+      "balances": {
+        "KEEPER_PK": "9999.980107986682306",
+        "PETE_PK_4": "9999.999999966768526",
+        "PETE_PK_1": "9999.999999966768526",
+        "PETE_PK_2": "9999.999999966768526",
+        "PETE_PK_3": "9999.999999966768526",
+        "MO_PK": "9999.994335995658544"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 4,
+        "sent": 34,
+        "receipts": 28,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 10,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "227",
+      "lastClear": "9",
+      "balances": {
+        "KEEPER_PK": "9999.51955627655889",
+        "PETE_PK_4": "9999.08236234642188",
+        "PETE_PK_1": "9999.08236234642188",
+        "PETE_PK_2": "9999.08236234642188",
+        "PETE_PK_3": "9999.08236234642188",
+        "MO_PK": "9999.8659582461648"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 9,
+        "sent": 60,
+        "receipts": 58,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 10,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "232",
+      "lastClear": "14",
+      "balances": {
+        "KEEPER_PK": "9999.51955627655889",
+        "PETE_PK_4": "9999.08236234642188",
+        "PETE_PK_1": "9999.08236234642188",
+        "PETE_PK_2": "9999.08236234642188",
+        "PETE_PK_3": "9999.08236234642188",
+        "MO_PK": "9999.8659582461648"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 14,
+        "sent": 70,
+        "receipts": 68,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "237",
+      "lastClear": "19",
+      "balances": {
+        "KEEPER_PK": "9999.251609373751799",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.815095210522352"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 19,
+        "sent": 80,
+        "receipts": 78,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "242",
+      "lastClear": "24",
+      "balances": {
+        "KEEPER_PK": "9999.251609373751799",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.815095210522352"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 24,
+        "sent": 90,
+        "receipts": 88,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "247",
+      "lastClear": "29",
+      "balances": {
+        "KEEPER_PK": "9999.141414598722515",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.7941774812588"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 29,
+        "sent": 100,
+        "receipts": 98,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "252",
+      "lastClear": "34",
+      "balances": {
+        "KEEPER_PK": "9999.141414598722515",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.7941774812588"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 34,
+        "sent": 110,
+        "receipts": 108,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "257",
+      "lastClear": "39",
+      "balances": {
+        "KEEPER_PK": "9999.07494499916206",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.78155988584656"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 39,
+        "sent": 120,
+        "receipts": 118,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "262",
+      "lastClear": "44",
+      "balances": {
+        "KEEPER_PK": "9999.07494499916206",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.78155988584656"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 44,
+        "sent": 130,
+        "receipts": 128,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "267",
+      "lastClear": "49",
+      "balances": {
+        "KEEPER_PK": "9999.01540096691711",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.77025693663296"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 49,
+        "sent": 140,
+        "receipts": 138,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "272",
+      "lastClear": "54",
+      "balances": {
+        "KEEPER_PK": "9999.01540096691711",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.77025693663296"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 54,
+        "sent": 150,
+        "receipts": 148,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "277",
+      "lastClear": "59",
+      "balances": {
+        "KEEPER_PK": "9998.964544217155233",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.760603051297104"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 59,
+        "sent": 160,
+        "receipts": 158,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "282",
+      "lastClear": "64",
+      "balances": {
+        "KEEPER_PK": "9998.964544217155233",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.760603051297104"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 64,
+        "sent": 170,
+        "receipts": 168,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "287",
+      "lastClear": "69",
+      "balances": {
+        "KEEPER_PK": "9998.914502714363049",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.751103920262352"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 69,
+        "sent": 180,
+        "receipts": 178,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "292",
+      "lastClear": "74",
+      "balances": {
+        "KEEPER_PK": "9998.914502714363049",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.751103920262352"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 74,
+        "sent": 190,
+        "receipts": 188,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "297",
+      "lastClear": "79",
+      "balances": {
+        "KEEPER_PK": "9998.864686607042104",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.741647574935392"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 79,
+        "sent": 200,
+        "receipts": 198,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "302",
+      "lastClear": "84",
+      "balances": {
+        "KEEPER_PK": "9998.864686607042104",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.741647574935392"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 84,
+        "sent": 210,
+        "receipts": 208,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "307",
+      "lastClear": "89",
+      "balances": {
+        "KEEPER_PK": "9998.864686607042104",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.741647574935392"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 89,
+        "sent": 220,
+        "receipts": 218,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "312",
+      "lastClear": "94",
+      "balances": {
+        "KEEPER_PK": "9998.8149327836469",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.73220305265808"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 94,
+        "sent": 230,
+        "receipts": 228,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "317",
+      "lastClear": "99",
+      "balances": {
+        "KEEPER_PK": "9998.8149327836469",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.73220305265808"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 99,
+        "sent": 240,
+        "receipts": 238,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "322",
+      "lastClear": "104",
+      "balances": {
+        "KEEPER_PK": "9998.760222888940456",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.721817743870048"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 104,
+        "sent": 250,
+        "receipts": 248,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "327",
+      "lastClear": "109",
+      "balances": {
+        "KEEPER_PK": "9998.760222888940456",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.721817743870048"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 109,
+        "sent": 260,
+        "receipts": 258,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "332",
+      "lastClear": "114",
+      "balances": {
+        "KEEPER_PK": "9998.710491286913371",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.712377439765168"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 114,
+        "sent": 270,
+        "receipts": 268,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "337",
+      "lastClear": "119",
+      "balances": {
+        "KEEPER_PK": "9998.710491286913371",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.712377439765168"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 119,
+        "sent": 280,
+        "receipts": 278,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "342",
+      "lastClear": "124",
+      "balances": {
+        "KEEPER_PK": "9998.660760843993126",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.702937355687808"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 124,
+        "sent": 290,
+        "receipts": 288,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "347",
+      "lastClear": "129",
+      "balances": {
+        "KEEPER_PK": "9998.660760843993126",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.702937355687808"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 129,
+        "sent": 300,
+        "receipts": 298,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "352",
+      "lastClear": "134",
+      "balances": {
+        "KEEPER_PK": "9998.61103072139873",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.69349733241632"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 134,
+        "sent": 310,
+        "receipts": 308,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "357",
+      "lastClear": "139",
+      "balances": {
+        "KEEPER_PK": "9998.61103072139873",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.69349733241632"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 139,
+        "sent": 320,
+        "receipts": 318,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "362",
+      "lastClear": "144",
+      "balances": {
+        "KEEPER_PK": "9998.561300687338653",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.684057325950864"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 144,
+        "sent": 330,
+        "receipts": 328,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "367",
+      "lastClear": "149",
+      "balances": {
+        "KEEPER_PK": "9998.561300687338653",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.684057325950864"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 149,
+        "sent": 340,
+        "receipts": 338,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "372",
+      "lastClear": "154",
+      "balances": {
+        "KEEPER_PK": "9998.511570677765628",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.674617324133664"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 154,
+        "sent": 350,
+        "receipts": 348,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "377",
+      "lastClear": "159",
+      "balances": {
+        "KEEPER_PK": "9998.511570677765628",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.674617324133664"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 159,
+        "sent": 360,
+        "receipts": 358,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "382",
+      "lastClear": "164",
+      "balances": {
+        "KEEPER_PK": "9998.456867674791774",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.664233323569152"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 164,
+        "sent": 370,
+        "receipts": 368,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "387",
+      "lastClear": "169",
+      "balances": {
+        "KEEPER_PK": "9998.456867674791774",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.664233323569152"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 169,
+        "sent": 380,
+        "receipts": 378,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "392",
+      "lastClear": "174",
+      "balances": {
+        "KEEPER_PK": "9998.407137673941391",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.654793323407728"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 174,
+        "sent": 390,
+        "receipts": 388,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "397",
+      "lastClear": "179",
+      "balances": {
+        "KEEPER_PK": "9998.407137673941391",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.654793323407728"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 179,
+        "sent": 400,
+        "receipts": 398,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "402",
+      "lastClear": "184",
+      "balances": {
+        "KEEPER_PK": "9998.357407673528632",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.645353323329376"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 184,
+        "sent": 410,
+        "receipts": 408,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "407",
+      "lastClear": "189",
+      "balances": {
+        "KEEPER_PK": "9998.357407673528632",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.645353323329376"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 189,
+        "sent": 420,
+        "receipts": 418,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "412",
+      "lastClear": "194",
+      "balances": {
+        "KEEPER_PK": "9998.307677673130792",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.635913323253856"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 194,
+        "sent": 430,
+        "receipts": 428,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "417",
+      "lastClear": "199",
+      "balances": {
+        "KEEPER_PK": "9998.307677673130792",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.635913323253856"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 199,
+        "sent": 440,
+        "receipts": 438,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "422",
+      "lastClear": "204",
+      "balances": {
+        "KEEPER_PK": "9998.257947672732952",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.626473323178336"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 204,
+        "sent": 450,
+        "receipts": 448,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "427",
+      "lastClear": "209",
+      "balances": {
+        "KEEPER_PK": "9998.257947672732952",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.626473323178336"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 209,
+        "sent": 460,
+        "receipts": 458,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "432",
+      "lastClear": "214",
+      "balances": {
+        "KEEPER_PK": "9998.208217672335112",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.617033323102816"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 214,
+        "sent": 470,
+        "receipts": 468,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "437",
+      "lastClear": "219",
+      "balances": {
+        "KEEPER_PK": "9998.208217672335112",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.617033323102816"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 219,
+        "sent": 480,
+        "receipts": 478,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "442",
+      "lastClear": "224",
+      "balances": {
+        "KEEPER_PK": "9998.158487671937272",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.607593323027296"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 224,
+        "sent": 490,
+        "receipts": 488,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "447",
+      "lastClear": "229",
+      "balances": {
+        "KEEPER_PK": "9998.158487671937272",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.607593323027296"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 229,
+        "sent": 500,
+        "receipts": 498,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "452",
+      "lastClear": "234",
+      "balances": {
+        "KEEPER_PK": "9998.103784671499648",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.597209322944224"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 234,
+        "sent": 510,
+        "receipts": 508,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "457",
+      "lastClear": "239",
+      "balances": {
+        "KEEPER_PK": "9998.103784671499648",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.597209322944224"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 239,
+        "sent": 520,
+        "receipts": 518,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "462",
+      "lastClear": "244",
+      "balances": {
+        "KEEPER_PK": "9998.054054671101808",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.587769322868704"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 244,
+        "sent": 530,
+        "receipts": 528,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "467",
+      "lastClear": "249",
+      "balances": {
+        "KEEPER_PK": "9998.054054671101808",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.587769322868704"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 249,
+        "sent": 540,
+        "receipts": 538,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "472",
+      "lastClear": "254",
+      "balances": {
+        "KEEPER_PK": "9998.004324670703968",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.578329322793184"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 254,
+        "sent": 550,
+        "receipts": 548,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "477",
+      "lastClear": "259",
+      "balances": {
+        "KEEPER_PK": "9998.004324670703968",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.578329322793184"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 259,
+        "sent": 560,
+        "receipts": 558,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "482",
+      "lastClear": "264",
+      "balances": {
+        "KEEPER_PK": "9997.954594670306128",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.568889322717664"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 264,
+        "sent": 570,
+        "receipts": 568,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "487",
+      "lastClear": "269",
+      "balances": {
+        "KEEPER_PK": "9997.954594670306128",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.568889322717664"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 269,
+        "sent": 580,
+        "receipts": 578,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "492",
+      "lastClear": "274",
+      "balances": {
+        "KEEPER_PK": "9997.904864669908288",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.559449322642144"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 274,
+        "sent": 590,
+        "receipts": 588,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "497",
+      "lastClear": "279",
+      "balances": {
+        "KEEPER_PK": "9997.904864669908288",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.559449322642144"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 279,
+        "sent": 600,
+        "receipts": 598,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "502",
+      "lastClear": "284",
+      "balances": {
+        "KEEPER_PK": "9997.850161669470664",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.549065322559072"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 284,
+        "sent": 610,
+        "receipts": 608,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "507",
+      "lastClear": "289",
+      "balances": {
+        "KEEPER_PK": "9997.850161669470664",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.549065322559072"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 289,
+        "sent": 620,
+        "receipts": 618,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "512",
+      "lastClear": "294",
+      "balances": {
+        "KEEPER_PK": "9997.800431669072824",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.539625322483552"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 294,
+        "sent": 630,
+        "receipts": 628,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    },
+    {
+      "status": "ok",
+      "awake": true,
+      "unleashed": false,
+      "lastHead": "517",
+      "lastClear": "299",
+      "balances": {
+        "KEEPER_PK": "9997.800431669072824",
+        "PETE_PK_4": "9999.029961715991268",
+        "PETE_PK_1": "9999.029961715991268",
+        "PETE_PK_2": "9999.029961715991268",
+        "PETE_PK_3": "9999.029961715991268",
+        "MO_PK": "9999.539625322483552"
+      },
+      "errorsLast5Minutes": [],
+      "stats": {
+        "clears": 299,
+        "sent": 640,
+        "receipts": 638,
+        "reverts": 0,
+        "skippedHeads": 0,
+        "maxClearLagBlocks": "0",
+        "claimsPending": 6,
+        "oldestClaimBatchAge": "0"
+      },
+      "chainId": 10143,
+      "burstBlocks": 10,
+      "remainingToday": 9
+    }
+  ]
+}

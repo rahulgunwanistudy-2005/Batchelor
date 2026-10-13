@@ -8,7 +8,15 @@
     "lint": "tsc --noEmit",
     "test": "vitest run",
     "build": "tsc -p tsconfig.build.json",
-    "start": "node --env-file-if-exists=../../.env dist/index.js"
+    "start": "node --env-file-if-exists=../../.env dist/index.js",
+    "rehearse": "node --env-file-if-exists=../../.env dist/rehearse.js",
+    "seed": "node --env-file-if-exists=../../.env dist/seed.js",
+    "soak": "node --env-file-if-exists=../../.env dist/soak.js"
   },
-  "dependencies": { "hono": "^4.9.0", "viem": "^2.40.0", "zod": "^4.1.0" }
+  "dependencies": {
+    "hono": "^4.9.0",
+    "viem": "^2.40.0",
+    "zod": "^4.1.0",
+    "@batchelor/core": "workspace:*"
+  }
 }

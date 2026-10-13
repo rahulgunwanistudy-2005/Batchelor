@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "environment": "Local real-chain Envio receipt fixture; headless Chromium, reduced motion",
+  "checks": [
+    {
+      "page": "receipt",
+      "theme": "light",
+      "width": 375,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 26
+      },
+      "screenshot": "docs/screens/s7-receipt-light-375.png"
+    },
+    {
+      "page": "proof",
+      "theme": "light",
+      "width": 375,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 28
+      },
+      "screenshot": "docs/screens/s7-proof-light-375.png"
+    },
+    {
+      "page": "receipt",
+      "theme": "light",
+      "width": 768,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 26
+      },
+      "screenshot": "docs/screens/s7-receipt-light-768.png"
+    },
+    {
+      "page": "proof",
+      "theme": "light",
+      "width": 768,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 27
+      },
+      "screenshot": "docs/screens/s7-proof-light-768.png"
+    },
+    {
+      "page": "receipt",
+      "theme": "light",
+      "width": 1280,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 25
+      },
+      "screenshot": "docs/screens/s7-receipt-light-1280.png"
+    },
+    {
+      "page": "proof",
+      "theme": "light",
+      "width": 1280,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 27
+      },
+      "screenshot": "docs/screens/s7-proof-light-1280.png"
+    },
+    {
+      "page": "receipt",
+      "theme": "dark",
+      "width": 375,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 26
+      },
+      "screenshot": "docs/screens/s7-receipt-dark-375.png"
+    },
+    {
+      "page": "proof",
+      "theme": "dark",
+      "width": 375,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 28
+      },
+      "screenshot": "docs/screens/s7-proof-dark-375.png"
+    },
+    {
+      "page": "receipt",
+      "theme": "dark",
+      "width": 768,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 26
+      },
+      "screenshot": "docs/screens/s7-receipt-dark-768.png"
+    },
+    {
+      "page": "proof",
+      "theme": "dark",
+      "width": 768,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 27
+      },
+      "screenshot": "docs/screens/s7-proof-dark-768.png"
+    },
+    {
+      "page": "receipt",
+      "theme": "dark",
+      "width": 1280,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 25
+      },
+      "screenshot": "docs/screens/s7-receipt-dark-1280.png"
+    },
+    {
+      "page": "proof",
+      "theme": "dark",
+      "width": 1280,
+      "overflow": false,
+      "accessibility": {
+        "engine": "axe-core",
+        "violations": 0,
+        "passes": 27
+      },
+      "screenshot": "docs/screens/s7-proof-dark-1280.png"
+    }
+  ]
+}

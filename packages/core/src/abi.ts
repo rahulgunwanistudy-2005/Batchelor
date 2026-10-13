@@ -70,6 +70,58 @@ export const batchAuctionAbi = [
   },
   {
     "type": "function",
+    "name": "BUY",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "CANCEL",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "DOMAIN_SEPARATOR",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "INTENT_TYPEHASH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "LOT",
     "inputs": [],
     "outputs": [
@@ -109,6 +161,19 @@ export const batchAuctionAbi = [
   },
   {
     "type": "function",
+    "name": "PLACE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "QUOTE",
     "inputs": [],
     "outputs": [
@@ -116,6 +181,19 @@ export const batchAuctionAbi = [
         "name": "",
         "type": "address",
         "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "SELL",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
       }
     ],
     "stateMutability": "view"
@@ -138,46 +216,46 @@ export const batchAuctionAbi = [
     "name": "balances",
     "inputs": [
       {
-        "name": "",
+        "name": "who",
         "type": "address",
         "internalType": "address"
       }
     ],
     "outputs": [
       {
-        "name": "",
+        "name": "base",
         "type": "uint256",
         "internalType": "uint256"
       },
       {
-        "name": "",
+        "name": "quote",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "cancel",
     "inputs": [
       {
-        "name": "",
+        "name": "orderId",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
     "outputs": [],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "cancelFor",
     "inputs": [
       {
-        "name": "",
+        "name": "i",
         "type": "tuple",
-        "internalType": "struct BatchAuction.Intent",
+        "internalType": "struct AuctionTypes.Intent",
         "components": [
           {
             "name": "trader",
@@ -222,110 +300,110 @@ export const batchAuctionAbi = [
         ]
       },
       {
-        "name": "",
+        "name": "sig",
         "type": "bytes",
         "internalType": "bytes"
       }
     ],
     "outputs": [],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "claim",
     "inputs": [
       {
-        "name": "",
+        "name": "ids",
         "type": "uint256[]",
         "internalType": "uint256[]"
       }
     ],
     "outputs": [],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "clear",
     "inputs": [],
     "outputs": [],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "deposit",
     "inputs": [
       {
-        "name": "",
+        "name": "token",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "",
+        "name": "amount",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
     "outputs": [],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "depositFor",
     "inputs": [
       {
-        "name": "",
+        "name": "to",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "",
+        "name": "token",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "",
+        "name": "amount",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
     "outputs": [],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "ladder",
     "inputs": [
       {
-        "name": "",
+        "name": "from",
         "type": "uint16",
         "internalType": "uint16"
       },
       {
-        "name": "",
+        "name": "to",
         "type": "uint16",
         "internalType": "uint16"
       }
     ],
     "outputs": [
       {
-        "name": "",
+        "name": "bids",
         "type": "uint64[]",
         "internalType": "uint64[]"
       },
       {
-        "name": "",
+        "name": "asks",
         "type": "uint64[]",
         "internalType": "uint64[]"
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "nonces",
     "inputs": [
       {
-        "name": "",
+        "name": "who",
         "type": "address",
         "internalType": "address"
       }
@@ -337,7 +415,7 @@ export const batchAuctionAbi = [
         "internalType": "uint64"
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "view"
   },
   {
     "type": "function",
@@ -347,7 +425,7 @@ export const batchAuctionAbi = [
       {
         "name": "",
         "type": "tuple",
-        "internalType": "struct BatchAuction.BatchMeta",
+        "internalType": "struct AuctionTypes.BatchMeta",
         "components": [
           {
             "name": "id",
@@ -392,24 +470,86 @@ export const batchAuctionAbi = [
         ]
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "orderCount",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "orders",
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "side",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "tick",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "claimed",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "lots",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "batchId",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "escrow",
+        "type": "uint128",
+        "internalType": "uint128"
+      }
+    ],
+    "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "place",
     "inputs": [
       {
-        "name": "",
+        "name": "side",
         "type": "uint8",
         "internalType": "uint8"
       },
       {
-        "name": "",
+        "name": "tick",
         "type": "uint16",
         "internalType": "uint16"
       },
       {
-        "name": "",
+        "name": "lots",
         "type": "uint64",
         "internalType": "uint64"
       }
@@ -421,16 +561,16 @@ export const batchAuctionAbi = [
         "internalType": "uint256"
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "placeFor",
     "inputs": [
       {
-        "name": "",
+        "name": "i",
         "type": "tuple",
-        "internalType": "struct BatchAuction.Intent",
+        "internalType": "struct AuctionTypes.Intent",
         "components": [
           {
             "name": "trader",
@@ -475,7 +615,7 @@ export const batchAuctionAbi = [
         ]
       },
       {
-        "name": "",
+        "name": "sig",
         "type": "bytes",
         "internalType": "bytes"
       }
@@ -487,72 +627,72 @@ export const batchAuctionAbi = [
         "internalType": "uint256"
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "placeMany",
     "inputs": [
       {
-        "name": "",
+        "name": "side",
         "type": "uint8[]",
         "internalType": "uint8[]"
       },
       {
-        "name": "",
+        "name": "tick",
         "type": "uint16[]",
         "internalType": "uint16[]"
       },
       {
-        "name": "",
+        "name": "lots",
         "type": "uint64[]",
         "internalType": "uint64[]"
       }
     ],
     "outputs": [
       {
-        "name": "",
+        "name": "firstId",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "previewFill",
     "inputs": [
       {
-        "name": "",
+        "name": "id",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
     "outputs": [
       {
-        "name": "",
+        "name": "baseDelta",
         "type": "int256",
         "internalType": "int256"
       },
       {
-        "name": "",
+        "name": "quoteDelta",
         "type": "int256",
         "internalType": "int256"
       },
       {
-        "name": "",
+        "name": "refund",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "price",
     "inputs": [
       {
-        "name": "",
+        "name": "tick",
         "type": "uint16",
         "internalType": "uint16"
       }
@@ -564,14 +704,27 @@ export const batchAuctionAbi = [
         "internalType": "uint256"
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "refTick",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "result",
     "inputs": [
       {
-        "name": "",
+        "name": "id",
         "type": "uint64",
         "internalType": "uint64"
       }
@@ -580,7 +733,7 @@ export const batchAuctionAbi = [
       {
         "name": "",
         "type": "tuple",
-        "internalType": "struct BatchAuction.Result",
+        "internalType": "struct AuctionTypes.Result",
         "components": [
           {
             "name": "clearTick",
@@ -635,25 +788,25 @@ export const batchAuctionAbi = [
         ]
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "withdraw",
     "inputs": [
       {
-        "name": "",
+        "name": "token",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "",
+        "name": "amount",
         "type": "uint256",
         "internalType": "uint256"
       }
     ],
     "outputs": [],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "event",
@@ -896,7 +1049,32 @@ export const batchAuctionAbi = [
   },
   {
     "type": "error",
+    "name": "BadAction",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BadLengths",
+    "inputs": []
+  },
+  {
+    "type": "error",
     "name": "BadNonce",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BadOrder",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BadRange",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BadSide",
     "inputs": []
   },
   {
@@ -937,11 +1115,6 @@ export const batchAuctionAbi = [
   },
   {
     "type": "error",
-    "name": "NotImplemented",
-    "inputs": []
-  },
-  {
-    "type": "error",
     "name": "NotOpenBatch",
     "inputs": []
   },
@@ -957,7 +1130,33 @@ export const batchAuctionAbi = [
   },
   {
     "type": "error",
+    "name": "Overflow",
+    "inputs": []
+  },
+  {
+    "type": "error",
     "name": "ReentrancyGuardReentrantCall",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SafeERC20FailedOperation",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TransferAmountMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "UnsupportedToken",
     "inputs": []
   },
   {
@@ -1592,6 +1791,19 @@ export const faucetAbi = [
   },
   {
     "type": "function",
+    "name": "BASE_DRIP",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "MARKET",
     "inputs": [],
     "outputs": [
@@ -1618,16 +1830,29 @@ export const faucetAbi = [
   },
   {
     "type": "function",
+    "name": "QUOTE_DRIP",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "drip",
     "inputs": [
       {
-        "name": "",
+        "name": "to",
         "type": "address",
         "internalType": "address"
       }
     ],
     "outputs": [],
-    "stateMutability": "pure"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
@@ -1675,12 +1900,34 @@ export const faucetAbi = [
   },
   {
     "type": "error",
+    "name": "Cooldown",
+    "inputs": [
+      {
+        "name": "nextDrip",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
     "name": "InvalidParameters",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "NotImplemented",
+    "name": "ReentrancyGuardReentrantCall",
     "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SafeERC20FailedOperation",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
   }
 ] as const;
