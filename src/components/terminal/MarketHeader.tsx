@@ -4,6 +4,9 @@ import { StatusLabel } from "./StatusLabel";
 
 export function MarketHeader({ result }: { result: MarketDataResult<MarketSummary> }) {
   const market = result.data;
+  const change = market?.change24hPercent ?? null;
+  const changeValue = change === null ? NaN : Number(change);
+  const changeClass = changeValue > 0 ? "change--up" : changeValue < 0 ? "change--down" : undefined;
 
   return (
     <section className="market-header panel">
@@ -12,7 +15,7 @@ export function MarketHeader({ result }: { result: MarketDataResult<MarketSummar
         <div>
           <div className="eyebrow">MARKET</div>
           <button className="market-selector" type="button" disabled aria-label="Market selector not configured">
-            {market ? `${market.baseSymbol} / ${market.quoteSymbol}` : "Select market"}
+            {market ? `${market.baseAsset}/${market.quoteAsset}` : "Select market"}
             <ChevronDown size={15} />
           </button>
         </div>
@@ -20,16 +23,16 @@ export function MarketHeader({ result }: { result: MarketDataResult<MarketSummar
       <div className="market-price">
         <span className="eyebrow">LAST CLEARING PRICE</span>
         <strong>{market?.lastClearingPrice ?? "—"}</strong>
-        <span className="muted">{market ? market.quoteSymbol : "Waiting for market data"}</span>
+        <span className="muted">{market ? "Price per unit" : "Waiting for market data"}</span>
       </div>
       <div className="market-stat">
         <span className="eyebrow">24H CHANGE</span>
-        <strong>{market?.priceChange24h ?? "—"}</strong>
+        <strong className={changeClass}>{Number.isFinite(changeValue) ? `${changeValue > 0 ? "+" : ""}${change}%` : "—"}</strong>
       </div>
       <div className="market-stat">
         <span className="eyebrow">CURRENT BATCH</span>
-        <strong>{market?.batchId ?? "—"}</strong>
-        <span className="muted">{market?.batchStatus ?? "Not available"}</span>
+        <strong>{market?.currentBatchId ? `#${market.currentBatchId}` : "—"}</strong>
+        <span className="muted">{market?.currentBatchId ? "Open batch" : "Not available"}</span>
       </div>
       <div className="market-status">
         <StatusLabel status={result.status} />

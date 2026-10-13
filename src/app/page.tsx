@@ -1,68 +1,49 @@
-import { Activity, ArrowUpRight, BookOpen, ExternalLink, Layers3, Settings2 } from "lucide-react";
+import { ExternalLink, Layers3 } from "lucide-react";
 import { AuctionPanel } from "@/components/terminal/AuctionPanel";
 import { MarketHeader } from "@/components/terminal/MarketHeader";
 import { OrderBook } from "@/components/terminal/OrderBook";
 import { OrderEntry } from "@/components/terminal/OrderEntry";
 import { OrdersPanel } from "@/components/terminal/OrdersPanel";
 import { marketDataAdapter } from "@/lib/market-data/adapter";
+import { parseCandleInterval } from "@/lib/market-data/intervals";
+import Link from "next/link";
+import { MarketChart } from "@/components/terminal/MarketChart";
+import { SystemStatus } from "@/components/terminal/SystemStatus";
+import { TopBar } from "@/components/terminal/TopBar";
 
-export default async function HomePage() {
-  const [marketResult, bookResult] = await Promise.all([
+interface HomePageProps {
+  searchParams: Promise<{ interval?: string | string[] }>;
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const interval = parseCandleInterval((await searchParams).interval);
+  const [marketResult, bookResult, candleResult] = await Promise.all([
     marketDataAdapter.getMarketSummary("default"),
     marketDataAdapter.getOrderBook("default"),
+    marketDataAdapter.getCandles("default", interval),
   ]);
 
   return (
     <main className="app-shell">
-      <header className="topbar">
-        <a href="/" className="brand" aria-label="Batchelor home">
-          <span className="brand-mark"><Layers3 size={19} strokeWidth={2.2} /></span>
-          <span>batchelor<span className="brand-period">.</span></span>
-        </a>
-        <nav className="main-nav" aria-label="Main navigation">
-          <a href="/" className="nav-link nav-link--active"><Activity size={15} /> Trade</a>
-          <a href="#orders" className="nav-link"><BookOpen size={15} /> Orders</a>
-          <a href="#auction" className="nav-link">Auction history</a>
-        </nav>
-        <div className="topbar-actions">
-          <span className="network-pill"><span className="network-dot" /> Monad <span className="network-env">Not connected</span></span>
-          <button className="connect-button" type="button" disabled title="Wallet integration will be added after network configuration">Wallet unavailable</button>
-          <button className="icon-button" type="button" aria-label="Settings" disabled><Settings2 size={17} /></button>
-        </div>
-      </header>
+      <TopBar active="trade" />
 
-      <div className="page-content">
-        <div className="page-title-row">
-          <div>
-            <p className="eyebrow">MARKETS / SPOT</p>
-            <h1>Trading terminal</h1>
-            <p className="page-description">Batch auctions, transparent execution.</p>
-          </div>
-          <a className="text-link" href="#methodology">How auctions work <ArrowUpRight size={14} /></a>
-        </div>
+      <div id="content" className="page-content">
+        <h1 className="sr-only">Trading terminal</h1>
 
         <MarketHeader result={marketResult} />
 
         <div className="terminal-grid">
           <div className="terminal-main">
-            <section className="panel chart-panel">
-              <div className="panel-heading">
-                <div><h2>Market overview</h2><p className="panel-subtitle">Clearing-price history</p></div>
-                <span className="chart-unavailable">Chart unavailable · no verified price feed</span>
-              </div>
-              <div className="chart-empty">
-                <div className="chart-empty-icon"><Activity size={22} /></div>
-                <strong>Price history will appear here</strong>
-                <p>Connect a verified OHLCV or batch-clearing data source to enable charting.</p>
-              </div>
-              <div className="chart-footer"><span>Source: not connected</span><span>Time range unavailable</span></div>
-            </section>
-            <AuctionPanel result={marketResult} />
+            <MarketChart result={candleResult} interval={interval} />
             <div id="orders"><OrdersPanel /></div>
           </div>
-          <aside className="terminal-side">
+          <div className="terminal-book">
             <OrderBook result={bookResult} />
-            <OrderEntry />
+            <SystemStatus feedStatus={marketResult.status} feedMessage={marketResult.message} />
+          </div>
+          <aside className="terminal-side">
+            <OrderEntry baseAsset={marketResult.data?.baseAsset} quoteAsset={marketResult.data?.quoteAsset} />
+            <AuctionPanel result={marketResult} />
           </aside>
         </div>
 
@@ -72,7 +53,7 @@ export default async function HomePage() {
             <h2>Designed around batch execution</h2>
             <p>Orders are grouped into batches. Eligible matches target a uniform clearing price; actual allocation and settlement are determined by the deployed auction rules.</p>
           </div>
-          <a href="#auction" aria-label="Learn about auction history"><ExternalLink size={16} /></a>
+          <Link href="#auction" aria-label="Learn about auction history"><ExternalLink size={16} /></Link>
         </section>
 
         <footer className="footer">

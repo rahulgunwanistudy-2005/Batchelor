@@ -3,8 +3,9 @@ import type { MarketDataResult, MarketSummary } from "@/types/market";
 
 export function AuctionPanel({ result }: { result: MarketDataResult<MarketSummary> }) {
   const market = result.data;
+  const batchStatus = market && "batchStatus" in market ? market.batchStatus : undefined;
   return (
-    <section className="panel auction-panel">
+    <section className="panel auction-panel" id="auction">
       <div className="panel-heading">
         <div>
           <h2>Auction status</h2>
@@ -15,13 +16,13 @@ export function AuctionPanel({ result }: { result: MarketDataResult<MarketSummar
       <div className="auction-state">
         <span className={`state-dot ${market ? "state-dot--ready" : ""}`} />
         <div>
-          <strong>{market?.batchStatus === "open" ? "Orders accepted" : market?.batchStatus === "clearing" ? "Clearing in progress" : market?.batchStatus === "settled" ? "Batch settled" : "Awaiting connection"}</strong>
-          <p>{market?.batchId ? `Batch ${market.batchId}` : "Batch information unavailable"}</p>
+          <strong>{batchStatus === "open" ? "Orders accepted" : batchStatus === "clearing" ? "Clearing in progress" : batchStatus === "settled" ? "Batch settled" : "Awaiting connection"}</strong>
+          <p>{market?.currentBatchId ? `Batch ${market.currentBatchId}` : "Batch information unavailable"}</p>
         </div>
       </div>
       <div className="auction-rule">
         <ShieldCheck size={17} />
-        <p>Eligible orders in a batch target a common clearing price, subject to the auction contract's matching and allocation rules.</p>
+        <p>Eligible orders in a batch target a common clearing price, subject to the auction contract&apos;s matching and allocation rules.</p>
       </div>
       <div className="auction-metrics">
         <div><span>Next batch</span><strong>—</strong></div>
