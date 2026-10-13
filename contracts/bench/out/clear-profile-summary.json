@@ -1,0 +1,14 @@
+{
+  "command": "forge test --match-contract ClearBenchTest --match-test test_clear256 --gas-report --isolate --decode-internal -vvvv",
+  "gas": {
+    "before": {
+      "clear": 718940,
+      "uncross": 378794
+    },
+    "after": {
+      "clear": 343058,
+      "uncross": 160458
+    }
+  },
+  "note": "After profile precedes the additional 361-gas packed-result improvement; full final results are in bench.json."
+}

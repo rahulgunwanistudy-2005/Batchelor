@@ -1,0 +1,62 @@
+{
+  "status": "code_verified_live_gates_pending",
+  "session": "S4",
+  "date": "2026-10-13",
+  "userTimezone": "Asia/Kolkata",
+  "contracts": {
+    "MonadTenPassed": 77,
+    "MonadNinePassed": 77,
+    "fuzzRuns": 1000,
+    "invariantRuns": 256,
+    "invariantDepth": 200,
+    "invariantReverts": 0,
+    "productionBytecodeChanged": false
+  },
+  "typescript": {
+    "botTests": 26,
+    "coreTests": 7,
+    "toolingTests": 3,
+    "typecheck": "passed",
+    "lint": "passed",
+    "productionBuilds": "passed"
+  },
+  "otherGates": {
+    "format": "passed",
+    "storage": "passed",
+    "forbiddenSourceAndRuntime": "passed",
+    "gasPolicy": "passed",
+    "generatedAbiAndAddresses": "passed",
+    "contrast": "passed",
+    "whitespace": "passed"
+  },
+  "localIntegration": {
+    "passed": true,
+    "durationSeconds": 300,
+    "stats": {
+      "clears": 304,
+      "sent": 650,
+      "receipts": 648,
+      "reverts": 0,
+      "skippedHeads": 0,
+      "maxClearLagBlocks": "0",
+      "claimsPending": 6,
+      "oldestClaimBatchAge": "0"
+    },
+    "uniformPriceAndMinedPriorityRegression": true
+  },
+  "live": {
+    "testnetDryRun": "passed",
+    "transactionsSent": 0,
+    "additionalMONSpent": "0",
+    "publicS4Addresses": null,
+    "verification": "not_deployed",
+    "hosting": "not_published",
+    "reason": "Only testnet deployer key is configured; bot keys/funding, hosting credentials and mainnet approval are absent."
+  },
+  "packaging": {
+    "Dockerfile": "reviewed",
+    "FlyConfig": "reviewed",
+    "dockerBuild": "not_run_binary_missing",
+    "hostDeployment": "not_run"
+  }
+}

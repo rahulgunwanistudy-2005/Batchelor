@@ -1,1 +1,12 @@
-{ "status": "unmeasured", "bounds": null, "session": "S3" }
+{
+  "place": 200000,
+  "placeSelfClear": 586000,
+  "placeManySelfClear": 944000,
+  "placeForSelfClear": 633000,
+  "cancel": 147000,
+  "claim1": 571000,
+  "claim50": 4973000,
+  "clear": 490000,
+  "drip": 788000,
+  "withdraw": 562000
+}

@@ -1,0 +1,126 @@
+No files changed, compilation skipped
+
+Ran 1 test for bench/TransientGuard.t.sol:TransientGuardTest
+[PASS] test_transientGuardBlocksReentrancyAndUnlocks() (gas: 681331)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 12.31ms (3.63ms CPU time)
+
+Ran 1 test for test/DemoToken.t.sol:DemoTokenTest
+[PASS] test_onlyImmutableFaucetCanMintAndDecimalsAreIndependent() (gas: 291959)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 12.57ms (3.89ms CPU time)
+
+Ran 2 tests for test/unit/TokenSafety.t.sol:TokenSafetyTest
+[PASS] test_feeOnTransferCannotCreateUnbackedCredit() (gas: 2122670)
+[PASS] test_tokenCallbacksCannotEnterAnyStateChange() (gas: 2262148)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 13.55ms (5.31ms CPU time)
+
+Ran 1 test for test/unit/Faucet.t.sol:FaucetTest
+[PASS] test_dailyDripCreditsMarketAndCooldownIsPerRecipient() (gas: 1365201)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 14.01ms (5.35ms CPU time)
+
+Ran 11 tests for test/unit/Uncross.t.sol:UncrossTest
+[PASS] test_badRange() (gas: 40574)
+[PASS] test_buyPressurePicksHighest() (gas: 19743)
+[PASS] test_fullRange() (gas: 447906)
+[PASS] test_maximumVolumeBeforeSurplus() (gas: 17317)
+[PASS] test_minimumSurplusBeforePressure() (gas: 18958)
+[PASS] test_mixedPressureUsesReference() (gas: 23404)
+[PASS] test_noCrossAndOneSided() (gas: 24803)
+[PASS] test_sellPressurePicksLowest() (gas: 19530)
+[PASS] test_singleTickPrimeCutoff() (gas: 17457)
+[PASS] test_volumeOverflow() (gas: 21514)
+[PASS] test_zeroSurplusUsesReference() (gas: 34780)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 3.27ms (3.11ms CPU time)
+
+Ran 6 tests for bench/PageBench.t.sol:PageBenchTest
+[PASS] test_contiguous512() (gas: 4288962)
+Logs:
+  contiguous512 4226086
+
+[PASS] test_fourPages32() (gas: 336054)
+Logs:
+  fourPages32 273158
+
+[PASS] test_onePage32() (gas: 327042)
+Logs:
+  onePage32 264166
+
+[PASS] test_scattered512() (gas: 4307851)
+Logs:
+  scattered512 4245030
+
+[PASS] test_writeOnePage64() (gas: 765984)
+Logs:
+  writeOnePage64 713574
+
+[PASS] test_writeSeparatePages64() (gas: 1991539)
+Logs:
+  writeSeparatePages64 715942
+
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 11.06ms (9.23ms CPU time)
+
+Ran 5 tests for test/unit/Settle.t.sol:SettleTest
+[PASS] testFuzz_primeRoundingMatchesRational(uint64,uint64,uint64,uint64) (runs: 1000, μ: 21460, ~: 21460)
+[PASS] test_fullAndOutsideCutoff() (gas: 14850)
+[PASS] test_roundOnceForOneLot() (gas: 17057)
+[PASS] test_wideNumeratorDoesNotOverflow() (gas: 13612)
+[PASS] test_zeroVolumeFullRefund() (gas: 11825)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 105.22ms (105.01ms CPU time)
+
+Ran 1 test for test/vectors/ExportVectors.t.sol:ExportVectorsTest
+[PASS] test_Export50SeededBooks() (gas: 10669)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 3.58s (3.57s CPU time)
+
+Ran 14 tests for test/unit/BatchAuction.t.sol:BatchAuctionTest
+[PASS] test_EIP712DomainBoundAndFailedPlaceDoesNotConsumeNonce() (gas: 4372594)
+[PASS] test_EIP712PlaceCancelAndRelayedEvent() (gas: 601192)
+[PASS] test_EIP712WrongSignerMalformedReplayExpiredAndAction() (gas: 503298)
+[PASS] test_cancelOwnerAndSealedBatch() (gas: 564929)
+[PASS] test_cancelRefundsAndKeepsTaggedRange() (gas: 832587)
+[PASS] test_claimPendingThenPermissionlessAndTwice() (gas: 1844529)
+[PASS] test_clearBeforeNewBatchAndLazyReset() (gas: 2571228)
+[PASS] test_clearGasEventMatchesStoredResult() (gas: 1379896)
+[PASS] test_depositAndWithdrawRollSealedBatch() (gas: 783055)
+[PASS] test_depositForAndWithdrawOnlyFreeBalance() (gas: 743217)
+[PASS] test_emptyClearIsNoopAndIdsHaveNoGaps() (gas: 795045)
+[PASS] test_noTradeRefundBothSidesAndReferenceUnchanged() (gas: 1061855)
+[PASS] test_placeManyAtomicAndValidation() (gas: 728330)
+[PASS] test_sideTotalOverflowRejectedBeforeClearing() (gas: 318046)
+Suite result: ok. 14 passed; 0 failed; 0 skipped; finished in 11.24s (29.84ms CPU time)
+
+Ran 2 tests for test/fuzz/AuctionFuzz.t.sol:AuctionFuzzTest
+[PASS] testFuzz_ReferenceModelUniformLimitsRefundsAndConservation(uint256) (runs: 1000, μ: 20682026, ~: 19361387)
+[PASS] test_SameBlockOrderNeverMatters(uint256,uint256) (runs: 1000, μ: 25335095, ~: 25692274)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 11.24s (19.60s CPU time)
+
+Ran 1 test for test/invariant/AuctionInvariant.t.sol:AuctionInvariantTest
+[PASS]
+AuctionInvariantTest invariants:
+[PASS] invariant_ConservationPerBatchAndBoundedDust
+[PASS] invariant_InternalBalancesEqualGhostLedgerAndWalletWithdrawals
+[PASS] invariant_SolventAgainstIndependentOutstandingLiabilities
+ AuctionInvariantTest invariants (runs: 256, calls: 51200, reverts: 0)
+
+╭----------------+----------+-------+---------+----------╮
+| Contract       | Selector | Calls | Reverts | Discards |
++========================================================+
+| AuctionHandler | cancel   | 7376  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | claim    | 7181  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | clear    | 7248  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | deposit  | 7245  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | place    | 7383  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | roll     | 7374  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | withdraw | 7393  | 0       | 0        |
+╰----------------+----------+-------+---------+----------╯
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 42.95s (42.94s CPU time)
+
+Ran 11 test suites in 42.98s (69.18s CPU time): 45 tests passed, 0 failed, 0 skipped (45 total tests)
+2026-10-12T15:23:24.323037Z  WARN evm::traces: failed to read cache file path="/Users/rahul/.foundry/cache/signatures" err=Read { source: Os { code: 2, kind: NotFound, message: "No such file or directory" }, path: "/Users/rahul/.foundry/cache/signatures" }
+2026-10-12T15:24:07.309390Z  WARN evm::traces: failed to create cache parent="/Users/rahul/.foundry/cache" err=Operation not permitted (os error 1)
+2026-10-12T15:24:07.310273Z  WARN evm::traces: failed to flush signature cache err=failed to create file "/Users/rahul/.foundry/cache/signatures": No such file or directory (os error 2)

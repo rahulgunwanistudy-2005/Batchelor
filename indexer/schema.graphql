@@ -1,0 +1,70 @@
+type Batch {
+  id: ID!
+  chainId: Int!
+  batchId: BigInt!
+  market: String! @index
+  startBlock: BigInt!
+  clearedBlock: BigInt
+  clearTxHash: String
+  clearTick: Int
+  price: BigInt
+  volumeLots: BigInt!
+  buyCutoff: Int
+  sellCutoff: Int
+  rB: BigInt!
+  mB: BigInt!
+  rS: BigInt!
+  mS: BigInt!
+  orderCount: Int!
+  placedCount: Int!
+  relayedCount: Int!
+  clearGas: BigInt
+  baseFeePerGas: BigInt
+  clearedAtTimestamp: BigInt
+  maxPriorityFeePerGas: BigInt!
+  medianPriorityFeePerGas: BigInt!
+  orders: [Order!]! @derivedFrom(field: "batch")
+}
+type Order {
+  id: ID!
+  chainId: Int!
+  orderId: BigInt!
+  market: String! @index
+  batch: Batch! @index
+  trader: Trader! @index
+  side: Int!
+  tick: Int!
+  lots: BigInt!
+  relayed: Boolean!
+  blockNumber: BigInt!
+  txIndex: Int!
+  logIndex: Int!
+  txHash: String!
+  effectiveGasPrice: BigInt!
+  maxPriorityFeePerGas: BigInt
+  baseFeePerGas: BigInt!
+  priorityFeePerGas: BigInt!
+  cancelled: Boolean!
+  claimed: Boolean!
+  claimTxHash: String
+  baseIn: BigInt!
+  baseOut: BigInt!
+  quoteIn: BigInt!
+  quoteOut: BigInt!
+  filledLots: BigInt!
+}
+type Trader {
+  id: ID!
+  chainId: Int!
+  address: String! @index
+  market: String! @index
+  orderCount: Int!
+  volumeLots: BigInt!
+  volumeBase: BigInt!
+  orders: [Order!]! @derivedFrom(field: "trader")
+}
+type SyncState {
+  id: ID!
+  chainId: Int!
+  processedBlock: BigInt!
+}

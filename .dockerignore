@@ -1,0 +1,15 @@
+.git
+.env*
+!.env.example
+.tools
+**/node_modules
+**/dist
+**/out
+**/cache
+**/broadcast
+contracts
+apps
+indexer
+docs
+tasks
+deployments

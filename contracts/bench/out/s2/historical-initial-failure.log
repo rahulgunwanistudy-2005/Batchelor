@@ -1,0 +1,138 @@
+Compiling 2 files with Solc 0.8.28
+Solc 0.8.28 finished in 3.15s
+Compiler run successful!
+
+Ran 1 test for bench/TransientGuard.t.sol:TransientGuardTest
+[PASS] test_transientGuardBlocksReentrancyAndUnlocks() (gas: 681331)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 11.09ms (2.84ms CPU time)
+
+Ran 2 tests for test/unit/TokenSafety.t.sol:TokenSafetyTest
+[PASS] test_feeOnTransferCannotCreateUnbackedCredit() (gas: 2122670)
+[PASS] test_tokenCallbacksCannotEnterAnyStateChange() (gas: 2262148)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 12.21ms (3.87ms CPU time)
+
+Ran 1 test for test/DemoToken.t.sol:DemoTokenTest
+[PASS] test_onlyImmutableFaucetCanMintAndDecimalsAreIndependent() (gas: 291959)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 12.36ms (4.22ms CPU time)
+
+Ran 1 test for test/unit/Faucet.t.sol:FaucetTest
+[PASS] test_dailyDripCreditsMarketAndCooldownIsPerRecipient() (gas: 1365201)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 12.59ms (4.41ms CPU time)
+
+Ran 11 tests for test/unit/Uncross.t.sol:UncrossTest
+[PASS] test_badRange() (gas: 40574)
+[PASS] test_buyPressurePicksHighest() (gas: 19743)
+[PASS] test_fullRange() (gas: 447906)
+[PASS] test_maximumVolumeBeforeSurplus() (gas: 17317)
+[PASS] test_minimumSurplusBeforePressure() (gas: 18958)
+[PASS] test_mixedPressureUsesReference() (gas: 23404)
+[PASS] test_noCrossAndOneSided() (gas: 24803)
+[PASS] test_sellPressurePicksLowest() (gas: 19530)
+[PASS] test_singleTickPrimeCutoff() (gas: 17457)
+[PASS] test_volumeOverflow() (gas: 21514)
+[PASS] test_zeroSurplusUsesReference() (gas: 34780)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 3.33ms (3.04ms CPU time)
+
+Ran 6 tests for bench/PageBench.t.sol:PageBenchTest
+[PASS] test_contiguous512() (gas: 4288962)
+Logs:
+  contiguous512 4226086
+
+[PASS] test_fourPages32() (gas: 336054)
+Logs:
+  fourPages32 273158
+
+[PASS] test_onePage32() (gas: 327042)
+Logs:
+  onePage32 264166
+
+[PASS] test_scattered512() (gas: 4307851)
+Logs:
+  scattered512 4245030
+
+[PASS] test_writeOnePage64() (gas: 765984)
+Logs:
+  writeOnePage64 713574
+
+[PASS] test_writeSeparatePages64() (gas: 1991539)
+Logs:
+  writeSeparatePages64 715942
+
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 22.67ms (10.16ms CPU time)
+
+Ran 14 tests for test/unit/BatchAuction.t.sol:BatchAuctionTest
+[PASS] test_EIP712DomainBoundAndFailedPlaceDoesNotConsumeNonce() (gas: 4372594)
+[PASS] test_EIP712PlaceCancelAndRelayedEvent() (gas: 601192)
+[PASS] test_EIP712WrongSignerMalformedReplayExpiredAndAction() (gas: 503298)
+[PASS] test_cancelOwnerAndSealedBatch() (gas: 564929)
+[PASS] test_cancelRefundsAndKeepsTaggedRange() (gas: 832587)
+[PASS] test_claimPendingThenPermissionlessAndTwice() (gas: 1844529)
+[PASS] test_clearBeforeNewBatchAndLazyReset() (gas: 2571228)
+[PASS] test_clearGasEventMatchesStoredResult() (gas: 1379896)
+[PASS] test_depositAndWithdrawRollSealedBatch() (gas: 783055)
+[PASS] test_depositForAndWithdrawOnlyFreeBalance() (gas: 743217)
+[PASS] test_emptyClearIsNoopAndIdsHaveNoGaps() (gas: 795045)
+[PASS] test_noTradeRefundBothSidesAndReferenceUnchanged() (gas: 1061855)
+[PASS] test_placeManyAtomicAndValidation() (gas: 728330)
+[PASS] test_sideTotalOverflowRejectedBeforeClearing() (gas: 318046)
+Suite result: ok. 14 passed; 0 failed; 0 skipped; finished in 73.82ms (20.55ms CPU time)
+
+Ran 2 tests for test/fuzz/AuctionFuzz.t.sol:AuctionFuzzTest
+[FAIL: EvmError: Revert; counterexample: calldata=0xc12c7af8000000000000000000000000000001b52e6993ecbf867ef066d989630f3422db args=[148765087023697693143099722060314281517787 [1.487e41]]] testFuzz_ReferenceModelUniformLimitsRefundsAndConservation(uint256) (runs: 4, μ: 20606647, ~: 20881814)
+[FAIL: EvmError: OutOfGas; counterexample: calldata=0x7e3d000f000000000000000000000000000001b52e6993ecbf867ef066d989630f3422db000000000000000000000000000000000000000000000000000000e7b035e6e7 args=[148765087023697693143099722060314281517787 [1.487e41], 995093767911 [9.95e11]]] test_SameBlockOrderNeverMatters(uint256,uint256) (runs: 0, μ: 0, ~: 0)
+Suite result: FAILED. 0 passed; 2 failed; 0 skipped; finished in 84.45ms (88.17ms CPU time)
+
+Ran 5 tests for test/unit/Settle.t.sol:SettleTest
+[PASS] testFuzz_primeRoundingMatchesRational(uint64,uint64,uint64,uint64) (runs: 1000, μ: 21460, ~: 21460)
+[PASS] test_fullAndOutsideCutoff() (gas: 14850)
+[PASS] test_roundOnceForOneLot() (gas: 17057)
+[PASS] test_wideNumeratorDoesNotOverflow() (gas: 13612)
+[PASS] test_zeroVolumeFullRefund() (gas: 11825)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 69.24ms (69.27ms CPU time)
+
+Ran 1 test for test/vectors/ExportVectors.t.sol:ExportVectorsTest
+[PASS] test_Export50SeededBooks() (gas: 10669)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 3.02s (3.02s CPU time)
+
+Ran 1 test for test/invariant/AuctionInvariant.t.sol:AuctionInvariantTest
+[PASS]
+AuctionInvariantTest invariants:
+[PASS] invariant_ConservationPerBatchAndBoundedDust
+[PASS] invariant_InternalBalancesEqualGhostLedgerAndWalletWithdrawals
+[PASS] invariant_SolventAgainstIndependentOutstandingLiabilities
+ AuctionInvariantTest invariants (runs: 256, calls: 51200, reverts: 0)
+
+╭----------------+----------+-------+---------+----------╮
+| Contract       | Selector | Calls | Reverts | Discards |
++========================================================+
+| AuctionHandler | cancel   | 7336  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | claim    | 7341  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | clear    | 7249  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | deposit  | 7372  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | place    | 7222  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | roll     | 7343  | 0       | 0        |
+|----------------+----------+-------+---------+----------|
+| AuctionHandler | withdraw | 7337  | 0       | 0        |
+╰----------------+----------+-------+---------+----------╯
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 48.49s (48.47s CPU time)
+
+Ran 11 test suites in 48.51s (51.81s CPU time): 43 tests passed, 2 failed, 0 skipped (45 total tests)
+
+Failing tests:
+Encountered 2 failing tests in test/fuzz/AuctionFuzz.t.sol:AuctionFuzzTest
+[FAIL: EvmError: Revert; counterexample: calldata=0xc12c7af8000000000000000000000000000001b52e6993ecbf867ef066d989630f3422db args=[148765087023697693143099722060314281517787 [1.487e41]]] testFuzz_ReferenceModelUniformLimitsRefundsAndConservation(uint256) (runs: 4, μ: 20606647, ~: 20881814)
+[FAIL: EvmError: OutOfGas; counterexample: calldata=0x7e3d000f000000000000000000000000000001b52e6993ecbf867ef066d989630f3422db000000000000000000000000000000000000000000000000000000e7b035e6e7 args=[148765087023697693143099722060314281517787 [1.487e41], 995093767911 [9.95e11]]] test_SameBlockOrderNeverMatters(uint256,uint256) (runs: 0, μ: 0, ~: 0)
+
+Encountered a total of 2 failing tests, 43 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 2 failed tests
+Tip: Run `forge test --debug --match-test <TEST_NAME>` to inspect one failing test in the debugger
+
+Fuzz seed: 0x2f2f8f0b4fe3cccf1c0aae5c9edd7ffa2365e0335ea3247b88df73943d647c06 (use `--fuzz-seed` to reproduce)
+2026-10-12T15:20:30.820325Z  WARN evm::traces: failed to read cache file path="/Users/rahul/.foundry/cache/signatures" err=Read { source: Os { code: 2, kind: NotFound, message: "No such file or directory" }, path: "/Users/rahul/.foundry/cache/signatures" }

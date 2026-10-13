@@ -1,0 +1,834 @@
+{
+  "measuredAt": "2026-10-12T17:16:32.763688+00:00",
+  "checks": {
+    "format": {
+      "command": [
+        "/Users/rahul/Batchelor/.tools/foundry/bin/forge",
+        "fmt",
+        "--check"
+      ],
+      "workingDirectory": "/Users/rahul/Batchelor/contracts",
+      "exitCode": 0,
+      "elapsedSeconds": 0.108,
+      "tests": []
+    },
+    "sizes": {
+      "command": [
+        "/Users/rahul/Batchelor/.tools/foundry/bin/forge",
+        "build",
+        "--sizes"
+      ],
+      "workingDirectory": "/Users/rahul/Batchelor/contracts",
+      "exitCode": 0,
+      "elapsedSeconds": 0.569,
+      "tests": []
+    },
+    "tests": {
+      "command": [
+        "/Users/rahul/Batchelor/.tools/foundry/bin/forge",
+        "test",
+        "-vv"
+      ],
+      "workingDirectory": "/Users/rahul/Batchelor/contracts",
+      "exitCode": 0,
+      "elapsedSeconds": 46.09,
+      "tests": [
+        {
+          "name": "test_onlyImmutableFaucetCanMintAndDecimalsAreIndependent()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_transientGuardBlocksReentrancyAndUnlocks()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_dailyDripCreditsMarketAndCooldownIsPerRecipient()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_feeOnTransferCannotCreateUnbackedCredit()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_tokenCallbacksCannotEnterAnyStateChange()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_badRange()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_buyPressurePicksHighest()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_fullRange()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_maximumVolumeBeforeSurplus()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_minimumSurplusBeforePressure()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_mixedPressureUsesReference()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_noCrossAndOneSided()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_sellPressurePicksLowest()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_singleTickPrimeCutoff()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_volumeOverflow()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_zeroSurplusUsesReference()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_contiguous512()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_fourPages32()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_onePage32()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_scattered512()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_writeOnePage64()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_writeSeparatePages64()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_EIP712DomainBoundAndFailedPlaceDoesNotConsumeNonce()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_EIP712PlaceCancelAndRelayedEvent()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_EIP712WrongSignerMalformedReplayExpiredAndAction()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_cancelOwnerAndSealedBatch()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_cancelRefundsAndKeepsTaggedRange()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_claimPendingThenPermissionlessAndTwice()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clearBeforeNewBatchAndLazyReset()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clearGasEventMatchesStoredResult()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_depositAndWithdrawRollSealedBatch()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_depositForAndWithdrawOnlyFreeBalance()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_emptyClearIsNoopAndIdsHaveNoGaps()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_noTradeRefundBothSidesAndReferenceUnchanged()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeManyAtomicAndValidation()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_sideTotalOverflowRejectedBeforeClearing()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "testFuzz_primeRoundingMatchesRational(uint64,uint64,uint64,uint64)",
+          "status": "PASS",
+          "runs": 1000
+        },
+        {
+          "name": "test_fullAndOutsideCutoff()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_roundOnceForOneLot()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_wideNumeratorDoesNotOverflow()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_zeroVolumeFullRefund()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_Export50SeededBooks()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_cancel()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_cancelFor()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_claim1()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_claim1Partial()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_claim50()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_claim50Partial()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clear()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clear128()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clear256()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clear32()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clear8()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clearPlateau()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_deploymentTooling()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_drip()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_mapping128()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_mapping256()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_mapping32()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_mapping8()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_orders10()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_orders100()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_orders1000()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_place()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeForPlateau()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeForSelfClear()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeManyPlateau()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeManySelfClear()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placePlateau()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeSelfClear()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "testFuzz_ReferenceModelUniformLimitsRefundsAndConservation(uint256)",
+          "status": "PASS",
+          "runs": 1000
+        },
+        {
+          "name": "test_SameBlockOrderNeverMatters(uint256,uint256)",
+          "status": "PASS",
+          "runs": 1000
+        },
+        {
+          "name": "invariant_ConservationPerBatchAndBoundedDust",
+          "status": "PASS",
+          "runs": 256
+        },
+        {
+          "name": "invariant_InternalBalancesEqualGhostLedgerAndWalletWithdrawals",
+          "status": "PASS",
+          "runs": 256
+        },
+        {
+          "name": "invariant_SolventAgainstIndependentOutstandingLiabilities",
+          "status": "PASS",
+          "runs": 256
+        }
+      ],
+      "invariant": {
+        "runs": 256,
+        "calls": 51200,
+        "reverts": 0
+      }
+    },
+    "layout": {
+      "command": [
+        "python3",
+        "/Users/rahul/Batchelor/scripts/check-contracts.py"
+      ],
+      "workingDirectory": "/Users/rahul/Batchelor/contracts",
+      "exitCode": 0,
+      "elapsedSeconds": 0.319,
+      "tests": []
+    },
+    "forbidden": {
+      "command": [
+        "bash",
+        "script/check-forbidden.sh"
+      ],
+      "workingDirectory": "/Users/rahul/Batchelor/contracts",
+      "exitCode": 0,
+      "elapsedSeconds": 0.03,
+      "tests": []
+    },
+    "historical": {
+      "command": [
+        "/Users/rahul/Batchelor/.tools/foundry/bin/forge",
+        "test",
+        "--gas-limit",
+        "100000000",
+        "-vv"
+      ],
+      "workingDirectory": "/Users/rahul/Batchelor/contracts",
+      "exitCode": 0,
+      "elapsedSeconds": 54.826,
+      "tests": [
+        {
+          "name": "test_onlyImmutableFaucetCanMintAndDecimalsAreIndependent()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_feeOnTransferCannotCreateUnbackedCredit()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_tokenCallbacksCannotEnterAnyStateChange()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_transientGuardBlocksReentrancyAndUnlocks()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_dailyDripCreditsMarketAndCooldownIsPerRecipient()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_badRange()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_buyPressurePicksHighest()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_fullRange()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_maximumVolumeBeforeSurplus()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_minimumSurplusBeforePressure()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_mixedPressureUsesReference()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_noCrossAndOneSided()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_sellPressurePicksLowest()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_singleTickPrimeCutoff()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_volumeOverflow()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_zeroSurplusUsesReference()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_contiguous512()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_fourPages32()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_onePage32()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_scattered512()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_writeOnePage64()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_writeSeparatePages64()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_EIP712DomainBoundAndFailedPlaceDoesNotConsumeNonce()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_EIP712PlaceCancelAndRelayedEvent()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_EIP712WrongSignerMalformedReplayExpiredAndAction()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_cancelOwnerAndSealedBatch()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_cancelRefundsAndKeepsTaggedRange()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_claimPendingThenPermissionlessAndTwice()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clearBeforeNewBatchAndLazyReset()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clearGasEventMatchesStoredResult()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_depositAndWithdrawRollSealedBatch()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_depositForAndWithdrawOnlyFreeBalance()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_emptyClearIsNoopAndIdsHaveNoGaps()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_noTradeRefundBothSidesAndReferenceUnchanged()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeManyAtomicAndValidation()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_sideTotalOverflowRejectedBeforeClearing()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "testFuzz_primeRoundingMatchesRational(uint64,uint64,uint64,uint64)",
+          "status": "PASS",
+          "runs": 1000
+        },
+        {
+          "name": "test_fullAndOutsideCutoff()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_roundOnceForOneLot()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_wideNumeratorDoesNotOverflow()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_zeroVolumeFullRefund()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_cancel()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_cancelFor()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_claim1()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_claim1Partial()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_claim50()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_claim50Partial()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clear()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clear128()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clear256()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clear32()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clear8()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_clearPlateau()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_deploymentTooling()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_drip()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_mapping128()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_mapping256()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_mapping32()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_mapping8()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_orders10()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_orders100()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_orders1000()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_place()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeForPlateau()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeForSelfClear()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeManyPlateau()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeManySelfClear()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placePlateau()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_placeSelfClear()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "test_Export50SeededBooks()",
+          "status": "PASS",
+          "runs": 1
+        },
+        {
+          "name": "testFuzz_ReferenceModelUniformLimitsRefundsAndConservation(uint256)",
+          "status": "PASS",
+          "runs": 1000
+        },
+        {
+          "name": "test_SameBlockOrderNeverMatters(uint256,uint256)",
+          "status": "PASS",
+          "runs": 1000
+        },
+        {
+          "name": "invariant_ConservationPerBatchAndBoundedDust",
+          "status": "PASS",
+          "runs": 256
+        },
+        {
+          "name": "invariant_InternalBalancesEqualGhostLedgerAndWalletWithdrawals",
+          "status": "PASS",
+          "runs": 256
+        },
+        {
+          "name": "invariant_SolventAgainstIndependentOutstandingLiabilities",
+          "status": "PASS",
+          "runs": 256
+        }
+      ],
+      "invariant": {
+        "runs": 256,
+        "calls": 51200,
+        "reverts": 0
+      }
+    }
+  },
+  "passed": true
+}

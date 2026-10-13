@@ -1,0 +1,155 @@
+{
+  "environment": "Ephemeral local MonadTen Anvil; simulated MON, no live deployment",
+  "passed": true,
+  "chainId": 10143,
+  "market": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+  "faucet": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+  "guards": [
+    "bad signature",
+    "expired deadline",
+    "replayed nonce"
+  ],
+  "consecutivePriceMatches": 20,
+  "samples": [
+    {
+      "batchId": "2",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0xcbaa8ec3346dd7fafb9912fd2890663c34e2454c485dfc5e526f3e37003faaa4"
+    },
+    {
+      "batchId": "3",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0x85e33dbfd31704e6eba29a58406f5b1250976f5f5b5ff117c93968273dc92648"
+    },
+    {
+      "batchId": "4",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0xef9c39641dbd06f7ee4e70e57eb431e067b38a4d0fee59b4cdb8d5da000242f7"
+    },
+    {
+      "batchId": "5",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0x63340493b0c654d420bfc738a7d4ed0530f990d758b5990ccb1a14d5298bf340"
+    },
+    {
+      "batchId": "6",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0x963ea40843935e9d5f97a203c6fde02bbfbea783117049b2ff6307a19b1c1ac4"
+    },
+    {
+      "batchId": "7",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0x4951327cc8ebcc53260e1440df8541c97af05f1e8da609f24febb66f364e1f6d"
+    },
+    {
+      "batchId": "8",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0x7c8e56b1c33e712dfe6742e48f28d7ebc5c9ad3789acc681b2d565f799054631"
+    },
+    {
+      "batchId": "9",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0x94a50f6c3e41f5a16ad7fcb66e7bdd306423afd6e0cb446945ef99b26e22bc30"
+    },
+    {
+      "batchId": "10",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0x411661d1d7a976bbebd627a813bab85e199af85d14b84d3052e62b06a5ab983a"
+    },
+    {
+      "batchId": "11",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0xd7cbe22211f2cceccc5a08735173587b19d133865e619d9bad29c6ecbf91880d"
+    },
+    {
+      "batchId": "12",
+      "clearTick": 105,
+      "indicativeTick": 105,
+      "volumeLots": "1000",
+      "mmHash": "0x89dc0f0485cfe61a324c495fbf1723cc090a7bdf58bd73f15daed2061fb06f9e"
+    },
+    {
+      "batchId": "13",
+      "clearTick": 106,
+      "indicativeTick": 106,
+      "volumeLots": "1000",
+      "mmHash": "0x86baf992198ed31fec2239e9020a8450473744c902a11a4f7517ccf30e73dfa5"
+    },
+    {
+      "batchId": "14",
+      "clearTick": 107,
+      "indicativeTick": 107,
+      "volumeLots": "1000",
+      "mmHash": "0x137d979eac5099a9becb10ab486525687d5e994b84913f19c45cadf130b5561a"
+    },
+    {
+      "batchId": "15",
+      "clearTick": 108,
+      "indicativeTick": 108,
+      "volumeLots": "1000",
+      "mmHash": "0x498a2e33b00f8e37211e31f7494333e9ebc36a44fb28350cb18bb51e3ee81fc2"
+    },
+    {
+      "batchId": "16",
+      "clearTick": 109,
+      "indicativeTick": 109,
+      "volumeLots": "1000",
+      "mmHash": "0xd27e7b9c21fccd9fdd97c3ced7a2e0b8e81d87dcab88f199098faa8ef982a87b"
+    },
+    {
+      "batchId": "17",
+      "clearTick": 110,
+      "indicativeTick": 110,
+      "volumeLots": "1000",
+      "mmHash": "0xbfb2e6e7eba0b7d3548ee40272b07267ed0ebe72ac0679bd024747fbc72f235c"
+    },
+    {
+      "batchId": "18",
+      "clearTick": 111,
+      "indicativeTick": 111,
+      "volumeLots": "1000",
+      "mmHash": "0x93c37eb8cc354e05f01febcf845c786dcb4bd1cb7edf73b86197584e819c10be"
+    },
+    {
+      "batchId": "19",
+      "clearTick": 112,
+      "indicativeTick": 112,
+      "volumeLots": "1000",
+      "mmHash": "0x8bdaad77f3056801a6731ccc291a3b0af4a8232559d649f75e816bd29b2e8e6e"
+    },
+    {
+      "batchId": "20",
+      "clearTick": 113,
+      "indicativeTick": 113,
+      "volumeLots": "1000",
+      "mmHash": "0x8a56e0f72f3a4bef8c6d2b7f055d288c7afd9efe4c5859b82650d3048f6e17c2"
+    },
+    {
+      "batchId": "21",
+      "clearTick": 114,
+      "indicativeTick": 114,
+      "volumeLots": "1000",
+      "mmHash": "0xb14deab5d52eb7072333264ea4657a61dfbdfbc6d70749522fdd1d81c3420da7"
+    }
+  ]
+}

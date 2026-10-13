@@ -4,7 +4,13 @@ export const en = {
   nav: { trade: 'Trade', orders: 'My orders', proof: 'Proof' },
   skip: 'Skip to content',
   footer: 'Demo tokens on Monad mainnet. No real value.',
-  stage: 'Development scaffold · No market connected',
+  stage: 'Every block, one clearing price',
+  wallet: {
+    PRF_UNAVAILABLE: "Passkey couldn't create a key on this browser. Save the passkey to Google Password Manager or iCloud Keychain, then try again.",
+    PASSKEY_OPERATION_FAILED: 'Passkey operation was cancelled or failed. Try again.',
+    CRYPTO_UNAVAILABLE: 'Passkeys need HTTPS. Open the secure Batchelor address, then try again.',
+    SESSION_ENDED: 'Your signing session expired. Sign in with your passkey again.'
+  },
   trade: {
     title: 'One batch. One clearing price.',
     description: 'Buy and sell orders in the same block meet at a single price.',
@@ -34,14 +40,14 @@ export const en = {
   },
   proof: {
     title: 'The mechanism, measured.',
-    description: 'Storage measurements come first. Auction correctness and clearing gas follow.',
+    description: 'Auction clearing measured locally and confirmed on Monad testnet.',
     storage: 'Storage spike',
     storageDetail: 'The local MonadNine and MonadTen comparison passed. Reproducible measurements are saved in the repository.',
     settlement: 'Settlement proofs',
-    settlementDetail: 'Permutation, conservation, and solvency tests are scheduled for the auction implementation.',
+    settlementDetail: 'Independent reference, permutation, rounding, conservation, and solvency tests cover the auction core.',
     clearing: 'Auction clearing gas',
-    clearingDetail: 'Not measured yet. A storage-read benchmark is not a clearing benchmark.',
+    clearingDetail: 'Cold-call benchmarks include dense and sparse books, signed orders, and partial claims. Live market statistics will appear when indexing is connected.',
     deployed: 'Deployment',
-    deployedDetail: 'No contract addresses are configured.'
+    deployedDetail: 'The benchmark market is deployed on Monad testnet. Production trading and mainnet deployment remain unconfigured.'
   }
 } as const;

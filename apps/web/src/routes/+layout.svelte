@@ -5,6 +5,7 @@
   import '@fontsource/ibm-plex-sans/400.css';
   import '@fontsource/ibm-plex-sans/500.css';
   import { page } from '$app/state';
+  import { env } from '$env/dynamic/public';
   import { en } from '$lib/copy/en';
   let { children } = $props();
 </script>
@@ -21,7 +22,17 @@
   </header>
   <main id="main" tabindex="-1">
     <div class="stage"><span class="status-dot" aria-hidden="true"></span>{en.stage}</div>
-    {@render children()}
+    <svelte:boundary>
+      {@render children()}
+      {#snippet failed(_error, reset)}
+        <section class="card" aria-labelledby="render-error-title">
+          <h1 id="render-error-title">Page unavailable</h1>
+          <p>This page could not finish loading. Try again, or return to Trade.</p>
+          <button class="secondary" onclick={reset}>Try again</button>
+          <a class="text-link" href="/">Return to Trade</a>
+        </section>
+      {/snippet}
+    </svelte:boundary>
   </main>
-  <footer><p>{en.tagline}</p><p>{en.footer}</p></footer>
+  <footer><p>{en.tagline}</p><p>Demo tokens on Monad{env.PUBLIC_CHAIN === 'testnet' ? ' testnet' : env.PUBLIC_CHAIN === 'mainnet' ? ' mainnet' : ''}. No real value.</p></footer>
 </div>

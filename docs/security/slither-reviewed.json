@@ -1,0 +1,200 @@
+{
+  "tool": "slither-analyzer",
+  "version": "0.11.5",
+  "scope": "Foundry production sources including src/lib and diagnostic PageBench; exclude dependency/test/script/bench findings only",
+  "sourceHashes": {
+    "contracts/src/BatchAuction.sol": "8a226d60b3d6fce389923253b4ff1ab1972423b8545c28109cf98f062b7186d6",
+    "contracts/src/DemoToken.sol": "fbb6d4162768b8875f57c38538c150b529f06528882b027b800679372fcf3c09",
+    "contracts/src/Faucet.sol": "8ae927cef374487c5bd3bfcd4770203bfafc2f3301aeabeb98efd1a704e7dc99",
+    "contracts/src/PageBench.sol": "397ef72b30b4a03ad94690aab4be29dac47dcf8af3b883803cb1e56b4eec2086",
+    "contracts/src/lib/AuctionTypes.sol": "75dea2abb6cedeb1b953a2ce226cc658ff9e6c02dae2a12db76435eb8201e44f",
+    "contracts/src/lib/Settle.sol": "733e0e9ee3310f26bef6793274391148c2a0ac5d3b4fc375a550effc677f08c6",
+    "contracts/src/lib/Uncross.sol": "c1c5fa3d762ea24aa3425a4b5bfd31ca8815133abb0faed099d7536099a531e6"
+  },
+  "findings": [
+    {
+      "id": "11e26cf81c4fe843cce5ef3c6ed34f5dcdd443c147f245e29dec5dc938b17505",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "description": "PageBench.readContiguous32FourPages() (src/PageBench.sol#46-53) performs a multiplication on the result of a division:\n\t- checksum += contiguous[(i / 8) * 128 + i % 8] (src/PageBench.sol#49)\n",
+      "resolution": "justified",
+      "rationale": "Diagnostic PageBench selects an integer page index: (i/8)*128 + i%8. This is intentional indexing, not financial arithmetic; PageBench is not deployed by Deploy.s.sol."
+    },
+    {
+      "id": "0932d244c1b6f184fd19c696e3e4f236ce81f38702a8d54aa092a7cdde0ea8f9",
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "description": "BatchAuction._place(address,uint8,uint16,uint64,bool) (src/BatchAuction.sol#178-208) uses a dangerous strict equality:\n\t- escrow > type()(uint128).max || meta.orderCount == type()(uint32).max (src/BatchAuction.sol#191)\n",
+      "resolution": "justified",
+      "rationale": "orderCount is checked against uint32.max before checked increment, starts at zero, and is decremented only for active cancellations. It cannot skip the sentinel. This equality prevents overflow; it does not test a manipulable token balance."
+    },
+    {
+      "id": "711ab8f0e84752f051aa426c7e69a821e6b4de760cc39560f03de9d383ca554a",
+      "check": "unused-return",
+      "impact": "Medium",
+      "description": "BatchAuction._verify(AuctionTypes.Intent,bytes,uint8) (src/BatchAuction.sol#252-262) ignores return value by (signer,err,None) = ECDSA.tryRecover(keccak256(bytes)(abi.encodePacked(\u0019\u0001,DOMAIN_SEPARATOR(),hash)),sig) (src/BatchAuction.sol#257-258)\n",
+      "resolution": "justified",
+      "rationale": "ECDSA.tryRecover returns a diagnostic argument in its third result. The signer and RecoverError are checked and every failure becomes BadSig. Discarding only the diagnostic bytes32 does not accept an invalid signature."
+    },
+    {
+      "id": "4b9cb98fdfe1fa108bfb846b5be00bd00b3140641cc9a0b088efa479ed269b0d",
+      "check": "timestamp",
+      "impact": "Low",
+      "description": "Faucet.drip(address) (src/Faucet.sol#39-51) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- hasDripped[to] && block.timestamp < lastDrip[to] + 86400 (src/Faucet.sol#41)\n",
+      "resolution": "justified",
+      "rationale": "Intent expiration and the daily demo faucet cooldown intentionally use timestamps. Auction sealing uses block.number. Boundary tests cover deadlines/cooldown; neither timestamp comparison sets the clearing price."
+    },
+    {
+      "id": "64364a7a754ca397c77b6e2f4176b813f119eec69b1fa724c77f95d231b87bd2",
+      "check": "timestamp",
+      "impact": "Low",
+      "description": "BatchAuction._verify(AuctionTypes.Intent,bytes,uint8) (src/BatchAuction.sol#252-262) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- block.timestamp > i.deadline (src/BatchAuction.sol#254)\n",
+      "resolution": "justified",
+      "rationale": "Intent expiration and the daily demo faucet cooldown intentionally use timestamps. Auction sealing uses block.number. Boundary tests cover deadlines/cooldown; neither timestamp comparison sets the clearing price."
+    },
+    {
+      "id": "bf42b5dcbaada9edfc4c526dc719bc2d4e83b080e5ba395676b5f92cce86e7a3",
+      "check": "assembly",
+      "impact": "Informational",
+      "description": "BatchAuction._clear() (src/BatchAuction.sol#296-338) uses assembly\n\t- INLINE ASM (src/BatchAuction.sol#307-317)\n\t- INLINE ASM (src/BatchAuction.sol#326-336)\n",
+      "resolution": "justified",
+      "rationale": "The ladder copy is bounded to 256 ticks and reads only tagged entries. Result packing follows verified offsets and widths. Uncross assembly is separately reviewed; differential/permutation fuzzing and storage gates cover its memory and economic output. Slither cannot prove assembly correctness."
+    },
+    {
+      "id": "a979c83485ecb03437b3a75e60b91e74b61020eac4e435a67caac8fd6ed15252",
+      "check": "pragma",
+      "impact": "Informational",
+      "description": "6 different versions of Solidity are used:\n\t- Version constraint >=0.6.2 is used by:\n\t\t->=0.6.2 (lib/openzeppelin-contracts/contracts/interfaces/IERC1363.sol#4)\n\t\t->=0.6.2 (lib/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Metadata.sol#4)\n\t- Version constraint >=0.4.16 is used by:\n\t\t->=0.4.16 (lib/openzeppelin-contracts/contracts/interfaces/IERC165.sol#4)\n\t\t->=0.4.16 (lib/openzeppelin-contracts/contracts/interfaces/IERC20.sol#4)\n\t\t->=0.4.16 (lib/openzeppelin-contracts/contracts/interfaces/IERC5267.sol#4)\n\t\t->=0.4.16 (lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol#4)\n\t\t->=0.4.16 (lib/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Permit.sol#4)\n\t\t->=0.4.16 (lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol#4)\n\t- Version constraint >=0.8.4 is used by:\n\t\t->=0.8.4 (lib/openzeppelin-contracts/contracts/interfaces/draft-IERC6093.sol#3)\n\t- Version constraint ^0.8.20 is used by:\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Permit.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Context.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Nonces.sol#3)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Panic.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/ShortStrings.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol#5)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/Strings.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/cryptography/EIP712.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/cryptography/MessageHashUtils.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#4)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/math/SafeCast.sol#5)\n\t\t-^0.8.20 (lib/openzeppelin-contracts/contracts/utils/math/SignedMath.sol#4)\n\t- Version constraint ^0.8.24 is used by:\n\t\t-^0.8.24 (lib/openzeppelin-contracts/contracts/utils/ReentrancyGuardTransient.sol#4)\n\t\t-^0.8.24 (lib/openzeppelin-contracts/contracts/utils/TransientSlot.sol#5)\n\t- Version constraint 0.8.28 is used by:\n\t\t-0.8.28 (src/BatchAuction.sol#2)\n\t\t-0.8.28 (src/DemoToken.sol#2)\n\t\t-0.8.28 (src/Faucet.sol#2)\n\t\t-0.8.28 (src/PageBench.sol#2)\n\t\t-0.8.28 (src/lib/AuctionTypes.sol#2)\n\t\t-0.8.28 (src/lib/Settle.sol#2)\n\t\t-0.8.28 (src/lib/Uncross.sol#2)\n",
+      "resolution": "justified",
+      "rationale": "Production sources pin 0.8.28, as does foundry.toml. OpenZeppelin interfaces support wider ranges, but the entire compilation uses the one pinned compiler. No multiple-compiler deployment is produced."
+    },
+    {
+      "id": "5d4b14f336b58a6561bd9a9569996d3a588eb59dc8170105f91b48395517ae35",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "description": "BatchAuction._place(address,uint8,uint16,uint64,bool) (src/BatchAuction.sol#178-208) has costly operations inside a loop:\n\t- askLots = _checkedAdd(askLots,lots) (src/BatchAuction.sol#199)\n\tCalls stack containing the loop:\n\t\tBatchAuction.placeMany(uint8[],uint16[],uint64[])\n",
+      "resolution": "justified",
+      "rationale": "placeMany must debit/store each order and update bounded uint64 side totals. Clients cap chunks at 50 through measured gas selectors; direct oversized calls revert atomically at gas limits. Clearing remains bounded to 256 ticks independently of order count."
+    },
+    {
+      "id": "78bd492d236290d4b8ceea80fe31581020a330feaefb9e6bade3acfd54a3fde7",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "description": "BatchAuction._place(address,uint8,uint16,uint64,bool) (src/BatchAuction.sol#178-208) has costly operations inside a loop:\n\t- meta = BatchMeta(meta.id + 1,uint64(block.number),255,0,255,0,0,true) (src/BatchAuction.sol#184)\n\tCalls stack containing the loop:\n\t\tBatchAuction.placeMany(uint8[],uint16[],uint64[])\n",
+      "resolution": "justified",
+      "rationale": "placeMany must debit/store each order and update bounded uint64 side totals. Clients cap chunks at 50 through measured gas selectors; direct oversized calls revert atomically at gas limits. Clearing remains bounded to 256 ticks independently of order count."
+    },
+    {
+      "id": "9ad2033777e37939184f3e7af8d4c327b51de3ee93233b75dcb826dbc18461fa",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "description": "BatchAuction._place(address,uint8,uint16,uint64,bool) (src/BatchAuction.sol#178-208) has costly operations inside a loop:\n\t- bidLots = _checkedAdd(bidLots,lots) (src/BatchAuction.sol#194)\n\tCalls stack containing the loop:\n\t\tBatchAuction.placeMany(uint8[],uint16[],uint64[])\n",
+      "resolution": "justified",
+      "rationale": "placeMany must debit/store each order and update bounded uint64 side totals. Clients cap chunks at 50 through measured gas selectors; direct oversized calls revert atomically at gas limits. Clearing remains bounded to 256 ticks independently of order count."
+    },
+    {
+      "id": "b3ed9aca934b497e833f6483cd3dcf6328a13e8bb678f2b8d00eabfcc71fb6fb",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "description": "BatchAuction._place(address,uint8,uint16,uint64,bool) (src/BatchAuction.sol#178-208) has costly operations inside a loop:\n\t- bidLots = 0 (src/BatchAuction.sol#185)\n\tCalls stack containing the loop:\n\t\tBatchAuction.placeMany(uint8[],uint16[],uint64[])\n",
+      "resolution": "justified",
+      "rationale": "placeMany must debit/store each order and update bounded uint64 side totals. Clients cap chunks at 50 through measured gas selectors; direct oversized calls revert atomically at gas limits. Clearing remains bounded to 256 ticks independently of order count."
+    },
+    {
+      "id": "e9e45099f9458e5c4ed989a3351cb736f743b0e68f953f5991ed8b907ebb3dd6",
+      "check": "costly-loop",
+      "impact": "Informational",
+      "description": "BatchAuction._place(address,uint8,uint16,uint64,bool) (src/BatchAuction.sol#178-208) has costly operations inside a loop:\n\t- askLots = 0 (src/BatchAuction.sol#186)\n\tCalls stack containing the loop:\n\t\tBatchAuction.placeMany(uint8[],uint16[],uint64[])\n",
+      "resolution": "justified",
+      "rationale": "placeMany must debit/store each order and update bounded uint64 side totals. Clients cap chunks at 50 through measured gas selectors; direct oversized calls revert atomically at gas limits. Clearing remains bounded to 256 ticks independently of order count."
+    },
+    {
+      "id": "e6083dd8e9f963395a08892fe90363329aea70929330eb38a819b862cb5e9bf4",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "description": "BatchAuction._place(address,uint8,uint16,uint64,bool) (src/BatchAuction.sol#178-208) has a high cyclomatic complexity (14).\n",
+      "resolution": "justified",
+      "rationale": "_place validates inputs, opens the batch, escrows and updates one of two ladders. This is covered by unit, overflow, differential and handler invariant tests; splitting it merely to reduce a style metric would risk measured bytecode changes."
+    },
+    {
+      "id": "021c86bd2ed3a8e294d1ee6c0e7db65dce53fda780b8b4a67eab1cf89ff24e05",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "description": "Variable BatchAuction.BASE (src/BatchAuction.sol#45) is not in mixedCase\n",
+      "resolution": "justified",
+      "rationale": "Uppercase immutable token/grid names and DOMAIN_SEPARATOR preserve the specified external API and familiar EIP-712 naming. This is a style finding."
+    },
+    {
+      "id": "02ca979b2843b2e6ff1d8f8b0f87b4910952909480a33ab342eaeeccf3317185",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "description": "Variable Faucet.BASE (src/Faucet.sol#13) is not in mixedCase\n",
+      "resolution": "justified",
+      "rationale": "Uppercase immutable token/grid names and DOMAIN_SEPARATOR preserve the specified external API and familiar EIP-712 naming. This is a style finding."
+    },
+    {
+      "id": "052313b0401c5139da3e5bb477c699ca67c2071d7be3a79b9140a82ae2fda576",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "description": "Variable BatchAuction.TICK_SIZE (src/BatchAuction.sol#49) is not in mixedCase\n",
+      "resolution": "justified",
+      "rationale": "Uppercase immutable token/grid names and DOMAIN_SEPARATOR preserve the specified external API and familiar EIP-712 naming. This is a style finding."
+    },
+    {
+      "id": "06ce63d682e66c036342f5d2d931b62a472dcac08b1db6168ab1019d3e7a7c27",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "description": "Variable BatchAuction.LOT (src/BatchAuction.sol#50) is not in mixedCase\n",
+      "resolution": "justified",
+      "rationale": "Uppercase immutable token/grid names and DOMAIN_SEPARATOR preserve the specified external API and familiar EIP-712 naming. This is a style finding."
+    },
+    {
+      "id": "2bec7206c8deb612acc91cb635a2a6ad7bfe6626c7e37099ddf26b9241c9f7b0",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "description": "Variable BatchAuction.MIN_PRICE (src/BatchAuction.sol#48) is not in mixedCase\n",
+      "resolution": "justified",
+      "rationale": "Uppercase immutable token/grid names and DOMAIN_SEPARATOR preserve the specified external API and familiar EIP-712 naming. This is a style finding."
+    },
+    {
+      "id": "3e18eb9f328e2a48254e277beb3b23b377127c318aff91e078598a2983866da7",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "description": "Variable BatchAuction.QUOTE (src/BatchAuction.sol#46) is not in mixedCase\n",
+      "resolution": "justified",
+      "rationale": "Uppercase immutable token/grid names and DOMAIN_SEPARATOR preserve the specified external API and familiar EIP-712 naming. This is a style finding."
+    },
+    {
+      "id": "776618ae266e5658d0853cd4ca662ce2912b1266ca9aea35d8e6a679ecf22059",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "description": "Variable Faucet.MARKET (src/Faucet.sol#15) is not in mixedCase\n",
+      "resolution": "justified",
+      "rationale": "Uppercase immutable token/grid names and DOMAIN_SEPARATOR preserve the specified external API and familiar EIP-712 naming. This is a style finding."
+    },
+    {
+      "id": "b83af7d7a0f333c73bc2ec410afaec3e26802f32f73353d25ffccc4c3a2614f6",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "description": "Variable Faucet.QUOTE (src/Faucet.sol#14) is not in mixedCase\n",
+      "resolution": "justified",
+      "rationale": "Uppercase immutable token/grid names and DOMAIN_SEPARATOR preserve the specified external API and familiar EIP-712 naming. This is a style finding."
+    },
+    {
+      "id": "c69e01e1243517f83133ce5947b4fdf2bb9133260a65f4776632e45fe66b77a8",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "description": "Function BatchAuction.DOMAIN_SEPARATOR() (src/BatchAuction.sol#247-250) is not in mixedCase\n",
+      "resolution": "justified",
+      "rationale": "Uppercase immutable token/grid names and DOMAIN_SEPARATOR preserve the specified external API and familiar EIP-712 naming. This is a style finding."
+    },
+    {
+      "id": "e79c700cb5bdeb0775eae68737b0313e7aa8979d2b03c23992f6883ffe2000bb",
+      "check": "naming-convention",
+      "impact": "Informational",
+      "description": "Variable BatchAuction.BATCH_BLOCKS (src/BatchAuction.sol#51) is not in mixedCase\n",
+      "resolution": "justified",
+      "rationale": "Uppercase immutable token/grid names and DOMAIN_SEPARATOR preserve the specified external API and familiar EIP-712 naming. This is a style finding."
+    }
+  ]
+}

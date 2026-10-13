@@ -1,0 +1,28 @@
+# Safe, inactive template. Run pnpm --filter @batchelor/indexer configure with a verified deployment.
+name: batchelor
+schema: schema.graphql
+address_format: lowercase
+rollback_on_reorg: true
+contracts:
+  - name: BatchAuction
+    handler: src/EventHandlers.ts
+    events:
+      - event: OrderPlaced(uint256 indexed orderId, address indexed trader, uint64 indexed batchId, uint8 side, uint16 tick, uint64 lots, bool relayed)
+        field_selection:
+          transaction_fields: [transactionIndex, hash, effectiveGasPrice, maxPriorityFeePerGas]
+          block_fields: [baseFeePerGas]
+      - event: OrderCancelled(uint256 indexed orderId)
+      - event: BatchCleared(uint64 indexed batchId, uint16 clearTick, uint256 price, uint64 volumeLots, uint16 buyCutoff, uint16 sellCutoff, uint64 rB, uint64 mB, uint64 rS, uint64 mS, uint32 orderCount, uint32 clearGas)
+        field_selection:
+          transaction_fields: [hash]
+          block_fields: [baseFeePerGas]
+      - event: Claimed(uint256 indexed orderId, address indexed owner, uint256 baseIn, uint256 baseOut, uint256 quoteIn, uint256 quoteOut)
+        field_selection:
+          transaction_fields: [hash]
+chains:
+  - id: 10143
+    skip: true
+    start_block: 0
+    contracts:
+      - name: BatchAuction
+        address: []

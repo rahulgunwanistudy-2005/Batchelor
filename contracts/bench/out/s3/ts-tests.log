@@ -1,0 +1,25 @@
+Scope: 3 of 4 workspace projects
+packages/core test$ vitest run
+packages/core test:  RUN  v3.2.7 /Users/rahul/Batchelor/packages/core
+packages/core test:  ✓ src/format.test.ts (4 tests) 13ms
+packages/core test:  ✓ src/gas.test.ts (3 tests) 8ms
+packages/core test:  Test Files  2 passed (2)
+packages/core test:       Tests  7 passed (7)
+packages/core test:    Start at  22:53:55
+packages/core test:    Duration  609ms (transform 244ms, setup 0ms, collect 298ms, tests 21ms, environment 1ms, prepare 291ms)
+packages/core test: Done
+services/bots test$ vitest run
+apps/web test$ vitest run --passWithNoTests
+services/bots test:  RUN  v3.2.7 /Users/rahul/Batchelor/services/bots
+services/bots test:  ✓ src/nonce.test.ts (3 tests) 8ms
+apps/web test:  RUN  v3.2.7 /Users/rahul/Batchelor/apps/web
+apps/web test: No test files found, exiting with code 0
+apps/web test: include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+apps/web test: exclude:  **/node_modules/**, **/dist/**, **/cypress/**, **/.{idea,git,cache,output,temp}/**, **/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*
+apps/web test: Done
+services/bots test:  ✓ src/health.test.ts (2 tests) 12ms
+services/bots test:  Test Files  2 passed (2)
+services/bots test:       Tests  5 passed (5)
+services/bots test:    Start at  22:53:56
+services/bots test:    Duration  1.41s (transform 151ms, setup 0ms, collect 922ms, tests 20ms, environment 0ms, prepare 283ms)
+services/bots test: Done

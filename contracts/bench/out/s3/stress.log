@@ -1,0 +1,11 @@
+No files changed, compilation skipped
+
+Ran 2 tests for test/fuzz/AuctionFuzz.t.sol:AuctionFuzzTest
+[PASS] testFuzz_ReferenceModelUniformLimitsRefundsAndConservation(uint256) (runs: 10000, μ: 12244428, ~: 11292643)
+[PASS] test_SameBlockOrderNeverMatters(uint256,uint256) (runs: 10000, μ: 13808048, ~: 13279446)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 104.70s (196.52s CPU time)
+
+Ran 1 test suite in 104.71s (104.70s CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)
+2026-10-12T17:14:38.801145Z  WARN evm::traces: failed to read cache file path="/Users/rahul/.foundry/cache/signatures" err=Read { source: Os { code: 2, kind: NotFound, message: "No such file or directory" }, path: "/Users/rahul/.foundry/cache/signatures" }
+2026-10-12T17:16:23.508807Z  WARN evm::traces: failed to create cache parent="/Users/rahul/.foundry/cache" err=Operation not permitted (os error 1)
+2026-10-12T17:16:23.509574Z  WARN evm::traces: failed to flush signature cache err=failed to create file "/Users/rahul/.foundry/cache/signatures": No such file or directory (os error 2)

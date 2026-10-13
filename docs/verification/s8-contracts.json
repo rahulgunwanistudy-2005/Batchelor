@@ -1,0 +1,691 @@
+{
+  "generatedAt": "2026-10-13T09:43:28.832340+00:00",
+  "command": "forge test --json",
+  "profile": "MonadTen",
+  "tests": [
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_cancel()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_cancelFor()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_claim1()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_claim1Partial()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_claim50()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_claim50Partial()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_claim50ScatteredHistory()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_clear()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_clear128()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_clear256()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_clear32()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_clear8()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_clearPlateau()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_deploymentTooling()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_drip()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_mapping128()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_mapping256()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_mapping32()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_mapping8()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_orders10()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_orders100()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_orders1000()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_place()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_placeForPlateau()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_placeForSelfClear()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_placeManyPlateau()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_placeManySelfClear()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_placePlateau()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_placeSelfClear()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_withdraw()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/ClearBench.t.sol:ClearBenchTest",
+      "name": "test_withdrawQuote()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/PageBench.t.sol:PageBenchTest",
+      "name": "test_contiguous512()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/PageBench.t.sol:PageBenchTest",
+      "name": "test_fourPages32()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/PageBench.t.sol:PageBenchTest",
+      "name": "test_onePage32()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/PageBench.t.sol:PageBenchTest",
+      "name": "test_scattered512()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/PageBench.t.sol:PageBenchTest",
+      "name": "test_writeOnePage64()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/PageBench.t.sol:PageBenchTest",
+      "name": "test_writeSeparatePages64()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "bench/TransientGuard.t.sol:TransientGuardTest",
+      "name": "test_transientGuardBlocksReentrancyAndUnlocks()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/DemoToken.t.sol:DemoTokenTest",
+      "name": "test_onlyImmutableFaucetCanMintAndDecimalsAreIndependent()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/fuzz/AuctionFuzz.t.sol:AuctionFuzzTest",
+      "name": "testFuzz_ReferenceModelUniformLimitsRefundsAndConservation(uint256)",
+      "status": "passed",
+      "runs": 1000,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/fuzz/AuctionFuzz.t.sol:AuctionFuzzTest",
+      "name": "test_SameBlockOrderNeverMatters(uint256,uint256)",
+      "status": "passed",
+      "runs": 1000,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/invariant/AuctionInvariant.t.sol:AuctionInvariantTest",
+      "name": "invariant_ConservationPerBatchAndBoundedDust()",
+      "status": "passed",
+      "runs": 256,
+      "calls": 51200,
+      "reverts": 0
+    },
+    {
+      "suite": "test/invariant/AuctionInvariant.t.sol:AuctionInvariantTest",
+      "name": "invariant_InternalBalancesEqualGhostLedgerAndWalletWithdrawals()",
+      "status": "passed",
+      "runs": 256,
+      "calls": 51200,
+      "reverts": 0
+    },
+    {
+      "suite": "test/invariant/AuctionInvariant.t.sol:AuctionInvariantTest",
+      "name": "invariant_SolventAgainstIndependentOutstandingLiabilities()",
+      "status": "passed",
+      "runs": 256,
+      "calls": 51200,
+      "reverts": 0
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_EIP712DomainBoundAndFailedPlaceDoesNotConsumeNonce()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_EIP712PlaceCancelAndRelayedEvent()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_EIP712WrongSignerMalformedReplayExpiredAndAction()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_cancelOwnerAndSealedBatch()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_cancelRefundsAndKeepsTaggedRange()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_claimPendingThenPermissionlessAndTwice()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_clearBeforeNewBatchAndLazyReset()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_clearGasEventMatchesStoredResult()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_depositAndWithdrawRollSealedBatch()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_depositForAndWithdrawOnlyFreeBalance()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_emptyClearIsNoopAndIdsHaveNoGaps()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_noTradeRefundBothSidesAndReferenceUnchanged()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_placeManyAtomicAndValidation()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/BatchAuction.t.sol:BatchAuctionTest",
+      "name": "test_sideTotalOverflowRejectedBeforeClearing()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Deploy.t.sol:DeployTest",
+      "name": "testDeploymentParamsAndImmutableMinter()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Deploy.t.sol:DeployTest",
+      "name": "testMainnetNeedsExplicitActivation()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Deploy.t.sol:DeployTest",
+      "name": "testRejectWrongChain()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Faucet.t.sol:FaucetTest",
+      "name": "test_dailyDripCreditsMarketAndCooldownIsPerRecipient()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Settle.t.sol:SettleTest",
+      "name": "testFuzz_primeRoundingMatchesRational(uint64,uint64,uint64,uint64)",
+      "status": "passed",
+      "runs": 1000,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Settle.t.sol:SettleTest",
+      "name": "test_fullAndOutsideCutoff()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Settle.t.sol:SettleTest",
+      "name": "test_roundOnceForOneLot()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Settle.t.sol:SettleTest",
+      "name": "test_wideNumeratorDoesNotOverflow()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Settle.t.sol:SettleTest",
+      "name": "test_zeroVolumeFullRefund()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/TokenSafety.t.sol:TokenSafetyTest",
+      "name": "test_feeOnTransferCannotCreateUnbackedCredit()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/TokenSafety.t.sol:TokenSafetyTest",
+      "name": "test_tokenCallbacksCannotEnterAnyStateChange()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_badRange()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_buyPressurePicksHighest()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_fullRange()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_maximumVolumeBeforeSurplus()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_minimumSurplusBeforePressure()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_mixedPressureUsesReference()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_noCrossAndOneSided()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_sellPressurePicksLowest()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_singleTickPrimeCutoff()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_volumeOverflow()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/unit/Uncross.t.sol:UncrossTest",
+      "name": "test_zeroSurplusUsesReference()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    },
+    {
+      "suite": "test/vectors/ExportVectors.t.sol:ExportVectorsTest",
+      "name": "test_Export50SeededBooks()",
+      "status": "passed",
+      "runs": 1,
+      "calls": null,
+      "reverts": null
+    }
+  ],
+  "sourceHashes": {
+    "contracts/src/BatchAuction.sol": "8a226d60b3d6fce389923253b4ff1ab1972423b8545c28109cf98f062b7186d6",
+    "contracts/src/DemoToken.sol": "fbb6d4162768b8875f57c38538c150b529f06528882b027b800679372fcf3c09",
+    "contracts/src/Faucet.sol": "8ae927cef374487c5bd3bfcd4770203bfafc2f3301aeabeb98efd1a704e7dc99",
+    "contracts/src/PageBench.sol": "397ef72b30b4a03ad94690aab4be29dac47dcf8af3b883803cb1e56b4eec2086",
+    "contracts/src/lib/AuctionTypes.sol": "75dea2abb6cedeb1b953a2ce226cc658ff9e6c02dae2a12db76435eb8201e44f",
+    "contracts/src/lib/Settle.sol": "733e0e9ee3310f26bef6793274391148c2a0ac5d3b4fc375a550effc677f08c6",
+    "contracts/src/lib/Uncross.sol": "c1c5fa3d762ea24aa3425a4b5bfd31ca8815133abb0faed099d7536099a531e6",
+    "contracts/test/AuctionTestBase.sol": "3f3ca535a0ae920ff02c1af4ffba2fc65ff996553279ffdd0796a02daf73041a",
+    "contracts/test/ClearBench.t.sol": "0aa8e7eb88e469d4001fe6d68f80b33f7bfbe907118afc037edf7b49e7827805",
+    "contracts/test/DemoToken.t.sol": "67ff2c5ba8a7022e6e5aff4709024d14c708e665a1c279a79e5004027bdf3ba6",
+    "contracts/test/PageBench.t.sol": "fd7f6bd39cda6c431deaee61ea33e53d698a940a31b9bbe7d9bf24f599fc3c01",
+    "contracts/test/TransientGuard.t.sol": "9b15923b33abe9f906fa95b051a4e3d8ef3d9ac34cefc1ef45782d65ae93c9a9",
+    "contracts/test/fuzz/AuctionFuzz.t.sol": "fb212c504d619a5543b9492a5661de843f72ad3ccb32e6434cc3b3e31eab69e5",
+    "contracts/test/helpers/LocalMulticall.sol": "b3f10e6a1b3ccc0ddcf3b3307afd3a3cb85fa8247749c31a4ceb878144a613db",
+    "contracts/test/invariant/AuctionInvariant.t.sol": "19508872f9317cfe23e06f599cea53acd27bc0840d4b50af997f2fc787ef9372",
+    "contracts/test/ref/RefAuction.sol": "61495d600ace2960139d20901004e05da24f519f04dd48f46c95fa0aaea13c10",
+    "contracts/test/unit/BatchAuction.t.sol": "2b939efe22936fc4ac852d8497b65b7db7742129ca6cf2497f9b44b0854c7450",
+    "contracts/test/unit/Deploy.t.sol": "2200b697623704b2cc0f2e1c1f3711a0a68eb22946826a6da536c461808ce798",
+    "contracts/test/unit/Faucet.t.sol": "bd66465503214fd7b0f707bbfed5e4bf945bc7d6a48cc3e2c2f4eba5200a6240",
+    "contracts/test/unit/Settle.t.sol": "02f8a79813038c9da3d0ce4dfc7085cc2b246ebb56fa3c98b10995e1e381f8f6",
+    "contracts/test/unit/TokenSafety.t.sol": "cfb5c5b38f900e4a066e7569e500d106aea4e2393158e27b9f21a804d81341c7",
+    "contracts/test/unit/Uncross.t.sol": "826e301df232613e35efadea6d5c58598d30b2a1a8550505b4a149131ff3d0d3",
+    "contracts/test/vectors/ExportVectors.t.sol": "ec586be138700ebeaaa75c7ab2f799e9ca5f7ccbf548405ab0239fd3de0cca33",
+    "contracts/foundry.toml": "c5e3a494d6a0eb90436e129ea166c2e232a78a10aa14825fa31d2b9591e8f933"
+  },
+  "settings": {
+    "fuzzRuns": 1000,
+    "invariantRuns": 256,
+    "invariantDepth": 200
+  },
+  "noPriorityInputs": {
+    "status": "passed",
+    "command": "python3 scripts/check-contracts.py",
+    "runs": 1
+  }
+}

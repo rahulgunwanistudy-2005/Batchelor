@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "contractProfiles": [
+    "MonadTen",
+    "MonadNine"
+  ],
+  "contractPredicates": 81,
+  "workspaceTests": {
+    "core": 118,
+    "web": 37,
+    "bots": 30,
+    "indexerDefault": 7,
+    "indexerDefaultSkipped": 2,
+    "tooling": 5
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "build": "passed",
+  "formatAndSize": "passed",
+  "layoutAndPriorityInputs": "passed",
+  "ABI": "unchanged",
+  "explicitGasPolicy": "passed",
+  "cloudSources": "passed",
+  "themeContrast": "passed",
+  "localIntegration": {
+    "security": true,
+    "secrets": true,
+    "web": true,
+    "receipts": true,
+    "bots": true,
+    "browser": true
+  },
+  "markdownLinks": "passed",
+  "remoteCI": "not triggered; local commits only",
+  "newMainnetTransactions": 0,
+  "publicShipAcceptance": "pending external production prerequisites"
+}

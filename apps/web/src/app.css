@@ -66,3 +66,11 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16
   .proof-grid { grid-template-columns: 1fr; }footer { flex-direction: column; }.book-empty { min-height: 250px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+button { color: var(--ink); cursor: pointer; }
+button:disabled { opacity: .65; }
+.primary { background: var(--clear); color: var(--surface); border-color: var(--clear); font-weight: 500; }
+@media (prefers-color-scheme: dark) { .primary { color: var(--paper); } }
+.secondary { background: var(--surface); }
+input, select { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; max-width: 100%; }
+input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--clear); outline-offset: 3px; }
+.text-link { text-decoration: underline; text-underline-offset: 3px; }
