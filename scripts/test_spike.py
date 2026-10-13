@@ -28,6 +28,7 @@ class LiveSummaryTest(unittest.TestCase):
         self.write()
         result = live_summary(self.path, self.profile)
         self.assertEqual(result['status'], 'passed')
+        self.assertIsInstance(result['reason'], str)
         self.assertEqual(result['maxDeviationPercent'], 0)
 
     def test_changed_bytecode_invalidates_live_proof(self):
