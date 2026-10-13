@@ -103,3 +103,5 @@ Project code is [MIT](LICENSE). Third-party notices remain applicable: OpenZeppe
 ## Complete the public release
 
 Follow the [release checklist](docs/RELEASE_CHECKLIST.md) for account access, funding approval, deployment, hosting, live-device verification and actual submission. `pnpm release:check` is a read-only audit; its report distinguishes configured prerequisites from unperformed live acceptance. Mainnet sending remains disabled until the exact campaign is reviewed.
+
+The free-hosting release is on `codex/host-render-vercel`: [deploy the Render Blueprint](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2Frahulgunwanistudy-2005%2FBatchelor%2Ftree%2Fcodex%2Fhost-render-vercel), then [import this GitHub repository into Vercel](https://vercel.com/new) with Root Directory `apps/web`. Choose the release branch explicitly. [Hosting settings and environment setup](docs/DEPLOYMENT.md) distinguish process liveness from trading readiness. These links start setup; they do not prove a deployment exists.
