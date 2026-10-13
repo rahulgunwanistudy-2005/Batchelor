@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { GasBars } from "@/components/proof/GasBars";
+import { LiveBytecodeCheck } from "@/components/proof/LiveBytecodeCheck";
 import { TopBar } from "@/components/terminal/TopBar";
-import { deployments, pendingMeasurements, storageProvenance, storageScenarios } from "@/lib/proof/benchmarks";
+import { deployments, liveComparisons, liveEvidence, pendingMeasurements, storageProvenance, storageScenarios } from "@/lib/proof/benchmarks";
 
 export const metadata: Metadata = {
   title: "Proof — Batchelor",
@@ -25,11 +26,9 @@ export default function ProofPage() {
       done: pendingMeasurements.gasBoundsMeasured,
       detail: "Worst-case gas for each contract call, used as explicit gas limits.",
     },
-    {
-      name: "Live testnet measurement",
-      done: pendingMeasurements.liveTestnetStatus === "measured",
-      detail: pendingMeasurements.liveTestnetReason,
-    },
+    ...(pendingMeasurements.liveTestnetPassed
+      ? []
+      : [{ name: "Live testnet measurement", done: false, detail: pendingMeasurements.liveTestnetReason }]),
     {
       name: "Live clearing gas per batch",
       done: false,
@@ -53,8 +52,14 @@ export default function ProofPage() {
           ) : (
             <p className="proof-lede">The storage benchmark file has no usable headline measurement.</p>
           )}
+          {liveEvidence.passed && (
+            <p className="proof-confirmed">
+              <span className="system-dot system-dot--ok" aria-hidden="true" />
+              Reproduced on Monad testnet: {liveEvidence.exactMatches} of {liveComparisons.length} probes used exactly the gas measured locally.
+            </p>
+          )}
           <p className="proof-caveat">
-            These are local storage-probe measurements, not auction clearing costs. Each figure includes the probe&apos;s own loop, bounds-check and checksum work, and excludes transaction overhead.
+            These are storage-probe measurements, not auction clearing costs. Each figure includes the probe&apos;s own loop, bounds-check and checksum work, and excludes transaction overhead.
           </p>
         </section>
 
@@ -71,6 +76,57 @@ export default function ProofPage() {
             <p className="proof-empty">No valid storage measurements were found.</p>
           )}
         </section>
+
+        {liveEvidence.passed && liveEvidence.address && (
+          <section className="panel">
+            <div className="panel-heading">
+              <div>
+                <h2>Live testnet validation</h2>
+                <p className="panel-subtitle">The same probe contract, deployed and measured on Monad testnet (chain {liveEvidence.chainId})</p>
+              </div>
+            </div>
+            <LiveBytecodeCheck address={liveEvidence.address} chainId={liveEvidence.chainId} expectedSha256={liveEvidence.runtimeBytecodeSha256} />
+            <div className="gas-table-scroll">
+              <table className="gas-table live-table">
+                <caption className="sr-only">Gas used by each probe locally and in a real testnet transaction.</caption>
+                <thead>
+                  <tr><th scope="col">Probe</th><th scope="col">Local gas</th><th scope="col">Testnet gas</th><th scope="col">Difference</th><th scope="col">Transaction</th></tr>
+                </thead>
+                <tbody>
+                  {liveComparisons.map((row) => (
+                    <tr key={row.key}>
+                      <th scope="row">{row.label}</th>
+                      <td>{gasFormat.format(row.localGas)}</td>
+                      <td>{gasFormat.format(row.liveGas)}</td>
+                      <td>{row.liveGas === row.localGas ? "0" : gasFormat.format(row.liveGas - row.localGas)}</td>
+                      <td>
+                        {row.explorerUrl && row.txHash ? (
+                          <a href={row.explorerUrl} target="_blank" rel="noopener noreferrer">{row.txHash.slice(0, 10)}…<span className="sr-only"> (opens the block explorer)</span></a>
+                        ) : (row.txHash ? `${row.txHash.slice(0, 10)}…` : "—")}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <dl className="proof-facts live-facts">
+              <div>
+                <dt>Probe contract</dt>
+                <dd className="proof-hash">
+                  {liveEvidence.deployExplorerUrl
+                    ? <a href={liveEvidence.deployExplorerUrl} target="_blank" rel="noopener noreferrer" title="Deployment transaction on the block explorer">{liveEvidence.address}</a>
+                    : liveEvidence.address}
+                </dd>
+              </div>
+              <div><dt>Transactions</dt><dd>{liveEvidence.transactionCount} sent, {liveEvidence.allTransactionsSucceeded ? "all succeeded" : "not all succeeded"}{liveEvidence.receiptsVerified ? ", receipts verified" : ""}</dd></div>
+              <div><dt>Bytecode</dt><dd>{liveEvidence.bytecodeMatchesLocal ? "Same as the locally benchmarked build" : "Differs from the local build"}</dd></div>
+              {liveEvidence.totalFeeMon && <div><dt>Total fees paid</dt><dd>{liveEvidence.totalFeeMon} testnet MON</dd></div>}
+              <div><dt>Measured</dt><dd>{liveEvidence.measuredAt.slice(0, 16).replace("T", " ")} UTC</dd></div>
+              <div><dt>Source file</dt><dd className="proof-hash">{liveEvidence.sourceFile}</dd></div>
+            </dl>
+            <p className="panel-footnote" style={{ marginBottom: 10 }}>This is the storage benchmark contract, not the auction. No auction contract is deployed.</p>
+          </section>
+        )}
 
         <div className="proof-columns">
           <section className="panel">
