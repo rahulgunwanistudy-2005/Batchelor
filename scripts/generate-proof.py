@@ -7,14 +7,16 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 summary_path=ROOT/'contracts/out/test-summary.json'
 if not summary_path.exists():
+    summary_path=ROOT/'docs/verification/contract-proof.json'
+if not summary_path.exists():
     raise SystemExit('Missing contract evidence. Run pnpm proof:tests before building the web app.')
 summary=json.loads(summary_path.read_text())
 current={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
-         for directory in ['contracts/src','contracts/test'] for p in sorted((ROOT/directory).rglob('*.sol'))}
+         for directory in ['contracts/src','contracts/test','contracts/bench'] for p in sorted((ROOT/directory).rglob('*.sol'))}
 current['contracts/foundry.toml']=hashlib.sha256((ROOT/'contracts/foundry.toml').read_bytes()).hexdigest()
 if current != summary['sourceHashes']:
     raise SystemExit('Contract evidence is stale. Run pnpm proof:tests.')
-if not summary['tests'] or any(t['status']!='passed' for t in summary['tests']) or summary['noPriorityInputs']['status']!='passed':
+if summary['profile']!='MonadTen' or not summary['tests'] or any(t['status']!='passed' for t in summary['tests']) or summary['noPriorityInputs']['status']!='passed':
     raise SystemExit('Proof evidence did not pass.')
 fuzz='testFuzz_ReferenceModelUniformLimitsRefundsAndConservation(uint256)'
 invariants=[('Solvency','invariant_SolventAgainstIndependentOutstandingLiabilities()'),

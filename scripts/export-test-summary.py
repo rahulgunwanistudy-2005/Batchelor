@@ -37,10 +37,13 @@ if not tests:
     raise SystemExit('No test results')
 subprocess.run(['python3', str(ROOT / 'scripts/check-contracts.py')], check=True, cwd=ROOT)
 hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
-          for directory in ['contracts/src', 'contracts/test'] for p in sorted((ROOT / directory).rglob('*.sol'))}
+          for directory in ['contracts/src', 'contracts/test', 'contracts/bench'] for p in sorted((ROOT / directory).rglob('*.sol'))}
 hashes['contracts/foundry.toml']=hashlib.sha256((ROOT/'contracts/foundry.toml').read_bytes()).hexdigest()
 output = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
           'command': 'forge test --json', 'profile': 'MonadTen', 'tests': tests,
           'sourceHashes': hashes, 'settings': {'fuzzRuns': config['fuzz']['runs'], 'invariantRuns': config['invariant']['runs'], 'invariantDepth': config['invariant']['depth']}, 'noPriorityInputs': {'status': 'passed', 'command': 'python3 scripts/check-contracts.py', 'runs': 1}}
 summary_path.write_text(json.dumps(output, indent=2)+'\n')
+# Hosting builds do not install Foundry. Retain the same successful, source-hashed
+# result in Git; generate-proof checks freshness before consuming either copy.
+(ROOT/'docs/verification/contract-proof.json').write_text(json.dumps(output, indent=2)+'\n')
 print(f'Exported {len(tests)} passed tests and source/runtime priority-input gate.')

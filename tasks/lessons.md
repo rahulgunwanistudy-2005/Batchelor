@@ -124,3 +124,9 @@ The user authorized the project `.env`, which provides `TESTNET_PRIVATE_KEY`. Th
 ## S1 live storage gate completed — 13 October 2026
 
 The wallet was funded with 12.246612 testnet MON before this run. Eight transactions succeeded on chain 10143, and all six emitted gas deltas exactly matched the local MonadTen baseline. Deployed bytecode, receipt/calldata/nonce sequence and event checksums were verified. Actual declared-limit fees total 3.20404338 testnet MON; post-validation balance is 9.04256862 testnet MON and reconciles exactly. Raw evidence is in contracts/bench/out/live-testnet.json. scripts/spike.py retains verified matching evidence across local reruns and marks changed bytecode/receipt failures/deviation stale. No mainnet transaction or key disclosure occurred.
+
+## Release secret-scan exception regression — 14 October 2026
+
+- Gitleaks 8.30.1 global allowlist path handling skipped an entire evidence file in controlled probes, even with `condition = "AND"` and a content regex that never matched. Move the SHA exception to `[[rules.allowlists]]` on `generic-api-key`, retaining both the exact evidence-path suffix and anchored source-SHA line shape. Provider-specific rules keep scanning those files.
+- A generic detector match can start at `Key.sol` and omit the `contracts/src` prefix. Keep the precise finding-line restriction on the rule rather than weakening a match-target regex. Test the effective binary/configuration instead of inferring security from TOML syntax.
+- Synthetic high-entropy API, AWS and GitHub tokens were detected equally by default and project configurations: six credential findings across the allowed evidence path and an outside file. With an added source SHA, the project ignored exactly one permitted source hash (seven findings versus eight default), retained the outside-file source hash, and retained source hashes under disallowed paths/prefixes. No real credentials or token bytes were used in reports.

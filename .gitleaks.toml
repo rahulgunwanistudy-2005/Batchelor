@@ -2,9 +2,14 @@ title = "Batchelor secret scanning"
 [extend]
 useDefault = true
 
-[[allowlists]]
+[[rules]]
+id = "generic-api-key"
+
+# Keep this on the finding-specific rule: a global path allowlist can skip
+# the entire file before evaluating the source-hash line restriction.
+[[rules.allowlists]]
 description = "Generated Solidity source SHA-256 values, not credentials"
 condition = "AND"
-paths = ['''(^|/)docs/(verification/(s7-contracts|s8-contracts|s8-security)\.json|security/slither-reviewed\.json)$''']
+paths = ['''(^|/)docs/(verification/(s7-contracts|s8-contracts|s8-security|contract-proof)\.json|security/slither-reviewed\.json)$''']
 regexTarget = "line"
-regexes = ['''^\s*"contracts/(src|test)/[A-Za-z0-9_./-]+\.sol": "[0-9a-f]{64}",?\s*$''']
+regexes = ['''^\s*"contracts/(src|test|bench)/[A-Za-z0-9_./-]+\.sol": "[0-9a-f]{64}",?\s*$''']
