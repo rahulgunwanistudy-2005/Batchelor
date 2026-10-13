@@ -1,6 +1,6 @@
 # Public demo operations
 
-Choose the permanent production hostname before anyone creates a Mera passkey. Set `PUBLIC_RP_ID` explicitly; preview-domain passkeys cannot be assumed to work on production. Keep web/indexer/bot chain IDs and market addresses consistent, and keep the private relayer/bot RPC credentials in hosting secrets. Never put keys into PUBLIC variables. Node 24, one bot instance, and a dedicated relayer key are required.
+Choose the permanent production hostname before anyone creates a Mera passkey. Set `PUBLIC_RP_ID` explicitly; preview-domain passkeys cannot be assumed to work on production. Keep web/indexer/bot chain IDs and market addresses consistent, and keep the private relayer/bot RPC credentials in hosting secrets. Never put wallet private keys or private server RPC keys into PUBLIC variables; a separately quota-limited browser RPC key is intentionally public. Node 24, one bot instance, and a dedicated relayer key are required.
 
 ## Release sequence
 
@@ -19,6 +19,8 @@ After four seconds without an increasing socket head, the watchdog polls HTTP an
 For a stopped service, inspect safe health/logs and RPC availability, replenish balances if required, then restart the one process. Startup waits for previous-instance pending transactions and reconstructs history from `START_BLOCK`. Do not run two instances on the same keys. Pete's UTC daily quota and Mo's awake window are memory-only and reset on process restart. Fly's immediate replacement/health checks do not establish a successful hosted deployment in this repository.
 
 The relayer's `RELAYER_LOW_BALANCE` error says “Gasless orders are paused.” Replenish its dedicated MON balance and retry once pending transactions settle. Per-address and per-IP limits/deadlines remain enforced. Memory-only quotas reset between serverless instances; the chain's intent nonce prevents repeated economic execution. An uncertain submission must be inspected by its hash before retrying; do not create a new conflicting send blindly.
+
+An ambiguous send retains its signed hash and sender nonce. It blocks further sends in that process until its matching receipt is available, or the confirmed account nonce advances past its nonce and proves a replacement consumed it. A missing receipt, pending nonce or RPC failure alone does not release the send. Reverted matching receipts also consume the nonce; trader intent validity is checked again on retry. The in-memory queue and quotas coordinate only one server instance: concurrent serverless instances can still race for the same sender nonce. This deployment supports a controlled hackathon demonstration, not guaranteed cross-instance scheduling or global rate limits. Production scale requires durable shared nonce coordination and quotas.
 
 ## Funding before recording
 

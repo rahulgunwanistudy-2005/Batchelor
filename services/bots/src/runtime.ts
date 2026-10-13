@@ -12,7 +12,7 @@ import { BotState } from './state.js';
 import { HeadWatchdog } from './watchdog.js';
 
 export async function startRuntime(env: BotEnv) {
-  if (!env.MARKET_ADDRESS || !env.FAUCET_ADDRESS || !env.BOTS_TOKEN || !env.RPC_WS || keyNames.some((k) => !env[k])) {
+  if (!env.MARKET_ADDRESS || !env.FAUCET_ADDRESS || !env.BOTS_TOKEN || (!env.RPC_WS && !env.DWELLIR_API_KEY) || keyNames.some((k) => !env[k])) {
     throw new Error('Configure contracts, RPC_WS, BOTS_TOKEN and all six distinct bot keys.');
   }
   if (env.CHAIN === 'mainnet' && env.MAINNET_SENDS_ENABLED !== 'true') throw new Error('Mainnet activation has not been approved.');
@@ -97,9 +97,10 @@ export async function startRuntime(env: BotEnv) {
       await keeper.onHead(confirmedHead, async (call) => {
         const hash = await writer.send('KEEPER_PK', call, block.baseFeePerGas!, parseGwei('1'));
         state.sent++; state.log('sent', { key: 'KEEPER_PK', action: call.action, hash }); return hash;
-      });
+      }, mo.awake || pete.active(confirmedHead));
       if (Date.now() - balanceAt > 10_000) await refreshBalances();
-      maintainedHead = block.number;
+      // A lagging HTTP node must be retried even if no new WS head arrives.
+      maintainedHead = confirmedHead;
     } catch { state.error('maintenance', 'Keeper, receipt or balance operation failed; retrying from the chain cursor.'); }
     finally { maintenanceRunning = false; }
   };

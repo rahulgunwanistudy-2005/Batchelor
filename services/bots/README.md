@@ -12,13 +12,15 @@ The pack's Node 22 pin was corrected to Node 24 in S1. Immutable demo-token mint
 # Read-only simulation, using DEPLOYER_PK or the existing testnet key alias:
 CHAIN=testnet pnpm deploy:plan
 # Explicit testnet broadcast, once the reviewed plan is funded:
-CHAIN=testnet pnpm deploy:plan --execute
+CHAIN=testnet DEPLOY_PLAN_HASH=<printed-reviewed-hash> pnpm deploy:plan --execute
 pnpm gen
 ```
 
-The deploy tool prints each constructor, nonce, declared gas and estimated MON cost. Exact calldata is saved locally under `deployments/plans/<chain>.json`. It checks there are no pending deployer transactions. Broadcasts are sequential; do not use that key elsewhere during deployment. Interrupted deployments require inspecting Foundry receipts and resuming the **original** script broadcast with `forge script ... --resume`; do not start a fresh sequence over a partial deployment. The wrapper deliberately does not auto-resume partial deployments. Successful receipts are exported as sanitized `deployments/<chain>.json`, allowing CI to regenerate addresses without ignored broadcast payloads.
+The deploy tool prints each constructor, predicted address, nonce, exact simulated gas limit, EIP1559 fee caps, maximum MON cost and plan hash. Exact calldata is saved locally under `deployments/plans/<chain>.json`. Execution requires the reviewed hash in `DEPLOY_PLAN_HASH`; it loads that saved plan without overwriting it and checks fresh simulation, source hash, chain, nonce, fees and balance. It signs those exact four CREATEs with Viem, without re-estimating their gas or increasing their fee caps. Sends are sequential with four confirmations; do not use that key elsewhere during deployment.
 
-Mainnet dry runs work without activating bots. Mainnet broadcast additionally requires `MAINNET_DEPLOY_APPROVED=true`; this flag records Rahul's explicit approval of the printed exact calls and current gas budget. Mainnet bots additionally require `MAINNET_SENDS_ENABLED=true` after their funding and burst plan is approved. These flags are operator controls, never implicit authorization. No mainnet deployment, funding or activation was performed in S4 implementation.
+Before submitting each signed transaction, the wrapper persists its hash and nonce in ignored `deployments/plans/<chain>.execution.json`. Any existing checkpoint blocks a new run. On interruption, inspect every recorded hash's receipt and the latest/pending nonce, preserve the original plan and checkpoint, and arrange explicit manual recovery of only the unresolved original CREATEs. Do not use `forge script --resume`: these reviewed sends are not Forge broadcasts. Do not re-plan a new sequence over a partial deployment; its constructor addresses would no longer match. Successful receipts are exported as sanitized `deployments/<chain>.json`, allowing CI to regenerate addresses without ignored payloads.
+
+Mainnet dry runs work without activating bots. Mainnet broadcast additionally requires `MAINNET_DEPLOY_APPROVED=true` and the exact `DEPLOY_PLAN_HASH`; these record Rahul's explicit approval of the printed calls and maximum gas budget. Mainnet bots additionally require `MAINNET_SENDS_ENABLED=true` after their funding and burst plan is approved. These flags are operator controls, never implicit authorization. No mainnet deployment, funding or activation was performed in S4 implementation.
 
 ## Verify sources
 
@@ -31,7 +33,7 @@ forge verify-contract "$MARKET_ADDRESS" src/BatchAuction.sol:BatchAuction --chai
 forge verify-contract "$FAUCET_ADDRESS" src/Faucet.sol:Faucet --chain "$CHAIN_ID" --verifier sourcify --watch
 ```
 
-If your verifier requires constructor arguments, supply the ABI-encoded constructor arguments from the validated broadcast. Do not flatten sources or change optimizer/compiler settings. `pnpm verify:bundle` exports compiler metadata and hash-checked original sources for all three contract types; supply the ROSE and dUSD creation hashes separately. Upload via the Sourcify UI if the CLI service lacks chain support. Save the exact **successful** command, returned match status and link in `tasks/lessons.md`. There is no successful S4 live verification command yet; an exported bundle is not a published or verified contract.
+If your verifier requires constructor arguments, supply the ABI-encoded constructor arguments from the validated broadcast. Do not flatten sources or change optimizer/compiler settings. `pnpm verify:bundle` exports compiler metadata and hash-checked original sources for all three contract types; supply the ROSE and dUSD creation hashes separately. Upload via the Sourcify UI if the CLI service lacks chain support. The four recorded Monad testnet contracts now have Sourcify exact creation and runtime matches: [verification evidence](../../docs/verification/testnet-deployment.json) contains each successful command, address and lookup URL. This status applies only to those exact testnet addresses; mainnet, custom deployments and the separate diagnostic benchmark remain unconfirmed.
 
 ## Funding and seed tokens
 
