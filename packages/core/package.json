@@ -10,7 +10,8 @@
     "./gas": "./src/gas.ts",
     "./bench.json": "./src/bench.json",
     "./addresses": "./src/addresses.ts",
-    "./settle": "./src/settle.ts"
+    "./settle": "./src/settle.ts",
+    "./replay": "./src/replay.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",

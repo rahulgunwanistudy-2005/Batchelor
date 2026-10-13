@@ -5,3 +5,4 @@ export * from './gas.js';
 export * from './settle.js';
 export * from './uncross.js';
 export * from './intents.js';
+export * from './replay.js';
