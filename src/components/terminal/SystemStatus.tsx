@@ -59,13 +59,24 @@ const FEED: Record<DataStatus, Omit<Row, "name" | "detail">> = {
 interface SystemStatusProps {
   feedStatus: DataStatus;
   feedMessage?: string;
+  /** Whether a chain, RPC and market address are configured for contract reads. */
+  readsConfigured: boolean;
+  /** Outcome of the latest order-book read from the contract. */
+  readsStatus: DataStatus;
+}
+
+function describeReads(configured: boolean, status: DataStatus): Omit<Row, "name"> {
+  if (!configured) return { tone: "off", label: "Not configured", detail: "No market contract address is set, so nothing is read from a contract." };
+  if (status === "live") return { tone: "ok", label: "Reading", detail: "The order book and batch results are read from the configured contract." };
+  if (status === "error") return { tone: "error", label: "Read failed", detail: "The configured contract could not be read. It may not be the auction contract." };
+  return { tone: "pending", label: "Waiting", detail: "No contract read has completed yet." };
 }
 
 /**
  * Six independent readiness checks. A green row never implies the rows
  * below it: a reachable RPC says nothing about deployment, data or trading.
  */
-export function SystemStatus({ feedStatus, feedMessage }: SystemStatusProps) {
+export function SystemStatus({ feedStatus, feedMessage, readsConfigured, readsStatus }: SystemStatusProps) {
   const { network, deployment } = useSystemStatus();
   const networkText = describeNetwork(network);
   const wallet = useWallet();
@@ -73,8 +84,8 @@ export function SystemStatus({ feedStatus, feedMessage }: SystemStatusProps) {
   const rows: Row[] = [
     { name: "RPC connection", tone: NETWORK_TONES[network.state], ...networkText },
     { name: "Contract deployment", ...describeDeployment(deployment) },
-    { name: "Contract reads", tone: "off", label: "Not integrated", detail: "This build does not read auction state from a contract." },
-    { name: "Market data feed", ...FEED[feedStatus], detail: feedMessage ?? "Status reported by the market-data adapter." },
+    { name: "Contract reads", ...describeReads(readsConfigured, readsStatus) },
+    { name: "Price history feed", ...FEED[feedStatus], detail: feedMessage ?? "Status reported by the market-data adapter." },
     { name: "Wallet", ...describeWallet(wallet) },
     { name: "Transactions", tone: "off", label: "Disabled", detail: "This build cannot submit deposits, orders, cancellations or claims." },
   ];

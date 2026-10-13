@@ -4,11 +4,12 @@ import { MarketHeader } from "@/components/terminal/MarketHeader";
 import { OrderBook } from "@/components/terminal/OrderBook";
 import { OrderEntry } from "@/components/terminal/OrderEntry";
 import { OrdersPanel } from "@/components/terminal/OrdersPanel";
-import { marketDataAdapter } from "@/lib/market-data/adapter";
+import { contractReadsConfigured, marketDataAdapter } from "@/lib/market-data/adapter";
 import { parseCandleInterval } from "@/lib/market-data/intervals";
 import Link from "next/link";
 import { MarketChart } from "@/components/terminal/MarketChart";
 import { SystemStatus } from "@/components/terminal/SystemStatus";
+import { AutoRefresh } from "@/components/terminal/AutoRefresh";
 import { TopBar } from "@/components/terminal/TopBar";
 
 interface HomePageProps {
@@ -26,6 +27,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   return (
     <main className="app-shell">
       <TopBar active="trade" />
+      {contractReadsConfigured && <AutoRefresh intervalMs={5_000} />}
 
       <div id="content" className="page-content">
         <h1 className="sr-only">Trading terminal</h1>
@@ -38,8 +40,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             <div id="orders"><OrdersPanel /></div>
           </div>
           <div className="terminal-book">
-            <OrderBook result={bookResult} />
-            <SystemStatus feedStatus={marketResult.status} feedMessage={marketResult.message} />
+            <OrderBook result={bookResult} lastClearingPrice={marketResult.data?.lastClearingPrice} />
+            <SystemStatus feedStatus={candleResult.status} feedMessage={candleResult.message} readsConfigured={contractReadsConfigured} readsStatus={bookResult.status} />
           </div>
           <aside className="terminal-side">
             <OrderEntry baseAsset={marketResult.data?.baseAsset} quoteAsset={marketResult.data?.quoteAsset} />
@@ -58,7 +60,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
         <footer className="footer">
           <span>BATCHELOR <span className="brand-period">/</span> DEVELOPMENT BUILD</span>
-          <span>Market data is not connected. No trades can be submitted.</span>
+          <span>{contractReadsConfigured ? "Read-only: the order book comes from the configured contract." : "Market data is not connected."} No trades can be submitted.</span>
         </footer>
       </div>
     </main>

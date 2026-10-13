@@ -2,11 +2,11 @@ import { ArrowDownUp } from "lucide-react";
 import { withDepth, type DepthLevel } from "@/lib/market-data/depth";
 import type { MarketDataResult, OrderBookSnapshot } from "@/types/market";
 
-function EmptyRows({ side }: { side: "bids" | "asks" }) {
+function EmptyRows({ side, connected }: { side: "bids" | "asks"; connected: boolean }) {
   return (
     <div className="book-empty">
       <span>{side === "bids" ? "Buy orders" : "Sell orders"}</span>
-      <p>Order-book feed not connected</p>
+      <p>{connected ? "No orders in the open batch" : "Order-book feed not connected"}</p>
     </div>
   );
 }
@@ -20,7 +20,13 @@ function BookRow({ row }: { row: DepthLevel }) {
   );
 }
 
-export function OrderBook({ result }: { result: MarketDataResult<OrderBookSnapshot> }) {
+interface OrderBookProps {
+  result: MarketDataResult<OrderBookSnapshot>;
+  /** Price of the most recent cleared batch, when known. */
+  lastClearingPrice?: string | null;
+}
+
+export function OrderBook({ result, lastClearingPrice }: OrderBookProps) {
   const book = result.data;
   // Levels arrive best price first; totals accumulate outward from the spread.
   const { bids, asks } = withDepth(book?.bids ?? [], book?.asks ?? []);
@@ -30,7 +36,7 @@ export function OrderBook({ result }: { result: MarketDataResult<OrderBookSnapsh
       <div className="panel-heading">
         <div>
           <h2>Order book</h2>
-          <p className="panel-subtitle">Limit orders by price</p>
+          <p className="panel-subtitle">{book?.batchId ? `Open batch #${book.batchId}` : "Limit orders by price"}</p>
         </div>
         <button className="icon-button" type="button" aria-label="Order book display options" disabled>
           <ArrowDownUp size={16} />
@@ -42,17 +48,17 @@ export function OrderBook({ result }: { result: MarketDataResult<OrderBookSnapsh
       <div className="book-side book-side--asks">
         {asks.length ? [...asks].reverse().map((row) => (
           <BookRow row={row} key={`ask-${row.price}`} />
-        )) : <EmptyRows side="asks" />}
+        )) : <EmptyRows side="asks" connected={result.status === "live"} />}
       </div>
       <div className="spread-line">
-        <span>Clearing price</span><strong>—</strong>
+        <span>Last clearing price</span><strong>{lastClearingPrice ?? "—"}</strong>
       </div>
       <div className="book-side book-side--bids">
         {bids.length ? bids.map((row) => (
           <BookRow row={row} key={`bid-${row.price}`} />
-        )) : <EmptyRows side="bids" />}
+        )) : <EmptyRows side="bids" connected={result.status === "live"} />}
       </div>
-      <div className="panel-footnote">{result.message ?? "Price and quantity data will appear when a verified feed is connected."}</div>
+      <div className="panel-footnote">{result.message ?? (result.status === "live" ? "Read from the auction contract. Orders in one batch all clear at a single price." : "Price and quantity data will appear when a verified feed is connected.")}</div>
     </section>
   );
 }

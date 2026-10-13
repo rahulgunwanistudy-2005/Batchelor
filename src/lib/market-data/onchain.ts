@@ -1,4 +1,4 @@
-import { erc20Abi, formatUnits, type Address, type PublicClient } from "viem";
+import { BaseError, ContractFunctionRevertedError, erc20Abi, formatUnits, type Address, type PublicClient } from "viem";
 import { batchAuctionAbi } from "../../../packages/core/src/abi";
 import type {
   BatchResult,
@@ -12,12 +12,12 @@ import type { MarketDataAdapter } from "./adapter";
 /**
  * Market data read straight from a deployed BatchAuction contract.
  *
- * UNPROVEN AGAINST A REAL DEPLOYMENT. The contract's view functions still
- * revert, so this has only run against a fake reader in unit tests. Two
- * things are assumed from the interface and must be confirmed before this
- * is switched on:
- *   1. `ladder(from, to)` is inclusive of `to` and returns one entry per tick.
- *   2. `result(id).clearedAt == 0` means the batch has not been cleared.
+ * Semantics taken from contracts/src/BatchAuction.sol:
+ *   - `ladder(from, to)` includes `to` and returns one entry per tick.
+ *   - `openBatch().id` is the open batch while `hasOpen`, otherwise the
+ *     last batch that existed; ids start at 1.
+ *   - `result(id).clearedAt` is the clearing block number, 0 if not cleared;
+ *     `result` reverts with NotOpenBatch for an id that has no result yet.
  */
 export type ContractReader = Pick<PublicClient, "readContract" | "getChainId">;
 
@@ -94,11 +94,12 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
         const p = await loadParams();
         const open = await reader.readContract({ ...auction, functionName: "openBatch" });
 
-        // The interface exposes no "latest cleared batch" view, so the last
-        // price is only known when the batch before the open one has cleared.
+        // The most recent batch that can have a result: the one before an
+        // open batch, or the last batch itself once nothing is open.
+        const lastId = open.hasOpen ? open.id - BigInt(1) : open.id;
         let lastClearingPrice: string | null = null;
-        if (open.hasOpen && open.id > BigInt(1)) {
-          const previous = await reader.readContract({ ...auction, functionName: "result", args: [open.id - BigInt(1)] });
+        if (lastId >= BigInt(1)) {
+          const previous = await reader.readContract({ ...auction, functionName: "result", args: [lastId] });
           if (previous.clearedAt > BigInt(0) && previous.volumeLots > BigInt(0)) {
             lastClearingPrice = tickPrice(p, previous.clearTick);
           }
@@ -158,10 +159,20 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
 
       return guarded<BatchResult>(async () => {
         const p = await loadParams();
-        const result = await reader.readContract({ ...auction, functionName: "result", args: [BigInt(batchId)] });
-        if (result.clearedAt === BigInt(0)) {
-          return { status: "unavailable", data: null, message: "This batch has not been cleared." };
+        const notCleared: MarketDataResult<BatchResult> = {
+          status: "unavailable",
+          data: null,
+          message: "This batch does not exist yet or has not been cleared.",
+        };
+        let result;
+        try {
+          result = await reader.readContract({ ...auction, functionName: "result", args: [BigInt(batchId)] });
+        } catch (error) {
+          const revert = error instanceof BaseError ? error.walk((cause) => cause instanceof ContractFunctionRevertedError) : null;
+          if (revert instanceof ContractFunctionRevertedError && revert.data?.errorName === "NotOpenBatch") return notCleared;
+          throw error;
         }
+        if (result.clearedAt === BigInt(0)) return notCleared;
 
         const traded = result.volumeLots > BigInt(0);
         return {
@@ -173,7 +184,7 @@ export function createOnchainAdapter({ reader, address, expectedChainId }: Oncha
             volume: `${lotsToBase(p, result.volumeLots)} ${p.baseSymbol}`,
             orderCount: null,
             clearGas: result.clearGas.toString(),
-            blockNumber: null,
+            blockNumber: result.clearedAt.toString(),
             clearedAtTimestamp: null,
           },
         };

@@ -118,19 +118,18 @@ const unavailableAdapter: MarketDataAdapter = {
   },
 };
 
+/** True when a chain, RPC and market address are all configured. */
+export const contractReadsConfigured =
+  networkConfig.expectedChainId !== null && networkConfig.rpcUrl !== null && networkConfig.marketAddress !== null;
+
 /**
- * Contract reads stay off unless explicitly enabled AND a chain, RPC and
- * market address are all configured. The on-chain adapter has not been
- * run against a real deployment; see onchain.ts before enabling it.
+ * Reads come from the auction contract once a chain, RPC and market
+ * address are configured. No address is ever defaulted, so without one
+ * every result stays "unavailable".
  */
 function selectAdapter(): MarketDataAdapter {
   const { expectedChainId, rpcUrl, marketAddress } = networkConfig;
-  if (
-    process.env.NEXT_PUBLIC_CONTRACT_READS !== "enabled" ||
-    expectedChainId === null ||
-    rpcUrl === null ||
-    marketAddress === null
-  ) {
+  if (expectedChainId === null || rpcUrl === null || marketAddress === null) {
     return unavailableAdapter;
   }
 

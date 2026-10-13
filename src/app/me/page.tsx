@@ -15,7 +15,7 @@ export default function MyOrdersPage() {
         <OrdersPanel />
         <footer className="footer">
           <span>BATCHELOR <span className="brand-period">/</span> DEVELOPMENT BUILD</span>
-          <span>Market data is not connected. No trades can be submitted.</span>
+          <span>Read-only. No trades can be submitted.</span>
         </footer>
       </div>
     </main>

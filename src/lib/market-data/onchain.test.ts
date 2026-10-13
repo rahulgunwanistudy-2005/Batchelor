@@ -102,17 +102,22 @@ describe("on-chain adapter: summary and batch results", () => {
   it("leaves the last price empty when the previous batch did not trade or nothing is open", async () => {
     const noTrade = adapterWith({ result: clearedResult({ volumeLots: BigInt(0) }) });
     expect((await noTrade.adapter.getMarketSummary("default")).data?.lastClearingPrice).toBeNull();
-    const closed = adapterWith({ openBatch: openBatch({ hasOpen: false }) });
-    expect((await closed.adapter.getMarketSummary("default")).data).toMatchObject({ lastClearingPrice: null, currentBatchId: null });
     const first = adapterWith({ openBatch: openBatch({ id: BigInt(1) }) });
-    expect(first.calls).not.toContain("result");
     expect((await first.adapter.getMarketSummary("default")).data?.lastClearingPrice).toBeNull();
+    expect(first.calls).not.toContain("result");
+    const never = adapterWith({ openBatch: openBatch({ id: BigInt(0), hasOpen: false }) });
+    expect((await never.adapter.getMarketSummary("default")).data).toMatchObject({ lastClearingPrice: null, currentBatchId: null });
+    expect(never.calls).not.toContain("result");
+  });
+  it("uses the last batch itself for the price once nothing is open", async () => {
+    const { adapter } = adapterWith({ openBatch: openBatch({ hasOpen: false }), result: clearedResult({ clearTick: 107 }) });
+    expect((await adapter.getMarketSummary("default")).data).toMatchObject({ lastClearingPrice: "1.035", currentBatchId: null });
   });
   it("formats a cleared batch and marks an uncleared one unavailable", async () => {
     const cleared = adapterWith({ result: clearedResult({ clearTick: 107 }) });
     expect((await cleared.adapter.getBatchResult("default", "6")).data).toEqual({
       marketId: "default", batchId: "6", clearingPrice: "1.035 dUSD", volume: "2.5 ROSE",
-      orderCount: null, clearGas: "41234", blockNumber: null, clearedAtTimestamp: null,
+      orderCount: null, clearGas: "41234", blockNumber: "99", clearedAtTimestamp: null,
     });
     const pending = adapterWith({ result: clearedResult({ clearedAt: BigInt(0) }) });
     expect(await pending.adapter.getBatchResult("default", "6")).toMatchObject({ status: "unavailable", data: null });
